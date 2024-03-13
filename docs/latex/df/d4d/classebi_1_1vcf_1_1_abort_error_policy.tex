@@ -1,0 +1,70 @@
+\doxysection{ebi\+::vcf\+::Abort\+Error\+Policy Class Reference}
+\hypertarget{classebi_1_1vcf_1_1_abort_error_policy}{}\label{classebi_1_1vcf_1_1_abort_error_policy}\index{ebi::vcf::AbortErrorPolicy@{ebi::vcf::AbortErrorPolicy}}
+
+
+Collaboration diagram for ebi\+::vcf\+::Abort\+Error\+Policy\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{d8/db4/classebi_1_1vcf_1_1_abort_error_policy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_abort_error_policy_af7d4aad71ef66c91f61470594688a223}{handle\+\_\+error}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&state, \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \texorpdfstring{$\ast$}{*}error)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_abort_error_policy_acd5cbdc14b258ce2c239ae7cb322c497}{handle\+\_\+warning}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&state, \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \texorpdfstring{$\ast$}{*}error)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{structebi_1_1vcf_1_1_error}{Error} management policy that aborts execution when an error is found 
+
+Definition at line \mbox{\hyperlink{error__policy_8hpp_source_l00033}{33}} of file \mbox{\hyperlink{error__policy_8hpp_source}{error\+\_\+policy.\+hpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_abort_error_policy_af7d4aad71ef66c91f61470594688a223}\label{classebi_1_1vcf_1_1_abort_error_policy_af7d4aad71ef66c91f61470594688a223} 
+\index{ebi::vcf::AbortErrorPolicy@{ebi::vcf::AbortErrorPolicy}!handle\_error@{handle\_error}}
+\index{handle\_error@{handle\_error}!ebi::vcf::AbortErrorPolicy@{ebi::vcf::AbortErrorPolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_error()}{handle\_error()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Abort\+Error\+Policy\+::handle\+\_\+error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&}]{state,  }\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \texorpdfstring{$\ast$}{*}}]{error }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{abort__error__policy_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{abort__error__policy_8cpp_source}{abort\+\_\+error\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ state.m\_is\_valid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_abort_error_policy_acd5cbdc14b258ce2c239ae7cb322c497}\label{classebi_1_1vcf_1_1_abort_error_policy_acd5cbdc14b258ce2c239ae7cb322c497} 
+\index{ebi::vcf::AbortErrorPolicy@{ebi::vcf::AbortErrorPolicy}!handle\_warning@{handle\_warning}}
+\index{handle\_warning@{handle\_warning}!ebi::vcf::AbortErrorPolicy@{ebi::vcf::AbortErrorPolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_warning()}{handle\_warning()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Abort\+Error\+Policy\+::handle\+\_\+warning (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&}]{state,  }\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \texorpdfstring{$\ast$}{*}}]{error }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{abort__error__policy_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{abort__error__policy_8cpp_source}{abort\+\_\+error\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ state.add\_warning(std::unique\_ptr<Error>(error));}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/error\+\_\+policy.\+hpp\item 
+src/vcf/abort\+\_\+error\+\_\+policy.\+cpp\end{DoxyCompactItemize}

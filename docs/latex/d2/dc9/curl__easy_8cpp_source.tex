@@ -1,0 +1,78 @@
+\doxysection{curl\+\_\+easy.\+cpp}
+\hypertarget{curl__easy_8cpp_source}{}\label{curl__easy_8cpp_source}\index{src/util/curl\_easy.cpp@{src/util/curl\_easy.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}util/curl\_easy.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00019}00019\ \textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00020}00020\ stringWriterCallback(\textcolor{keywordtype}{void}\ *contents,\ \textcolor{keywordtype}{size\_t}\ size,\ \textcolor{keywordtype}{size\_t}\ nmemb,\ \textcolor{keywordtype}{void}\ *buffer)}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00022}00022\ \ \ \ \ ((std::string*)buffer)-\/>append((\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*)contents,\ size\ *\ nmemb);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{return}\ size\ *\ nmemb;}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00024}00024\ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00026}00026\ \textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00027}00027\ streamWriterCallback(\textcolor{keywordtype}{void}\ *contents,\ \textcolor{keywordtype}{size\_t}\ size,\ \textcolor{keywordtype}{size\_t}\ nmemb,\ \textcolor{keywordtype}{void}\ *stream)}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00028}00028\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00029}00029\ \ \ \ \ ((std::ostream*)stream)-\/>write((\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*)contents,\ \textcolor{keyword}{static\_cast<}std::streamsize\textcolor{keyword}{>}(size\ *\ nmemb));}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{return}\ size\ *\ nmemb;}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00031}00031\ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00033}00033\ ebi::util::curl::Easy::Easy()}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00034}00034\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00035}00035\ \ \ \ \ curl\_global\_init(CURL\_GLOBAL\_DEFAULT);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00036}00036\ \ \ \ \ curlHandle\ =\ curl\_easy\_init();}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{if}\ (curlHandle)\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_SSL\_VERIFYPEER,\ 0L);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_SSL\_VERIFYHOST,\ 0L);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_USERAGENT,\ \textcolor{stringliteral}{"{}libcurl-\/agent/1.0"{}});}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00041}00041\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00042}00042\ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00044}00044\ ebi::util::curl::Easy::\string~Easy()}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00045}00045\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (curlHandle)\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ curl\_easy\_cleanup(curlHandle);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00049}00049\ \ \ \ \ curl\_global\_cleanup();}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00050}00050\ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00052}00052\ std::string}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00053}00053\ ebi::util::curl::Easy::request(\textcolor{keyword}{const}\ std::string\ \&url,\ \textcolor{keywordtype}{long}\&\ httpReturnCode)}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00054}00054\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00055}00055\ \ \ \ \ std::string\ buffer;}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00056}00056\ \ \ \ \ \textcolor{keywordflow}{if}\ (curlHandle)\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_URL,\ url.c\_str());}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_WRITEFUNCTION,\ stringWriterCallback);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_WRITEDATA,\ \&buffer);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_FAILONERROR,\ 1);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ processCurlRequest(url,\ httpReturnCode);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00062}00062\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{return}\ buffer;}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00064}00064\ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00066}00066\ std::ostream\&}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00067}00067\ ebi::util::curl::Easy::request(std::ostream\&\ stream,\ \textcolor{keyword}{const}\ std::string\&\ url,\ \textcolor{keywordtype}{long}\&\ httpReturnCode)}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00068}00068\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (curlHandle)\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_URL,\ url.c\_str());}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_WRITEFUNCTION,\ streamWriterCallback);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_WRITEDATA,\ \&stream);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_FAILONERROR,\ 1);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ processCurlRequest(url,\ httpReturnCode);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00075}00075\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{return}\ stream;}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00077}00077\ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00079}00079\ \textcolor{keywordtype}{void}\ ebi::util::curl::Easy::processCurlRequest(\textcolor{keyword}{const}\ std::string\&\ url,\ \textcolor{keywordtype}{long}\&\ httpReturnCode)\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00080}00080\ \ \ \ \ CURLcode\ res\ =\ curl\_easy\_perform(curlHandle);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (res\ !=\ CURLE\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ std::string\ reason\ =\ \textcolor{stringliteral}{"{}ebi::util::curl::Easy::request\ failed:\ "{}}\ +\ url\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ reason\ +=\ curl\_easy\_strerror(res);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ std::cerr\ <<\ reason\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00085}00085\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00086}00086\ \ \ \ \ curl\_easy\_getinfo(curlHandle,\ CURLINFO\_RESPONSE\_CODE,\ \&httpReturnCode);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8cpp_source_l00087}00087\ \}}
+
+\end{DoxyCode}

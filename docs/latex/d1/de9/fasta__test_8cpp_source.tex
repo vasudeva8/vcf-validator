@@ -1,0 +1,126 @@
+\doxysection{fasta\+\_\+test.\+cpp}
+\hypertarget{fasta__test_8cpp_source}{}\label{fasta__test_8cpp_source}\index{test/fasta/fasta\_test.cpp@{test/fasta/fasta\_test.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}catch/catch.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}util/curl\_easy.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}fasta/fasta.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00024}00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00025}00025\ \{}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00026}00026\ \ \ \textcolor{keyword}{const}\ std::string\ WHOLE\_GENOME\_FASTA\ =\ \textcolor{stringliteral}{"{}test/input\_files/fasta/whole\_genome.fa"{}};}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00027}00027\ \ \ \textcolor{keyword}{const}\ std::string\ WHOLE\_GENOME\_FASTA\_INDEX\ =\ \textcolor{stringliteral}{"{}test/input\_files/fasta/whole\_genome.fa.fai"{}};}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00028}00028\ \ \ \textcolor{keyword}{const}\ std::string\ SINGLE\_CHROMOSOME\_FASTA\ =\ \textcolor{stringliteral}{"{}test/input\_files/fasta/single\_chromosome.fa"{}};}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00029}00029\ \ \ \textcolor{keyword}{const}\ std::string\ SINGLE\_CHROMOSOME\_FASTA\_INDEX\ =\ \textcolor{stringliteral}{"{}test/input\_files/fasta/single\_chromosome.fa.fai"{}};}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00031}00031\ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Tests\ for\ using\ file\ based\ fasta"{}},\ \textcolor{stringliteral}{"{}[fasta]"{}})}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00032}00032\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00033}00033\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Create\ file\ based\ fasta\ objects"{}})}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00034}00034\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ CHECK\_NOTHROW(std::unique\_ptr<ebi::vcf::fasta::IFasta>(}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta}{ebi::vcf::fasta::FileBasedFasta}}(WHOLE\_GENOME\_FASTA,\ WHOLE\_GENOME\_FASTA\_INDEX)));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ CHECK\_NOTHROW(std::unique\_ptr<ebi::vcf::fasta::IFasta>(}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta}{ebi::vcf::fasta::FileBasedFasta}}(SINGLE\_CHROMOSOME\_FASTA,\ SINGLE\_CHROMOSOME\_FASTA\_INDEX)));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00039}00039\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00041}00041\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Check\ if\ contigs\ exist,\ whole\ genome"{}})}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00042}00042\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ std::unique\_ptr<ebi::vcf::fasta::IFasta>\ fasta(}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta}{ebi::vcf::fasta::FileBasedFasta}}(WHOLE\_GENOME\_FASTA,\ WHOLE\_GENOME\_FASTA\_INDEX));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_exists(\textcolor{stringliteral}{"{}I"{}}));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_exists(\textcolor{stringliteral}{"{}II"{}}));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_exists(\textcolor{stringliteral}{"{}III"{}}));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ CHECK\_FALSE(fasta-\/>sequence\_exists(\textcolor{stringliteral}{"{}Non-\/existing"{}}));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00050}00050\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00052}00052\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Check\ if\ contigs\ exist,\ single\ chromosome"{}})}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00053}00053\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ std::unique\_ptr<ebi::vcf::fasta::IFasta>\ fasta(}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta}{ebi::vcf::fasta::FileBasedFasta}}(SINGLE\_CHROMOSOME\_FASTA,\ SINGLE\_CHROMOSOME\_FASTA\_INDEX));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_exists(\textcolor{stringliteral}{"{}III"{}}));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ CHECK\_FALSE(fasta-\/>sequence\_exists(\textcolor{stringliteral}{"{}Non-\/existing"{}}));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00059}00059\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00061}00061\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Check\ the\ contigs'\ length,\ whole\ genome"{}})}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00062}00062\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ std::unique\_ptr<ebi::vcf::fasta::IFasta>\ fasta(}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta}{ebi::vcf::fasta::FileBasedFasta}}(WHOLE\_GENOME\_FASTA,\ WHOLE\_GENOME\_FASTA\_INDEX));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_length(\textcolor{stringliteral}{"{}I"{}})\ ==\ 200);}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_length(\textcolor{stringliteral}{"{}II"{}})\ ==\ 172);}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_length(\textcolor{stringliteral}{"{}III"{}})\ ==\ 78);}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_length(\textcolor{stringliteral}{"{}Non-\/existing"{}})\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00070}00070\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00072}00072\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Check\ the\ contigs'\ length,\ single\ chromosome"{}})}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00073}00073\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ std::unique\_ptr<ebi::vcf::fasta::IFasta>\ fasta(}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta}{ebi::vcf::fasta::FileBasedFasta}}(SINGLE\_CHROMOSOME\_FASTA,\ SINGLE\_CHROMOSOME\_FASTA\_INDEX));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_length(\textcolor{stringliteral}{"{}III"{}})\ ==\ 78);}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_length(\textcolor{stringliteral}{"{}Non-\/existing"{}})\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00079}00079\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00081}00081\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Check\ the\ contigs'\ sequence,\ whole\ genome"{}})}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00082}00082\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ std::unique\_ptr<ebi::vcf::fasta::IFasta>\ fasta(}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta}{ebi::vcf::fasta::FileBasedFasta}}(WHOLE\_GENOME\_FASTA,\ WHOLE\_GENOME\_FASTA\_INDEX));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}I"{}},\ 0,\ 31)\ ==\ \textcolor{stringliteral}{"{}GATCACGTACATCACCTTGTAAGAATTTATC"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}I"{}},\ 199,\ 31)\ ==\ \textcolor{stringliteral}{"{}T"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}I"{}},\ 200,\ 31)\ ==\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}I"{}},\ 0,\ 0)\ ==\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}Non-\/existing"{}},\ 0,\ 31)\ ==\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00091}00091\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00093}00093\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Check\ the\ contigs'\ sequence,\ single\ chromosome"{}})}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00094}00094\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ std::unique\_ptr<ebi::vcf::fasta::IFasta>\ fasta(}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta}{ebi::vcf::fasta::FileBasedFasta}}(SINGLE\_CHROMOSOME\_FASTA,\ SINGLE\_CHROMOSOME\_FASTA\_INDEX));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}III"{}},\ 0,\ 31)\ ==\ \textcolor{stringliteral}{"{}GATCAGCCAAAATGGCTGATCCAGCTATTTA"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}III"{}},\ 77,\ 31)\ ==\ \textcolor{stringliteral}{"{}T"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}III"{}},\ 78,\ 31)\ ==\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}III"{}},\ 0,\ 0)\ ==\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}Non-\/existing"{}},\ 0,\ 31)\ ==\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00103}00103\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00104}00104\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00106}00106\ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Tests\ for\ using\ contig\ downloaded\ from\ ENA"{}},\ \textcolor{stringliteral}{"{}[fasta]"{}})}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00107}00107\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00108}00108\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Create\ contig\ based\ fasta\ objects"{}})}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00109}00109\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ CHECK\_NOTHROW(std::unique\_ptr<ebi::vcf::fasta::IFasta>(\textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_remote_contig}{ebi::vcf::fasta::RemoteContig}}()));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00111}00111\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00113}00113\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Download\ contigs\ and\ be\ able\ to\ extract\ sequences"{}})}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00114}00114\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ std::unique\_ptr<ebi::vcf::fasta::IFasta>\ fasta(\textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_remote_contig}{ebi::vcf::fasta::RemoteContig}}());}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ CHECK\_NOTHROW(fasta-\/>sequence(\textcolor{stringliteral}{"{}DQ083950"{}},\ 0,\ 1));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ CHECK\_THROWS\_AS(fasta-\/>sequence(\textcolor{stringliteral}{"{}Non-\/existing"{}},\ 0,\ 1),\ \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception}{ebi::util::curl::URLRetrievalException}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_exists(\textcolor{stringliteral}{"{}DQ083950"{}}));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_exists(\textcolor{stringliteral}{"{}Non-\/existing"{}}));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ CHECK\_FALSE(fasta-\/>sequence\_exists(\textcolor{stringliteral}{"{}Undownloaded"{}}));}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_length(\textcolor{stringliteral}{"{}DQ083950"{}})\ ==\ 174);}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_length(\textcolor{stringliteral}{"{}Non-\/existing"{}})\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence\_length(\textcolor{stringliteral}{"{}Undownloaded"{}})\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}DQ083950"{}},\ 0,\ 31)\ ==\ \textcolor{stringliteral}{"{}GCCTCTGGTATGCTTCCCTGCTTGATGATTG"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}DQ083950"{}},\ 60,\ 31)\ ==\ \textcolor{stringliteral}{"{}ATGCTAGAAAAAACCAAGCAGTTTGTGGAGA"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}DQ083950"{}},\ 170,\ 31)\ ==\ \textcolor{stringliteral}{"{}GGTG"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}DQ083950"{}},\ 174,\ 31)\ ==\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}DQ083950"{}},\ 0,\ 0)\ ==\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ CHECK(fasta-\/>sequence(\textcolor{stringliteral}{"{}Non-\/existing"{}},\ 0,\ 31)\ ==\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00133}00133\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00134}00134\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta__test_8cpp_source_l00135}00135\ \}}
+
+\end{DoxyCode}

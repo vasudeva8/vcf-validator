@@ -1,0 +1,283 @@
+\doxysection{ebi\+::vcf\+::Record Struct Reference}
+\hypertarget{structebi_1_1vcf_1_1_record}{}\label{structebi_1_1vcf_1_1_record}\index{ebi::vcf::Record@{ebi::vcf::Record}}
+
+
+Collaboration diagram for ebi\+::vcf\+::Record\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d71/structebi_1_1vcf_1_1_record__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_record_a05059a99e1b0a367401073720b8b21ec}{Record}} (size\+\_\+t line, std\+::string const \&chromosome, size\+\_\+t position, std\+::vector$<$ std\+::string $>$ const \&ids, std\+::string const \&reference\+\_\+allele, std\+::vector$<$ std\+::string $>$ const \&alternate\+\_\+alleles, float quality, std\+::vector$<$ std\+::string $>$ const \&filters, std\+::multimap$<$ std\+::string, std\+::string $>$ const \&info, std\+::vector$<$ std\+::string $>$ const \&format, std\+::vector$<$ std\+::string $>$ const \&samples, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$ source)
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_record_ad18c537736ff5469e1494fecc462930e}{operator==}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}} const \&) const
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_record_a629affa67a0302e98c4175f461abd644}{operator!=}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}} const \&) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{structebi_1_1vcf_1_1_record_ac8aaace163fc299f197ed5e9568a14fc}{line}}
+\item 
+std\+::string \mbox{\hyperlink{structebi_1_1vcf_1_1_record_ae065afc330ba59021cbcf21177375b54}{chromosome}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structebi_1_1vcf_1_1_record_a394d67da42a173c025d43044a831ab0f}{position}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_a3df7b8b1b7de52a23d014deb9934da27}{ids}}
+\item 
+std\+::string \mbox{\hyperlink{structebi_1_1vcf_1_1_record_ac40c89faac7cdd461bd49cc594d70f38}{reference\+\_\+allele}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_af14df4d651d929539a87315312827419}{alternate\+\_\+alleles}}
+\item 
+std\+::vector$<$ Record\+Type $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_ad3780dcfd4e9e5196565120d11c69fba}{types}}
+\item 
+float \mbox{\hyperlink{structebi_1_1vcf_1_1_record_a5e2c9bd8dd0dae407606febe57576f7f}{quality}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_ab5988f58304126aa98eae202769d1613}{filters}}
+\item 
+std\+::multimap$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_a57ee7d4b266c4fc1c3c253d6f1b31745}{info}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_a046b9060a558b00b070a8e421d357c26}{format}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_a5a313db33932306cd5b5a5dab658e5e5}{samples}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_a3f65d5b6aaebb7a3b0cf7ebde90e3378}{source}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00363}{363}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_record_a05059a99e1b0a367401073720b8b21ec}\label{structebi_1_1vcf_1_1_record_a05059a99e1b0a367401073720b8b21ec} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!Record@{Record}}
+\index{Record@{Record}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{Record()}{Record()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Record\+::\+Record (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{line,  }\item[{std\+::string const \&}]{chromosome,  }\item[{size\+\_\+t}]{position,  }\item[{std\+::vector$<$ std\+::string $>$ const \&}]{ids,  }\item[{std\+::string const \&}]{reference\+\_\+allele,  }\item[{std\+::vector$<$ std\+::string $>$ const \&}]{alternate\+\_\+alleles,  }\item[{float}]{quality,  }\item[{std\+::vector$<$ std\+::string $>$ const \&}]{filters,  }\item[{std\+::multimap$<$ std\+::string, std\+::string $>$ const \&}]{info,  }\item[{std\+::vector$<$ std\+::string $>$ const \&}]{format,  }\item[{std\+::vector$<$ std\+::string $>$ const \&}]{samples,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$}]{source }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{record_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{record_8cpp_source}{record.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044\ \ \ \ \ :\ line(line),}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ chromosome\{chromosome\},}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ position\{position\},}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ ids\{ids\},}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ reference\_allele\{reference\_allele\},}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ alternate\_alleles\{alternate\_alleles\},}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ types\{\},}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ quality\{quality\},}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ filters\{filters\},}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ info\{info\},}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ format\{format\},}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ samples\{samples\},}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ source\{source\}}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ set\_types();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ check\_chromosome();}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ check\_ids();}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ check\_alternate\_alleles();}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ check\_quality();}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ check\_filter();}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ check\_info();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ check\_format();}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ check\_samples();}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_record_a629affa67a0302e98c4175f461abd644}\label{structebi_1_1vcf_1_1_record_a629affa67a0302e98c4175f461abd644} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily bool ebi\+::vcf\+::\+Record\+::operator!= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}} const \&}]{other }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{record_8cpp_source_l00083}{83}} of file \mbox{\hyperlink{record_8cpp_source}{record.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ other);}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_record_ad18c537736ff5469e1494fecc462930e}\label{structebi_1_1vcf_1_1_record_ad18c537736ff5469e1494fecc462930e} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!operator==@{operator==}}
+\index{operator==@{operator==}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool ebi\+::vcf\+::\+Record\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}} const \&}]{other }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{record_8cpp_source_l00069}{69}} of file \mbox{\hyperlink{record_8cpp_source}{record.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ chromosome\ ==\ other.chromosome\ \&\&}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position\ ==\ other.position\ \&\&}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ids\ ==\ other.ids\ \&\&}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reference\_allele\ ==\ other.reference\_allele\ \&\&}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alternate\_alleles\ ==\ other.alternate\_alleles\ \&\&}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quality\ ==\ other.quality\ \&\&}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ filters\ ==\ other.filters\ \&\&}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ info\ ==\ other.info\ \&\&}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ format\ ==\ other.format\ \&\&}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ samples\ ==\ other.samples;}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_record_af14df4d651d929539a87315312827419}\label{structebi_1_1vcf_1_1_record_af14df4d651d929539a87315312827419} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!alternate\_alleles@{alternate\_alleles}}
+\index{alternate\_alleles@{alternate\_alleles}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{alternate\_alleles}{alternate\_alleles}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ ebi\+::vcf\+::\+Record\+::alternate\+\_\+alleles}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00372}{372}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_ae065afc330ba59021cbcf21177375b54}\label{structebi_1_1vcf_1_1_record_ae065afc330ba59021cbcf21177375b54} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!chromosome@{chromosome}}
+\index{chromosome@{chromosome}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{chromosome}{chromosome}}
+{\footnotesize\ttfamily std\+::string ebi\+::vcf\+::\+Record\+::chromosome}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00367}{367}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_ab5988f58304126aa98eae202769d1613}\label{structebi_1_1vcf_1_1_record_ab5988f58304126aa98eae202769d1613} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!filters@{filters}}
+\index{filters@{filters}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{filters}{filters}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ ebi\+::vcf\+::\+Record\+::filters}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00376}{376}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_a046b9060a558b00b070a8e421d357c26}\label{structebi_1_1vcf_1_1_record_a046b9060a558b00b070a8e421d357c26} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!format@{format}}
+\index{format@{format}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{format}{format}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ ebi\+::vcf\+::\+Record\+::format}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00378}{378}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_a3df7b8b1b7de52a23d014deb9934da27}\label{structebi_1_1vcf_1_1_record_a3df7b8b1b7de52a23d014deb9934da27} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!ids@{ids}}
+\index{ids@{ids}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{ids}{ids}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ ebi\+::vcf\+::\+Record\+::ids}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00369}{369}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_a57ee7d4b266c4fc1c3c253d6f1b31745}\label{structebi_1_1vcf_1_1_record_a57ee7d4b266c4fc1c3c253d6f1b31745} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!info@{info}}
+\index{info@{info}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{info}{info}}
+{\footnotesize\ttfamily std\+::multimap$<$std\+::string, std\+::string$>$ ebi\+::vcf\+::\+Record\+::info}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00377}{377}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_ac8aaace163fc299f197ed5e9568a14fc}\label{structebi_1_1vcf_1_1_record_ac8aaace163fc299f197ed5e9568a14fc} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!line@{line}}
+\index{line@{line}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{line}{line}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Record\+::line}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00365}{365}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_a394d67da42a173c025d43044a831ab0f}\label{structebi_1_1vcf_1_1_record_a394d67da42a173c025d43044a831ab0f} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!position@{position}}
+\index{position@{position}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Record\+::position}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00368}{368}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_a5e2c9bd8dd0dae407606febe57576f7f}\label{structebi_1_1vcf_1_1_record_a5e2c9bd8dd0dae407606febe57576f7f} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!quality@{quality}}
+\index{quality@{quality}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{quality}{quality}}
+{\footnotesize\ttfamily float ebi\+::vcf\+::\+Record\+::quality}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00375}{375}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_ac40c89faac7cdd461bd49cc594d70f38}\label{structebi_1_1vcf_1_1_record_ac40c89faac7cdd461bd49cc594d70f38} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!reference\_allele@{reference\_allele}}
+\index{reference\_allele@{reference\_allele}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{reference\_allele}{reference\_allele}}
+{\footnotesize\ttfamily std\+::string ebi\+::vcf\+::\+Record\+::reference\+\_\+allele}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00371}{371}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_a5a313db33932306cd5b5a5dab658e5e5}\label{structebi_1_1vcf_1_1_record_a5a313db33932306cd5b5a5dab658e5e5} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!samples@{samples}}
+\index{samples@{samples}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{samples}{samples}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ ebi\+::vcf\+::\+Record\+::samples}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00380}{380}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_a3f65d5b6aaebb7a3b0cf7ebde90e3378}\label{structebi_1_1vcf_1_1_record_a3f65d5b6aaebb7a3b0cf7ebde90e3378} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!source@{source}}
+\index{source@{source}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{source}{source}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}}$>$ ebi\+::vcf\+::\+Record\+::source}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00382}{382}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_ad3780dcfd4e9e5196565120d11c69fba}\label{structebi_1_1vcf_1_1_record_ad3780dcfd4e9e5196565120d11c69fba} 
+\index{ebi::vcf::Record@{ebi::vcf::Record}!types@{types}}
+\index{types@{types}!ebi::vcf::Record@{ebi::vcf::Record}}
+\doxysubsubsection{\texorpdfstring{types}{types}}
+{\footnotesize\ttfamily std\+::vector$<$Record\+Type$>$ ebi\+::vcf\+::\+Record\+::types}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00373}{373}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/file\+\_\+structure.\+hpp\item 
+src/vcf/record.\+cpp\end{DoxyCompactItemize}

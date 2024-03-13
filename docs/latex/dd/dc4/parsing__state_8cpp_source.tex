@@ -1,0 +1,136 @@
+\doxysection{parsing\+\_\+state.\+cpp}
+\hypertarget{parsing__state_8cpp_source}{}\label{parsing__state_8cpp_source}\index{src/vcf/parsing\_state.cpp@{src/vcf/parsing\_state.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <util/algo\_utils.hpp>}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}vcf/parsing\_state.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00020}00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00022}00022\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00023}00023\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordtype}{void}\ valida();}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00027}00027\ \ \ \ \ ParsingState::ParsingState(std::shared\_ptr<Source>\ source,\ AdditionalChecks\ additionalChecks)}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00028}00028\ \ \ \ \ :\ n\_lines\{1\},\ n\_columns\{1\},\ n\_batches\{0\},\ cs\{0\},\ m\_is\_valid\{true\},\ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00029}00029\ \ \ \ \ \ \ source\{source\},\ record\{\},}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00030}00030\ \ \ \ \ \ \ errors\{\},\ warnings\{\},}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00031}00031\ \ \ \ \ \ \ defined\_metadata\{\},}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00032}00032\ \ \ \ \ \ \ additionalChecks\{additionalChecks\}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00033}00033\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordtype}{void}\ ParsingState::set\_version(Version\ version)}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00037}00037\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ source-\/>version\ =\ version;}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00040}00040\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordtype}{void}\ ParsingState::add\_meta(MetaEntry\ \textcolor{keyword}{const}\ \&\ meta)}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00042}00042\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ source-\/>meta\_entries.emplace(meta.id,\ meta);}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00045}00045\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{keywordtype}{void}\ ParsingState::set\_record(std::unique\_ptr<Record>\ record)}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00047}00047\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ this-\/>record\ =\ std::move(record);}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00049}00049\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{keywordtype}{void}\ ParsingState::add\_error(std::unique\_ptr<Error>\ error)}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00052}00052\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ errors.push\_back(std::move(error));}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00056}00056\ \ \ \ \ \textcolor{keywordtype}{void}\ ParsingState::add\_warning(std::unique\_ptr<Error>\ error)}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00057}00057\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ warnings.push\_back(std::move(error));}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00059}00059\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{keywordtype}{void}\ ParsingState::clear()}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00062}00062\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ record.reset();}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ errors.clear();}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ warnings.clear();}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00066}00066\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00068}00068\ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ ParsingState::samples()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00069}00069\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ source-\/>samples\_names;}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00071}00071\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{keywordtype}{void}\ ParsingState::set\_samples(std::vector<std::string>\ \&\ samples)}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00074}00074\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ source-\/>samples\_names\ =\ samples;}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00076}00076\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00077}00077\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00078}00078\ \ \ \ \ \textcolor{keywordtype}{bool}\ ParsingState::is\_well\_defined\_meta(std::string\ \textcolor{keyword}{const}\ \&\ meta\_type,\ std::string\ \textcolor{keyword}{const}\ \&\ \textcolor{keywordtype}{id})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00079}00079\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ std::multimap<std::string,std::string>::const\_iterator\ iter;}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ std::pair<iter,\ iter>\ range\ =\ defined\_metadata.equal\_range(meta\_type);}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ current\ =\ range.first;\ current\ !=\ range.second;\ ++current)\ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>second\ ==\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00088}00088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00089}00089\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{keywordtype}{void}\ ParsingState::add\_well\_defined\_meta(std::string\ \textcolor{keyword}{const}\ \&\ meta\_type,\ std::string\ \textcolor{keyword}{const}\ \&\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00091}00091\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ defined\_metadata.emplace(meta\_type,\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00093}00093\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00095}00095\ \ \ \ \ \textcolor{keywordtype}{void}\ ParsingState::validate\_additional\_checks()}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00096}00096\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (additionalChecks.checkEvidence)\ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (genotypes\_present()\ ||\ allele\_frequencies\_present()\ ||\ allele\_count\_present())\ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ BodySectionError\{record-\/>line,\ \textcolor{stringliteral}{"{}Requested\ evidence\ presence\ with\ -\/-\/require-\/evidence.\ "{}}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Please\ provide\ genotypes\ (GT\ field\ in\ FORMAT\ and\ samples),\ "{}}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}or\ allele\ frequencies\ (AF\ field\ in\ INFO),\ "{}}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}or\ allele\ counts\ (AC\ and\ AN\ fields\ in\ INFO)."{}}\};}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00106}00106\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00108}00108\ \ \ \ \ \textcolor{keywordtype}{bool}\ ParsingState::genotypes\_present()}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00109}00109\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ format\ =\ record-\/>format;}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !format.empty()\ \&\&\ util::contains(format,\ GT);}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00112}00112\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{keywordtype}{bool}\ ParsingState::allele\_frequencies\_present()}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00115}00115\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&info\_key\_value\ :\ record-\/>info)\ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (info\_key\_value.first\ ==\ vcf::AF)\ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00122}00122\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00124}00124\ \ \ \ \ \textcolor{keywordtype}{bool}\ ParsingState::allele\_count\_present()}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00125}00125\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ allele\_count\_present\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ allele\_total\_number\_present\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&info\_key\_value\ :\ record-\/>info)\ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (info\_key\_value.first\ ==\ vcf::AC)\ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (allele\_total\_number\_present)\ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allele\_count\_present\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (info\_key\_value.first\ ==\ vcf::AN)\ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (allele\_count\_present)\ \{}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allele\_total\_number\_present\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00143}00143\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00144}00144\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parsing__state_8cpp_source_l00145}00145\ \}}
+
+\end{DoxyCode}

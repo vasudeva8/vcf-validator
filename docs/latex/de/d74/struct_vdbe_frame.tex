@@ -1,0 +1,258 @@
+\doxysection{Vdbe\+Frame Struct Reference}
+\hypertarget{struct_vdbe_frame}{}\label{struct_vdbe_frame}\index{VdbeFrame@{VdbeFrame}}
+
+
+Collaboration diagram for Vdbe\+Frame\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/d55/struct_vdbe_frame__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_vdbe}{Vdbe}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vdbe_frame_a2f6258356959c94398d1d006a740c4ce}{v}}
+\item 
+\mbox{\hyperlink{struct_vdbe_frame}{Vdbe\+Frame}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vdbe_frame_afb11d8aa920f34720333f52737375d59}{p\+Parent}}
+\item 
+\mbox{\hyperlink{struct_vdbe_op}{Op}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vdbe_frame_a0e5670c52e8eeb7e66bf1e3bff8ce2b5}{a\+Op}}
+\item 
+i64 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vdbe_frame_aed133c8d63e9c5dd3dedaff47984b467}{an\+Exec}}
+\item 
+\mbox{\hyperlink{struct_mem}{Mem}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vdbe_frame_a98b9eabf633e77d4ae2dfe9d13a43fdf}{a\+Mem}}
+\item 
+u8 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vdbe_frame_a92608c14f2aa3be81e65d59000ef8bd8}{a\+Once\+Flag}}
+\item 
+\mbox{\hyperlink{struct_vdbe_cursor}{Vdbe\+Cursor}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vdbe_frame_a5d373b3a195dbd1a31f5aa0dbe1822ee}{ap\+Csr}}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vdbe_frame_a11de10011ea2164995c6b616bba8a576}{token}}
+\item 
+i64 \mbox{\hyperlink{struct_vdbe_frame_af655193217fb53c7acab9d24c94344aa}{last\+Rowid}}
+\item 
+\mbox{\hyperlink{struct_aux_data}{Aux\+Data}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vdbe_frame_a199f005c277fcaeca33abf86c0a865bc}{p\+Aux\+Data}}
+\item 
+int \mbox{\hyperlink{struct_vdbe_frame_a9b74ca630c19ab905db3be4e78dbd9e1}{n\+Cursor}}
+\item 
+int \mbox{\hyperlink{struct_vdbe_frame_aed0e6d8cb1908580a3c2aca04516b46c}{pc}}
+\item 
+int \mbox{\hyperlink{struct_vdbe_frame_acffd5d53fbb5cb55e257c34a547c1762}{n\+Op}}
+\item 
+int \mbox{\hyperlink{struct_vdbe_frame_ab340f2b5f6d6e09a872f5f8a64fec245}{n\+Mem}}
+\item 
+int \mbox{\hyperlink{struct_vdbe_frame_a04707991a2907a48a1c3b76f3da4d26b}{n\+Once\+Flag}}
+\item 
+int \mbox{\hyperlink{struct_vdbe_frame_a833bdf519676567bc3a700cdedc6562d}{n\+Child\+Mem}}
+\item 
+int \mbox{\hyperlink{struct_vdbe_frame_a2d2900348092258d12eb71057812429a}{n\+Child\+Csr}}
+\item 
+int \mbox{\hyperlink{struct_vdbe_frame_a77aacb67d627f4446dd50a795b5a2f0f}{n\+Change}}
+\item 
+int \mbox{\hyperlink{struct_vdbe_frame_ab25b753f6356e7b9561717a58cfa4181}{n\+Db\+Change}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17555}{17555}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_vdbe_frame_a98b9eabf633e77d4ae2dfe9d13a43fdf}\label{struct_vdbe_frame_a98b9eabf633e77d4ae2dfe9d13a43fdf} 
+\index{VdbeFrame@{VdbeFrame}!aMem@{aMem}}
+\index{aMem@{aMem}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{aMem}{aMem}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_mem}{Mem}}\texorpdfstring{$\ast$}{*} Vdbe\+Frame\+::a\+Mem}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17560}{17560}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_aed133c8d63e9c5dd3dedaff47984b467}\label{struct_vdbe_frame_aed133c8d63e9c5dd3dedaff47984b467} 
+\index{VdbeFrame@{VdbeFrame}!anExec@{anExec}}
+\index{anExec@{anExec}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{anExec}{anExec}}
+{\footnotesize\ttfamily i64\texorpdfstring{$\ast$}{*} Vdbe\+Frame\+::an\+Exec}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17559}{17559}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_a92608c14f2aa3be81e65d59000ef8bd8}\label{struct_vdbe_frame_a92608c14f2aa3be81e65d59000ef8bd8} 
+\index{VdbeFrame@{VdbeFrame}!aOnceFlag@{aOnceFlag}}
+\index{aOnceFlag@{aOnceFlag}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{aOnceFlag}{aOnceFlag}}
+{\footnotesize\ttfamily u8\texorpdfstring{$\ast$}{*} Vdbe\+Frame\+::a\+Once\+Flag}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17561}{17561}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_a0e5670c52e8eeb7e66bf1e3bff8ce2b5}\label{struct_vdbe_frame_a0e5670c52e8eeb7e66bf1e3bff8ce2b5} 
+\index{VdbeFrame@{VdbeFrame}!aOp@{aOp}}
+\index{aOp@{aOp}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{aOp}{aOp}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vdbe_op}{Op}}\texorpdfstring{$\ast$}{*} Vdbe\+Frame\+::a\+Op}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17558}{17558}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_a5d373b3a195dbd1a31f5aa0dbe1822ee}\label{struct_vdbe_frame_a5d373b3a195dbd1a31f5aa0dbe1822ee} 
+\index{VdbeFrame@{VdbeFrame}!apCsr@{apCsr}}
+\index{apCsr@{apCsr}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{apCsr}{apCsr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vdbe_cursor}{Vdbe\+Cursor}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Vdbe\+Frame\+::ap\+Csr}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17562}{17562}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_af655193217fb53c7acab9d24c94344aa}\label{struct_vdbe_frame_af655193217fb53c7acab9d24c94344aa} 
+\index{VdbeFrame@{VdbeFrame}!lastRowid@{lastRowid}}
+\index{lastRowid@{lastRowid}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{lastRowid}{lastRowid}}
+{\footnotesize\ttfamily i64 Vdbe\+Frame\+::last\+Rowid}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17564}{17564}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_a77aacb67d627f4446dd50a795b5a2f0f}\label{struct_vdbe_frame_a77aacb67d627f4446dd50a795b5a2f0f} 
+\index{VdbeFrame@{VdbeFrame}!nChange@{nChange}}
+\index{nChange@{nChange}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{nChange}{nChange}}
+{\footnotesize\ttfamily int Vdbe\+Frame\+::n\+Change}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17573}{17573}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_a2d2900348092258d12eb71057812429a}\label{struct_vdbe_frame_a2d2900348092258d12eb71057812429a} 
+\index{VdbeFrame@{VdbeFrame}!nChildCsr@{nChildCsr}}
+\index{nChildCsr@{nChildCsr}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{nChildCsr}{nChildCsr}}
+{\footnotesize\ttfamily int Vdbe\+Frame\+::n\+Child\+Csr}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17572}{17572}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_a833bdf519676567bc3a700cdedc6562d}\label{struct_vdbe_frame_a833bdf519676567bc3a700cdedc6562d} 
+\index{VdbeFrame@{VdbeFrame}!nChildMem@{nChildMem}}
+\index{nChildMem@{nChildMem}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{nChildMem}{nChildMem}}
+{\footnotesize\ttfamily int Vdbe\+Frame\+::n\+Child\+Mem}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17571}{17571}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_a9b74ca630c19ab905db3be4e78dbd9e1}\label{struct_vdbe_frame_a9b74ca630c19ab905db3be4e78dbd9e1} 
+\index{VdbeFrame@{VdbeFrame}!nCursor@{nCursor}}
+\index{nCursor@{nCursor}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{nCursor}{nCursor}}
+{\footnotesize\ttfamily int Vdbe\+Frame\+::n\+Cursor}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17566}{17566}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_ab25b753f6356e7b9561717a58cfa4181}\label{struct_vdbe_frame_ab25b753f6356e7b9561717a58cfa4181} 
+\index{VdbeFrame@{VdbeFrame}!nDbChange@{nDbChange}}
+\index{nDbChange@{nDbChange}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{nDbChange}{nDbChange}}
+{\footnotesize\ttfamily int Vdbe\+Frame\+::n\+Db\+Change}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17574}{17574}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_ab340f2b5f6d6e09a872f5f8a64fec245}\label{struct_vdbe_frame_ab340f2b5f6d6e09a872f5f8a64fec245} 
+\index{VdbeFrame@{VdbeFrame}!nMem@{nMem}}
+\index{nMem@{nMem}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{nMem}{nMem}}
+{\footnotesize\ttfamily int Vdbe\+Frame\+::n\+Mem}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17569}{17569}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_a04707991a2907a48a1c3b76f3da4d26b}\label{struct_vdbe_frame_a04707991a2907a48a1c3b76f3da4d26b} 
+\index{VdbeFrame@{VdbeFrame}!nOnceFlag@{nOnceFlag}}
+\index{nOnceFlag@{nOnceFlag}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{nOnceFlag}{nOnceFlag}}
+{\footnotesize\ttfamily int Vdbe\+Frame\+::n\+Once\+Flag}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17570}{17570}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_acffd5d53fbb5cb55e257c34a547c1762}\label{struct_vdbe_frame_acffd5d53fbb5cb55e257c34a547c1762} 
+\index{VdbeFrame@{VdbeFrame}!nOp@{nOp}}
+\index{nOp@{nOp}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{nOp}{nOp}}
+{\footnotesize\ttfamily int Vdbe\+Frame\+::n\+Op}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17568}{17568}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_a199f005c277fcaeca33abf86c0a865bc}\label{struct_vdbe_frame_a199f005c277fcaeca33abf86c0a865bc} 
+\index{VdbeFrame@{VdbeFrame}!pAuxData@{pAuxData}}
+\index{pAuxData@{pAuxData}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{pAuxData}{pAuxData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_aux_data}{Aux\+Data}}\texorpdfstring{$\ast$}{*} Vdbe\+Frame\+::p\+Aux\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17565}{17565}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_aed0e6d8cb1908580a3c2aca04516b46c}\label{struct_vdbe_frame_aed0e6d8cb1908580a3c2aca04516b46c} 
+\index{VdbeFrame@{VdbeFrame}!pc@{pc}}
+\index{pc@{pc}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{pc}{pc}}
+{\footnotesize\ttfamily int Vdbe\+Frame\+::pc}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17567}{17567}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_afb11d8aa920f34720333f52737375d59}\label{struct_vdbe_frame_afb11d8aa920f34720333f52737375d59} 
+\index{VdbeFrame@{VdbeFrame}!pParent@{pParent}}
+\index{pParent@{pParent}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{pParent}{pParent}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vdbe_frame}{Vdbe\+Frame}}\texorpdfstring{$\ast$}{*} Vdbe\+Frame\+::p\+Parent}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17557}{17557}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_a11de10011ea2164995c6b616bba8a576}\label{struct_vdbe_frame_a11de10011ea2164995c6b616bba8a576} 
+\index{VdbeFrame@{VdbeFrame}!token@{token}}
+\index{token@{token}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{token}{token}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} Vdbe\+Frame\+::token}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17563}{17563}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_frame_a2f6258356959c94398d1d006a740c4ce}\label{struct_vdbe_frame_a2f6258356959c94398d1d006a740c4ce} 
+\index{VdbeFrame@{VdbeFrame}!v@{v}}
+\index{v@{v}!VdbeFrame@{VdbeFrame}}
+\doxysubsubsection{\texorpdfstring{v}{v}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vdbe}{Vdbe}}\texorpdfstring{$\ast$}{*} Vdbe\+Frame\+::v}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17556}{17556}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

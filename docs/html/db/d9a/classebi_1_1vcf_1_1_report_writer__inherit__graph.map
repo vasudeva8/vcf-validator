@@ -1,0 +1,9 @@
+<map id="ebi::vcf::ReportWriter" name="ebi::vcf::ReportWriter">
+<area shape="rect" id="Node000001" title=" " alt="" coords="187,5,336,151"/>
+<area shape="rect" id="Node000002" href="$d3/d2c/classebi_1_1vcf_1_1_file_report_writer.html" title=" " alt="" coords="5,249,163,414"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="202,164,177,200,142,250,137,247,172,197,198,161"/>
+<area shape="rect" id="Node000003" href="$d0/dc7/classebi_1_1vcf_1_1_odb_report_r_w.html" title=" " alt="" coords="187,199,336,464"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="264,166,264,199,259,199,259,166"/>
+<area shape="rect" id="Node000004" href="$df/d78/classebi_1_1vcf_1_1_summary_report_writer.html" title=" " alt="" coords="361,249,554,414"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="328,161,396,247,392,251,324,164"/>
+</map>

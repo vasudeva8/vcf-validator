@@ -1,0 +1,594 @@
+\doxysection{fixer.\+cpp}
+\hypertarget{fixer_8cpp_source}{}\label{fixer_8cpp_source}\index{src/vcf/fixer.cpp@{src/vcf/fixer.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}util/logger.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}vcf/fixer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}vcf/string\_constants.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00021}00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00022}00022\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00023}00023\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00024}00024\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::fix(\textcolor{keywordtype}{size\_t}\ line\_number,\ std::vector<char>\ \&line,\ Error\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00027}00027\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ this-\/>line\_number\ =\ line\_number;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ this-\/>line\ =\ \&line;\ \textcolor{comment}{//\ this\ will\ be\ valid\ until\ this\ function\ returns}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ error.apply\_visitor(*\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ this-\/>line\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00032}00032\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ Fixer::get\_ignored\_errors()}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00035}00035\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ignored\_errors;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::ignore\_error()}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00040}00040\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ util::writeline(output,\ *line);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ ignored\_errors++;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(Error\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00046}00046\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(MetaSectionError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00051}00051\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (error.error\_fix\ ==\ ErrorFix::IRRECOVERABLE\_VALUE)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (error.error\_fix\ ==\ ErrorFix::RECOVERABLE\_VALUE)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ string\_line\ =\ \{line-\/>begin(),\ line-\/>end()\};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ fixing\ meta\ header\ definition\ of\ INFO\ and\ FORMAT,\ the\ error.value\ is\ either\ Type\ or\ Number}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ meta\_error\_field\_start\_index\ =\ string\_line.find(error.value\ +\ \textcolor{stringliteral}{"{}="{}});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ meta\_error\_field\_end\_index\ =\ string\_line.find(\textcolor{stringliteral}{"{},"{}},\ meta\_error\_field\_start\_index);\ \ \ \ \ \textcolor{comment}{//\ exclusive}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(debug)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ error.line\ <<\ \textcolor{stringliteral}{"{}:\ Fixing\ incorrect\ predefined\ tag\ meta\ definition\ "{}}\ <<\ error.value;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ fixed\_meta\_header\_line\ =\ string\_line.substr(0,\ meta\_error\_field\_start\_index)\ +\ error.value\ +\ \textcolor{stringliteral}{"{}="{}}\ +\ error.expected\_value\ +\ string\_line.substr(meta\_error\_field\_end\_index);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ util::writeline(output,\ fixed\_meta\_header\_line);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00066}00066\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00068}00068\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(HeaderSectionError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00069}00069\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00071}00071\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(BodySectionError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00074}00074\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00076}00076\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00078}00078\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(NoMetaDefinitionError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00079}00079\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00081}00081\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00083}00083\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(FileformatError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00084}00084\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00086}00086\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(ChromosomeBodyError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00089}00089\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00091}00091\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00093}00093\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(PositionBodyError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00094}00094\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00096}00096\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00098}00098\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(IdBodyError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00099}00099\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (error.error\_fix\ ==\ ErrorFix::DUPLICATE\_VALUES)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(debug)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ error.line\ <<\ \textcolor{stringliteral}{"{}:\ Fixing\ duplicate\ ID\ fields"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ id\_column\_index\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ string\_line\ =\ \{line-\/>begin(),\ line-\/>end()\};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a7daf3e6a2e5ee7dedaa52f7da3e253db}{fix\_column}}(id\_column\_index,\ string\_line,\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ [\&](std::string\ \&id\_column)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_ae29aae3d1157c90cdc7651729a401e3a}{remove\_duplicate\_strings}}(id\_column,\ \textcolor{stringliteral}{"{};"{}});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00111}00111\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(ReferenceAlleleBodyError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00114}00114\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00116}00116\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00118}00118\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(AlternateAllelesBodyError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00119}00119\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00121}00121\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00123}00123\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(QualityBodyError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00124}00124\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00126}00126\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00128}00128\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(FilterBodyError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00129}00129\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (error.field\ ==\ \textcolor{stringliteral}{"{}"{}}\ \&\&\ error.error\_fix\ !=\ ErrorFix::DUPLICATE\_VALUES)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ filter\_column\_index\ =\ 6;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ std::string\ string\_line\ =\ \{line-\/>begin(),\ line-\/>end()\};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a7daf3e6a2e5ee7dedaa52f7da3e253db}{fix\_column}}(filter\_column\_index,\ string\_line,\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ [\&](std::string\ \&filter\_column)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (error.error\_fix\ ==\ ErrorFix::IRRECOVERABLE\_VALUE\ \&\&\ error.field\ ==\ \textcolor{stringliteral}{"{}0"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(debug)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ error.line\ <<\ \textcolor{stringliteral}{"{}:\ Fixing\ invalid\ FILTER\ field\ "{}}\ <<\ error.field;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ std::string\ empty\_filter\_column\ =\ MISSING\_VALUE;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ auto\ condition\_to\_remove\_filter\_field\ =\ [\&](const\ std::string\ \&filter\_subfield,\ size\_t\ index)\ -\/>\ bool\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ filter\_subfield\ ==\ error.field;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ remove\_fields(filter\_column,\ \textcolor{stringliteral}{"{};"{}},\ empty\_filter\_column,\ condition\_to\_remove\_filter\_field);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (error.error\_fix\ ==\ ErrorFix::DUPLICATE\_VALUES)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(debug)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ error.line\ <<\ \textcolor{stringliteral}{"{}:\ Fixing\ duplicate\ FILTER\ fields"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_ae29aae3d1157c90cdc7651729a401e3a}{remove\_duplicate\_strings}}(filter\_column,\ \textcolor{stringliteral}{"{};"{}});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00152}00152\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00154}00154\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(InfoBodyError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00155}00155\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ info\_column\_index\ =\ 7;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ std::string\ string\_line\ =\ \{line-\/>begin(),\ line-\/>end()\};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ fix\_column(info\_column\_index,\ string\_line,\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ [\&](std::string\ \&info\_column)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ empty\_info\_column\ =\ MISSING\_VALUE;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ condition\_to\_modify\_info\_field\ =\ [\&](\textcolor{keyword}{const}\ std::string\ \&info\_subfield,\ \textcolor{keywordtype}{size\_t}\ index)\ -\/>\ \textcolor{keywordtype}{bool}\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ key\_value;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ util::string\_split(info\_subfield,\ \textcolor{stringliteral}{"{}="{}},\ key\_value);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ key\_value[0]\ ==\ error.field;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (error.error\_fix\ ==\ ErrorFix::DUPLICATE\_VALUES)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(debug)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ error.line\ <<\ \textcolor{stringliteral}{"{}:\ Fixing\ duplicate\ INFO\ fields"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ remove\_duplicate\_key\_value\_pairs(info\_column,\ \textcolor{stringliteral}{"{};"{}},\ \textcolor{stringliteral}{"{}="{}},\ empty\_info\_column);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (error.error\_fix\ ==\ ErrorFix::RECOVERABLE\_VALUE)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(debug)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ error.line\ <<\ \textcolor{stringliteral}{"{}:\ Fixing\ invalid\ INFO\ field\ "{}}\ <<\ error.field;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ replace\_fields(info\_column,\ \textcolor{stringliteral}{"{};"{}},\ error.field\ +\ \textcolor{stringliteral}{"{}="{}}\ +\ error.expected\_value,\ condition\_to\_modify\_info\_field);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (error.error\_fix\ ==\ ErrorFix::IRRECOVERABLE\_VALUE)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(debug)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ error.line\ <<\ \textcolor{stringliteral}{"{}:\ Removing\ invalid\ INFO\ field\ "{}}\ <<\ error.field;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ remove\_fields(info\_column,\ \textcolor{stringliteral}{"{};"{}},\ empty\_info\_column,\ condition\_to\_modify\_info\_field);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00179}00179\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00181}00181\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(FormatBodyError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00182}00182\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (error.error\_fix\ ==\ ErrorFix::DUPLICATE\_VALUES)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(debug)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ error.line\ <<\ \textcolor{stringliteral}{"{}:\ Fixing\ duplicate\ FORMAT\ fields"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ string\_line\ =\ \{line-\/>begin(),\ line-\/>end()\};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ remove\_duplicate\_format\_sample\_pairs(string\_line);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00190}00190\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00192}00192\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(SamplesBodyError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00193}00193\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00195}00195\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00197}00197\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(SamplesFieldBodyError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00198}00198\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(debug)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ error.line\ <<\ \textcolor{stringliteral}{"{}:\ Fixing\ invalid\ sample\ field\ "{}}\ <<\ error.field;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ format\_column\_index\ =\ 8;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ size\_t\ first\_samples\_column\_index\ =\ 9;}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ std::string\ string\_line\ =\ \{line-\/>begin(),\ line-\/>end()\};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ fixed\_samples;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ std::string\ message;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }iter\ =\ std::vector<std::string>::iterator;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ fixed\_samples\ =\ fix\_columns(format\_column\_index,\ -\/1,\ string\_line,\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ [\&](iter\ first,\ iter\ last)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (error.field\ ==\ GT)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fix\_format\_gt(first,\ last,\ error);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ remove\_format(first,\ last,\ error);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::out\_of\_range\ bad\_range)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ there\ were\ not\ enough\ columns.\ maybe\ an\ aggregate\ vcf\ without\ genotypes?}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ fixed\_samples\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ bad\_range.what();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fixed\_samples\ <=\ 1)\ \{\ \ \ \textcolor{comment}{//\ 1\ because\ we\ started\ counting\ since\ the\ FORMAT\ column}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(warning)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ error.line\ <<\ \textcolor{stringliteral}{"{}:\ Tried\ to\ fix\ field\ "{}}\ <<\ error.field}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ in\ the\ samples\ column,\ but\ sample\ columns\ are\ not\ present.\ "{}}\ <<\ message;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00228}00228\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00230}00230\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(NormalizationError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00231}00231\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00232}00232\ \ \ \ \ \ \ \ \ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00233}00233\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00235}00235\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::visit(DuplicationError\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00236}00236\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(debug)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ line\_number\ <<\ \textcolor{stringliteral}{"{}:\ Fixing\ duplicate:\ removing\ variant:\ "{}}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::string\{line-\/>begin(),\ line-\/>end()-\/1\};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00239}00239\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00241}\mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_ae29aae3d1157c90cdc7651729a401e3a}{00241}}\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ Fixer::remove\_duplicate\_strings(\textcolor{keyword}{const}\ std::string\ \&column,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separator)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00243}00243\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ std::set<std::string>\ already\_present;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00245}00245\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ is\_value\_duplicated\ =\ [\&](\textcolor{keyword}{const}\ std::string\ \&value,\ \textcolor{keywordtype}{size\_t}\ index)\ -\/>\ \textcolor{keywordtype}{bool}\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ first\_appearance\ =\ already\_present.insert(value).second;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !first\_appearance;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00249}00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ remove\_fields(column,\ separator,\ is\_value\_duplicated);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00250}00250\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00252}\mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a95d5635d53f6647f7038534656b3a5e5}{00252}}\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ Fixer::remove\_duplicate\_key\_value\_pairs(\textcolor{keyword}{const}\ std::string\ \&column,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separator,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&key\_value\_separator,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&empty\_value)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00256}00256\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00257}00257\ \ \ \ \ \ \ \ \ std::map<std::string,\ std::string>\ first\_key\_occurrence;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ std::vector<std::string>\ ordered\_keys;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ std::set<std::string>\ fields\_to\_remove;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00260}00260\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ std::vector<std::string>\ fields;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00262}00262\ \ \ \ \ \ \ \ \ util::string\_split(column,\ separator.c\_str(),\ fields);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00263}00263\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00264}00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ field\ :\ fields)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ subfields;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ util::string\_split(field,\ key\_value\_separator.c\_str(),\ subfields);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ first\_key\_iterator\ =\ first\_key\_occurrence.find(subfields[0]);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (first\_key\_iterator\ ==\ first\_key\_occurrence.end())\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ordered\_keys.push\_back(subfields[0]);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ first\_key\_occurrence[subfields[0]]\ =\ subfields[1];}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (first\_key\_occurrence[subfields[0]]\ !=\ subfields[1])\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fields\_to\_remove.insert(subfields[0]);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00274}00274\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00276}00276\ \ \ \ \ \ \ \ \ std::vector<std::string>\ fixed\_column;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00277}00277\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ num\_removed\_duplicates\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00278}00278\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00279}00279\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ ordered\_key\ :\ ordered\_keys)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fields\_to\_remove.find(ordered\_key)\ ==\ fields\_to\_remove.end())\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fixed\_column.push\_back(ordered\_key\ +\ key\_value\_separator\ +\ first\_key\_occurrence[ordered\_key]);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ num\_removed\_duplicates++;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00285}00285\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00286}00286\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00287}00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fixed\_column.size()\ ==\ 0)\ \{\ \ \ \ \ \ \ \textcolor{comment}{//\ all\ the\ fields\ were\ removed}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ empty\_value;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00289}00289\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ util::print\_container(output,\ fixed\_column,\ \textcolor{stringliteral}{"{}"{}},\ separator,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00291}00291\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00293}00293\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ num\_removed\_duplicates;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00294}00294\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00295}00295\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00296}\mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_ac675356ba5dd8eb606778a12663dc843}{00296}}\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ Fixer::remove\_duplicate\_format\_sample\_pairs(\textcolor{keyword}{const}\ std::string\ \&string\_line)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00297}00297\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ format\_column\_index\ =\ 8;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00298}00298\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ num\_removed\_duplicates\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00299}00299\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00300}00300\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }iter\ =\ std::vector<std::string>::iterator;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00301}00301\ \ \ \ \ \ \ \ \ fix\_columns(format\_column\_index,\ -\/1,\ string\_line,\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ [\&](iter\ first,\ iter\ last)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::vector<size\_t>>\ format\_fields\_indexes;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ ordered\_fields;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ format\_keys;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ util::string\_split(*first,\ \textcolor{stringliteral}{"{}:"{}},\ format\_keys);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00306}00306\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ format\_keys.size();\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ format\_fields\_indexes[format\_keys[i]].push\_back(i);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (format\_fields\_indexes[format\_keys[i]].size()\ ==\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ordered\_fields.push\_back(format\_keys[i]);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00313}00313\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::vector<std::string>>\ samples;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ first\ +\ 1;\ it\ !=\ last;\ it++)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ sample\_fields;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ util::string\_split(*it,\ \textcolor{stringliteral}{"{}:"{}},\ sample\_fields);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ samples.push\_back(sample\_fields);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00320}00320\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ std::set<std::string>\ fields\_to\_remove\ =\ get\_format\_fields\_to\_remove(format\_fields\_indexes,\ samples);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00322}00322\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ fixed\_format;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ ordered\_field\ :\ ordered\_fields)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fields\_to\_remove.find(ordered\_field)\ ==\ fields\_to\_remove.end())\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ keep\ first\ occurrence,\ discard\ the\ rest\ if\ present}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fixed\_format.push\_back(ordered\_field);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ num\_removed\_duplicates++;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fixed\_format.empty())\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Could\ not\ fix\ FORMAT\ duplicate\ fields:\ All\ fields\ had\ to\ be\ removed,\ but\ missing\ value\ is\ not\ permitted"{}});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ util::print\_container(output,\ fixed\_format,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{}:"{}},\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00337}00337\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ sample\ :\ samples)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ fixed\_sample;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ ordered\_field\ :\ ordered\_fields)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fields\_to\_remove.find(ordered\_field)\ ==\ fields\_to\_remove.end())\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ keep\ first\ occurrence,\ discard\ the\ rest\ if\ present}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sample.size()\ >\ format\_fields\_indexes[ordered\_field][0])\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fixed\_sample.push\_back(sample[format\_fields\_indexes[ordered\_field][0]]);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fixed\_sample.empty())\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ MISSING\_VALUE;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ all\ the\ sample\ fields\ were\ removed,\ so\ write\ missing\ value\ to\ output}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ util::print\_container(output,\ fixed\_sample,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{}:"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00355}00355\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00356}00356\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00357}00357\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ num\_removed\_duplicates;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00358}00358\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00359}00359\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00360}00360\ \ \ \ \ std::set<std::string>\ Fixer::get\_format\_fields\_to\_remove(std::map<std::string,\ std::vector<size\_t>>\ \&format\_fields\_indexes,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::vector<std::string>>\ \&samples)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00362}00362\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00363}00363\ \ \ \ \ \ \ \ \ std::set<std::string>\ fields\_to\_remove;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00364}00364\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00365}00365\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ sample\_it\ =\ samples.begin();\ sample\_it\ !=\ samples.end();\ sample\_it++)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ format\_field\ :\ format\_fields\_indexes)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (format\_field.second.size()\ >\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ format\_field\_index\ :\ format\_field.second)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((*sample\_it).size()\ >\ format\_field\_index\ \&\&\ (*sample\_it)[format\_field\_index]\ !=\ (*sample\_it)[format\_field.second[0]])\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fields\_to\_remove.insert(format\_field.first);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sample\_it\ =\ samples.end()\ -\/\ 1;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00377}00377\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00379}00379\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fields\_to\_remove;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00380}00380\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00381}00381\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00382}\mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a24efbc29a328d0dee0d0e817546e35a3}{00382}}\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::fix\_format\_gt(std::vector<std::string>::iterator\ first,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>::iterator\ last,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_samples_field_body_error}{SamplesFieldBodyError}}\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00385}00385\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00386}00386\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ field\_separator\ =\ \textcolor{stringliteral}{"{}:"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00387}00387\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ gt\_column\_index\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00388}00388\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ the\ field\ is\ GT,\ the\ values\ must\ use\ "{}/"{},\ as\ in\ "{}./."{}}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00389}00389\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ subfield\_separator\ =\ \textcolor{stringliteral}{"{}/"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00390}00390\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ empty\_subfield\ =\ \textcolor{charliteral}{'.'};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00391}00391\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00392}00392\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ that\ GT\ is\ present\ and\ is\ the\ first\ field}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00393}00393\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ subfield\_index\ =\ split\_and\_find(*first,\ field\_separator,\ error.field);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00394}00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (subfield\_index\ !=\ gt\_column\_index)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(warning)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ error.line\ <<\ \textcolor{stringliteral}{"{}:\ Tried\ to\ fix\ field\ \(\backslash\)"{}"{}}\ <<\ error.field}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}\ but\ it\ was\ not\ present\ in\ the\ FORMAT\ column\ \(\backslash\)"{}"{}}\ <<\ *first\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ ignored\_errors++;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ util::print\_container(output,\ std::vector<std::string>\{first,\ last\},\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00400}00400\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00401}00401\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00402}00402\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ write\ the\ FORMAT\ column}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00403}00403\ \ \ \ \ \ \ \ \ output\ <<\ *first;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00404}00404\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00405}00405\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}cardinality`\ should\ be\ -\/1\ if\ the\ cardinality\ is\ unknown,\ and\ any\ positive\ number\ otherwise}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00406}00406\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ so,\ if\ unknown,\ put\ 1,\ so\ that\ a\ single\ "{}."{}\ is\ written}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00407}00407\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ repeat\ =\ error.field\_cardinality\ <=\ -\/1\ ?\ 1\ :\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(error.field\_cardinality);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00408}00408\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00409}00409\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ now\ \`{}it`\ will\ point\ to\ each\ SAMPLE\ column}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00410}00410\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ ++first;\ it\ !=\ last;\ ++it)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ fix\_column(gt\_column\_index,\ *it,\ field\_separator,\ [\&](std::string\ wrong\_subfield)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ util::print\_container(output,\ std::string(repeat,\ empty\_subfield),\ \textcolor{stringliteral}{"{}"{}},\ subfield\_separator,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00415}00415\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00416}00416\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00417}00417\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00418}\mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a19c537657d4d9822a20f6d6ab4b0f530}{00418}}\ \ \ \ \ \textcolor{keywordtype}{void}\ Fixer::remove\_format(std::vector<std::string>::iterator\ first,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>::iterator\ last,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_samples_field_body_error}{SamplesFieldBodyError}}\ \&error)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00421}00421\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00422}00422\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ remove\ from\ FORMAT\ column}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00423}00423\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ field\_separator\ =\ \textcolor{stringliteral}{"{}:"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00424}00424\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ field\_index;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00425}00425\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ removed\ =\ remove\_fields(*first,\ field\_separator,\ [\&](\textcolor{keyword}{const}\ std::string\ \&field,\ \textcolor{keywordtype}{size\_t}\ index)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (field\ ==\ error.field)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00427}00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ field\_index\ =\ index;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ field\ ==\ error.field;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ false;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00432}00432\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00433}00433\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (removed\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(warning)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ error.line\ <<\ \textcolor{stringliteral}{"{}:\ Tried\ to\ fix\ field\ \(\backslash\)"{}"{}}\ <<\ error.field}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}\ but\ it\ was\ not\ present\ in\ the\ FORMAT\ column\ \(\backslash\)"{}"{}}\ <<\ *first\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ ignored\_errors++;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ util::print\_container(output,\ std::vector<std::string>\{++first,\ last\},\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00439}00439\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00440}00440\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00441}00441\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ remove\ from\ the\ samples\ columns}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00442}00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (++first;\ first\ !=\ last;\ ++first)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00444}00444\ \ \ \ \ \ \ \ \ \ \ \ \ removed\ =\ remove\_fields(*first,\ field\_separator,\ [\&](\textcolor{keyword}{const}\ std::string\ \&field,\ \textcolor{keywordtype}{size\_t}\ index)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ index\ ==\ field\_index;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (removed\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(warning)\ <<\ \textcolor{stringliteral}{"{}Tried\ to\ remove\ field\ with\ index\ "{}}\ <<\ field\_index\ <<\ \textcolor{stringliteral}{"{}\ in\ \(\backslash\)"{}"{}}\ <<\ *first}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}\ but\ couldn't\ do\ it,\ this\ is\ likely\ to\ happen\ in\ all\ samples"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ignored\_errors++;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ copy\ the\ rest\ of\ samples,\ as\ we\ already\ copied\ one\ and\ don't\ want\ to\ repeat\ the\ log\ for\ everyone}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ util::print\_container(output,\ std::vector<std::string>\{++first,\ last\},\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00455}00455\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00456}00456\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00457}00457\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00458}00458\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ Fixer::remove\_fields(\textcolor{keyword}{const}\ std::string\ \&line,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separators,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{bool}(\textcolor{keyword}{const}\ std::string\ \&column,\ \textcolor{keywordtype}{size\_t}\ index)>\ condition\_to\_remove)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00461}00461\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00462}00462\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ remove\_fields(line,\ separators,\ \textcolor{stringliteral}{"{}"{}},\ condition\_to\_remove);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00463}00463\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00464}00464\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00465}\mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a0f57251ab8080438317c039a3107a344}{00465}}\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ Fixer::remove\_fields(\textcolor{keyword}{const}\ std::string\ \&line,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separators,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&empty\_column,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{bool}(\textcolor{keyword}{const}\ std::string\ \&column,\ \textcolor{keywordtype}{size\_t}\ index)>\ condition\_to\_remove)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00469}00469\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00470}00470\ \ \ \ \ \ \ \ \ std::vector<std::string>\ columns;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00471}00471\ \ \ \ \ \ \ \ \ util::string\_split(line,\ separators.c\_str(),\ columns);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00472}00472\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ written\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00473}00473\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00474}00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (columns.size()\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ j\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!condition\_to\_remove(columns[j],\ j))\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00477}00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ written++;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ columns[j];}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (j\ =\ 1;\ j\ <\ columns.size();\ ++j)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!condition\_to\_remove(columns[j],\ j))\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00482}00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (written\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ separators;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00485}00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ written++;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00486}00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ columns[j];}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00487}00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00489}00489\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00490}00490\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (written\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00491}00491\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ empty\_column;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00492}00492\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00493}00493\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ columns.size()\ -\/\ written;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00494}00494\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00495}00495\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00496}\mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a8f8db9d8bb5edb58273c6f62ae0d6cfd}{00496}}\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ Fixer::replace\_fields(\textcolor{keyword}{const}\ std::string\ \&line,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00497}00497\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separators,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00498}00498\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&expected\_field,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00499}00499\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{bool}(\textcolor{keyword}{const}\ std::string\ \&column,\ \textcolor{keywordtype}{size\_t}\ index)>\ condition\_to\_replace)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00500}00500\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00501}00501\ \ \ \ \ \ \ \ \ std::vector<std::string>\ columns;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00502}00502\ \ \ \ \ \ \ \ \ util::string\_split(line,\ separators.c\_str(),\ columns);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00503}00503\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ num\_replaced\_columns\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00504}00504\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00505}00505\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ columns.size();\ ++j)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00506}00506\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (condition\_to\_replace(columns[j],\ j))\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00507}00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ num\_replaced\_columns++;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ expected\_field;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ columns[j];}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00511}00511\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (j\ <\ columns.size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ separators;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00514}00514\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00515}00515\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00516}00516\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00517}00517\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ num\_replaced\_columns;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00518}00518\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00519}00519\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00520}\mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_aefebae3ab0964f8ee54ffe483bb3c4e1}{00520}}\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ Fixer::split\_and\_find(\textcolor{keyword}{const}\ std::string\ \&line,\ \textcolor{keyword}{const}\ std::string\ \&separator,\ \textcolor{keyword}{const}\ std::string\ \&value)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00521}00521\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00522}00522\ \ \ \ \ \ \ \ \ std::vector<std::string>\ columns;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00523}00523\ \ \ \ \ \ \ \ \ util::string\_split(line,\ separator.c\_str(),\ columns);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00524}00524\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ found\ =\ std::find(columns.begin(),\ columns.end(),\ value);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00525}00525\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ found\ ==\ columns.end()?\ line.npos\ :\ found\ -\/\ columns.begin();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00526}00526\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00527}00527\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00528}\mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a7daf3e6a2e5ee7dedaa52f7da3e253db}{00528}}\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ Fixer::fix\_column(\textcolor{keywordtype}{size\_t}\ column\_index,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&line,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00530}00530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separator,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00531}00531\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{void}(std::string\ \&column)>\ fix\_function)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00532}00532\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00533}00533\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }iter\ =\ std::vector<std::string>::iterator;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00534}00534\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fix\_columns(column\_index,\ column\_index\ +\ 1,\ line,\ separator,\ [fix\_function](iter\ first,\ iter\ last)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00535}00535\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ first;\ it\ !=\ last;\ ++it)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00536}00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fix\_function(*it);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00537}00537\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00538}00538\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00539}00539\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00540}00540\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00541}\mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a9c1a1a0b710659b8dbbe12906ffae94f}{00541}}\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ Fixer::fix\_foreach\_column(\textcolor{keywordtype}{size\_t}\ column\_index,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00542}00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ column\_index\_last,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00543}00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&line,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00544}00544\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separator,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00545}00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{void}(std::string\ \&column)>\ fix\_function)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00546}00546\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00547}00547\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }iter\ =\ std::vector<std::string>::iterator;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00548}00548\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fix\_columns(column\_index,\ column\_index\_last,\ line,\ separator,\ [fix\_function](iter\ first,\ iter\ last)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00549}00549\ \ \ \ \ \ \ \ \ \ \ \ \ fix\_function(*first);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00550}00550\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00551}00551\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00552}00552\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00553}\mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a90cc71db4f055ead1d0edefea75a8394}{00553}}\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ Fixer::fix\_columns(\textcolor{keywordtype}{size\_t}\ column\_index,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00554}00554\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ column\_index\_last,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00555}00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&line,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separator,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00557}00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{void}(std::vector<std::string>::iterator\ begin,}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00558}00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>::iterator\ end)>\ fix\_function)}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00559}00559\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00560}00560\ \ \ \ \ \ \ \ \ std::vector<std::string>\ columns;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00561}00561\ \ \ \ \ \ \ \ \ util::string\_split(line,\ separator.c\_str(),\ columns);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00562}00562\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00563}00563\ \ \ \ \ \ \ \ \ \textcolor{comment}{//remove\ (and\ add\ it\ later)\ the\ newline\ so\ that\ the\ \`{}fix\_function`\ doesn't\ have\ to\ deal\ with\ it.}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00564}00564\ \ \ \ \ \ \ \ \ std::string\ eol\ =\ util::remove\_end\_of\_line(columns.back());}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00565}00565\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00566}00566\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ ranges.\ don't\ allow\ an\ empty\ range,\ the\ fix\_function\ should\ be\ called\ at\ least\ once}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00567}00567\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ column\_index\_last\_unsigned;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00568}00568\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (column\_index\_last\ <\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00569}00569\ \ \ \ \ \ \ \ \ \ \ \ \ column\_index\_last\_unsigned\ =\ columns.size();}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00570}00570\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00571}00571\ \ \ \ \ \ \ \ \ \ \ \ \ column\_index\_last\_unsigned\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(column\_index\_last);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00572}00572\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00573}00573\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00574}00574\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (column\_index\ >=\ columns.size())\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ message\{\textcolor{stringliteral}{"{}fix\_columns\ requires\ a\ non-\/empty\ range:\ asked\ to\ fix\ columns["{}}\};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ message\ +=\ std::to\_string(column\_index)\ +\ \textcolor{stringliteral}{"{}]\ (0-\/based\ index)\ but\ there\ are\ only\ "{}}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ std::to\_string(columns.size())\ +\ \textcolor{stringliteral}{"{}\ columns:\ \(\backslash\)"{}"{}}\ +\ line\ +\ \textcolor{stringliteral}{"{}\(\backslash\)"{}"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range\{message\};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00579}00579\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00580}00580\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (column\_index\_last\_unsigned\ >\ columns.size())\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00581}00581\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ message\{\textcolor{stringliteral}{"{}fix\_columns:\ asked\ to\ fix\ until\ past-\/the\ end,\ until\ (non-\/including)\ columns["{}}\};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00582}00582\ \ \ \ \ \ \ \ \ \ \ \ \ message\ +=\ std::to\_string(column\_index\_last\_unsigned)\ +\ \textcolor{stringliteral}{"{}]\ (0-\/based\ index)\ but\ there\ are\ only\ "{}}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00583}00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ std::to\_string(columns.size())\ +\ \textcolor{stringliteral}{"{}\ columns:\ \(\backslash\)"{}"{}}\ +\ line\ +\ \textcolor{stringliteral}{"{}\(\backslash\)"{}"{}};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00584}00584\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range\{message\};}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00585}00585\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00586}00586\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00587}00587\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ write\ before,\ call\ fix\_function,\ write\ after}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00588}00588\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ column\_index;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00589}00589\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ columns[i]\ <<\ separator;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00590}00590\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00591}00591\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00592}00592\ \ \ \ \ \ \ \ \ fix\_function(columns.begin()\ +\ column\_index,\ columns.begin()\ +\ column\_index\_last\_unsigned);}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00593}00593\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00594}00594\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ column\_index\_last\_unsigned;\ i\ <\ columns.size();\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00595}00595\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ separator\ <<\ columns[i];}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00596}00596\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00597}00597\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00598}00598\ \ \ \ \ \ \ \ \ output\ <<\ eol;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00599}00599\ }
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00600}00600\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ column\_index\_last\_unsigned\ -\/\ column\_index;}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00601}00601\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00602}00602\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8cpp_source_l00603}00603\ \}}
+
+\end{DoxyCode}

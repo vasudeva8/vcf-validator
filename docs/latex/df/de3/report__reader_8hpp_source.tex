@@ -1,0 +1,33 @@
+\doxysection{report\+\_\+reader.\+hpp}
+\hypertarget{report__reader_8hpp_source}{}\label{report__reader_8hpp_source}\index{inc/vcf/report\_reader.hpp@{inc/vcf/report\_reader.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ VCF\_REPORT\_READER\_HPP}}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ VCF\_REPORT\_READER\_HPP}}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}vcf/error.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00023}00023\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00024}00024\ \{}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00025}00025\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00026}00026\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00027}\mbox{\hyperlink{classebi_1_1vcf_1_1_report_reader}{00027}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_report_reader}{ReportReader}}}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00028}00028\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00029}00029\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_report_reader}{\string~ReportReader}}()\ \{\}\ \ \textcolor{comment}{//\ needed\ if\ inheriting\ classes\ use\ raw\ pointers,\ instead\ of\ references\ or\ shared\_ptrs}}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ count\_errors()\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ for\_each\_error(std::function<\textcolor{keywordtype}{void}(std::shared\_ptr<Error>)>\ user\_function)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ count\_warnings()\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ for\_each\_warning(std::function<\textcolor{keywordtype}{void}(std::shared\_ptr<Error>)>\ user\_function)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00036}00036\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00038}00038\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00039}00039\ \}}
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{report__reader_8hpp_source_l00042}00042\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VCF\_REPORT\_READER\_HPP}}
+
+\end{DoxyCode}

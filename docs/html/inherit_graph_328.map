@@ -1,0 +1,47 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,514,109,540"/>
+<area shape="rect" id="Node000001" href="$d3/da1/class_catch_1_1_not_implemented_exception.html" title=" " alt="" coords="157,457,375,483"/>
+<area shape="poly" id="edge144_Node000000_Node000001" title=" " alt="" coords="110,506,156,492,203,481,204,486,157,498,112,512"/>
+<area shape="rect" id="Node000002" href="$d8/d01/classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception.html" title=" " alt="" coords="176,507,356,547"/>
+<area shape="poly" id="edge145_Node000000_Node000002" title=" " alt="" coords="124,524,176,524,176,530,124,530"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="204,572,328,597"/>
+<area shape="poly" id="edge146_Node000000_Node000003" title=" " alt="" coords="112,542,157,556,204,568,203,574,156,562,110,548"/>
+<area shape="rect" id="Node000004" href="$d6/d99/structebi_1_1vcf_1_1_error.html" title=" " alt="" coords="423,572,523,597"/>
+<area shape="poly" id="edge147_Node000003_Node000004" title=" " alt="" coords="343,582,423,582,423,587,343,587"/>
+<area shape="rect" id="Node000005" href="$d4/d35/structebi_1_1vcf_1_1_body_section_error.html" title=" " alt="" coords="577,358,752,384"/>
+<area shape="poly" id="edge148_Node000004_Node000005" title=" " alt="" coords="494,558,649,383,653,386,498,561"/>
+<area shape="rect" id="Node000019" href="$d1/d1c/structebi_1_1vcf_1_1_header_section_error.html" title=" " alt="" coords="571,546,758,572"/>
+<area shape="poly" id="edge162_Node000004_Node000019" title=" " alt="" coords="538,573,570,569,571,574,539,578"/>
+<area shape="rect" id="Node000020" href="$d0/dd5/structebi_1_1vcf_1_1_meta_section_error.html" title=" " alt="" coords="578,596,751,621"/>
+<area shape="poly" id="edge163_Node000004_Node000020" title=" " alt="" coords="539,590,578,595,577,600,538,595"/>
+<area shape="rect" id="Node000022" href="$dd/dbe/structebi_1_1vcf_1_1_no_meta_definition_error.html" title=" " alt="" coords="578,645,751,686"/>
+<area shape="poly" id="edge165_Node000004_Node000022" title=" " alt="" coords="513,602,572,631,600,642,599,647,570,636,510,607"/>
+<area shape="rect" id="Node000006" href="$da/df8/structebi_1_1vcf_1_1_alternate_alleles_body_error.html" title=" " alt="" coords="815,5,978,46"/>
+<area shape="poly" id="edge149_Node000005_Node000006" title=" " alt="" coords="668,342,682,284,708,208,726,167,748,127,774,90,804,57,821,44,824,49,807,61,778,94,752,130,731,169,713,210,688,285,673,344"/>
+<area shape="rect" id="Node000007" href="$df/d2d/structebi_1_1vcf_1_1_chromosome_body_error.html" title=" " alt="" coords="806,71,987,111"/>
+<area shape="poly" id="edge150_Node000005_Node000007" title=" " alt="" coords="672,342,689,295,717,236,755,174,778,146,804,121,821,110,824,114,807,125,782,150,759,178,722,238,694,297,677,344"/>
+<area shape="rect" id="Node000008" href="$db/d42/structebi_1_1vcf_1_1_duplication_error.html" title=" " alt="" coords="814,136,979,161"/>
+<area shape="poly" id="edge151_Node000005_Node000008" title=" " alt="" coords="675,343,694,304,723,257,759,210,804,170,824,159,827,164,807,175,763,214,727,260,699,307,680,345"/>
+<area shape="rect" id="Node000009" href="$db/dd7/structebi_1_1vcf_1_1_filter_body_error.html" title=" " alt="" coords="817,185,976,211"/>
+<area shape="poly" id="edge152_Node000005_Node000009" title=" " alt="" coords="681,344,731,281,765,248,804,219,827,209,830,214,807,224,769,252,735,285,685,347"/>
+<area shape="rect" id="Node000010" href="$d9/d4c/structebi_1_1vcf_1_1_format_body_error.html" title=" " alt="" coords="811,234,982,260"/>
+<area shape="poly" id="edge153_Node000005_Node000010" title=" " alt="" coords="690,346,741,306,805,269,832,258,834,263,807,273,744,311,694,350"/>
+<area shape="rect" id="Node000011" href="$de/d84/structebi_1_1vcf_1_1_id_body_error.html" title=" " alt="" coords="826,284,967,309"/>
+<area shape="poly" id="edge154_Node000005_Node000011" title=" " alt="" coords="713,350,805,318,841,307,843,312,806,323,715,355"/>
+<area shape="rect" id="Node000012" href="$d0/de8/structebi_1_1vcf_1_1_info_body_error.html" title=" " alt="" coords="820,333,973,359"/>
+<area shape="poly" id="edge155_Node000005_Node000012" title=" " alt="" coords="766,357,820,351,820,357,767,363"/>
+<area shape="rect" id="Node000013" href="$de/dd0/structebi_1_1vcf_1_1_normalization_error.html" title=" " alt="" coords="806,382,987,408"/>
+<area shape="poly" id="edge156_Node000005_Node000013" title=" " alt="" coords="767,379,806,383,806,388,767,384"/>
+<area shape="rect" id="Node000014" href="$df/d08/structebi_1_1vcf_1_1_position_body_error.html" title=" " alt="" coords="808,432,985,457"/>
+<area shape="poly" id="edge157_Node000005_Node000014" title=" " alt="" coords="716,387,806,418,843,428,842,433,805,423,715,392"/>
+<area shape="rect" id="Node000015" href="$dc/dc2/structebi_1_1vcf_1_1_quality_body_error.html" title=" " alt="" coords="811,481,982,507"/>
+<area shape="poly" id="edge158_Node000005_Node000015" title=" " alt="" coords="694,392,744,430,807,467,834,478,832,483,805,472,741,435,690,396"/>
+<area shape="rect" id="Node000016" href="$da/dba/structebi_1_1vcf_1_1_reference_allele_body_error.html" title=" " alt="" coords="814,531,979,571"/>
+<area shape="poly" id="edge159_Node000005_Node000016" title=" " alt="" coords="686,395,736,456,770,488,807,517,827,528,825,532,804,521,767,492,733,459,682,398"/>
+<area shape="rect" id="Node000017" href="$d3/d1d/structebi_1_1vcf_1_1_samples_body_error.html" title=" " alt="" coords="806,596,987,621"/>
+<area shape="poly" id="edge160_Node000005_Node000017" title=" " alt="" coords="682,396,743,498,777,549,807,581,829,593,826,597,804,585,773,552,738,501,678,399"/>
+<area shape="rect" id="Node000018" href="$df/d93/structebi_1_1vcf_1_1_samples_field_body_error.html" title=" " alt="" coords="806,645,987,686"/>
+<area shape="poly" id="edge161_Node000005_Node000018" title=" " alt="" coords="684,396,760,533,772,562,779,587,788,609,807,632,823,643,820,647,804,636,784,612,774,589,767,564,755,535,679,399"/>
+<area shape="rect" id="Node000021" href="$d2/d7c/structebi_1_1vcf_1_1_fileformat_error.html" title=" " alt="" coords="817,710,976,736"/>
+<area shape="poly" id="edge164_Node000020_Node000021" title=" " alt="" coords="750,626,759,632,776,648,784,664,792,680,807,696,830,707,828,712,804,700,788,684,779,667,771,651,756,636,747,630"/>
+</map>

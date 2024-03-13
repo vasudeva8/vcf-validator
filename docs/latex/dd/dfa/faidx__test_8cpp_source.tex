@@ -1,0 +1,50 @@
+\doxysection{faidx\+\_\+test.\+cpp}
+\hypertarget{faidx__test_8cpp_source}{}\label{faidx__test_8cpp_source}\index{test/fasta/faidx\_test.cpp@{test/fasta/faidx\_test.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}catch/catch.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}fasta/faidx.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}vcf/compression.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00025}00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}\ \{}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00026}00026\ \ \ \textcolor{keyword}{const}\ std::string\ EMPTY\_FASTA\ =\ \textcolor{stringliteral}{"{}test/input\_files/fasta/empty\_fasta.fa"{}};}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00027}00027\ \ \ \textcolor{keyword}{const}\ std::string\ SINGLE\_CHROMOSOME\_FASTA\ =\ \textcolor{stringliteral}{"{}test/input\_files/fasta/single\_chromosome.fa"{}};}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00028}00028\ \ \ \textcolor{keyword}{const}\ std::string\ WHOLE\_GENOME\_FASTA\ =\ \textcolor{stringliteral}{"{}test/input\_files/fasta/whole\_genome.fa"{}};}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00030}00030\ \ \ \textcolor{keywordtype}{void}\ test\_index\_fasta(\textcolor{keyword}{const}\ std::string\ fasta\_input,\ \textcolor{keyword}{const}\ std::string\ expected\_fasta\_index)\ \{}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00031}00031\ \ \ \ \ \ \ std::ostringstream\ output;}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00032}00032\ \ \ \ \ \ \ std::ifstream\ input(fasta\_input.c\_str(),\ std::ifstream::binary);}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00033}00033\ \ \ \ \ \ \ CHECK\_NOTHROW(ebi::vcf::faidx::index\_fasta(input,\ output));}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00035}00035\ \ \ \ \ \ \ std::ifstream\ index(expected\_fasta\_index.c\_str(),\ std::ifstream::binary);}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00036}00036\ \ \ \ \ \ \ std::stringstream\ index\_stringstream;}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00037}00037\ \ \ \ \ \ \ index\_stringstream\ <<\ index.rdbuf();}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00038}00038\ \ \ \ \ \ \ CHECK(output.str()\ ==\ index\_stringstream.str());}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00039}00039\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00041}00041\ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Tests\ for\ on-\/the-\/fly\ indexing\ of\ plain\ fasta\ input"{}},\ \textcolor{stringliteral}{"{}[faidx]"{}})}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00042}00042\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00044}00044\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Create\ index\ for\ empty\ fasta"{}})}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00045}00045\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ test\_index\_fasta(EMPTY\_FASTA,\ EMPTY\_FASTA\ +\ \textcolor{stringliteral}{"{}.fai"{}});}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00047}00047\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00049}00049\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Create\ index\ for\ single\ chromosome\ fasta"{}})}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00050}00050\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ test\_index\_fasta(SINGLE\_CHROMOSOME\_FASTA,\ SINGLE\_CHROMOSOME\_FASTA\ +\ \textcolor{stringliteral}{"{}.fai"{}});}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00052}00052\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00054}00054\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Create\ index\ for\ multiple\ chromosomes\ fasta"{}})}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00055}00055\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ test\_index\_fasta(WHOLE\_GENOME\_FASTA,\ WHOLE\_GENOME\_FASTA\ +\ \textcolor{stringliteral}{"{}.fai"{}});}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00057}00057\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00058}00058\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx__test_8cpp_source_l00059}00059\ \}}
+
+\end{DoxyCode}

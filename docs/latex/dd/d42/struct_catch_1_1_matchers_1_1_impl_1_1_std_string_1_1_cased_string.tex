@@ -1,0 +1,125 @@
+\doxysection{Catch\+::Matchers\+::Impl\+::Std\+String\+::Cased\+String Struct Reference}
+\hypertarget{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string}{}\label{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string}\index{Catch::Matchers::Impl::StdString::CasedString@{Catch::Matchers::Impl::StdString::CasedString}}
+
+
+Collaboration diagram for Catch\+::Matchers\+::Impl\+::Std\+String\+::Cased\+String\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{d2/d91/struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_aebd017c88423d8a11c62cff85754a22d}{Cased\+String}} (std\+::string const \&str, Case\+Sensitive\+::\+Choice case\+Sensitivity)
+\item 
+std\+::string \mbox{\hyperlink{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_a8117fdcee8fd8a8e5001b38e0bd19848}{adjust\+String}} (std\+::string const \&str) const
+\item 
+std\+::string \mbox{\hyperlink{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_ac12f719f5d1aeb28a2bc2f6cc8b95b37}{to\+String\+Suffix}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+Case\+Sensitive\+::\+Choice \mbox{\hyperlink{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_af399ed93051d8981e298206dee6898b3}{m\+\_\+case\+Sensitivity}}
+\item 
+std\+::string \mbox{\hyperlink{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_a9f8ce063a934330ac59bf8638f047e99}{m\+\_\+str}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l01052}{1052}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_aebd017c88423d8a11c62cff85754a22d}\label{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_aebd017c88423d8a11c62cff85754a22d} 
+\index{Catch::Matchers::Impl::StdString::CasedString@{Catch::Matchers::Impl::StdString::CasedString}!CasedString@{CasedString}}
+\index{CasedString@{CasedString}!Catch::Matchers::Impl::StdString::CasedString@{Catch::Matchers::Impl::StdString::CasedString}}
+\doxysubsubsection{\texorpdfstring{CasedString()}{CasedString()}}
+{\footnotesize\ttfamily Catch\+::\+Matchers\+::\+Impl\+::\+Std\+String\+::\+Cased\+String\+::\+Cased\+String (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{str,  }\item[{Case\+Sensitive\+::\+Choice}]{case\+Sensitivity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l01054}{1054}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01055\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \ \ m\_caseSensitivity(\ caseSensitivity\ ),}
+\DoxyCodeLine{01056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_str(\ adjustString(\ str\ )\ )}
+\DoxyCodeLine{01057\ \ \ \ \ \ \ \ \ \ \ \ \ \{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_a8117fdcee8fd8a8e5001b38e0bd19848}\label{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_a8117fdcee8fd8a8e5001b38e0bd19848} 
+\index{Catch::Matchers::Impl::StdString::CasedString@{Catch::Matchers::Impl::StdString::CasedString}!adjustString@{adjustString}}
+\index{adjustString@{adjustString}!Catch::Matchers::Impl::StdString::CasedString@{Catch::Matchers::Impl::StdString::CasedString}}
+\doxysubsubsection{\texorpdfstring{adjustString()}{adjustString()}}
+{\footnotesize\ttfamily std\+::string Catch\+::\+Matchers\+::\+Impl\+::\+Std\+String\+::\+Cased\+String\+::adjust\+String (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{str }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l01058}{1058}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_caseSensitivity\ ==\ CaseSensitive::No}
+\DoxyCodeLine{01060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ toLower(\ str\ )}
+\DoxyCodeLine{01061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ str;}
+\DoxyCodeLine{01062\ }
+\DoxyCodeLine{01063\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_ac12f719f5d1aeb28a2bc2f6cc8b95b37}\label{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_ac12f719f5d1aeb28a2bc2f6cc8b95b37} 
+\index{Catch::Matchers::Impl::StdString::CasedString@{Catch::Matchers::Impl::StdString::CasedString}!toStringSuffix@{toStringSuffix}}
+\index{toStringSuffix@{toStringSuffix}!Catch::Matchers::Impl::StdString::CasedString@{Catch::Matchers::Impl::StdString::CasedString}}
+\doxysubsubsection{\texorpdfstring{toStringSuffix()}{toStringSuffix()}}
+{\footnotesize\ttfamily std\+::string Catch\+::\+Matchers\+::\+Impl\+::\+Std\+String\+::\+Cased\+String\+::to\+String\+Suffix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l01064}{1064}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01065\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_caseSensitivity\ ==\ CaseSensitive::No}
+\DoxyCodeLine{01067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ \textcolor{stringliteral}{"{}\ (case\ insensitive)"{}}}
+\DoxyCodeLine{01068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{01069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_af399ed93051d8981e298206dee6898b3}\label{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_af399ed93051d8981e298206dee6898b3} 
+\index{Catch::Matchers::Impl::StdString::CasedString@{Catch::Matchers::Impl::StdString::CasedString}!m\_caseSensitivity@{m\_caseSensitivity}}
+\index{m\_caseSensitivity@{m\_caseSensitivity}!Catch::Matchers::Impl::StdString::CasedString@{Catch::Matchers::Impl::StdString::CasedString}}
+\doxysubsubsection{\texorpdfstring{m\_caseSensitivity}{m\_caseSensitivity}}
+{\footnotesize\ttfamily Case\+Sensitive\+::\+Choice Catch\+::\+Matchers\+::\+Impl\+::\+Std\+String\+::\+Cased\+String\+::m\+\_\+case\+Sensitivity}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l01070}{1070}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+\Hypertarget{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_a9f8ce063a934330ac59bf8638f047e99}\label{struct_catch_1_1_matchers_1_1_impl_1_1_std_string_1_1_cased_string_a9f8ce063a934330ac59bf8638f047e99} 
+\index{Catch::Matchers::Impl::StdString::CasedString@{Catch::Matchers::Impl::StdString::CasedString}!m\_str@{m\_str}}
+\index{m\_str@{m\_str}!Catch::Matchers::Impl::StdString::CasedString@{Catch::Matchers::Impl::StdString::CasedString}}
+\doxysubsubsection{\texorpdfstring{m\_str}{m\_str}}
+{\footnotesize\ttfamily std\+::string Catch\+::\+Matchers\+::\+Impl\+::\+Std\+String\+::\+Cased\+String\+::m\+\_\+str}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l01071}{1071}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/catch/catch.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,342 @@
+\doxysection{Mem\+Page Struct Reference}
+\hypertarget{struct_mem_page}{}\label{struct_mem_page}\index{MemPage@{MemPage}}
+
+
+Collaboration diagram for Mem\+Page\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d5/dd1/struct_mem_page__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+u8 \mbox{\hyperlink{struct_mem_page_a3ab4ace46245be0fb2fb19eaa2862019}{is\+Init}}
+\item 
+u8 \mbox{\hyperlink{struct_mem_page_a3f7fa1a1eba3af840ef887e8ddd6d2cc}{n\+Overflow}}
+\item 
+u8 \mbox{\hyperlink{struct_mem_page_a46784c3c4708c7a582cff81a29c55323}{int\+Key}}
+\item 
+u8 \mbox{\hyperlink{struct_mem_page_a7c30c56237c38e0b81842ae2a6bae9d7}{int\+Key\+Leaf}}
+\item 
+u8 \mbox{\hyperlink{struct_mem_page_af18504bd0a2e7d39d9b485d434af0447}{leaf}}
+\item 
+u8 \mbox{\hyperlink{struct_mem_page_a01967a1a593980fb71c8ccf3393ae156}{hdr\+Offset}}
+\item 
+u8 \mbox{\hyperlink{struct_mem_page_aeba10281fc255d9bbc0e31486f8fbd48}{child\+Ptr\+Size}}
+\item 
+u8 \mbox{\hyperlink{struct_mem_page_a79548547cafb0e6d8549006bdc553f0a}{max1byte\+Payload}}
+\item 
+u8 \mbox{\hyperlink{struct_mem_page_a0b7935a6fdec1d6d31c4b3952b0461ea}{b\+Busy}}
+\item 
+u16 \mbox{\hyperlink{struct_mem_page_a36394b7c3abf4652e7a24be4ab314f13}{max\+Local}}
+\item 
+u16 \mbox{\hyperlink{struct_mem_page_a95cab31aa57bf8b478be273557c5c807}{min\+Local}}
+\item 
+u16 \mbox{\hyperlink{struct_mem_page_a324ed834d93c3ae72994fb5730940521}{cell\+Offset}}
+\item 
+u16 \mbox{\hyperlink{struct_mem_page_a3418a9aee707f57a73d8470f8a1228a8}{n\+Free}}
+\item 
+u16 \mbox{\hyperlink{struct_mem_page_a35d1d8f836201b82b1eb778ce0e324f4}{n\+Cell}}
+\item 
+u16 \mbox{\hyperlink{struct_mem_page_aa3d64e8755cc9f431bbc8423a2b506ec}{mask\+Page}}
+\item 
+u16 \mbox{\hyperlink{struct_mem_page_a857e00533053fe6017c6e08b1b240661}{ai\+Ovfl}} \mbox{[}5\mbox{]}
+\item 
+u8 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_mem_page_a3a6347d06b1e85938605d9a44f193cb9}{ap\+Ovfl}} \mbox{[}5\mbox{]}
+\item 
+\mbox{\hyperlink{struct_bt_shared}{Bt\+Shared}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_mem_page_a949df1156f7392592eaeb64389068f99}{p\+Bt}}
+\item 
+u8 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_mem_page_a2d873eff563d2208be0c24959140a4b0}{a\+Data}}
+\item 
+u8 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_mem_page_ab5d2ecb95a84eaf4bd0ccef536bac6d7}{a\+Data\+End}}
+\item 
+u8 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_mem_page_a6f391f110e68ede6e5234b4e9f678f99}{a\+Cell\+Idx}}
+\item 
+u8 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_mem_page_a0af9fdf5075be66cd5a4932b81072185}{a\+Data\+Ofst}}
+\item 
+\mbox{\hyperlink{struct_pg_hdr}{Db\+Page}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_mem_page_add322c1aed91e95d8dfe3ac3535d65b4}{p\+Db\+Page}}
+\item 
+u16(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_mem_page_aecb022d01630da5a48681f8a7e32a419}{x\+Cell\+Size}} )(\mbox{\hyperlink{struct_mem_page}{Mem\+Page}} \texorpdfstring{$\ast$}{*}, u8 \texorpdfstring{$\ast$}{*})
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_mem_page_ac401be6009d535d9fef9cc48af734039}{x\+Parse\+Cell}} )(\mbox{\hyperlink{struct_mem_page}{Mem\+Page}} \texorpdfstring{$\ast$}{*}, u8 \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_cell_info}{Cell\+Info}} \texorpdfstring{$\ast$}{*})
+\item 
+Pgno \mbox{\hyperlink{struct_mem_page_ad2b0c532abc799bbcf3b43df4f0b0546}{pgno}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57003}{57003}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_mem_page_a6f391f110e68ede6e5234b4e9f678f99}\label{struct_mem_page_a6f391f110e68ede6e5234b4e9f678f99} 
+\index{MemPage@{MemPage}!aCellIdx@{aCellIdx}}
+\index{aCellIdx@{aCellIdx}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{aCellIdx}{aCellIdx}}
+{\footnotesize\ttfamily u8\texorpdfstring{$\ast$}{*} Mem\+Page\+::a\+Cell\+Idx}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57025}{57025}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a2d873eff563d2208be0c24959140a4b0}\label{struct_mem_page_a2d873eff563d2208be0c24959140a4b0} 
+\index{MemPage@{MemPage}!aData@{aData}}
+\index{aData@{aData}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{aData}{aData}}
+{\footnotesize\ttfamily u8\texorpdfstring{$\ast$}{*} Mem\+Page\+::a\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57023}{57023}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_ab5d2ecb95a84eaf4bd0ccef536bac6d7}\label{struct_mem_page_ab5d2ecb95a84eaf4bd0ccef536bac6d7} 
+\index{MemPage@{MemPage}!aDataEnd@{aDataEnd}}
+\index{aDataEnd@{aDataEnd}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{aDataEnd}{aDataEnd}}
+{\footnotesize\ttfamily u8\texorpdfstring{$\ast$}{*} Mem\+Page\+::a\+Data\+End}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57024}{57024}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a0af9fdf5075be66cd5a4932b81072185}\label{struct_mem_page_a0af9fdf5075be66cd5a4932b81072185} 
+\index{MemPage@{MemPage}!aDataOfst@{aDataOfst}}
+\index{aDataOfst@{aDataOfst}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{aDataOfst}{aDataOfst}}
+{\footnotesize\ttfamily u8\texorpdfstring{$\ast$}{*} Mem\+Page\+::a\+Data\+Ofst}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57026}{57026}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a857e00533053fe6017c6e08b1b240661}\label{struct_mem_page_a857e00533053fe6017c6e08b1b240661} 
+\index{MemPage@{MemPage}!aiOvfl@{aiOvfl}}
+\index{aiOvfl@{aiOvfl}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{aiOvfl}{aiOvfl}}
+{\footnotesize\ttfamily u16 Mem\+Page\+::ai\+Ovfl\mbox{[}5\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57019}{57019}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a3a6347d06b1e85938605d9a44f193cb9}\label{struct_mem_page_a3a6347d06b1e85938605d9a44f193cb9} 
+\index{MemPage@{MemPage}!apOvfl@{apOvfl}}
+\index{apOvfl@{apOvfl}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{apOvfl}{apOvfl}}
+{\footnotesize\ttfamily u8\texorpdfstring{$\ast$}{*} Mem\+Page\+::ap\+Ovfl\mbox{[}5\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57021}{57021}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a0b7935a6fdec1d6d31c4b3952b0461ea}\label{struct_mem_page_a0b7935a6fdec1d6d31c4b3952b0461ea} 
+\index{MemPage@{MemPage}!bBusy@{bBusy}}
+\index{bBusy@{bBusy}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{bBusy}{bBusy}}
+{\footnotesize\ttfamily u8 Mem\+Page\+::b\+Busy}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57012}{57012}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a324ed834d93c3ae72994fb5730940521}\label{struct_mem_page_a324ed834d93c3ae72994fb5730940521} 
+\index{MemPage@{MemPage}!cellOffset@{cellOffset}}
+\index{cellOffset@{cellOffset}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{cellOffset}{cellOffset}}
+{\footnotesize\ttfamily u16 Mem\+Page\+::cell\+Offset}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57015}{57015}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_aeba10281fc255d9bbc0e31486f8fbd48}\label{struct_mem_page_aeba10281fc255d9bbc0e31486f8fbd48} 
+\index{MemPage@{MemPage}!childPtrSize@{childPtrSize}}
+\index{childPtrSize@{childPtrSize}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{childPtrSize}{childPtrSize}}
+{\footnotesize\ttfamily u8 Mem\+Page\+::child\+Ptr\+Size}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57010}{57010}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a01967a1a593980fb71c8ccf3393ae156}\label{struct_mem_page_a01967a1a593980fb71c8ccf3393ae156} 
+\index{MemPage@{MemPage}!hdrOffset@{hdrOffset}}
+\index{hdrOffset@{hdrOffset}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{hdrOffset}{hdrOffset}}
+{\footnotesize\ttfamily u8 Mem\+Page\+::hdr\+Offset}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57009}{57009}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a46784c3c4708c7a582cff81a29c55323}\label{struct_mem_page_a46784c3c4708c7a582cff81a29c55323} 
+\index{MemPage@{MemPage}!intKey@{intKey}}
+\index{intKey@{intKey}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{intKey}{intKey}}
+{\footnotesize\ttfamily u8 Mem\+Page\+::int\+Key}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57006}{57006}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a7c30c56237c38e0b81842ae2a6bae9d7}\label{struct_mem_page_a7c30c56237c38e0b81842ae2a6bae9d7} 
+\index{MemPage@{MemPage}!intKeyLeaf@{intKeyLeaf}}
+\index{intKeyLeaf@{intKeyLeaf}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{intKeyLeaf}{intKeyLeaf}}
+{\footnotesize\ttfamily u8 Mem\+Page\+::int\+Key\+Leaf}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57007}{57007}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a3ab4ace46245be0fb2fb19eaa2862019}\label{struct_mem_page_a3ab4ace46245be0fb2fb19eaa2862019} 
+\index{MemPage@{MemPage}!isInit@{isInit}}
+\index{isInit@{isInit}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{isInit}{isInit}}
+{\footnotesize\ttfamily u8 Mem\+Page\+::is\+Init}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57004}{57004}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_af18504bd0a2e7d39d9b485d434af0447}\label{struct_mem_page_af18504bd0a2e7d39d9b485d434af0447} 
+\index{MemPage@{MemPage}!leaf@{leaf}}
+\index{leaf@{leaf}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{leaf}{leaf}}
+{\footnotesize\ttfamily u8 Mem\+Page\+::leaf}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57008}{57008}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_aa3d64e8755cc9f431bbc8423a2b506ec}\label{struct_mem_page_aa3d64e8755cc9f431bbc8423a2b506ec} 
+\index{MemPage@{MemPage}!maskPage@{maskPage}}
+\index{maskPage@{maskPage}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{maskPage}{maskPage}}
+{\footnotesize\ttfamily u16 Mem\+Page\+::mask\+Page}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57018}{57018}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a79548547cafb0e6d8549006bdc553f0a}\label{struct_mem_page_a79548547cafb0e6d8549006bdc553f0a} 
+\index{MemPage@{MemPage}!max1bytePayload@{max1bytePayload}}
+\index{max1bytePayload@{max1bytePayload}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{max1bytePayload}{max1bytePayload}}
+{\footnotesize\ttfamily u8 Mem\+Page\+::max1byte\+Payload}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57011}{57011}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a36394b7c3abf4652e7a24be4ab314f13}\label{struct_mem_page_a36394b7c3abf4652e7a24be4ab314f13} 
+\index{MemPage@{MemPage}!maxLocal@{maxLocal}}
+\index{maxLocal@{maxLocal}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{maxLocal}{maxLocal}}
+{\footnotesize\ttfamily u16 Mem\+Page\+::max\+Local}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57013}{57013}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a95cab31aa57bf8b478be273557c5c807}\label{struct_mem_page_a95cab31aa57bf8b478be273557c5c807} 
+\index{MemPage@{MemPage}!minLocal@{minLocal}}
+\index{minLocal@{minLocal}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{minLocal}{minLocal}}
+{\footnotesize\ttfamily u16 Mem\+Page\+::min\+Local}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57014}{57014}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a35d1d8f836201b82b1eb778ce0e324f4}\label{struct_mem_page_a35d1d8f836201b82b1eb778ce0e324f4} 
+\index{MemPage@{MemPage}!nCell@{nCell}}
+\index{nCell@{nCell}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{nCell}{nCell}}
+{\footnotesize\ttfamily u16 Mem\+Page\+::n\+Cell}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57017}{57017}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a3418a9aee707f57a73d8470f8a1228a8}\label{struct_mem_page_a3418a9aee707f57a73d8470f8a1228a8} 
+\index{MemPage@{MemPage}!nFree@{nFree}}
+\index{nFree@{nFree}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{nFree}{nFree}}
+{\footnotesize\ttfamily u16 Mem\+Page\+::n\+Free}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57016}{57016}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a3f7fa1a1eba3af840ef887e8ddd6d2cc}\label{struct_mem_page_a3f7fa1a1eba3af840ef887e8ddd6d2cc} 
+\index{MemPage@{MemPage}!nOverflow@{nOverflow}}
+\index{nOverflow@{nOverflow}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{nOverflow}{nOverflow}}
+{\footnotesize\ttfamily u8 Mem\+Page\+::n\+Overflow}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57005}{57005}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_a949df1156f7392592eaeb64389068f99}\label{struct_mem_page_a949df1156f7392592eaeb64389068f99} 
+\index{MemPage@{MemPage}!pBt@{pBt}}
+\index{pBt@{pBt}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{pBt}{pBt}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_bt_shared}{Bt\+Shared}}\texorpdfstring{$\ast$}{*} Mem\+Page\+::p\+Bt}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57022}{57022}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_add322c1aed91e95d8dfe3ac3535d65b4}\label{struct_mem_page_add322c1aed91e95d8dfe3ac3535d65b4} 
+\index{MemPage@{MemPage}!pDbPage@{pDbPage}}
+\index{pDbPage@{pDbPage}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{pDbPage}{pDbPage}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_pg_hdr}{Db\+Page}}\texorpdfstring{$\ast$}{*} Mem\+Page\+::p\+Db\+Page}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57027}{57027}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_ad2b0c532abc799bbcf3b43df4f0b0546}\label{struct_mem_page_ad2b0c532abc799bbcf3b43df4f0b0546} 
+\index{MemPage@{MemPage}!pgno@{pgno}}
+\index{pgno@{pgno}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{pgno}{pgno}}
+{\footnotesize\ttfamily Pgno Mem\+Page\+::pgno}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57030}{57030}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_aecb022d01630da5a48681f8a7e32a419}\label{struct_mem_page_aecb022d01630da5a48681f8a7e32a419} 
+\index{MemPage@{MemPage}!xCellSize@{xCellSize}}
+\index{xCellSize@{xCellSize}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{xCellSize}{xCellSize}}
+{\footnotesize\ttfamily u16(\texorpdfstring{$\ast$}{*} Mem\+Page\+::x\+Cell\+Size) (\mbox{\hyperlink{struct_mem_page}{Mem\+Page}} \texorpdfstring{$\ast$}{*}, u8 \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57028}{57028}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_mem_page_ac401be6009d535d9fef9cc48af734039}\label{struct_mem_page_ac401be6009d535d9fef9cc48af734039} 
+\index{MemPage@{MemPage}!xParseCell@{xParseCell}}
+\index{xParseCell@{xParseCell}!MemPage@{MemPage}}
+\doxysubsubsection{\texorpdfstring{xParseCell}{xParseCell}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} Mem\+Page\+::x\+Parse\+Cell) (\mbox{\hyperlink{struct_mem_page}{Mem\+Page}} \texorpdfstring{$\ast$}{*}, u8 \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_cell_info}{Cell\+Info}} \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57029}{57029}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

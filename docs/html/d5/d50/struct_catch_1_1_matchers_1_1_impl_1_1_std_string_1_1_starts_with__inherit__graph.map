@@ -1,0 +1,13 @@
+<map id="Catch::Matchers::Impl::StdString::StartsWith" name="Catch::Matchers::Impl::StdString::StartsWith">
+<area shape="rect" id="Node000001" title=" " alt="" coords="18,851,163,1011"/>
+<area shape="rect" id="Node000002" href="$d2/dfc/struct_catch_1_1_matchers_1_1_impl_1_1_matcher_impl.html" title=" " alt="" coords="5,708,176,803"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,818,93,851,88,851,88,818"/>
+<area shape="rect" id="Node000003" href="$dc/d2c/struct_catch_1_1_matchers_1_1_impl_1_1_matcher.html" title=" " alt="" coords="8,460,173,660"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="93,675,93,708,88,708,88,675"/>
+<area shape="rect" id="Node000004" href="$d0/dc0/struct_catch_1_1_shared_impl.html" title=" " alt="" coords="26,292,155,412"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="93,427,93,460,88,460,88,427"/>
+<area shape="rect" id="Node000005" href="$d2/d4f/struct_catch_1_1_i_shared.html" title=" " alt="" coords="40,139,141,244"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="93,259,93,293,88,293,88,259"/>
+<area shape="rect" id="Node000006" href="$d8/d09/class_catch_1_1_non_copyable.html" title=" " alt="" coords="23,5,158,91"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="93,106,93,139,88,139,88,106"/>
+</map>

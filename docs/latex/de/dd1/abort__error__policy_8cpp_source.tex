@@ -1,0 +1,24 @@
+\doxysection{abort\+\_\+error\+\_\+policy.\+cpp}
+\hypertarget{abort__error__policy_8cpp_source}{}\label{abort__error__policy_8cpp_source}\index{src/vcf/abort\_error\_policy.cpp@{src/vcf/abort\_error\_policy.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}vcf/error\_policy.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00019}00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00020}00020\ \{}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00021}00021\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00022}00022\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordtype}{void}\ AbortErrorPolicy::handle\_error(ParsingState\ \&state,\ Error\ *error)}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00024}00024\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ state.m\_is\_valid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{keywordtype}{void}\ AbortErrorPolicy::handle\_warning(ParsingState\ \&state,\ Error\ *error)}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00029}00029\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ state.add\_warning(std::unique\_ptr<Error>(error));}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00031}00031\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00032}00032\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{abort__error__policy_8cpp_source_l00033}00033\ \}}
+
+\end{DoxyCode}

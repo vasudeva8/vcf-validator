@@ -1,0 +1,64 @@
+\doxysection{New\+Contig\+State Class Reference}
+\hypertarget{class_new_contig_state}{}\label{class_new_contig_state}\index{NewContigState@{NewContigState}}
+
+
+Inheritance diagram for New\+Contig\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{df/d54/class_new_contig_state__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for New\+Contig\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{de/d5f/class_new_contig_state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_new_contig_state_acd084623636717bd8078f01928258e8f}{process}} (\mbox{\hyperlink{class_fasta_indexer}{Fasta\+Indexer}} \texorpdfstring{$\ast$}{*}fasta\+\_\+indexer, std\+::istream \&input)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{faidx_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{faidx_8cpp_source}{faidx.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_new_contig_state_acd084623636717bd8078f01928258e8f}\label{class_new_contig_state_acd084623636717bd8078f01928258e8f} 
+\index{NewContigState@{NewContigState}!process@{process}}
+\index{process@{process}!NewContigState@{NewContigState}}
+\doxysubsubsection{\texorpdfstring{process()}{process()}}
+{\footnotesize\ttfamily void New\+Contig\+State\+::process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_fasta_indexer}{Fasta\+Indexer}} \texorpdfstring{$\ast$}{*}}]{fasta\+\_\+indexer,  }\item[{std\+::istream \&}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_fasta_indexer_state}{Fasta\+Indexer\+State}}.
+
+
+
+Definition at line \mbox{\hyperlink{faidx_8cpp_source_l00111}{111}} of file \mbox{\hyperlink{faidx_8cpp_source}{faidx.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00112\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ fasta\_indexer-\/>fasta\_index.push\_back(\{\textcolor{stringliteral}{"{}"{}},\ 0,\ 0,\ 0,\ 0\});}
+\DoxyCodeLine{00114\ \ \ \ \ fasta\_indexer-\/>set\_state(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_contig_name_state}{ContigNameState}}());}
+\DoxyCodeLine{00115\ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/fasta/faidx.\+cpp\end{DoxyCompactItemize}

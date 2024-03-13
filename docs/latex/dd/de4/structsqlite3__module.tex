@@ -1,0 +1,307 @@
+\doxysection{sqlite3\+\_\+module Struct Reference}
+\hypertarget{structsqlite3__module}{}\label{structsqlite3__module}\index{sqlite3\_module@{sqlite3\_module}}
+
+
+Collaboration diagram for sqlite3\+\_\+module\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=161pt]{dd/d7d/structsqlite3__module__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structsqlite3__module_a42b11d080dc205aea43581b18f925afe}{i\+Version}}
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a95e327c9d32abd731013395d9e12b8f9}{x\+Create}} )(\mbox{\hyperlink{structsqlite3}{sqlite3}} \texorpdfstring{$\ast$}{*}, void \texorpdfstring{$\ast$}{*}p\+Aux, int argc, const char \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}argv, \mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+VTab, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*})
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_acdd9ccc4a6acff230b2d579172ae32d0}{x\+Connect}} )(\mbox{\hyperlink{structsqlite3}{sqlite3}} \texorpdfstring{$\ast$}{*}, void \texorpdfstring{$\ast$}{*}p\+Aux, int argc, const char \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}argv, \mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+VTab, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*})
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a66577e230ca8de525b30ee6f287eafb1}{x\+Best\+Index}} )(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab, \mbox{\hyperlink{structsqlite3__index__info}{sqlite3\+\_\+index\+\_\+info}} \texorpdfstring{$\ast$}{*})
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a5dbaa6ff075eaff25ccfddaedba06934}{x\+Disconnect}} )(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a296dae8dadd4eb1f7d0f1187650c7aa5}{x\+Destroy}} )(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a2cb9f8c149617189efa6ceec0a3211e9}{x\+Open}} )(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab, \mbox{\hyperlink{structsqlite3__vtab__cursor}{sqlite3\+\_\+vtab\+\_\+cursor}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Cursor)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a514c66634a5297ca9879947fa6f8f10f}{x\+Close}} )(\mbox{\hyperlink{structsqlite3__vtab__cursor}{sqlite3\+\_\+vtab\+\_\+cursor}} \texorpdfstring{$\ast$}{*})
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a1ddde32dcae461910096ebb2c42d1a6a}{x\+Filter}} )(\mbox{\hyperlink{structsqlite3__vtab__cursor}{sqlite3\+\_\+vtab\+\_\+cursor}} \texorpdfstring{$\ast$}{*}, int idx\+Num, const char \texorpdfstring{$\ast$}{*}idx\+Str, int argc, \mbox{\hyperlink{struct_mem}{sqlite3\+\_\+value}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_aa739d9a2081db7bf786f1f9fb9d92264}{x\+Next}} )(\mbox{\hyperlink{structsqlite3__vtab__cursor}{sqlite3\+\_\+vtab\+\_\+cursor}} \texorpdfstring{$\ast$}{*})
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_ae10cf7d9a7edfecf1daa34a214bf6a64}{x\+Eof}} )(\mbox{\hyperlink{structsqlite3__vtab__cursor}{sqlite3\+\_\+vtab\+\_\+cursor}} \texorpdfstring{$\ast$}{*})
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a4c82dc60335ba40c816cdd6c4dce2950}{x\+Column}} )(\mbox{\hyperlink{structsqlite3__vtab__cursor}{sqlite3\+\_\+vtab\+\_\+cursor}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{structsqlite3__context}{sqlite3\+\_\+context}} \texorpdfstring{$\ast$}{*}, int)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a1e119b28bd3ad706d1982aaa938aac79}{x\+Rowid}} )(\mbox{\hyperlink{structsqlite3__vtab__cursor}{sqlite3\+\_\+vtab\+\_\+cursor}} \texorpdfstring{$\ast$}{*}, sqlite3\+\_\+int64 \texorpdfstring{$\ast$}{*}p\+Rowid)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a029d0713dbb3c847a6de773a0a179605}{x\+Update}} )(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}, int, \mbox{\hyperlink{struct_mem}{sqlite3\+\_\+value}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}, sqlite3\+\_\+int64 \texorpdfstring{$\ast$}{*})
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_af3ea97df2b110da6ceb4797222e6d86f}{x\+Begin}} )(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a895d78529db2e28e13d1d842512770b6}{x\+Sync}} )(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a465df78231717713e98677c19e60cece}{x\+Commit}} )(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a3f8676e941a3080557fe10528e04e2f1}{x\+Rollback}} )(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_ae70a020a7dda960b91943e9f67695dbb}{x\+Find\+Function}} )(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+Vtab, int n\+Arg, const char \texorpdfstring{$\ast$}{*}z\+Name, void(\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}px\+Func)(\mbox{\hyperlink{structsqlite3__context}{sqlite3\+\_\+context}} \texorpdfstring{$\ast$}{*}, int, \mbox{\hyperlink{struct_mem}{sqlite3\+\_\+value}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}), void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Arg)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_af886782e9a1ea5c4b131b2bc373c8092}{x\+Rename}} )(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+Vtab, const char \texorpdfstring{$\ast$}{*}z\+New)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_af90f1df803fce1b90048864aeeeee890}{x\+Savepoint}} )(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab, int)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a8dcaa6dc6d9563c8da57e4c8c5055609}{x\+Release}} )(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab, int)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__module_a767753c6c97d1f622e5113367a0547b5}{x\+Rollback\+To}} )(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab, int)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05886}{5886}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structsqlite3__module_a42b11d080dc205aea43581b18f925afe}\label{structsqlite3__module_a42b11d080dc205aea43581b18f925afe} 
+\index{sqlite3\_module@{sqlite3\_module}!iVersion@{iVersion}}
+\index{iVersion@{iVersion}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{iVersion}{iVersion}}
+{\footnotesize\ttfamily int sqlite3\+\_\+module\+::i\+Version}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05887}{5887}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_af3ea97df2b110da6ceb4797222e6d86f}\label{structsqlite3__module_af3ea97df2b110da6ceb4797222e6d86f} 
+\index{sqlite3\_module@{sqlite3\_module}!xBegin@{xBegin}}
+\index{xBegin@{xBegin}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xBegin}{xBegin}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Begin)(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05906}{5906}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a66577e230ca8de525b30ee6f287eafb1}\label{structsqlite3__module_a66577e230ca8de525b30ee6f287eafb1} 
+\index{sqlite3\_module@{sqlite3\_module}!xBestIndex@{xBestIndex}}
+\index{xBestIndex@{xBestIndex}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xBestIndex}{xBestIndex}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Best\+Index)(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab, \mbox{\hyperlink{structsqlite3__index__info}{sqlite3\+\_\+index\+\_\+info}} \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05894}{5894}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a514c66634a5297ca9879947fa6f8f10f}\label{structsqlite3__module_a514c66634a5297ca9879947fa6f8f10f} 
+\index{sqlite3\_module@{sqlite3\_module}!xClose@{xClose}}
+\index{xClose@{xClose}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xClose}{xClose}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Close)(\mbox{\hyperlink{structsqlite3__vtab__cursor}{sqlite3\+\_\+vtab\+\_\+cursor}} \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05898}{5898}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a4c82dc60335ba40c816cdd6c4dce2950}\label{structsqlite3__module_a4c82dc60335ba40c816cdd6c4dce2950} 
+\index{sqlite3\_module@{sqlite3\_module}!xColumn@{xColumn}}
+\index{xColumn@{xColumn}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xColumn}{xColumn}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Column)(\mbox{\hyperlink{structsqlite3__vtab__cursor}{sqlite3\+\_\+vtab\+\_\+cursor}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{structsqlite3__context}{sqlite3\+\_\+context}} \texorpdfstring{$\ast$}{*}, int)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05903}{5903}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a465df78231717713e98677c19e60cece}\label{structsqlite3__module_a465df78231717713e98677c19e60cece} 
+\index{sqlite3\_module@{sqlite3\_module}!xCommit@{xCommit}}
+\index{xCommit@{xCommit}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xCommit}{xCommit}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Commit)(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05908}{5908}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_acdd9ccc4a6acff230b2d579172ae32d0}\label{structsqlite3__module_acdd9ccc4a6acff230b2d579172ae32d0} 
+\index{sqlite3\_module@{sqlite3\_module}!xConnect@{xConnect}}
+\index{xConnect@{xConnect}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xConnect}{xConnect}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Connect)(\mbox{\hyperlink{structsqlite3}{sqlite3}} \texorpdfstring{$\ast$}{*}, void \texorpdfstring{$\ast$}{*}p\+Aux, int argc, const char \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}argv, \mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+VTab, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05891}{5891}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a95e327c9d32abd731013395d9e12b8f9}\label{structsqlite3__module_a95e327c9d32abd731013395d9e12b8f9} 
+\index{sqlite3\_module@{sqlite3\_module}!xCreate@{xCreate}}
+\index{xCreate@{xCreate}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xCreate}{xCreate}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Create)(\mbox{\hyperlink{structsqlite3}{sqlite3}} \texorpdfstring{$\ast$}{*}, void \texorpdfstring{$\ast$}{*}p\+Aux, int argc, const char \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}argv, \mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+VTab, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05888}{5888}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a296dae8dadd4eb1f7d0f1187650c7aa5}\label{structsqlite3__module_a296dae8dadd4eb1f7d0f1187650c7aa5} 
+\index{sqlite3\_module@{sqlite3\_module}!xDestroy@{xDestroy}}
+\index{xDestroy@{xDestroy}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xDestroy}{xDestroy}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Destroy)(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05896}{5896}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a5dbaa6ff075eaff25ccfddaedba06934}\label{structsqlite3__module_a5dbaa6ff075eaff25ccfddaedba06934} 
+\index{sqlite3\_module@{sqlite3\_module}!xDisconnect@{xDisconnect}}
+\index{xDisconnect@{xDisconnect}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xDisconnect}{xDisconnect}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Disconnect)(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05895}{5895}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_ae10cf7d9a7edfecf1daa34a214bf6a64}\label{structsqlite3__module_ae10cf7d9a7edfecf1daa34a214bf6a64} 
+\index{sqlite3\_module@{sqlite3\_module}!xEof@{xEof}}
+\index{xEof@{xEof}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xEof}{xEof}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Eof)(\mbox{\hyperlink{structsqlite3__vtab__cursor}{sqlite3\+\_\+vtab\+\_\+cursor}} \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05902}{5902}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a1ddde32dcae461910096ebb2c42d1a6a}\label{structsqlite3__module_a1ddde32dcae461910096ebb2c42d1a6a} 
+\index{sqlite3\_module@{sqlite3\_module}!xFilter@{xFilter}}
+\index{xFilter@{xFilter}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xFilter}{xFilter}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Filter)(\mbox{\hyperlink{structsqlite3__vtab__cursor}{sqlite3\+\_\+vtab\+\_\+cursor}} \texorpdfstring{$\ast$}{*}, int idx\+Num, const char \texorpdfstring{$\ast$}{*}idx\+Str, int argc, \mbox{\hyperlink{struct_mem}{sqlite3\+\_\+value}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05899}{5899}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_ae70a020a7dda960b91943e9f67695dbb}\label{structsqlite3__module_ae70a020a7dda960b91943e9f67695dbb} 
+\index{sqlite3\_module@{sqlite3\_module}!xFindFunction@{xFindFunction}}
+\index{xFindFunction@{xFindFunction}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xFindFunction}{xFindFunction}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Find\+Function)(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+Vtab, int n\+Arg, const char \texorpdfstring{$\ast$}{*}z\+Name, void(\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}px\+Func)(\mbox{\hyperlink{structsqlite3__context}{sqlite3\+\_\+context}} \texorpdfstring{$\ast$}{*}, int, \mbox{\hyperlink{struct_mem}{sqlite3\+\_\+value}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}), void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Arg)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05910}{5910}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_aa739d9a2081db7bf786f1f9fb9d92264}\label{structsqlite3__module_aa739d9a2081db7bf786f1f9fb9d92264} 
+\index{sqlite3\_module@{sqlite3\_module}!xNext@{xNext}}
+\index{xNext@{xNext}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xNext}{xNext}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Next)(\mbox{\hyperlink{structsqlite3__vtab__cursor}{sqlite3\+\_\+vtab\+\_\+cursor}} \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05901}{5901}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a2cb9f8c149617189efa6ceec0a3211e9}\label{structsqlite3__module_a2cb9f8c149617189efa6ceec0a3211e9} 
+\index{sqlite3\_module@{sqlite3\_module}!xOpen@{xOpen}}
+\index{xOpen@{xOpen}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xOpen}{xOpen}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Open)(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab, \mbox{\hyperlink{structsqlite3__vtab__cursor}{sqlite3\+\_\+vtab\+\_\+cursor}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Cursor)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05897}{5897}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a8dcaa6dc6d9563c8da57e4c8c5055609}\label{structsqlite3__module_a8dcaa6dc6d9563c8da57e4c8c5055609} 
+\index{sqlite3\_module@{sqlite3\_module}!xRelease@{xRelease}}
+\index{xRelease@{xRelease}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xRelease}{xRelease}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Release)(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab, int)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05917}{5917}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_af886782e9a1ea5c4b131b2bc373c8092}\label{structsqlite3__module_af886782e9a1ea5c4b131b2bc373c8092} 
+\index{sqlite3\_module@{sqlite3\_module}!xRename@{xRename}}
+\index{xRename@{xRename}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xRename}{xRename}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Rename)(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+Vtab, const char \texorpdfstring{$\ast$}{*}z\+New)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05913}{5913}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a3f8676e941a3080557fe10528e04e2f1}\label{structsqlite3__module_a3f8676e941a3080557fe10528e04e2f1} 
+\index{sqlite3\_module@{sqlite3\_module}!xRollback@{xRollback}}
+\index{xRollback@{xRollback}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xRollback}{xRollback}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Rollback)(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05909}{5909}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a767753c6c97d1f622e5113367a0547b5}\label{structsqlite3__module_a767753c6c97d1f622e5113367a0547b5} 
+\index{sqlite3\_module@{sqlite3\_module}!xRollbackTo@{xRollbackTo}}
+\index{xRollbackTo@{xRollbackTo}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xRollbackTo}{xRollbackTo}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Rollback\+To)(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab, int)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05918}{5918}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a1e119b28bd3ad706d1982aaa938aac79}\label{structsqlite3__module_a1e119b28bd3ad706d1982aaa938aac79} 
+\index{sqlite3\_module@{sqlite3\_module}!xRowid@{xRowid}}
+\index{xRowid@{xRowid}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xRowid}{xRowid}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Rowid)(\mbox{\hyperlink{structsqlite3__vtab__cursor}{sqlite3\+\_\+vtab\+\_\+cursor}} \texorpdfstring{$\ast$}{*}, sqlite3\+\_\+int64 \texorpdfstring{$\ast$}{*}p\+Rowid)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05904}{5904}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_af90f1df803fce1b90048864aeeeee890}\label{structsqlite3__module_af90f1df803fce1b90048864aeeeee890} 
+\index{sqlite3\_module@{sqlite3\_module}!xSavepoint@{xSavepoint}}
+\index{xSavepoint@{xSavepoint}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xSavepoint}{xSavepoint}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Savepoint)(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab, int)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05916}{5916}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a895d78529db2e28e13d1d842512770b6}\label{structsqlite3__module_a895d78529db2e28e13d1d842512770b6} 
+\index{sqlite3\_module@{sqlite3\_module}!xSync@{xSync}}
+\index{xSync@{xSync}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xSync}{xSync}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Sync)(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}p\+VTab)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05907}{5907}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__module_a029d0713dbb3c847a6de773a0a179605}\label{structsqlite3__module_a029d0713dbb3c847a6de773a0a179605} 
+\index{sqlite3\_module@{sqlite3\_module}!xUpdate@{xUpdate}}
+\index{xUpdate@{xUpdate}!sqlite3\_module@{sqlite3\_module}}
+\doxysubsubsection{\texorpdfstring{xUpdate}{xUpdate}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+module\+::x\+Update)(\mbox{\hyperlink{structsqlite3__vtab}{sqlite3\+\_\+vtab}} \texorpdfstring{$\ast$}{*}, int, \mbox{\hyperlink{struct_mem}{sqlite3\+\_\+value}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}, sqlite3\+\_\+int64 \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l05905}{5905}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\item 
+lib/sqlite/sqlite3.\+h\end{DoxyCompactItemize}

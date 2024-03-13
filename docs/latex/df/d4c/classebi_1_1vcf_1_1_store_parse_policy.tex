@@ -1,0 +1,446 @@
+\doxysection{ebi\+::vcf\+::Store\+Parse\+Policy Class Reference}
+\hypertarget{classebi_1_1vcf_1_1_store_parse_policy}{}\label{classebi_1_1vcf_1_1_store_parse_policy}\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+
+
+Collaboration diagram for ebi\+::vcf\+::Store\+Parse\+Policy\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{d8/d39/classebi_1_1vcf_1_1_store_parse_policy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_ac9ed72cdbd0afd5768978616c726ed70}{handle\+\_\+token\+\_\+begin}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_acb21c56341f216c13b3811781cb3acb1}{handle\+\_\+token\+\_\+char}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state, char c)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_a499daf8f65c979eda14bc1cc99d8e195}{handle\+\_\+token\+\_\+end}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_a593b102901babecf20274a93af6d973c}{handle\+\_\+token\+\_\+end}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state, std\+::string token)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_a1d4c060078752fd90de110882b7b9477}{handle\+\_\+newline}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_a18b71317e9233f42d3e96619e2db157b}{handle\+\_\+fileformat}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_a3f505b087ada21281d312321d70090ad}{handle\+\_\+meta\+\_\+typeid}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_ae0bb06c2223ab5f7cf048f163f147c11}{handle\+\_\+meta\+\_\+typeid}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state, std\+::string type\+\_\+id)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_a2c758d51c63863738969e163e69555eb}{handle\+\_\+meta\+\_\+line}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_a0375c1bd52839a219072aadeae6b03f6}{handle\+\_\+sample\+\_\+name}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_a36bc31b00d29cf9616858e6f416913e7}{handle\+\_\+header\+\_\+line}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_ab7af935959c62801cb20d48eb4137f0d}{handle\+\_\+column\+\_\+end}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state, size\+\_\+t n\+\_\+columns)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_ab976467171831f816f0cf39c9a335bfb}{handle\+\_\+body\+\_\+line}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&state)
+\item 
+std\+::string \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_a7b3c22d873cbfebfc56da7ed2d7ce78f}{current\+\_\+token}} () const
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy_a780c9d7ac2429f7a9bbb773db12ecfa1}{column\+\_\+tokens}} (std\+::string const \&column) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parsing policy that stores the parsed tokens for more thorough validations or future usage 
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00066}{66}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_a780c9d7ac2429f7a9bbb773db12ecfa1}\label{classebi_1_1vcf_1_1_store_parse_policy_a780c9d7ac2429f7a9bbb773db12ecfa1} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!column\_tokens@{column\_tokens}}
+\index{column\_tokens@{column\_tokens}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{column\_tokens()}{column\_tokens()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ ebi\+::vcf\+::\+Store\+Parse\+Policy\+::column\+\_\+tokens (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{column }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00270}{270}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00271\ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_line\_tokens.at(column);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::out\_of\_range)\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_a7b3c22d873cbfebfc56da7ed2d7ce78f}\label{classebi_1_1vcf_1_1_store_parse_policy_a7b3c22d873cbfebfc56da7ed2d7ce78f} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!current\_token@{current\_token}}
+\index{current\_token@{current\_token}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{current\_token()}{current\_token()}}
+{\footnotesize\ttfamily std\+::string ebi\+::vcf\+::\+Store\+Parse\+Policy\+::current\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00265}{265}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00266\ \ \ \ \ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_current\_token;}
+\DoxyCodeLine{00268\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_ab976467171831f816f0cf39c9a335bfb}\label{classebi_1_1vcf_1_1_store_parse_policy_ab976467171831f816f0cf39c9a335bfb} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!handle\_body\_line@{handle\_body\_line}}
+\index{handle\_body\_line@{handle\_body\_line}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_body\_line()}{handle\_body\_line()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Store\+Parse\+Policy\+::handle\+\_\+body\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&}]{state }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00209}{209}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00210\ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ position;}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Transform\ the\ position\ token\ into\ a\ size\_t}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ position\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(std::stoi(m\_line\_tokens[POS][0]));}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::invalid\_argument\ ex)\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ PositionBodyError\{state.n\_lines\};}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Transform\ all\ the\ quality\ tokens\ into\ floating\ point\ numbers}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ quality\ =\ 0;}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_line\_tokens[QUAL][0]\ !=\ MISSING\_VALUE)\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quality\ =\ std::stof(m\_line\_tokens[QUAL][0]);}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::invalid\_argument\ ex)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ QualityBodyError\{state.n\_lines\};}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Split\ the\ info\ tokens\ by\ the\ equals\ (=)\ symbol}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ std::multimap<std::string,\ std::string>\ info;}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&field\ :\ m\_line\_tokens[INFO])\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ subfields;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ util::string\_split(field,\ \textcolor{stringliteral}{"{}="{}},\ subfields);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (subfields.size()\ >\ 1)\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ info.emplace(subfields[0],\ subfields[1]);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ info.emplace(subfields[0],\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Format\ and\ samples\ are\ optional}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ format\ =\ m\_line\_tokens.find(FORMAT)\ !=\ m\_line\_tokens.end()\ ?}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[FORMAT]\ :\ std::vector<std::string>\{\};}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ samples\ =\ m\_line\_tokens.find(SAMPLES)\ !=\ m\_line\_tokens.end()\ ?}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[SAMPLES]\ :\ std::vector<std::string>\{\};}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ state.set\_record(std::unique\_ptr<Record>\{\textcolor{keyword}{new}\ Record\{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.n\_lines,}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[CHROM][0],}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position,}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[ID],}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[REF][0],}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[ALT],}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quality,}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[FILTER],}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ info,}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ format,}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ samples,}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.source}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \}\});}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ check\_sorted(state,\ position);}
+\DoxyCodeLine{00263\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_ab7af935959c62801cb20d48eb4137f0d}\label{classebi_1_1vcf_1_1_store_parse_policy_ab7af935959c62801cb20d48eb4137f0d} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!handle\_column\_end@{handle\_column\_end}}
+\index{handle\_column\_end@{handle\_column\_end}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_column\_end()}{handle\_column\_end()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Store\+Parse\+Policy\+::handle\+\_\+column\+\_\+end (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state,  }\item[{size\+\_\+t}]{n\+\_\+columns }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00168}{168}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00169\ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(n\_columns)\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[CHROM]\ =\ m\_grouped\_tokens;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[POS]\ =\ m\_grouped\_tokens;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[ID]\ =\ m\_grouped\_tokens;}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[REF]\ =\ m\_grouped\_tokens;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 5:}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[ALT]\ =\ m\_grouped\_tokens;}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 6:}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[QUAL]\ =\ m\_grouped\_tokens;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 7:}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[FILTER]\ =\ m\_grouped\_tokens;}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 8:}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[INFO]\ =\ m\_grouped\_tokens;}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 9:}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[FORMAT]\ =\ m\_grouped\_tokens;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Collection\ of\ samples}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_line\_tokens.find(SAMPLES)\ ==\ m\_line\_tokens.end())\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[SAMPLES]\ =\ std::vector<std::string>\{\};}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Samples\ are\ stored\ as\ a\ single\ string}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_line\_tokens[SAMPLES].push\_back(m\_grouped\_tokens[0]);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ m\_grouped\_tokens\ =\ std::vector<std::string>\{\};}
+\DoxyCodeLine{00207\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_a18b71317e9233f42d3e96619e2db157b}\label{classebi_1_1vcf_1_1_store_parse_policy_a18b71317e9233f42d3e96619e2db157b} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!handle\_fileformat@{handle\_fileformat}}
+\index{handle\_fileformat@{handle\_fileformat}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_fileformat()}{handle\_fileformat()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Store\+Parse\+Policy\+::handle\+\_\+fileformat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&}]{state }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ Version\ fileformat\_version\ =\ Version::v41;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_current\_token\ ==\ VCF\_V41)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ fileformat\_version\ =\ Version::v41;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (m\_current\_token\ ==\ VCF\_V42)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ fileformat\_version\ =\ Version::v42;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (m\_current\_token\ ==\ VCF\_V43)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ fileformat\_version\ =\ Version::v43;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (m\_current\_token\ ==\ VCF\_V44)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ fileformat\_version\ =\ Version::v44;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ FileformatError\{state.n\_lines,\ \textcolor{stringliteral}{"{}Not\ allowed\ VCF\ fileformat\ version"{}}\};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fileformat\_version\ !=\ state.source-\/>version)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ FileformatError\{state.n\_lines,\ \textcolor{stringliteral}{"{}Unexpected\ VCF\ fileformat\ version\ found"{}}\};}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ state.set\_version(fileformat\_version);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_a36bc31b00d29cf9616858e6f416913e7}\label{classebi_1_1vcf_1_1_store_parse_policy_a36bc31b00d29cf9616858e6f416913e7} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!handle\_header\_line@{handle\_header\_line}}
+\index{handle\_header\_line@{handle\_header\_line}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_header\_line()}{handle\_header\_line()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Store\+Parse\+Policy\+::handle\+\_\+header\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&}]{state }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00117}{117}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ state.set\_samples(m\_grouped\_tokens);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ check\_each\_sample\_appears\_only\_once(state);}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_a2c758d51c63863738969e163e69555eb}\label{classebi_1_1vcf_1_1_store_parse_policy_a2c758d51c63863738969e163e69555eb} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!handle\_meta\_line@{handle\_meta\_line}}
+\index{handle\_meta\_line@{handle\_meta\_line}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_meta\_line()}{handle\_meta\_line()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Store\+Parse\+Policy\+::handle\+\_\+meta\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&}]{state }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00088}{88}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00089\ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Put\ together\ m\_line\_typeid\ and\ m\_grouped\_tokens\ in\ a\ single\ MetaEntry\ object}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ MetaEntry\ to\ Source}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_line\_typeid\ ==\ \textcolor{stringliteral}{"{}"{}})\ \{\ \textcolor{comment}{//\ Plain\ value}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ state.add\_meta(MetaEntry\{state.n\_lines,\ m\_grouped\_tokens[0],\ state.source\});}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (m\_grouped\_tokens.size()\ ==\ 1)\ \{\ \textcolor{comment}{//\ TypeID=value}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ state.add\_meta(MetaEntry\{state.n\_lines,\ m\_line\_typeid,\ m\_grouped\_tokens[0],\ state.source\});}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (m\_grouped\_tokens.size()\ \%\ 2\ ==\ 0)\ \{\ \textcolor{comment}{//\ TypeID=<Key-\/value\ pairs>}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ key\_values\ =\ std::map<std::string,\ std::string>\{\};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ m\_grouped\_tokens.size();\ i\ +=\ 2)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ key\_values[m\_grouped\_tokens[i]]\ =\ m\_grouped\_tokens[i+1];}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ state.add\_meta(MetaEntry\{state.n\_lines,\ m\_line\_typeid,\ key\_values,\ state.source\});}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ MetaSectionError\{state.n\_lines,\ \textcolor{stringliteral}{"{}Meta\ line\ description\ is\ not\ a\ value,\ nor\ a\ TypeID=value,\ nor\ a\ TypeID=<Key-\/value\ pairs>"{}}\};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_a3f505b087ada21281d312321d70090ad}\label{classebi_1_1vcf_1_1_store_parse_policy_a3f505b087ada21281d312321d70090ad} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!handle\_meta\_typeid@{handle\_meta\_typeid}}
+\index{handle\_meta\_typeid@{handle\_meta\_typeid}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_meta\_typeid()}{handle\_meta\_typeid()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Store\+Parse\+Policy\+::handle\+\_\+meta\+\_\+typeid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00077}{77}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00078\ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ m\_line\_typeid\ =\ m\_current\_token;}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_ae0bb06c2223ab5f7cf048f163f147c11}\label{classebi_1_1vcf_1_1_store_parse_policy_ae0bb06c2223ab5f7cf048f163f147c11} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!handle\_meta\_typeid@{handle\_meta\_typeid}}
+\index{handle\_meta\_typeid@{handle\_meta\_typeid}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_meta\_typeid()}{handle\_meta\_typeid()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Store\+Parse\+Policy\+::handle\+\_\+meta\+\_\+typeid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state,  }\item[{std\+::string}]{type\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00082}{82}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00083\ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ m\_line\_typeid\ =\ type\_id;}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_a1d4c060078752fd90de110882b7b9477}\label{classebi_1_1vcf_1_1_store_parse_policy_a1d4c060078752fd90de110882b7b9477} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!handle\_newline@{handle\_newline}}
+\index{handle\_newline@{handle\_newline}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_newline()}{handle\_newline()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Store\+Parse\+Policy\+::handle\+\_\+newline (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00047}{47}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ m\_current\_token.clear();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ m\_grouped\_tokens.clear();}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ m\_line\_tokens.clear();}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_a0375c1bd52839a219072aadeae6b03f6}\label{classebi_1_1vcf_1_1_store_parse_policy_a0375c1bd52839a219072aadeae6b03f6} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!handle\_sample\_name@{handle\_sample\_name}}
+\index{handle\_sample\_name@{handle\_sample\_name}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_sample\_name()}{handle\_sample\_name()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Store\+Parse\+Policy\+::handle\+\_\+sample\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00112}{112}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ m\_grouped\_tokens.push\_back(m\_current\_token);}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_ac9ed72cdbd0afd5768978616c726ed70}\label{classebi_1_1vcf_1_1_store_parse_policy_ac9ed72cdbd0afd5768978616c726ed70} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!handle\_token\_begin@{handle\_token\_begin}}
+\index{handle\_token\_begin@{handle\_token\_begin}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_token\_begin()}{handle\_token\_begin()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Store\+Parse\+Policy\+::handle\+\_\+token\+\_\+begin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ m\_current\_token\ =\ std::string\{\};}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_acb21c56341f216c13b3811781cb3acb1}\label{classebi_1_1vcf_1_1_store_parse_policy_acb21c56341f216c13b3811781cb3acb1} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!handle\_token\_char@{handle\_token\_char}}
+\index{handle\_token\_char@{handle\_token\_char}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_token\_char()}{handle\_token\_char()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Store\+Parse\+Policy\+::handle\+\_\+token\+\_\+char (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state,  }\item[{char}]{c }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ m\_current\_token.push\_back(c);}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_a499daf8f65c979eda14bc1cc99d8e195}\label{classebi_1_1vcf_1_1_store_parse_policy_a499daf8f65c979eda14bc1cc99d8e195} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!handle\_token\_end@{handle\_token\_end}}
+\index{handle\_token\_end@{handle\_token\_end}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_token\_end()}{handle\_token\_end()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Store\+Parse\+Policy\+::handle\+\_\+token\+\_\+end (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ m\_grouped\_tokens.push\_back(m\_current\_token);}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_store_parse_policy_a593b102901babecf20274a93af6d973c}\label{classebi_1_1vcf_1_1_store_parse_policy_a593b102901babecf20274a93af6d973c} 
+\index{ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}!handle\_token\_end@{handle\_token\_end}}
+\index{handle\_token\_end@{handle\_token\_end}!ebi::vcf::StoreParsePolicy@{ebi::vcf::StoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_token\_end()}{handle\_token\_end()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Store\+Parse\+Policy\+::handle\+\_\+token\+\_\+end (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state,  }\item[{std\+::string}]{token }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{store__parse__policy_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{store__parse__policy_8cpp_source}{store\+\_\+parse\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ m\_grouped\_tokens.push\_back(token);}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/parse\+\_\+policy.\+hpp\item 
+src/vcf/store\+\_\+parse\+\_\+policy.\+cpp\end{DoxyCompactItemize}

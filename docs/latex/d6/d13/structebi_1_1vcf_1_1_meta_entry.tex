@@ -1,0 +1,243 @@
+\doxysection{ebi\+::vcf\+::Meta\+Entry Struct Reference}
+\hypertarget{structebi_1_1vcf_1_1_meta_entry}{}\label{structebi_1_1vcf_1_1_meta_entry}\index{ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}}
+
+
+Collaboration diagram for ebi\+::vcf\+::Meta\+Entry\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d6/dd0/structebi_1_1vcf_1_1_meta_entry__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class {\bfseries Structure} \{ {\bfseries No\+Value}
+, {\bfseries Plain\+Value}
+, {\bfseries Key\+Value}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry_a2f18ecada062737f9724de3e7887b158}{Meta\+Entry}} (size\+\_\+t line, std\+::string const \&id, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$ source)
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry_a93c01be2feb170964feef2d6bda2ae66}{Meta\+Entry}} (size\+\_\+t line, std\+::string const \&id, std\+::string const \&plain\+\_\+value, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$ source)
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry_ad76ade47b5af0d46ec39fd1ca8eefa17}{Meta\+Entry}} (size\+\_\+t line, std\+::string const \&id, std\+::map$<$ std\+::string, std\+::string $>$ const \&key\+\_\+values, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$ source)
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry_a634d6c2819271c5d92ded60d33c2d098}{operator==}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{Meta\+Entry}} const \&) const
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry_a706b51833178857d9e02f299c58e3943}{operator!=}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{Meta\+Entry}} const \&) const
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry_ac219b7d6a134870df1ad72a12fb1dac1}{is\+\_\+defined\+\_\+in\+\_\+header}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry_a4d49a5807d5222c2d5def7f82995050f}{line}}
+\item 
+std\+::string \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry_a00e17d016d4aa542c26ba33d761a261d}{id}}
+\item 
+Structure \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry_a3c3e9e7ffee08347f13f6dd9ea7f4db1}{structure}}
+\item 
+boost\+::variant$<$ std\+::string, std\+::map$<$ std\+::string, std\+::string $>$ $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry_ab733c646af7875dc2a9665fac43e92c7}{value}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry_a1ad768d9468db68e61817d9f6b216d0c}{source}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00303}{303}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_meta_entry_a3e52607332807af77fd14c433ffe0ed7}\label{structebi_1_1vcf_1_1_meta_entry_a3e52607332807af77fd14c433ffe0ed7} 
+\index{ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}!Structure@{Structure}}
+\index{Structure@{Structure}!ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}}
+\doxysubsubsection{\texorpdfstring{Structure}{Structure}}
+{\footnotesize\ttfamily enum class ebi\+::vcf\+::\+Meta\+Entry\+::\+Structure\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00305}{305}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00305\ \{\ NoValue,\ PlainValue,\ KeyValue\ \};}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_meta_entry_a2f18ecada062737f9724de3e7887b158}\label{structebi_1_1vcf_1_1_meta_entry_a2f18ecada062737f9724de3e7887b158} 
+\index{ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}!MetaEntry@{MetaEntry}}
+\index{MetaEntry@{MetaEntry}!ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}}
+\doxysubsubsection{\texorpdfstring{MetaEntry()}{MetaEntry()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Meta\+Entry\+::\+Meta\+Entry (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{line,  }\item[{std\+::string const \&}]{id,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$}]{source }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{meta__entry_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{meta__entry_8cpp_source}{meta\+\_\+entry.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ :\ line\{line\},\ \textcolor{keywordtype}{id}\{\textcolor{keywordtype}{id}\},\ structure\{Structure::NoValue\},\ source\{source\}}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_meta_entry_a93c01be2feb170964feef2d6bda2ae66}\label{structebi_1_1vcf_1_1_meta_entry_a93c01be2feb170964feef2d6bda2ae66} 
+\index{ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}!MetaEntry@{MetaEntry}}
+\index{MetaEntry@{MetaEntry}!ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}}
+\doxysubsubsection{\texorpdfstring{MetaEntry()}{MetaEntry()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Meta\+Entry\+::\+Meta\+Entry (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{line,  }\item[{std\+::string const \&}]{id,  }\item[{std\+::string const \&}]{plain\+\_\+value,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$}]{source }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{meta__entry_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{meta__entry_8cpp_source}{meta\+\_\+entry.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00040\ \ \ \ \ :\ line\{line\},\ \textcolor{keywordtype}{id}\{\textcolor{keywordtype}{id}\},\ structure\{Structure::PlainValue\},\ value\{plain\_value\},\ source\{source\}}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ check\_value();}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_meta_entry_ad76ade47b5af0d46ec39fd1ca8eefa17}\label{structebi_1_1vcf_1_1_meta_entry_ad76ade47b5af0d46ec39fd1ca8eefa17} 
+\index{ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}!MetaEntry@{MetaEntry}}
+\index{MetaEntry@{MetaEntry}!ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}}
+\doxysubsubsection{\texorpdfstring{MetaEntry()}{MetaEntry()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Meta\+Entry\+::\+Meta\+Entry (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{line,  }\item[{std\+::string const \&}]{id,  }\item[{std\+::map$<$ std\+::string, std\+::string $>$ const \&}]{key\+\_\+values,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$}]{source }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{meta__entry_8cpp_source_l00045}{45}} of file \mbox{\hyperlink{meta__entry_8cpp_source}{meta\+\_\+entry.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00049\ \ \ \ \ :\ line\{line\},\ \textcolor{keywordtype}{id}\{\textcolor{keywordtype}{id}\},\ structure\{Structure::KeyValue\},\ value\{key\_values\},\ source\{source\}}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ check\_value();}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_meta_entry_ac219b7d6a134870df1ad72a12fb1dac1}\label{structebi_1_1vcf_1_1_meta_entry_ac219b7d6a134870df1ad72a12fb1dac1} 
+\index{ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}!is\_defined\_in\_header@{is\_defined\_in\_header}}
+\index{is\_defined\_in\_header@{is\_defined\_in\_header}!ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}}
+\doxysubsubsection{\texorpdfstring{is\_defined\_in\_header()}{is\_defined\_in\_header()}}
+{\footnotesize\ttfamily bool ebi\+::vcf\+::\+Meta\+Entry\+::is\+\_\+defined\+\_\+in\+\_\+header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{meta__entry_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{meta__entry_8cpp_source}{meta\+\_\+entry.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !this-\/>\textcolor{keywordtype}{id}.empty();}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_meta_entry_a706b51833178857d9e02f299c58e3943}\label{structebi_1_1vcf_1_1_meta_entry_a706b51833178857d9e02f299c58e3943} 
+\index{ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily bool ebi\+::vcf\+::\+Meta\+Entry\+::operator!= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{Meta\+Entry}} const \&}]{other }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{meta__entry_8cpp_source_l00060}{60}} of file \mbox{\hyperlink{meta__entry_8cpp_source}{meta\+\_\+entry.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ other);}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_meta_entry_a634d6c2819271c5d92ded60d33c2d098}\label{structebi_1_1vcf_1_1_meta_entry_a634d6c2819271c5d92ded60d33c2d098} 
+\index{ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}!operator==@{operator==}}
+\index{operator==@{operator==}!ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool ebi\+::vcf\+::\+Meta\+Entry\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{Meta\+Entry}} const \&}]{other }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{meta__entry_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{meta__entry_8cpp_source}{meta\+\_\+entry.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{id}\ ==\ other.id\ \&\&}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ ==\ other.value;}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_meta_entry_a00e17d016d4aa542c26ba33d761a261d}\label{structebi_1_1vcf_1_1_meta_entry_a00e17d016d4aa542c26ba33d761a261d} 
+\index{ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}!id@{id}}
+\index{id@{id}!ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily std\+::string ebi\+::vcf\+::\+Meta\+Entry\+::id}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00309}{309}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_meta_entry_a4d49a5807d5222c2d5def7f82995050f}\label{structebi_1_1vcf_1_1_meta_entry_a4d49a5807d5222c2d5def7f82995050f} 
+\index{ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}!line@{line}}
+\index{line@{line}!ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}}
+\doxysubsubsection{\texorpdfstring{line}{line}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Meta\+Entry\+::line}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00307}{307}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_meta_entry_a1ad768d9468db68e61817d9f6b216d0c}\label{structebi_1_1vcf_1_1_meta_entry_a1ad768d9468db68e61817d9f6b216d0c} 
+\index{ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}!source@{source}}
+\index{source@{source}!ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}}
+\doxysubsubsection{\texorpdfstring{source}{source}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}}$>$ ebi\+::vcf\+::\+Meta\+Entry\+::source}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00315}{315}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_meta_entry_a3c3e9e7ffee08347f13f6dd9ea7f4db1}\label{structebi_1_1vcf_1_1_meta_entry_a3c3e9e7ffee08347f13f6dd9ea7f4db1} 
+\index{ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}!structure@{structure}}
+\index{structure@{structure}!ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}}
+\doxysubsubsection{\texorpdfstring{structure}{structure}}
+{\footnotesize\ttfamily Structure ebi\+::vcf\+::\+Meta\+Entry\+::structure}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00310}{310}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_meta_entry_ab733c646af7875dc2a9665fac43e92c7}\label{structebi_1_1vcf_1_1_meta_entry_ab733c646af7875dc2a9665fac43e92c7} 
+\index{ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}!value@{value}}
+\index{value@{value}!ebi::vcf::MetaEntry@{ebi::vcf::MetaEntry}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily boost\+::variant$<$ std\+::string, std\+::map$<$std\+::string, std\+::string$>$ $>$ ebi\+::vcf\+::\+Meta\+Entry\+::value}
+
+
+
+Definition at line \mbox{\hyperlink{file__structure_8hpp_source_l00313}{313}} of file \mbox{\hyperlink{file__structure_8hpp_source}{file\+\_\+structure.\+hpp}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/file\+\_\+structure.\+hpp\item 
+src/vcf/meta\+\_\+entry.\+cpp\end{DoxyCompactItemize}

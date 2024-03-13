@@ -1,0 +1,32 @@
+\chapter{Contributing to vcf-\/validator}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g}{}\label{md__c_o_n_t_r_i_b_u_t_i_n_g}\index{Contributing to vcf-\/validator@{Contributing to vcf-\/validator}}
+We welcome community contributions to vcf-\/validator!\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md0}{}\doxysection{\texorpdfstring{Bug reports \& troubleshooting}{Bug reports \& troubleshooting}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md0}
+If you are submitting a bug, please go to \href{https://github.com/EBIvariation/vcf-validator/issues/new}{\texttt{ this link}}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md1}{}\doxysection{\texorpdfstring{First Timers Welcome!}{First Timers Welcome!}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md1}
+To build tool locally, follow the instructions in the \href{https://github.com/EBIvariation/vcf-validator/blob/master/README.md}{\texttt{ README.\+md file}}. New to open source? Here is a selection of issues we\textquotesingle{}ve made especially for first-\/timers. Follow this \href{https://github.com/EBIvariation/vcf-validator/issues?q=is\%3Aissue+is\%3Aopen+label\%3Abeginner}{\texttt{ link}}.\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md2}{}\doxysection{\texorpdfstring{Making a New PR}{Making a New PR}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md2}
+Once you found an interesting issue to work on you may check if someone other is not working on the same issue. You can ask once in the issue to get that issue assigned to you. Once you get an approval go for the PR. While making a new PR do follow these norms\+:
+
+
+\begin{DoxyItemize}
+\item Fork and {\ttfamily git clone} the repository if you haven\textquotesingle{}t done so.
+\item Add EBIvariation as "{}upstream"{} remote\+: {\ttfamily git remote add upstream \href{https://github.com/EBIvariation/vcf-validator.git}{\texttt{ https\+://github.\+com/\+EBIvariation/vcf-\/validator.\+git}}}
+\item Fetch the latest changes by {\ttfamily git fetch upstream}.
+\item Update the local develop branch {\ttfamily git rebase upstream/develop develop}.
+\item Create a new branch from develop {\ttfamily git checkout -\/b \texorpdfstring{$<$}{<}branch\+\_\+name\texorpdfstring{$>$}{>} develop}.
+\item Add and commit the changes, commit messages should be short and well explanatory.
+\item While creating new PR, change the base from master to develop.
+\item PR message should be well explanatory and should contain reference to the issue this PR is for.
+\item Once the PR is ready for a review, ask for a review.
+\end{DoxyItemize}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md3}{}\doxysection{\texorpdfstring{Coding Practice}{Coding Practice}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md3}
+There are some coding practices that we follow to make code easily readable and modifiable. Few of them that should be kept in mind while coding are\+:
+
+
+\begin{DoxyItemize}
+\item Consistent Indentation -\/ We generally prefer 4 spaces for indentation.
+\item Comments \& Documentation -\/ Provide comments whenever required, so that it may be easy for other developers to read your code. Also avoid obvious comments.
+\item Tests -\/ Add tests if new functionality is added to ensure that this functionality does not break in future.
+\item Consistent Naming Scheme -\/ Follow a consistent naming scheme. We prefer {\ttfamily snake\+\_\+case}(underscored) instead of {\ttfamily camel\+Case}. Naming of variables should be done in well explanatory way.
+\item DRY Principle -\/ Every piece of knowledge must have a single, unambiguous, authoritative representation within a system. Aslo called \href{https://en.wikipedia.org/wiki/Don\%27t_repeat_yourself}{\texttt{ Don\textquotesingle{}t repeat yourself}}
+\item Avoid Deep Nesting -\/ Too many levels of nesting make code harder to read.
+\item Limit Line Length -\/ It is a good practice to avoid writing horizontally long lines of code. There is no such limit but still having max lenght till 80 is good practice. For more follow this \href{https://stackoverflow.com/a/111009/6799074}{\texttt{ link}}.
+\item Bracket Style -\/ We generally use attached brackets for {\ttfamily conditions} and {\ttfamily loops} and broken brackets for {\ttfamily functions} and {\ttfamily classes}. Our style is a variant of \href{https://en.wikipedia.org/wiki/Indentation_style\#K&R}{\texttt{ K\&R style \+: variant}}, difference is that we force use of brackets even if there is single statement in the brackets. 
+\end{DoxyItemize}

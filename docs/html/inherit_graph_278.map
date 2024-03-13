@@ -1,0 +1,75 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,817,115,843"/>
+<area shape="rect" id="Node000001" href="$db/dd5/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_alternate_alleles_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="173,28,357,83"/>
+<area shape="poly" id="edge108_Node000000_Node000001" title=" " alt="" coords="59,801,65,659,81,454,94,348,111,249,133,167,146,134,160,108,174,94,189,82,192,86,177,98,165,112,151,137,138,169,116,250,99,348,86,455,71,660,65,802"/>
+<area shape="rect" id="Node000003" href="$d2/d69/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_body_section_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="166,122,364,178"/>
+<area shape="poly" id="edge110_Node000000_Node000003" title=" " alt="" coords="60,801,68,676,86,499,99,408,116,323,136,253,160,203,174,188,190,176,193,180,178,192,165,206,141,255,121,325,104,408,91,499,73,676,65,802"/>
+<area shape="rect" id="Node000005" href="$db/dd0/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_chromosome_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="165,217,365,273"/>
+<area shape="poly" id="edge112_Node000000_Node000005" title=" " alt="" coords="61,802,71,693,91,544,105,468,120,398,139,339,161,298,190,271,193,275,165,301,144,341,126,399,110,469,96,545,77,694,66,802"/>
+<area shape="rect" id="Node000007" href="$d5/dce/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_duplication_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="171,312,359,367"/>
+<area shape="poly" id="edge114_Node000000_Node000007" title=" " alt="" coords="58,801,59,724,71,616,84,558,103,499,128,442,161,391,189,366,193,370,165,394,132,445,108,501,89,559,77,617,64,724,63,802"/>
+<area shape="rect" id="Node000009" href="$d7/db1/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_fileformat_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="174,405,356,461"/>
+<area shape="poly" id="edge116_Node000000_Node000009" title=" " alt="" coords="60,802,66,739,82,656,95,611,112,566,134,523,161,484,190,459,194,463,165,488,138,526,117,568,100,612,87,657,71,740,65,802"/>
+<area shape="rect" id="Node000011" href="$da/d64/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_filter_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="174,498,356,554"/>
+<area shape="poly" id="edge118_Node000000_Node000011" title=" " alt="" coords="63,801,74,754,93,695,121,633,139,603,161,576,191,552,194,557,165,580,144,606,126,635,98,697,79,756,69,803"/>
+<area shape="rect" id="Node000013" href="$d6/dde/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_format_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="168,590,362,646"/>
+<area shape="poly" id="edge120_Node000000_Node000013" title=" " alt="" coords="70,802,105,735,130,698,161,665,191,644,194,649,164,669,135,702,109,738,75,804"/>
+<area shape="rect" id="Node000015" href="$d9/d93/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_header_section_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="176,680,354,735"/>
+<area shape="poly" id="edge122_Node000000_Node000015" title=" " alt="" coords="85,805,120,776,161,748,189,733,191,738,164,752,123,780,88,809"/>
+<area shape="rect" id="Node000017" href="$d1/d0c/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_id_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="183,762,347,818"/>
+<area shape="poly" id="edge124_Node000000_Node000017" title=" " alt="" coords="129,814,182,803,183,809,130,819"/>
+<area shape="rect" id="Node000019" href="$d3/dab/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_info_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="177,842,353,898"/>
+<area shape="poly" id="edge126_Node000000_Node000019" title=" " alt="" coords="130,841,177,850,176,855,129,846"/>
+<area shape="rect" id="Node000021" href="$dc/d09/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_meta_section_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="167,926,363,982"/>
+<area shape="poly" id="edge128_Node000000_Node000021" title=" " alt="" coords="88,851,123,880,164,908,194,923,191,928,161,912,120,884,85,855"/>
+<area shape="rect" id="Node000023" href="$d8/d76/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_no_meta_definition_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="168,1016,362,1071"/>
+<area shape="poly" id="edge130_Node000000_Node000023" title=" " alt="" coords="75,856,109,923,134,959,164,992,194,1013,191,1017,161,996,130,963,105,925,70,858"/>
+<area shape="rect" id="Node000025" href="$d6/dbc/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_normalization_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="179,1108,351,1163"/>
+<area shape="poly" id="edge132_Node000000_Node000025" title=" " alt="" coords="69,858,79,905,98,964,126,1026,144,1055,165,1081,194,1105,191,1109,161,1085,139,1058,121,1028,93,966,74,906,63,859"/>
+<area shape="rect" id="Node000027" href="$d8/de0/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_position_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="180,1201,350,1257"/>
+<area shape="poly" id="edge134_Node000000_Node000027" title=" " alt="" coords="65,858,71,921,87,1004,100,1048,117,1093,138,1135,165,1174,194,1198,190,1202,161,1177,134,1138,112,1095,95,1050,82,1005,66,921,60,859"/>
+<area shape="rect" id="Node000029" href="$db/de9/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_quality_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="168,1294,362,1350"/>
+<area shape="poly" id="edge136_Node000000_Node000029" title=" " alt="" coords="63,859,64,936,77,1043,89,1102,107,1160,132,1216,165,1267,193,1292,189,1296,161,1270,128,1219,102,1162,84,1103,71,1044,59,937,58,859"/>
+<area shape="rect" id="Node000031" href="$d8/d01/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_reference_allele_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="173,1389,357,1445"/>
+<area shape="poly" id="edge138_Node000000_Node000031" title=" " alt="" coords="66,858,77,966,96,1116,110,1192,126,1262,144,1320,165,1360,193,1386,190,1390,161,1364,139,1322,120,1263,104,1193,91,1116,71,967,61,858"/>
+<area shape="rect" id="Node000033" href="$d2/d21/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_samples_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="163,1490,367,1546"/>
+<area shape="poly" id="edge140_Node000000_Node000033" title=" " alt="" coords="65,858,74,983,92,1160,106,1252,122,1336,142,1406,165,1455,180,1473,200,1487,196,1492,177,1477,160,1458,137,1408,117,1337,100,1252,87,1161,69,984,60,859"/>
+<area shape="rect" id="Node000035" href="$df/d00/structodb_1_1query__columns_3_01_1_1ebi_1_1vcf_1_1_samples_field_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="179,1577,351,1633"/>
+<area shape="poly" id="edge142_Node000000_Node000035" title=" " alt="" coords="64,858,69,1002,84,1210,97,1318,114,1417,137,1499,150,1531,165,1556,184,1574,180,1578,161,1560,145,1534,132,1501,109,1418,92,1318,79,1210,64,1002,59,858"/>
+<area shape="rect" id="Node000002" href="$d6/dc1/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_alternate_alleles_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="420,5,601,76"/>
+<area shape="poly" id="edge109_Node000001_Node000002" title=" " alt="" coords="372,46,419,43,419,49,372,52"/>
+<area shape="rect" id="Node000004" href="$d9/da8/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_body_section_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="436,100,584,171"/>
+<area shape="poly" id="edge111_Node000003_Node000004" title=" " alt="" coords="379,141,435,137,436,142,379,146"/>
+<area shape="rect" id="Node000006" href="$d9/d41/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_chromosome_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="426,195,594,265"/>
+<area shape="poly" id="edge113_Node000005_Node000006" title=" " alt="" coords="380,235,425,232,426,238,381,240"/>
+<area shape="rect" id="Node000008" href="$dd/d1e/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_duplication_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="440,289,580,360"/>
+<area shape="poly" id="edge115_Node000007_Node000008" title=" " alt="" coords="375,330,439,326,440,332,375,335"/>
+<area shape="rect" id="Node000010" href="$d6/d7d/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_fileformat_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="440,384,580,455"/>
+<area shape="poly" id="edge117_Node000009_Node000010" title=" " alt="" coords="371,424,439,420,440,426,371,430"/>
+<area shape="rect" id="Node000012" href="$d2/d6d/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_filter_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="440,479,580,549"/>
+<area shape="poly" id="edge119_Node000011_Node000012" title=" " alt="" coords="371,518,440,515,440,520,372,523"/>
+<area shape="rect" id="Node000014" href="$d0/d19/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_format_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="438,573,583,644"/>
+<area shape="poly" id="edge121_Node000013_Node000014" title=" " alt="" coords="378,611,437,609,437,614,378,616"/>
+<area shape="rect" id="Node000016" href="$d8/d1f/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_header_section_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="437,668,583,739"/>
+<area shape="poly" id="edge123_Node000015_Node000016" title=" " alt="" coords="369,703,436,702,437,707,369,708"/>
+<area shape="rect" id="Node000018" href="$d0/d3c/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_id_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="421,762,600,818"/>
+<area shape="poly" id="edge125_Node000017_Node000018" title=" " alt="" coords="363,787,420,787,420,793,363,793"/>
+<area shape="rect" id="Node000020" href="$da/d29/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_info_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="415,842,605,898"/>
+<area shape="poly" id="edge127_Node000019_Node000020" title=" " alt="" coords="368,867,415,867,415,873,368,873"/>
+<area shape="rect" id="Node000022" href="$d8/d04/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_meta_section_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="437,921,584,992"/>
+<area shape="poly" id="edge129_Node000021_Node000022" title=" " alt="" coords="378,953,436,953,436,959,378,958"/>
+<area shape="rect" id="Node000024" href="$d9/d54/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_no_meta_definition_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="430,1016,591,1087"/>
+<area shape="poly" id="edge131_Node000023_Node000024" title=" " alt="" coords="377,1044,429,1046,429,1051,377,1050"/>
+<area shape="rect" id="Node000026" href="$d5/da3/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_normalization_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="440,1111,580,1181"/>
+<area shape="poly" id="edge133_Node000025_Node000026" title=" " alt="" coords="367,1137,440,1140,439,1146,366,1142"/>
+<area shape="rect" id="Node000028" href="$d0/d3e/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_position_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="440,1205,580,1276"/>
+<area shape="poly" id="edge135_Node000027_Node000028" title=" " alt="" coords="365,1231,440,1235,439,1240,365,1236"/>
+<area shape="rect" id="Node000030" href="$df/d77/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_quality_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="438,1300,583,1371"/>
+<area shape="poly" id="edge137_Node000029_Node000030" title=" " alt="" coords="378,1325,437,1329,437,1334,378,1331"/>
+<area shape="rect" id="Node000032" href="$d4/d05/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_reference_allele_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="419,1395,601,1465"/>
+<area shape="poly" id="edge139_Node000031_Node000032" title=" " alt="" coords="373,1420,419,1422,419,1428,373,1425"/>
+<area shape="rect" id="Node000034" href="$d6/d02/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_samples_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="433,1489,588,1560"/>
+<area shape="poly" id="edge141_Node000033_Node000034" title=" " alt="" coords="383,1519,432,1520,432,1525,383,1524"/>
+<area shape="rect" id="Node000036" href="$d2/d52/structodb_1_1pointer__query__columns_3_01_1_1ebi_1_1vcf_1_1_samples_field_body_error_00_01id__sqlite_00_01_a_01_4.html" title=" " alt="" coords="426,1584,595,1655"/>
+<area shape="poly" id="edge143_Node000035_Node000036" title=" " alt="" coords="366,1608,425,1612,425,1617,366,1613"/>
+</map>

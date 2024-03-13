@@ -1,0 +1,175 @@
+\doxysection{assembly\+\_\+report.\+hpp}
+\hypertarget{assembly__report_8hpp_source}{}\label{assembly__report_8hpp_source}\index{inc/assembly\_report/assembly\_report.hpp@{inc/assembly\_report/assembly\_report.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ ASSEMBLY\_REPORT\_HPP}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ ASSEMBLY\_REPORT\_HPP}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <boost/regex.hpp>}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ <boost/algorithm/string/trim.hpp>}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00029}00029\ \textcolor{preprocessor}{\#include\ "{}util/stream\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00030}00030\ \textcolor{preprocessor}{\#include\ "{}util/string\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00032}\mbox{\hyperlink{namespaceebi}{00032}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00033}00033\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00034}00034\ \ \ \textcolor{keyword}{namespace\ }assembly\_report}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00035}00035\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00039}\mbox{\hyperlink{classebi_1_1assembly__report_1_1_contig_synonyms}{00039}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1assembly__report_1_1_contig_synonyms}{ContigSynonyms}}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00040}00040\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00041}00041\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1assembly__report_1_1_contig_synonyms}{ContigSynonyms}}()}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1assembly__report_1_1_contig_synonyms}{ContigSynonyms}}(std::string\ contig)}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ synonyms.push\_back(contig);}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1assembly__report_1_1_contig_synonyms}{ContigSynonyms}}(std::vector<std::string>\ \&\ synonyms)\ :\ synonyms(synonyms)}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ get\_synonyms()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00058}00058\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ synonyms;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ add\_synonym(std::string\ synonym)}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ synonyms.push\_back(synonym);}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00067}00067\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00068}00068\ \ \ \ \ \ \ \ \ std::vector<std::string>\ synonyms;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00070}00070\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00078}\mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map}{00078}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map}{SynonymsMap}}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00079}00079\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00080}00080\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00085}\mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map_ad5125079068971c4d2d0c6f54b090fb3}{00085}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map_ad5125079068971c4d2d0c6f54b090fb3}{is\_a\_genbank\_accession}}(\textcolor{keyword}{const}\ std::basic\_string<char>\&\ synonym)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ boost::regex\ genbank\_accession(\textcolor{stringliteral}{"{}[A-\/Z][0-\/9]\{5\}\(\backslash\).[0-\/9]+|"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}[A-\/Z]\{2\}[0-\/9]\{6\}\(\backslash\).[0-\/9]+|"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}[A-\/Z]\{2\}[0-\/9]\{8\}\(\backslash\).[0-\/9]+|"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}[A-\/Z]\{4\}[0-\/9]\{8\}\(\backslash\).[0-\/9]+|[A-\/Z]\{6\}[0-\/9]\{9\}\(\backslash\).[0-\/9]+"{}}\ \textcolor{comment}{//WGS\ sequences}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ boost::regex\_match(synonym,\ genbank\_accession);}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_contig\_available(std::string\ contig)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00095}00095\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ index\_map.find(contig)\ !=\ index\_map.end();}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::string>\ \&\ get\_contig\_synonyms(std::string\ contig)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00100}00100\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_contig\_available(contig))\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ contigs[index\_map.at(contig)].get\_synonyms();}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Contig\ '"{}}\ +\ contig\ +\ \textcolor{stringliteral}{"{}'\ not\ found\ in\ synonyms\ map"{}});}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ parse\_assembly\_report(std::istream\ \&\ report)}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<char>\ report\_line;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \textcolor{keyword}{const}\ default\_line\_buffer\_size\ =\ 64\ *\ 1024;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \textcolor{keyword}{const}\ assembly\_report\_column\_count\ =\ 10;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ report\_line.reserve(default\_line\_buffer\_size);}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ assembly\_report\_errors;\ \textcolor{comment}{//\ to\ contain\ errors\ while\ parsing}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,std::set<int>>\ multiple\_occurrence\_of\_contig\_errors;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ contig\_index\ =\ 0,\ line\_offset\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (util::readline(report,\ report\_line).size()\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (report\_line[0]\ ==\ \textcolor{charliteral}{'\#'})\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ line\_offset++;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ columns;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ line\{report\_line.begin(),\ report\_line.end()\};}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ boost::algorithm::trim(line);}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ util::string\_split(line,\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ columns);}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (columns.size()\ !=\ assembly\_report\_column\_count)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ error\ =\ \textcolor{stringliteral}{"{}Line\ num\ "{}}\ +\ std::to\_string(line\_offset\ +\ contig\_index)}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}\ :\ Expected\ "{}}\ +\ std::to\_string(assembly\_report\_column\_count)}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}\ columns,\ found\ "{}}\ +\ std::to\_string(columns.size())\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assembly\_report\_errors.push\_back(error);}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ contig\_synonyms\ =\ extract\_synonyms(columns);}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contigs.push\_back(contig\_synonyms);}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ contig\ :\ contig\_synonyms.get\_synonyms())\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ignore\_contig.find(contig)\ !=\ ignore\_contig.end())\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\_map.find(contig)\ !=\ index\_map.end()\ \&\&\ index\_map[contig]\ !=\ contig\_index)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ a\ contig\ is\ found\ in\ two\ different\ lines\ that\ would\ be\ treated\ as\ error}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ multiple\_occurrence\_of\_contig\_errors[contig].insert(contig\_index\ +\ line\_offset);}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ multiple\_occurrence\_of\_contig\_errors[contig].insert(index\_map[contig]\ +\ line\_offset);}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ index\_map[contig]\ =\ contig\_index;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contig\_index++;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ contig\_error:\ multiple\_occurrence\_of\_contig\_errors)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ error;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\ <<\ \textcolor{stringliteral}{"{}Contig\ '"{}}\ +\ contig\_error.first\ +\ \textcolor{stringliteral}{"{}'\ found\ in\ multiple\ lines\ :\ "{}};}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ebi::util::print\_container(error,\ contig\_error.second,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{},"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assembly\_report\_errors.push\_back(error.str());}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!assembly\_report\_errors.empty())\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ error\_report\ =\ \textcolor{stringliteral}{"{}Some\ errors\ occurred\ while\ parsing\ assembly\ report\ file\ \(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ error\ :\ assembly\_report\_errors)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\_report\ +=\ error;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(error\_report);}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00171}00171\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00172}00172\ \ \ \ \ \ \ \ \ std::map<std::string,int>\ index\_map;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00173}00173\ \ \ \ \ \ \ \ \ std::vector<ContigSynonyms>\ contigs;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00175}00175\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ set\ of\ names\ that\ needs\ to\ be\ ignored\ if\ present\ in\ assembly\ report}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00176}00176\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::set<std::string>\ ignore\_contig\{\textcolor{stringliteral}{"{}na"{}}\};}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00179}00179\ \ \ \ \ \ \ \ \ ContigSynonyms\ extract\_synonyms(std::vector<std::string>\ \&\ synonyms)}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<int>\ synonym\_indices\{0,\ 4,\ 6,\ 9\};}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ ContigSynonyms\ contig\_synonyms;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ index\ :\ synonym\_indices)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ignore\_contig.find(synonyms[index])\ !=\ ignore\_contig.end())\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contig\_synonyms.add\_synonym(synonyms[index]);}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ contig\_synonyms;}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00193}00193\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00194}00194\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00195}00195\ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{assembly__report_8hpp_source_l00197}00197\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ASSEMBLY\_REPORT\_HPP}}
+
+\end{DoxyCode}

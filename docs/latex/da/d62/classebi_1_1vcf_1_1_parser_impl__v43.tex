@@ -1,0 +1,197 @@
+\doxysection{ebi\+::vcf\+::Parser\+Impl\+\_\+v43\texorpdfstring{$<$}{<} Configuration \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classebi_1_1vcf_1_1_parser_impl__v43}{}\label{classebi_1_1vcf_1_1_parser_impl__v43}\index{ebi::vcf::ParserImpl\_v43$<$ Configuration $>$@{ebi::vcf::ParserImpl\_v43$<$ Configuration $>$}}
+
+
+Inheritance diagram for ebi\+::vcf\+::Parser\+Impl\+\_\+v43\texorpdfstring{$<$}{<} Configuration \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/de6/classebi_1_1vcf_1_1_parser_impl__v43__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ebi\+::vcf\+::Parser\+Impl\+\_\+v43\texorpdfstring{$<$}{<} Configuration \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d5/dfa/classebi_1_1vcf_1_1_parser_impl__v43__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43_af74c0672e771caed3367bee46f800cda}{Parse\+Policy}} = typename Configuration\+::\+Parse\+Policy
+\item 
+using \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43_a7ab8399d8ff3b2b1482276c90d98b480}{Error\+Policy}} = typename Configuration\+::\+Error\+Policy
+\item 
+using \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43_ac3806ee292853e9255d43bcdf6bae6e7}{Optional\+Policy}} = typename Configuration\+::\+Optional\+Policy
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43_a898aa37d16a0c63dcb30b8493ed99804}{Parser\+Impl\+\_\+v43}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$ source, \mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{Additional\+Checks}} additional\+Checks)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl}{ebi\+::vcf\+::\+Parser\+Impl}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl_afe4614c5c7a8235e221b7cc51c9e693c}{Parser\+Impl}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$ source, \mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{Additional\+Checks}} additional\+Checks)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl_ad325f714354468d7208c3702fc2e494e}{parse}} (std\+::string const \&text) override
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl_ad3f9556775e10f2f7bb028c18b86aa21}{parse}} (std\+::vector$<$ char $>$ const \&text) override
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl_a7ab959fb03f89ca0dbbe3d961394de67}{end}} () override
+\item 
+bool \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl_abefd0f4978de7091f365072c493b87ca}{is\+\_\+valid}} () const override
+\item 
+const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$ $>$ \& \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl_ae2ede5b940cbfa39a7870989cfd26ad6}{errors}} () const override
+\item 
+const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$ $>$ \& \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl_aa7375feaf63428dcbc27cc9158ed0880}{warnings}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ebi\+::vcf\+::\+Parsing\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a02d49eead215378187ae39e0cc102227}{Parsing\+State}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$ source, \mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{Additional\+Checks}} additional\+Checks)
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a7cde2c1a2d5a042cae04abbaf22c678a}{set\+\_\+version}} (Version version)
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a5fb7b3403a015e09b2c0732167dbe0d5}{add\+\_\+meta}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{Meta\+Entry}} const \&meta)
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a01239a8ec69537ec5fb622b38c81bc4d}{set\+\_\+record}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}} $>$ record)
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_ad890f41b87db99ad4da37feebd1d9253}{add\+\_\+error}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$ error)
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_ac3df87dfeff08ced447c4fa1cac1db04}{add\+\_\+warning}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$ error)
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_acffc6499cce8616dea47a310c26b2034}{clear}} ()
+\item 
+std\+::vector$<$ std\+::string $>$ const \& \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_abab8d7a2b3cb45d31dc134f594bc696e}{samples}} () const
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a5075c52e3b745bfb3f57e31ce0cac2a8}{set\+\_\+samples}} (std\+::vector$<$ std\+::string $>$ \&samples)
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a428ab5ab73e47cfe189514e7b7e6a8f4}{is\+\_\+well\+\_\+defined\+\_\+meta}} (std\+::string const \&meta\+\_\+type, std\+::string const \&id) const
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a91e3aa8bd4132287af1b2026cf5b101d}{add\+\_\+well\+\_\+defined\+\_\+meta}} (std\+::string const \&meta\+\_\+type, std\+::string const \&id)
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a9ce577ab1136c00ac133b8a2ee72b511}{validate\+\_\+additional\+\_\+checks}} ()
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a3bccd202f2b111ecd95fb6378d8cd692}{genotypes\+\_\+present}} ()
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a1a10a73535b3cb45ee2a087e453facb5}{allele\+\_\+frequencies\+\_\+present}} ()
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a1c5e199e29f90bff8bc18f47b2831d5c}{allele\+\_\+count\+\_\+present}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Data Fields inherited from \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ebi\+::vcf\+::\+Parsing\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a97f97891e407ce80453138912d0a3c50}{n\+\_\+lines}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_aca0d56dac9605408906357d8f22c2241}{n\+\_\+columns}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a93af3e730be05217733c11f8c36a3e29}{n\+\_\+batches}}
+\item 
+int \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_abf1aa2c5964db44fb61874d0476d1326}{cs}}
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a57e6c6dd023b60669b44cfc4d826590c}{m\+\_\+is\+\_\+valid}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a11004058e4a30f43bf1d8d550b89d3af}{source}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}} $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a2fc9fe2a87bbcf4584fa89749bcb2baa}{record}}
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$ $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a84f5b788ba5f80259bfb1d7153c2f7d5}{errors}}
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$ $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_aa1fa9785a27f60c28cfe89e3585d81d1}{warnings}}
+\item 
+std\+::multimap$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a22df99f66684093faf4fe500d9dd415f}{defined\+\_\+metadata}}
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{Additional\+Checks}} \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_ad6d84906d8b8e26f3ccb6929343c230a}{additional\+Checks}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl}{ebi\+::vcf\+::\+Parser\+Impl}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache}{Record\+Cache}} \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl_ab9ac0b303ffb1d26d5dd03cb318a14a3}{previous\+\_\+records}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Configuration$>$\newline
+class ebi\+::vcf\+::\+Parser\+Impl\+\_\+v43$<$ Configuration $>$}
+
+
+Definition at line \mbox{\hyperlink{validator_8hpp_source_l00158}{158}} of file \mbox{\hyperlink{validator_8hpp_source}{validator.\+hpp}}.
+
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_parser_impl__v43_a7ab8399d8ff3b2b1482276c90d98b480}\label{classebi_1_1vcf_1_1_parser_impl__v43_a7ab8399d8ff3b2b1482276c90d98b480} 
+\index{ebi::vcf::ParserImpl\_v43$<$ Configuration $>$@{ebi::vcf::ParserImpl\_v43$<$ Configuration $>$}!ErrorPolicy@{ErrorPolicy}}
+\index{ErrorPolicy@{ErrorPolicy}!ebi::vcf::ParserImpl\_v43$<$ Configuration $>$@{ebi::vcf::ParserImpl\_v43$<$ Configuration $>$}}
+\doxysubsubsection{\texorpdfstring{ErrorPolicy}{ErrorPolicy}}
+{\footnotesize\ttfamily template$<$typename Configuration $>$ \\
+using \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43}{ebi\+::vcf\+::\+Parser\+Impl\+\_\+v43}}$<$ Configuration $>$\+::\+Error\+Policy = typename Configuration\+::\+Error\+Policy}
+
+
+
+Definition at line \mbox{\hyperlink{validator_8hpp_source_l00166}{166}} of file \mbox{\hyperlink{validator_8hpp_source}{validator.\+hpp}}.
+
+\Hypertarget{classebi_1_1vcf_1_1_parser_impl__v43_ac3806ee292853e9255d43bcdf6bae6e7}\label{classebi_1_1vcf_1_1_parser_impl__v43_ac3806ee292853e9255d43bcdf6bae6e7} 
+\index{ebi::vcf::ParserImpl\_v43$<$ Configuration $>$@{ebi::vcf::ParserImpl\_v43$<$ Configuration $>$}!OptionalPolicy@{OptionalPolicy}}
+\index{OptionalPolicy@{OptionalPolicy}!ebi::vcf::ParserImpl\_v43$<$ Configuration $>$@{ebi::vcf::ParserImpl\_v43$<$ Configuration $>$}}
+\doxysubsubsection{\texorpdfstring{OptionalPolicy}{OptionalPolicy}}
+{\footnotesize\ttfamily template$<$typename Configuration $>$ \\
+using \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43}{ebi\+::vcf\+::\+Parser\+Impl\+\_\+v43}}$<$ Configuration $>$\+::\+Optional\+Policy = typename Configuration\+::\+Optional\+Policy}
+
+
+
+Definition at line \mbox{\hyperlink{validator_8hpp_source_l00167}{167}} of file \mbox{\hyperlink{validator_8hpp_source}{validator.\+hpp}}.
+
+\Hypertarget{classebi_1_1vcf_1_1_parser_impl__v43_af74c0672e771caed3367bee46f800cda}\label{classebi_1_1vcf_1_1_parser_impl__v43_af74c0672e771caed3367bee46f800cda} 
+\index{ebi::vcf::ParserImpl\_v43$<$ Configuration $>$@{ebi::vcf::ParserImpl\_v43$<$ Configuration $>$}!ParsePolicy@{ParsePolicy}}
+\index{ParsePolicy@{ParsePolicy}!ebi::vcf::ParserImpl\_v43$<$ Configuration $>$@{ebi::vcf::ParserImpl\_v43$<$ Configuration $>$}}
+\doxysubsubsection{\texorpdfstring{ParsePolicy}{ParsePolicy}}
+{\footnotesize\ttfamily template$<$typename Configuration $>$ \\
+using \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43}{ebi\+::vcf\+::\+Parser\+Impl\+\_\+v43}}$<$ Configuration $>$\+::\+Parse\+Policy = typename Configuration\+::\+Parse\+Policy}
+
+
+
+Definition at line \mbox{\hyperlink{validator_8hpp_source_l00165}{165}} of file \mbox{\hyperlink{validator_8hpp_source}{validator.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_parser_impl__v43_a898aa37d16a0c63dcb30b8493ed99804}\label{classebi_1_1vcf_1_1_parser_impl__v43_a898aa37d16a0c63dcb30b8493ed99804} 
+\index{ebi::vcf::ParserImpl\_v43$<$ Configuration $>$@{ebi::vcf::ParserImpl\_v43$<$ Configuration $>$}!ParserImpl\_v43@{ParserImpl\_v43}}
+\index{ParserImpl\_v43@{ParserImpl\_v43}!ebi::vcf::ParserImpl\_v43$<$ Configuration $>$@{ebi::vcf::ParserImpl\_v43$<$ Configuration $>$}}
+\doxysubsubsection{\texorpdfstring{ParserImpl\_v43()}{ParserImpl\_v43()}}
+{\footnotesize\ttfamily template$<$typename Configuration $>$ \\
+\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43}{ebi\+::vcf\+::\+Parser\+Impl\+\_\+v43}}$<$ Configuration $>$\+::\+Parser\+Impl\+\_\+v43 (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$}]{source,  }\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{Additional\+Checks}}}]{additional\+Checks }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{validator__detail__v43_8hpp_source_l00048}{48}} of file \mbox{\hyperlink{validator__detail__v43_8hpp_source}{validator\+\_\+detail\+\_\+v43.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00049\ \ \ \ \ :\ ParserImpl\{source,\ additionalChecks\}}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#line\ 53\ "{}inc/vcf/validator\_detail\_v43.hpp"{}}}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ cs\ =\ vcf\_v43\_start;}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#line\ 283\ "{}src/vcf/vcf\_v43.ragel"{}}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/validator.\+hpp\item 
+inc/vcf/validator\+\_\+detail\+\_\+v43.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,103 @@
+\doxysection{parse\+\_\+policy.\+hpp}
+\hypertarget{parse__policy_8hpp_source}{}\label{parse__policy_8hpp_source}\index{inc/vcf/parse\_policy.hpp@{inc/vcf/parse\_policy.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ VCF\_PARSE\_POLICY\_HPP}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ VCF\_PARSE\_POLICY\_HPP}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}parsing\_state.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}file\_structure.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}util/string\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}error.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00029}00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00030}00030\ \{}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00031}00031\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00032}00032\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00037}\mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy}{00037}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy}{IgnoreParsePolicy}}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00038}00038\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00039}00039\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_token\_begin(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state)\ \{\}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_token\_char(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state,\ \textcolor{keywordtype}{char}\ c)\ \{\}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_token\_end(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state)\ \{\}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_token\_end(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state,\ std::string\ token)\ \{\}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_newline(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state)\ \{\}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_fileformat(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state)\ \{\}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_meta\_typeid(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state)\ \{\}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_meta\_typeid(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state,\ std::string\ type\_id)\ \{\}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_meta\_line(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state)\ \{\}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_sample\_name(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state)\ \{\}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_header\_line(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state)\ \{\}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00054}00054\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_column\_end(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state,\ \textcolor{keywordtype}{size\_t}\ n\_columns)\ \{\}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_body\_line(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \&\ state)\ \{\}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ std::string\ current\_token()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};\ \}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ std::vector<std::string>\ column\_tokens(std::string\ \textcolor{keyword}{const}\ \&\ column)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \{\};\ \}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00061}00061\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00066}\mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy}{00066}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy}{StoreParsePolicy}}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00067}00067\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00068}00068\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_token\_begin(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state);}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_token\_char(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state,\ \textcolor{keywordtype}{char}\ c);}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_token\_end(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state);}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_token\_end(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state,\ std::string\ token);}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_newline(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state);}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00075}00075\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_fileformat(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \&\ state);}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00077}00077\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_meta\_typeid(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state);}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_meta\_typeid(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state,\ std::string\ type\_id);}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_meta\_line(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \&\ state);}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00081}00081\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00082}00082\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_sample\_name(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state);}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_header\_line(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \&\ state);}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00085}00085\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_column\_end(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&\ state,\ \textcolor{keywordtype}{size\_t}\ n\_columns);}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_body\_line(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \&\ state);}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00088}00088\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00089}00089\ \ \ \ \ \ \ \ \ std::string\ current\_token()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00090}00090\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00091}00091\ \ \ \ \ \ \ \ \ std::vector<std::string>\ column\_tokens(std::string\ \textcolor{keyword}{const}\ \&\ column)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00093}00093\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_sorted(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \&state,\ \textcolor{keywordtype}{size\_t}\ position);}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_each\_sample\_appears\_only\_once(\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}\ \textcolor{keyword}{const}\ \&state)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00097}00097\ \ \ \ \ \ \ \ \ std::string\ build\_duplicated\_samples\_message(std::map<std::string,\ int>\ \textcolor{keyword}{const}\ \&sample\_counts,}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ repeated\_sample\_count)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00103}00103\ \ \ \ \ \ \ \ \ std::string\ m\_current\_token;}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00108}00108\ \ \ \ \ \ \ \ \ std::string\ m\_line\_typeid;}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00113}00113\ \ \ \ \ \ \ \ \ std::vector<std::string>\ m\_grouped\_tokens;}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00118}00118\ \ \ \ \ \ \ \ \ std::map<std::string,\ std::vector<std::string>>\ m\_line\_tokens;}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00131}00131\ \ \ \ \ \ \ \ \ std::map<std::string,\ bool>\ finished\_contigs;}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00136}00136\ \ \ \ \ \ \ \ \ std::string\ previous\_contig;}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ previous\_position;}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00141}00141\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00142}00142\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00143}00143\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00144}00144\ \}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00146}00146\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VCF\_PARSE\_POLICY\_HPP}}
+\DoxyCodeLine{\Hypertarget{parse__policy_8hpp_source_l00147}00147\ }
+
+\end{DoxyCode}

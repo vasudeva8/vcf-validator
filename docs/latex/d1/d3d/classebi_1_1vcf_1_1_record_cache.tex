@@ -1,0 +1,294 @@
+\doxysection{ebi\+::vcf\+::Record\+Cache Class Reference}
+\hypertarget{classebi_1_1vcf_1_1_record_cache}{}\label{classebi_1_1vcf_1_1_record_cache}\index{ebi::vcf::RecordCache@{ebi::vcf::RecordCache}}
+
+
+Collaboration diagram for ebi\+::vcf\+::Record\+Cache\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{d0/db6/classebi_1_1vcf_1_1_record_cache__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a53eea880b71319b86af56d52ba4fd53a}{Record\+Cache}} ()
+\item 
+\mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a800635bf5cc345602bf3af398fa0a80f}{Record\+Cache}} (size\+\_\+t capacity)
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$ $>$ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a2fbd1e312bc2b4cfa4cb96043c407e26}{get\+\_\+duplicates}} ()
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$ $>$ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a6b93b3f82a2783b482df98798e2dd15d}{get\+\_\+symbolic\+\_\+duplicates}} ()
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a6d0433ccab7c4be810b02cba0c9d4209}{check\+\_\+duplicates}} (const \mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}} \&record)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_ada660e967cec3d3f00882d09ba42367c}{clear\+\_\+cache\+\_\+if\+\_\+we\+\_\+moved\+\_\+to\+\_\+the\+\_\+next\+\_\+chromosome}} (const std\+::string \&chromosome)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_ac09532f8fe43d736e4f3751a79d1a365}{shrink\+\_\+to\+\_\+fit}} (std\+::multiset$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{Record\+Core}} $>$ \&cache)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Stores a summary of a \doxylink{structebi_1_1vcf_1_1_record}{Record} to check that there are no duplicates.
+
+To limit memory usage, this class can be configured to store only the last {\ttfamily n} elements. This will only detect duplicates if the input is almost sorted (i.\+e. if no element is unsorted out of its place more than {\ttfamily n} elements) 
+
+Definition at line \mbox{\hyperlink{record__cache_8hpp_source_l00037}{37}} of file \mbox{\hyperlink{record__cache_8hpp_source}{record\+\_\+cache.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_record_cache_a53eea880b71319b86af56d52ba4fd53a}\label{classebi_1_1vcf_1_1_record_cache_a53eea880b71319b86af56d52ba4fd53a} 
+\index{ebi::vcf::RecordCache@{ebi::vcf::RecordCache}!RecordCache@{RecordCache}}
+\index{RecordCache@{RecordCache}!ebi::vcf::RecordCache@{ebi::vcf::RecordCache}}
+\doxysubsubsection{\texorpdfstring{RecordCache()}{RecordCache()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Record\+Cache\+::\+Record\+Cache (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Creates a cache that can hold at most 1000 entries. 
+
+Definition at line \mbox{\hyperlink{record__cache_8hpp_source_l00044}{44}} of file \mbox{\hyperlink{record__cache_8hpp_source}{record\+\_\+cache.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044\ :\ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a53eea880b71319b86af56d52ba4fd53a}{RecordCache}}\{1000\}\ \{\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_record_cache_a800635bf5cc345602bf3af398fa0a80f}\label{classebi_1_1vcf_1_1_record_cache_a800635bf5cc345602bf3af398fa0a80f} 
+\index{ebi::vcf::RecordCache@{ebi::vcf::RecordCache}!RecordCache@{RecordCache}}
+\index{RecordCache@{RecordCache}!ebi::vcf::RecordCache@{ebi::vcf::RecordCache}}
+\doxysubsubsection{\texorpdfstring{RecordCache()}{RecordCache()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Record\+Cache\+::\+Record\+Cache (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{capacity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em capacity} & maximum amount of Record\+Cores that this instance can hold at any time. A value of 0 disables the limit, thus storing every \doxylink{structebi_1_1vcf_1_1_record_core}{Record\+Core} received. Use with caution. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{record__cache_8hpp_source_l00050}{50}} of file \mbox{\hyperlink{record__cache_8hpp_source}{record\+\_\+cache.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00050\ :\ capacity\{capacity\},\ unlimited\{capacity\ ==\ 0\}\ \{\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_record_cache_a6d0433ccab7c4be810b02cba0c9d4209}\label{classebi_1_1vcf_1_1_record_cache_a6d0433ccab7c4be810b02cba0c9d4209} 
+\index{ebi::vcf::RecordCache@{ebi::vcf::RecordCache}!check\_duplicates@{check\_duplicates}}
+\index{check\_duplicates@{check\_duplicates}!ebi::vcf::RecordCache@{ebi::vcf::RecordCache}}
+\doxysubsubsection{\texorpdfstring{check\_duplicates()}{check\_duplicates()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Record\+Cache\+::check\+\_\+duplicates (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}} \&}]{record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This function serves as the data generator to be used before utilizing \doxylink{classebi_1_1vcf_1_1_record_cache_a2fbd1e312bc2b4cfa4cb96043c407e26}{get\+\_\+duplicates()} and \doxylink{classebi_1_1vcf_1_1_record_cache_a6b93b3f82a2783b482df98798e2dd15d}{get\+\_\+symbolic\+\_\+duplicates()} functions.
+
+For a given \doxylink{structebi_1_1vcf_1_1_record}{Record}, populates the list\+\_\+duplicates and list\+\_\+symbolic\+\_\+duplicates vectors with non symbolic and symbolic duplicates respectively
+
+Even if more than one duplicate is found for the same variant during the file validation, each occurrence is reported only once\+:
+\begin{DoxyItemize}
+\item If just one processed record is equivalent to the parameter, both are reported in 2 different errors.
+\item If more than one processed record is equivalent to the new one, only the new one is reported.
+\end{DoxyItemize}
+
+Nonetheless, if the capacity is too small, it may cause incorrect reporting, such as reporting several times the first occurrence or failing to report duplicates that are farther apart than the capacity. 
+
+Definition at line \mbox{\hyperlink{record__cache_8hpp_source_l00102}{102}} of file \mbox{\hyperlink{record__cache_8hpp_source}{record\+\_\+cache.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ record\_cores\ =\ normalize(record);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ list\_duplicates.clear();}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ list\_symbolic\_duplicates.clear();}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_ada660e967cec3d3f00882d09ba42367c}{clear\_cache\_if\_we\_moved\_to\_the\_next\_chromosome}}(record.chromosome);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (RecordCore\ \&record\_core:\ record\_cores)\ \{}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ create\ references\ to\ the\ appropriate\ data\ structures\ for\ th\ alternate\ allele\ type}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&\ cache\ =\ (record\_core.alternate\_allele\_type\ ==\ RecordType::STRUCTURAL)\ ?\ cache\_symbolic\_duplicates\ :\ cache\_duplicates;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&\ duplicates\ =\ (record\_core.alternate\_allele\_type\ ==\ RecordType::STRUCTURAL)\ ?\ list\_symbolic\_duplicates\ :\ list\_duplicates;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ range\ =\ cache.equal\_range(record\_core);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (range.first\ ==\ range.second)\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ no\ matches\ found}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ one\ or\ more\ matches\ found}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ ss;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ss\ <<\ \textcolor{stringliteral}{"{}Duplicated\ variant\ "{}}\ <<\ record\_core.chromosome\ <<\ \textcolor{stringliteral}{"{}:"{}}\ <<\ record\_core.position\ <<\ \textcolor{stringliteral}{"{}:"{}}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ record\_core.reference\_allele\ <<\ \textcolor{stringliteral}{"{}>"{}}\ <<\ record\_core.alternate\_allele\ <<\ \textcolor{stringliteral}{"{}\ found"{}};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ duplicate\_variant\_lines\ =\ \textcolor{stringliteral}{"{}It\ occurs\ in\ lines\ "{}}\ +\ std::to\_string(range.first-\/>line\_num)}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}\ and\ "{}}\ +\ std::to\_string(record\_core.line\_num);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ first\_occurence\_line\{range.first-\/>line\_num\};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (++range.first\ ==\ range.second)\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ only\ one\ match,\ return\ an\ extra\ error\ for\ the\ first\ occurrence}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ duplicates.emplace\_back(\textcolor{keyword}{new}\ DuplicationError\{first\_occurence\_line,\ ss.str()\});}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ duplicates.emplace\_back(\textcolor{keyword}{new}\ DuplicationError\{record\_core.line\_num,\ ss.str(),\ duplicate\_variant\_lines\});}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cache.insert(range.second,\ record\_core);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_ac09532f8fe43d736e4f3751a79d1a365}{shrink\_to\_fit}}(cache\_symbolic\_duplicates);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_ac09532f8fe43d736e4f3751a79d1a365}{shrink\_to\_fit}}(cache\_duplicates);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{record__cache_8hpp_source_l00164}{clear\+\_\+cache\+\_\+if\+\_\+we\+\_\+moved\+\_\+to\+\_\+the\+\_\+next\+\_\+chromosome()}}, and \mbox{\hyperlink{record__cache_8hpp_source_l00175}{shrink\+\_\+to\+\_\+fit()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d3d/classebi_1_1vcf_1_1_record_cache_a6d0433ccab7c4be810b02cba0c9d4209_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classebi_1_1vcf_1_1_record_cache_ada660e967cec3d3f00882d09ba42367c}\label{classebi_1_1vcf_1_1_record_cache_ada660e967cec3d3f00882d09ba42367c} 
+\index{ebi::vcf::RecordCache@{ebi::vcf::RecordCache}!clear\_cache\_if\_we\_moved\_to\_the\_next\_chromosome@{clear\_cache\_if\_we\_moved\_to\_the\_next\_chromosome}}
+\index{clear\_cache\_if\_we\_moved\_to\_the\_next\_chromosome@{clear\_cache\_if\_we\_moved\_to\_the\_next\_chromosome}!ebi::vcf::RecordCache@{ebi::vcf::RecordCache}}
+\doxysubsubsection{\texorpdfstring{clear\_cache\_if\_we\_moved\_to\_the\_next\_chromosome()}{clear\_cache\_if\_we\_moved\_to\_the\_next\_chromosome()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Record\+Cache\+::clear\+\_\+cache\+\_\+if\+\_\+we\+\_\+moved\+\_\+to\+\_\+the\+\_\+next\+\_\+chromosome (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{chromosome }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+EVA-\/1950\+: the cache removes "{}lexicographically lower"{} chromosomes when the cache is full, but with that sorting, "{}chr10"{} is lower than "{}chr2"{}, so new variants in "{}chr10"{} get deleted to keep the ones in "{}chr2"{}, and duplicates in "{}chr10"{} will go undetected.
+
+{\bfseries{The chosen solution was to keep in the cache variants from only one chromosome at a time.}}
+
+The next solutions were considered and {\bfseries{DISCARDED}}\+:
+
+
+\begin{DoxyEnumerate}
+\item Using Least Recently Used cache. This would require using esoteric data structures and/or dependencies, or keeping several simpler structures in sync, like a map and a queue that point to each other\textquotesingle{}s contents.
+\item A poor solution could be changing the ordering to "{}numerically lower"{}, but that will be very tricky to get right with weird chrs like (versioned) accessions. e.\+g.\+: NC\+\_\+01.\+1 is a chr, which is likely to appear before a contig GK\+\_\+01.\+1, and we would need a sorting method that evaluates NC\+\_\+01.\+1 \texorpdfstring{$<$}{<} GK\+\_\+01.\+1.
+\item Using the line number (Record\+::line) as sorting criteria. This wouldn\textquotesingle{}t work because we need to group the same conceptual variants together to detect duplicates, and the multiset uses the comparator function to group the variants, which would never be grouped because the lines would be different. 
+\end{DoxyEnumerate}
+
+Definition at line \mbox{\hyperlink{record__cache_8hpp_source_l00164}{164}} of file \mbox{\hyperlink{record__cache_8hpp_source}{record\+\_\+cache.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current\_chromosome\ !=\ chromosome)\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cache\_duplicates.clear();}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cache\_symbolic\_duplicates.clear();}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_chromosome\ =\ chromosome;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{record__cache_8hpp_source_l00102}{check\+\_\+duplicates()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d3d/classebi_1_1vcf_1_1_record_cache_ada660e967cec3d3f00882d09ba42367c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classebi_1_1vcf_1_1_record_cache_a2fbd1e312bc2b4cfa4cb96043c407e26}\label{classebi_1_1vcf_1_1_record_cache_a2fbd1e312bc2b4cfa4cb96043c407e26} 
+\index{ebi::vcf::RecordCache@{ebi::vcf::RecordCache}!get\_duplicates@{get\_duplicates}}
+\index{get\_duplicates@{get\_duplicates}!ebi::vcf::RecordCache@{ebi::vcf::RecordCache}}
+\doxysubsubsection{\texorpdfstring{get\_duplicates()}{get\_duplicates()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$ $>$ ebi\+::vcf\+::\+Record\+Cache\+::get\+\_\+duplicates (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter function which returns a vector of Errors. For a given \doxylink{structebi_1_1vcf_1_1_record}{Record}, returned Errors correspond to the duplicates found that aren\textquotesingle{}t symbolic alleles.
+
+Even if more than one duplicate is found for the same variant during the file validation, each occurrence is reported only once\+:
+\begin{DoxyItemize}
+\item If just one processed record is equivalent to the parameter, both are reported in 2 different errors.
+\item If more than one processed record is equivalent to the new one, only the new one is reported.
+\end{DoxyItemize}
+
+Nonetheless, if the capacity is too small, it may cause incorrect reporting, such as reporting several times the first occurrence or failing to report duplicates that are farther apart than the capacity. 
+
+Definition at line \mbox{\hyperlink{record__cache_8hpp_source_l00064}{64}} of file \mbox{\hyperlink{record__cache_8hpp_source}{record\+\_\+cache.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(list\_duplicates);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_record_cache_a6b93b3f82a2783b482df98798e2dd15d}\label{classebi_1_1vcf_1_1_record_cache_a6b93b3f82a2783b482df98798e2dd15d} 
+\index{ebi::vcf::RecordCache@{ebi::vcf::RecordCache}!get\_symbolic\_duplicates@{get\_symbolic\_duplicates}}
+\index{get\_symbolic\_duplicates@{get\_symbolic\_duplicates}!ebi::vcf::RecordCache@{ebi::vcf::RecordCache}}
+\doxysubsubsection{\texorpdfstring{get\_symbolic\_duplicates()}{get\_symbolic\_duplicates()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$ $>$ ebi\+::vcf\+::\+Record\+Cache\+::get\+\_\+symbolic\+\_\+duplicates (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter function which returns a vector of Errors. For a given \doxylink{structebi_1_1vcf_1_1_record}{Record}, returned Errors correspond to the duplicates found that are symbolic alleles.
+
+Even if more than one duplicate is found for the same variant during the file validation, each occurrence is reported only once\+:
+\begin{DoxyItemize}
+\item If just one processed record is equivalent to the parameter, both are reported in 2 different errors.
+\item If more than one processed record is equivalent to the new one, only the new one is reported.
+\end{DoxyItemize}
+
+Nonetheless, if the capacity is too small, it may cause incorrect reporting, such as reporting several times the first occurrence or failing to report duplicates that are farther apart than the capacity. 
+
+Definition at line \mbox{\hyperlink{record__cache_8hpp_source_l00081}{81}} of file \mbox{\hyperlink{record__cache_8hpp_source}{record\+\_\+cache.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(list\_symbolic\_duplicates);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_record_cache_ac09532f8fe43d736e4f3751a79d1a365}\label{classebi_1_1vcf_1_1_record_cache_ac09532f8fe43d736e4f3751a79d1a365} 
+\index{ebi::vcf::RecordCache@{ebi::vcf::RecordCache}!shrink\_to\_fit@{shrink\_to\_fit}}
+\index{shrink\_to\_fit@{shrink\_to\_fit}!ebi::vcf::RecordCache@{ebi::vcf::RecordCache}}
+\doxysubsubsection{\texorpdfstring{shrink\_to\_fit()}{shrink\_to\_fit()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Record\+Cache\+::shrink\+\_\+to\+\_\+fit (\begin{DoxyParamCaption}\item[{std\+::multiset$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{Record\+Core}} $>$ \&}]{cache }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+reduce cache size to this-\/\texorpdfstring{$>$}{>}capacity unless this-\/\texorpdfstring{$>$}{>}unlimited is true 
+
+Definition at line \mbox{\hyperlink{record__cache_8hpp_source_l00175}{175}} of file \mbox{\hyperlink{record__cache_8hpp_source}{record\+\_\+cache.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!unlimited)\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\ =\ cache.size();}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ >\ capacity)\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ erase\_until\ =\ cache.begin();}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ count\ -\/\ capacity;\ ++j)\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ erase\_until++;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cache.erase(cache.begin(),\ erase\_until);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{record__cache_8hpp_source_l00102}{check\+\_\+duplicates()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{d1/d3d/classebi_1_1vcf_1_1_record_cache_ac09532f8fe43d736e4f3751a79d1a365_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/record\+\_\+cache.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,94 @@
+\doxysection{assembly\+\_\+report\+\_\+test.\+cpp}
+\hypertarget{assembly__report__test_8cpp_source}{}\label{assembly__report__test_8cpp_source}\index{test/assembly\_report/assembly\_report\_test.cpp@{test/assembly\_report/assembly\_report\_test.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}catch/catch.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}assembly\_report/assembly\_report.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00025}00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00026}00026\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00027}00027\ \ \ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Tests\ for\ parsing\ assembly\ report"{}},\ \textcolor{stringliteral}{"{}[assembly\ report]"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00028}00028\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Parsing\ good\ assembly\ report"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map}{ebi::assembly\_report::SynonymsMap}}\ synonyms\_map;}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ assembly\_report\_path\ =\ \textcolor{stringliteral}{"{}test/input\_files/assembly\_report/assembly\_report.txt"{}};}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ input\{assembly\_report\_path\};}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK\_NOTHROW(synonyms\_map.parse\_assembly\_report(input));}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Parsing\ official\ assembly\ report"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map}{ebi::assembly\_report::SynonymsMap}}\ synonyms\_map;}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ assembly\_report\_path\ =\ \textcolor{stringliteral}{"{}test/input\_files/assembly\_report/full\_assembly\_report/assembly\_report.txt"{}};}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ input\{assembly\_report\_path\};}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK\_NOTHROW(synonyms\_map.parse\_assembly\_report(input));}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Failing\ to\ parse\ assembly\ report\ due\ to\ incorrect\ column\ size"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map}{ebi::assembly\_report::SynonymsMap}}\ synonyms\_map;}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ assembly\_report\_path\ =\ \textcolor{stringliteral}{"{}test/input\_files/assembly\_report/failed\_different\_col\_size.txt"{}};}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ input\{assembly\_report\_path\};}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK\_THROWS\_AS(synonyms\_map.parse\_assembly\_report(input),\ std::runtime\_error);}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Failing\ to\ parse\ assembly\ report\ due\ to\ duplicate\ synonyms"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map}{ebi::assembly\_report::SynonymsMap}}\ synonyms\_map;}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ assembly\_report\_path\ =\ \textcolor{stringliteral}{"{}test/input\_files/assembly\_report/failed\_same\_synonym\_for\_different\_contigs.txt"{}};}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ input\{assembly\_report\_path\};}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK\_THROWS\_AS(synonyms\_map.parse\_assembly\_report(input),\ std::runtime\_error);}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Correct\ Genbank\ equivalents\ in\ the\ assembly\ report"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ Genbank\ accession\ formats\ -\/\ see\ https://www.ncbi.nlm.nih.gov/Sequin/acc.html}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//1\ letter\ +\ 5\ numerals\ +\ accession\ revision\ number}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(\mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map_ad5125079068971c4d2d0c6f54b090fb3}{ebi::assembly\_report::SynonymsMap::is\_a\_genbank\_accession}}(\textcolor{stringliteral}{"{}F00387.1"{}}));}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//2\ letters\ +\ 6\ numerals\ +\ accession\ revision\ number}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(\mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map_ad5125079068971c4d2d0c6f54b090fb3}{ebi::assembly\_report::SynonymsMap::is\_a\_genbank\_accession}}(\textcolor{stringliteral}{"{}CM000072.5"{}}));}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//2\ letters\ +\ 8\ numerals\ +\ accession\ revision\ number}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(\mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map_ad5125079068971c4d2d0c6f54b090fb3}{ebi::assembly\_report::SynonymsMap::is\_a\_genbank\_accession}}(\textcolor{stringliteral}{"{}CM00456701.2"{}}));}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//WGS\ contigs\ -\/\ 4\ letters\ +\ 8\ numerals\ +\ accession\ revision\ number}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(\mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map_ad5125079068971c4d2d0c6f54b090fb3}{ebi::assembly\_report::SynonymsMap::is\_a\_genbank\_accession}}(\textcolor{stringliteral}{"{}AAWR02042940.1"{}}));}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//WGS\ contigs\ -\/\ 6\ letters\ +\ 9\ numerals\ +\ accession\ revision\ number}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(\mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map_ad5125079068971c4d2d0c6f54b090fb3}{ebi::assembly\_report::SynonymsMap::is\_a\_genbank\_accession}}(\textcolor{stringliteral}{"{}AAWRAB020429401.2"{}}));}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Incorrect\ Genbank\ equivalents\ in\ the\ assembly\ report"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK\_FALSE(\mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map_ad5125079068971c4d2d0c6f54b090fb3}{ebi::assembly\_report::SynonymsMap::is\_a\_genbank\_accession}}(\textcolor{stringliteral}{"{}chr1"{}}));}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK\_FALSE(\mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map_ad5125079068971c4d2d0c6f54b090fb3}{ebi::assembly\_report::SynonymsMap::is\_a\_genbank\_accession}}(\textcolor{stringliteral}{"{}scaffold123"{}}));}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK\_FALSE(\mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map_ad5125079068971c4d2d0c6f54b090fb3}{ebi::assembly\_report::SynonymsMap::is\_a\_genbank\_accession}}(\textcolor{stringliteral}{"{}NC\_000123.1"{}}));}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00082}00082\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00084}00084\ \ \ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Tests\ for\ fetching\ synonyms\ list"{}},\ \textcolor{stringliteral}{"{}[assembly\ report]"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00085}00085\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map}{ebi::assembly\_report::SynonymsMap}}\ synonyms\_map;}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ std::string\ assembly\_report\_path\ =\ \textcolor{stringliteral}{"{}test/input\_files/assembly\_report/assembly\_report.txt"{}};}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ std::ifstream\ input\{assembly\_report\_path\};}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ CHECK\_NOTHROW(synonyms\_map.parse\_assembly\_report(input));}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Check\ availability\ of\ contig"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(synonyms\_map.is\_contig\_available(\textcolor{stringliteral}{"{}chr1"{}}));}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK\_FALSE(synonyms\_map.is\_contig\_available(\textcolor{stringliteral}{"{}chr0"{}}));}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Get\ Contig\ Synonyms"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ contig\_synonyms\ =\ synonyms\_map.get\_contig\_synonyms(\textcolor{stringliteral}{"{}chr1"{}});}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(contig\_synonyms.size()\ ==\ 4);}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK\_THROWS\_AS(synonyms\_map.get\_contig\_synonyms(\textcolor{stringliteral}{"{}chr0"{}}),\ std::invalid\_argument);}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00103}00103\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__report__test_8cpp_source_l00104}00104\ \}}
+
+\end{DoxyCode}

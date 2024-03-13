@@ -1,0 +1,79 @@
+\doxysection{Contig\+Name\+State Class Reference}
+\hypertarget{class_contig_name_state}{}\label{class_contig_name_state}\index{ContigNameState@{ContigNameState}}
+
+
+Inheritance diagram for Contig\+Name\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{d8/dd6/class_contig_name_state__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Contig\+Name\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{dd/d5a/class_contig_name_state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_contig_name_state_a2be5f307dead08c8c8610d1ef3462d33}{process}} (\mbox{\hyperlink{class_fasta_indexer}{Fasta\+Indexer}} \texorpdfstring{$\ast$}{*}fasta\+\_\+indexer, std\+::istream \&input)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{faidx_8cpp_source_l00061}{61}} of file \mbox{\hyperlink{faidx_8cpp_source}{faidx.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_contig_name_state_a2be5f307dead08c8c8610d1ef3462d33}\label{class_contig_name_state_a2be5f307dead08c8c8610d1ef3462d33} 
+\index{ContigNameState@{ContigNameState}!process@{process}}
+\index{process@{process}!ContigNameState@{ContigNameState}}
+\doxysubsubsection{\texorpdfstring{process()}{process()}}
+{\footnotesize\ttfamily void Contig\+Name\+State\+::process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_fasta_indexer}{Fasta\+Indexer}} \texorpdfstring{$\ast$}{*}}]{fasta\+\_\+indexer,  }\item[{std\+::istream \&}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_fasta_indexer_state}{Fasta\+Indexer\+State}}.
+
+
+
+Definition at line \mbox{\hyperlink{faidx_8cpp_source_l00118}{118}} of file \mbox{\hyperlink{faidx_8cpp_source}{faidx.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00119\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{char}\ c;}
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{struct_contig_index}{ContigIndex}}\ \&\ contig\_index\ =\ fasta\_indexer-\/>fasta\_index[fasta\_indexer-\/>fasta\_index.size()-\/1];}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{while}\ (input\ \&\&\ input.get(c))\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'\ '})\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ fasta\_indexer-\/>set\_state(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_contig_description_state}{ContigDescriptionState}}());}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ fasta\_indexer-\/>set\_state(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_contig_sequence_state}{ContigSequenceState}}());}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ contig\_index.name.push\_back(c);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ fasta\_indexer-\/>set\_state(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00137\ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/fasta/faidx.\+cpp\end{DoxyCompactItemize}

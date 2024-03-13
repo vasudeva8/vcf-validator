@@ -1,0 +1,45 @@
+\doxysection{compression.\+hpp}
+\hypertarget{compression_8hpp_source}{}\label{compression_8hpp_source}\index{inc/vcf/compression.hpp@{inc/vcf/compression.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ COMPRESSION\_HPP}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ COMPRESSION\_HPP}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <boost/filesystem.hpp>}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ <boost/log/trivial.hpp>}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ <boost/iostreams/filter/bzip2.hpp>}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00028}00028\ \textcolor{preprocessor}{\#include\ <boost/iostreams/filter/gzip.hpp>}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00029}00029\ \textcolor{preprocessor}{\#include\ <boost/iostreams/filter/zlib.hpp>}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00030}00030\ \textcolor{preprocessor}{\#include\ <boost/iostreams/filtering\_stream.hpp>}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}vcf/string\_constants.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00035}00035\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00036}00036\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00037}00037\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00038}00038\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00044}00044\ \ \ \ \ std::string\ get\_compression(std::string\ \textcolor{keyword}{const}\ \&\ source,}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<char>\ \&line);}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00051}00051\ \ \ \ \ \textcolor{keywordtype}{void}\ check\_readability\_of\_file(\textcolor{keyword}{const}\ std::string\ \&\ file\_ext);}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00057}00057\ \ \ \ \ \textcolor{keywordtype}{void}\ check\_readability\_of\_stream(\textcolor{keyword}{const}\ std::vector<char>\ \&\ line);}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00065}00065\ \ \ \ \ \textcolor{keywordtype}{void}\ create\_uncompressed\_stream(std::istream\ \&\ input,}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\ file\_extension,}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ boost::iostreams::filtering\_istream\ \&\ uncompressed\_input);}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00074}00074\ \ \ \ \ \textcolor{keywordtype}{void}\ get\_magic\_num(std::istream\ \&\ stream,\ std::vector<char>\ \&\ container);}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00075}00075\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00076}00076\ \}}
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{compression_8hpp_source_l00078}00078\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ COMPRESSION\_HPP}}
+
+\end{DoxyCode}

@@ -1,0 +1,99 @@
+\doxysection{bioio\+::Fastq\+Record\texorpdfstring{$<$}{<} String\+Type, Sequence\+Type1, Sequence\+Type2 \texorpdfstring{$>$}{>} Struct Template Reference}
+\hypertarget{structbioio_1_1_fastq_record}{}\label{structbioio_1_1_fastq_record}\index{bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$@{bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$}}
+
+
+Collaboration diagram for bioio\+::Fastq\+Record\texorpdfstring{$<$}{<} String\+Type, Sequence\+Type1, Sequence\+Type2 \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{d9/dd3/structbioio_1_1_fastq_record__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename String\+Type\+\_\+ , typename Sequence\+Type1\+\_\+ , typename Sequence\+Type2\+\_\+ $>$ }\\\mbox{\hyperlink{structbioio_1_1_fastq_record_a5803d1d5dc0e1bcffc0386eecd884cd3}{Fastq\+Record}} (String\+Type\+\_\+ \&\&name, Sequence\+Type1\+\_\+ \&\&seq, Sequence\+Type2\+\_\+ \&\&qual)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+String\+Type \mbox{\hyperlink{structbioio_1_1_fastq_record_a526d6214e25f4bb2276c9537113fbb9d}{name}}
+\item 
+Sequence\+Type1 \mbox{\hyperlink{structbioio_1_1_fastq_record_a7b905817c54c03c8f87e51003ac2b739}{seq}}
+\item 
+Sequence\+Type2 \mbox{\hyperlink{structbioio_1_1_fastq_record_a275f1fc73feeac9d06b9b6b14749ecf2}{qual}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename String\+Type = std\+::string, typename Sequence\+Type1 = std\+::string, typename Sequence\+Type2 = std\+::string$>$\newline
+struct bioio\+::\+Fastq\+Record$<$ String\+Type, Sequence\+Type1, Sequence\+Type2 $>$}
+
+
+Definition at line \mbox{\hyperlink{bioio_8hpp_source_l00094}{94}} of file \mbox{\hyperlink{bioio_8hpp_source}{bioio.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structbioio_1_1_fastq_record_a5803d1d5dc0e1bcffc0386eecd884cd3}\label{structbioio_1_1_fastq_record_a5803d1d5dc0e1bcffc0386eecd884cd3} 
+\index{bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$@{bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$}!FastqRecord@{FastqRecord}}
+\index{FastqRecord@{FastqRecord}!bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$@{bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$}}
+\doxysubsubsection{\texorpdfstring{FastqRecord()}{FastqRecord()}}
+{\footnotesize\ttfamily template$<$typename String\+Type  = std\+::string, typename Sequence\+Type1  = std\+::string, typename Sequence\+Type2  = std\+::string$>$ \\
+template$<$typename String\+Type\+\_\+ , typename Sequence\+Type1\+\_\+ , typename Sequence\+Type2\+\_\+ $>$ \\
+\mbox{\hyperlink{structbioio_1_1_fastq_record}{bioio\+::\+Fastq\+Record}}$<$ String\+Type, Sequence\+Type1, Sequence\+Type2 $>$\+::\+Fastq\+Record (\begin{DoxyParamCaption}\item[{String\+Type\+\_\+ \&\&}]{name,  }\item[{Sequence\+Type1\+\_\+ \&\&}]{seq,  }\item[{Sequence\+Type2\+\_\+ \&\&}]{qual }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Definition at line \mbox{\hyperlink{bioio_8hpp_source_l00102}{102}} of file \mbox{\hyperlink{bioio_8hpp_source}{bioio.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00103\ \ \ \ \ :name\ \{std::forward<StringType\_>(name)\}}
+\DoxyCodeLine{00104\ \ \ \ \ ,\ seq\ \{std::forward<SequenceType1\_>(seq)\}}
+\DoxyCodeLine{00105\ \ \ \ \ ,\ qual\ \{std::forward<SequenceType2\_>(qual)\}\ }
+\DoxyCodeLine{00106\ \ \ \ \ \{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structbioio_1_1_fastq_record_a526d6214e25f4bb2276c9537113fbb9d}\label{structbioio_1_1_fastq_record_a526d6214e25f4bb2276c9537113fbb9d} 
+\index{bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$@{bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$}!name@{name}}
+\index{name@{name}!bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$@{bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily template$<$typename String\+Type  = std\+::string, typename Sequence\+Type1  = std\+::string, typename Sequence\+Type2  = std\+::string$>$ \\
+String\+Type \mbox{\hyperlink{structbioio_1_1_fastq_record}{bioio\+::\+Fastq\+Record}}$<$ String\+Type, Sequence\+Type1, Sequence\+Type2 $>$\+::name}
+
+
+
+Definition at line \mbox{\hyperlink{bioio_8hpp_source_l00096}{96}} of file \mbox{\hyperlink{bioio_8hpp_source}{bioio.\+hpp}}.
+
+\Hypertarget{structbioio_1_1_fastq_record_a275f1fc73feeac9d06b9b6b14749ecf2}\label{structbioio_1_1_fastq_record_a275f1fc73feeac9d06b9b6b14749ecf2} 
+\index{bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$@{bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$}!qual@{qual}}
+\index{qual@{qual}!bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$@{bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$}}
+\doxysubsubsection{\texorpdfstring{qual}{qual}}
+{\footnotesize\ttfamily template$<$typename String\+Type  = std\+::string, typename Sequence\+Type1  = std\+::string, typename Sequence\+Type2  = std\+::string$>$ \\
+Sequence\+Type2 \mbox{\hyperlink{structbioio_1_1_fastq_record}{bioio\+::\+Fastq\+Record}}$<$ String\+Type, Sequence\+Type1, Sequence\+Type2 $>$\+::qual}
+
+
+
+Definition at line \mbox{\hyperlink{bioio_8hpp_source_l00098}{98}} of file \mbox{\hyperlink{bioio_8hpp_source}{bioio.\+hpp}}.
+
+\Hypertarget{structbioio_1_1_fastq_record_a7b905817c54c03c8f87e51003ac2b739}\label{structbioio_1_1_fastq_record_a7b905817c54c03c8f87e51003ac2b739} 
+\index{bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$@{bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$}!seq@{seq}}
+\index{seq@{seq}!bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$@{bioio::FastqRecord$<$ StringType, SequenceType1, SequenceType2 $>$}}
+\doxysubsubsection{\texorpdfstring{seq}{seq}}
+{\footnotesize\ttfamily template$<$typename String\+Type  = std\+::string, typename Sequence\+Type1  = std\+::string, typename Sequence\+Type2  = std\+::string$>$ \\
+Sequence\+Type1 \mbox{\hyperlink{structbioio_1_1_fastq_record}{bioio\+::\+Fastq\+Record}}$<$ String\+Type, Sequence\+Type1, Sequence\+Type2 $>$\+::seq}
+
+
+
+Definition at line \mbox{\hyperlink{bioio_8hpp_source_l00097}{97}} of file \mbox{\hyperlink{bioio_8hpp_source}{bioio.\+hpp}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/bioio/bioio.\+hpp\end{DoxyCompactItemize}

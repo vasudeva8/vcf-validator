@@ -1,0 +1,225 @@
+\doxysection{validator.\+hpp}
+\hypertarget{validator_8hpp_source}{}\label{validator_8hpp_source}\index{inc/vcf/validator.hpp@{inc/vcf/validator.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ VCF\_VALIDATOR\_HPP}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ VCF\_VALIDATOR\_HPP}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00029}00029\ \textcolor{preprocessor}{\#include\ <boost/filesystem.hpp>}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00030}00030\ \textcolor{preprocessor}{\#include\ <boost/log/trivial.hpp>}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00031}00031\ \textcolor{preprocessor}{\#include\ <boost/iostreams/filter/bzip2.hpp>}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00032}00032\ \textcolor{preprocessor}{\#include\ <boost/iostreams/filter/gzip.hpp>}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00033}00033\ \textcolor{preprocessor}{\#include\ <boost/iostreams/filter/zlib.hpp>}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00034}00034\ \textcolor{preprocessor}{\#include\ <boost/iostreams/filtering\_stream.hpp>}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00036}00036\ \textcolor{preprocessor}{\#include\ "{}compression.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00037}00037\ \textcolor{preprocessor}{\#include\ "{}file\_structure.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00038}00038\ \textcolor{preprocessor}{\#include\ "{}error\_policy.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00039}00039\ \textcolor{preprocessor}{\#include\ "{}optional\_policy.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00040}00040\ \textcolor{preprocessor}{\#include\ "{}parse\_policy.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00041}00041\ \textcolor{preprocessor}{\#include\ "{}parsing\_state.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00042}00042\ \textcolor{preprocessor}{\#include\ "{}record\_cache.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00043}00043\ \textcolor{preprocessor}{\#include\ "{}util/string\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00044}00044\ \textcolor{preprocessor}{\#include\ "{}vcf/report\_writer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00047}00047\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00048}00048\ \{}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00049}00049\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00050}00050\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00052}00052\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \textcolor{keyword}{const}\ default\_line\_buffer\_size\ =\ 64\ *\ 1024;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00053}00053\ \ \ \ \ \textcolor{keyword}{enum\ class}\ ValidationLevel\ \{\ error,\ warning,\ stop\ \};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00055}00055\ \ \ \ \ \textcolor{comment}{//\ Only\ check\ syntax}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00056}\mbox{\hyperlink{structebi_1_1vcf_1_1_quick_validator_cfg}{00056}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structebi_1_1vcf_1_1_quick_validator_cfg}{QuickValidatorCfg}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00057}00057\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00058}00058\ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy}{ParsePolicy}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy}{IgnoreParsePolicy}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00059}00059\ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_report_error_policy}{ErrorPolicy}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_report_error_policy}{ReportErrorPolicy}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00060}00060\ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_optional_policy}{OptionalPolicy}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_optional_policy}{IgnoreOptionalPolicy}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00061}00061\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//\ Check\ both\ syntax\ and\ semantics}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00064}\mbox{\hyperlink{structebi_1_1vcf_1_1_full_validator_cfg}{00064}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structebi_1_1vcf_1_1_full_validator_cfg}{FullValidatorCfg}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00065}00065\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00066}00066\ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy}{ParsePolicy}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy}{StoreParsePolicy}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00067}00067\ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_report_error_policy}{ErrorPolicy}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_report_error_policy}{ReportErrorPolicy}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00068}00068\ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_validate_optional_policy}{OptionalPolicy}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_validate_optional_policy}{ValidateOptionalPolicy}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00069}00069\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00071}00071\ \ \ \ \ \textcolor{comment}{//\ Read\ the\ file\ for\ processing,\ assuming\ it\ is\ correct}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00072}\mbox{\hyperlink{structebi_1_1vcf_1_1_reader_cfg}{00072}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structebi_1_1vcf_1_1_reader_cfg}{ReaderCfg}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00073}00073\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00074}00074\ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy}{ParsePolicy}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_store_parse_policy}{StoreParsePolicy}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00075}00075\ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_abort_error_policy}{ErrorPolicy}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_abort_error_policy}{AbortErrorPolicy}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00076}00076\ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_validate_optional_policy}{OptionalPolicy}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_validate_optional_policy}{ValidateOptionalPolicy}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00077}00077\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00079}\mbox{\hyperlink{classebi_1_1vcf_1_1_parser}{00079}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser}{Parser}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00080}00080\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00081}00081\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser}{\string~Parser}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ parse(std::string\ \textcolor{keyword}{const}\ \&\ text)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ parse(std::vector<char>\ \textcolor{keyword}{const}\ \&\ text)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ end()\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ is\_valid()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ std::vector<std::unique\_ptr<Error>>\ \&\ errors()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ std::vector<std::unique\_ptr<Error>>\ \&\ warnings()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00092}00092\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00094}\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl}{00094}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl}{ParserImpl}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00095}00095\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser}{Parser}},}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00096}00096\ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{ParsingState}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00097}00097\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00098}00098\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl}{ParserImpl}}(std::shared\_ptr<Source>\ source,\ \mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{AdditionalChecks}}\ additionalChecks);}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl}{\string~ParserImpl}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ parse(std::string\ \textcolor{keyword}{const}\ \&\ text)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ parse(std::vector<char>\ \textcolor{keyword}{const}\ \&\ text)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ end()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_valid()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::unique\_ptr<Error>>\ \&\ errors()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::unique\_ptr<Error>>\ \&\ warnings()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00112}00112\ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ parse\_buffer(\textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ p,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ pe,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ eof)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00118}\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl_ab9ac0b303ffb1d26d5dd03cb318a14a3}{00118}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache}{RecordCache}}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl_ab9ac0b303ffb1d26d5dd03cb318a14a3}{previous\_records}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00119}00119\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00121}00121\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Configuration>}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00122}\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v41}{00122}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v41}{ParserImpl\_v41}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00123}00123\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl}{ParserImpl}},}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00124}00124\ \ \ \ \ \ \ Configuration::ParsePolicy,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00125}00125\ \ \ \ \ \ \ Configuration::ErrorPolicy,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00126}00126\ \ \ \ \ \ \ Configuration::OptionalPolicy}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00127}00127\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00128}00128\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ParsePolicy\ =\ \textcolor{keyword}{typename}\ Configuration::ParsePolicy;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ErrorPolicy\ =\ \textcolor{keyword}{typename}\ Configuration::ErrorPolicy;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }OptionalPolicy\ =\ \textcolor{keyword}{typename}\ Configuration::OptionalPolicy;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v41}{ParserImpl\_v41}}(std::shared\_ptr<Source>\ source,\ \mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{AdditionalChecks}}\ additionalChecks);}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00135}00135\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ parse\_buffer(\textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ p,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ pe,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ eof);}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00137}00137\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00139}00139\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Configuration>}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00140}\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v42}{00140}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v42}{ParserImpl\_v42}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00141}00141\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl}{ParserImpl}},}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00142}00142\ \ \ \ \ \ \ Configuration::ParsePolicy,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00143}00143\ \ \ \ \ \ \ Configuration::ErrorPolicy,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00144}00144\ \ \ \ \ \ \ Configuration::OptionalPolicy}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00145}00145\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00146}00146\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ParsePolicy\ =\ \textcolor{keyword}{typename}\ Configuration::ParsePolicy;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ErrorPolicy\ =\ \textcolor{keyword}{typename}\ Configuration::ErrorPolicy;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }OptionalPolicy\ =\ \textcolor{keyword}{typename}\ Configuration::OptionalPolicy;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v42}{ParserImpl\_v42}}(std::shared\_ptr<Source>\ source,\ \mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{AdditionalChecks}}\ additionalChecks);}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00153}00153\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ parse\_buffer(\textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ p,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ pe,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ eof);}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00155}00155\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00157}00157\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Configuration>}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00158}\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43}{00158}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43}{ParserImpl\_v43}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00159}00159\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl}{ParserImpl}},}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00160}00160\ \ \ \ \ \ \ Configuration::ParsePolicy,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00161}00161\ \ \ \ \ \ \ Configuration::ErrorPolicy,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00162}00162\ \ \ \ \ \ \ Configuration::OptionalPolicy}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00163}00163\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00164}00164\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ParsePolicy\ =\ \textcolor{keyword}{typename}\ Configuration::ParsePolicy;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ErrorPolicy\ =\ \textcolor{keyword}{typename}\ Configuration::ErrorPolicy;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }OptionalPolicy\ =\ \textcolor{keyword}{typename}\ Configuration::OptionalPolicy;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43}{ParserImpl\_v43}}(std::shared\_ptr<Source>\ source,\ \mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{AdditionalChecks}}\ additionalChecks);}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00171}00171\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ parse\_buffer(\textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ p,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ pe,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ eof);}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00173}00173\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00175}00175\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Configuration>}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00176}\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v44}{00176}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v44}{ParserImpl\_v44}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00177}00177\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl}{ParserImpl}},}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00178}00178\ \ \ \ \ \ \ Configuration::ParsePolicy,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00179}00179\ \ \ \ \ \ \ Configuration::ErrorPolicy,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00180}00180\ \ \ \ \ \ \ Configuration::OptionalPolicy}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00181}00181\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00182}00182\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ParsePolicy\ =\ \textcolor{keyword}{typename}\ Configuration::ParsePolicy;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ErrorPolicy\ =\ \textcolor{keyword}{typename}\ Configuration::ErrorPolicy;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }OptionalPolicy\ =\ \textcolor{keyword}{typename}\ Configuration::OptionalPolicy;}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v44}{ParserImpl\_v44}}(std::shared\_ptr<Source>\ source,\ \mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{AdditionalChecks}}\ additionalChecks);}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00189}00189\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ parse\_buffer(\textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ p,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ pe,\ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *\ eof);}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00191}00191\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00193}00193\ \ \ \ \ \textcolor{comment}{//\ Predefined\ aliases\ for\ common\ uses\ of\ the\ parser}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00194}00194\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v41}{QuickValidator\_v41}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v41}{ParserImpl\_v41<QuickValidatorCfg>}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00195}00195\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v41}{FullValidator\_v41}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v41}{ParserImpl\_v41<FullValidatorCfg>}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00196}00196\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v41}{Reader\_v41}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v41}{ParserImpl\_v41<ReaderCfg>}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00198}00198\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v42}{QuickValidator\_v42}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v42}{ParserImpl\_v42<QuickValidatorCfg>}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00199}00199\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v42}{FullValidator\_v42}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v42}{ParserImpl\_v42<FullValidatorCfg>}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00200}00200\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v42}{Reader\_v42}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v42}{ParserImpl\_v42<ReaderCfg>}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00202}00202\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43}{QuickValidator\_v43}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43}{ParserImpl\_v43<QuickValidatorCfg>}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00203}00203\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43}{FullValidator\_v43}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43}{ParserImpl\_v43<FullValidatorCfg>}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00204}00204\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43}{Reader\_v43}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v43}{ParserImpl\_v43<ReaderCfg>}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00206}00206\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v44}{QuickValidator\_v44}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v44}{ParserImpl\_v44<QuickValidatorCfg>}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00207}00207\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v44}{FullValidator\_v44}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v44}{ParserImpl\_v44<FullValidatorCfg>}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00208}00208\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v44}{Reader\_v44}}\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_parser_impl__v44}{ParserImpl\_v44<ReaderCfg>}};}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00210}00210\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_valid\_vcf\_file(std::istream\ \&input,\ \textcolor{keyword}{const}\ std::string\ \&sourceName,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ValidationLevel\ validationLevel,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::unique\_ptr<ebi::vcf::ReportWriter>>\ \&outputs,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{AdditionalChecks}}\ checks);}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00215}00215\ \ \ \ \ \textcolor{keywordtype}{bool}\ process\_vcf\_stream(std::istream\ \&input,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&sourceName,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ValidationLevel\ validationLevel,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::unique\_ptr<ebi::vcf::ReportWriter>>\ \&outputs,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{AdditionalChecks}}\ additionalChecks);}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00221}00221\ \ \ \ \ std::string\ get\_compression\_from\_extension(std::string\ \textcolor{keyword}{const}\ \&\ source);}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00223}00223\ \ \ \ \ std::string\ get\_compression\_from\_magic\_num(\textcolor{keyword}{const}\ std::vector<char>\ \&line);}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00225}00225\ \ \ \ \ \textcolor{keywordtype}{void}\ create\_uncompressed\_stream(std::istream\ \&\ input,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\ file\_extension,}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ boost::iostreams::filtering\_istream\ \&\ uncompressed\_input);}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00229}00229\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00230}00230\ \}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00232}00232\ \textcolor{preprocessor}{\#include\ "{}validator\_detail\_v41.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00233}00233\ \textcolor{preprocessor}{\#include\ "{}validator\_detail\_v42.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00234}00234\ \textcolor{preprocessor}{\#include\ "{}validator\_detail\_v43.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00235}00235\ \textcolor{preprocessor}{\#include\ "{}validator\_detail\_v44.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{validator_8hpp_source_l00237}00237\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VCF\_VALIDATOR\_HPP}}
+
+\end{DoxyCode}

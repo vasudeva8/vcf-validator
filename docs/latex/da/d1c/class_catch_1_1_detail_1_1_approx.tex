@@ -1,0 +1,261 @@
+\doxysection{Catch\+::Detail\+::Approx Class Reference}
+\hypertarget{class_catch_1_1_detail_1_1_approx}{}\label{class_catch_1_1_detail_1_1_approx}\index{Catch::Detail::Approx@{Catch::Detail::Approx}}
+
+
+Collaboration diagram for Catch\+::Detail\+::Approx\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{d6/dde/class_catch_1_1_detail_1_1_approx__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_catch_1_1_detail_1_1_approx_a1a8618ea8db08c66bd3d9fe8f74b957a}{Approx}} (double value)
+\item 
+\mbox{\hyperlink{class_catch_1_1_detail_1_1_approx_a807330c63266fc914abdf6e461255a54}{Approx}} (\mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} const \&other)
+\item 
+\mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx_a48c9cbc28a05dc9dc8c3973b9eae2268}{operator()}} (double value)
+\item 
+\mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} \& \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx_ab605bb0f0fe657a74ffeb00b0f39d76d}{epsilon}} (double new\+Epsilon)
+\item 
+\mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} \& \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx_a326c85d3311cd7703530a5c2deab3df3}{scale}} (double new\+Scale)
+\item 
+std\+::string \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx_a972fd9ac60607483263f1b0f0f9955e6}{to\+String}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx_aaf86dc0ee92272ac2d9839197a07951d}{custom}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx_ac766f044f1c63f0c5997982baefd9049}{operator==}} (double lhs, \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} const \&rhs)
+\item 
+bool \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx_a35999631e6cef569f9da9f3fa910db22}{operator==}} (\mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} const \&lhs, double rhs)
+\item 
+bool \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx_a83b3763569a7ecc143c335b630be0e47}{operator!=}} (double lhs, \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} const \&rhs)
+\item 
+bool \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx_a7497ef839f8026cc0edd6269a80f3e09}{operator!=}} (\mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} const \&lhs, double rhs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02629}{2629}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_catch_1_1_detail_1_1_approx_a1a8618ea8db08c66bd3d9fe8f74b957a}\label{class_catch_1_1_detail_1_1_approx_a1a8618ea8db08c66bd3d9fe8f74b957a} 
+\index{Catch::Detail::Approx@{Catch::Detail::Approx}!Approx@{Approx}}
+\index{Approx@{Approx}!Catch::Detail::Approx@{Catch::Detail::Approx}}
+\doxysubsubsection{\texorpdfstring{Approx()}{Approx()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Catch\+::\+Detail\+::\+Approx\+::\+Approx (\begin{DoxyParamCaption}\item[{double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02631}{2631}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02632\ \ \ \ \ \ \ \ \ :\ \ \ m\_epsilon(\ std::numeric\_limits<float>::epsilon()*100\ ),}
+\DoxyCodeLine{02633\ \ \ \ \ \ \ \ \ \ \ \ \ m\_scale(\ 1.0\ ),}
+\DoxyCodeLine{02634\ \ \ \ \ \ \ \ \ \ \ \ \ m\_value(\ value\ )}
+\DoxyCodeLine{02635\ \ \ \ \ \ \ \ \ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_detail_1_1_approx_a807330c63266fc914abdf6e461255a54}\label{class_catch_1_1_detail_1_1_approx_a807330c63266fc914abdf6e461255a54} 
+\index{Catch::Detail::Approx@{Catch::Detail::Approx}!Approx@{Approx}}
+\index{Approx@{Approx}!Catch::Detail::Approx@{Catch::Detail::Approx}}
+\doxysubsubsection{\texorpdfstring{Approx()}{Approx()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Catch\+::\+Detail\+::\+Approx\+::\+Approx (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} const \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02637}{2637}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02638\ \ \ \ \ \ \ \ \ :\ \ \ m\_epsilon(\ other.m\_epsilon\ ),}
+\DoxyCodeLine{02639\ \ \ \ \ \ \ \ \ \ \ \ \ m\_scale(\ other.m\_scale\ ),}
+\DoxyCodeLine{02640\ \ \ \ \ \ \ \ \ \ \ \ \ m\_value(\ other.m\_value\ )}
+\DoxyCodeLine{02641\ \ \ \ \ \ \ \ \ \{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_catch_1_1_detail_1_1_approx_aaf86dc0ee92272ac2d9839197a07951d}\label{class_catch_1_1_detail_1_1_approx_aaf86dc0ee92272ac2d9839197a07951d} 
+\index{Catch::Detail::Approx@{Catch::Detail::Approx}!custom@{custom}}
+\index{custom@{custom}!Catch::Detail::Approx@{Catch::Detail::Approx}}
+\doxysubsubsection{\texorpdfstring{custom()}{custom()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} Catch\+::\+Detail\+::\+Approx\+::custom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02643}{2643}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02643\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02644\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}}(\ 0\ );}
+\DoxyCodeLine{02645\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_detail_1_1_approx_ab605bb0f0fe657a74ffeb00b0f39d76d}\label{class_catch_1_1_detail_1_1_approx_ab605bb0f0fe657a74ffeb00b0f39d76d} 
+\index{Catch::Detail::Approx@{Catch::Detail::Approx}!epsilon@{epsilon}}
+\index{epsilon@{epsilon}!Catch::Detail::Approx@{Catch::Detail::Approx}}
+\doxysubsubsection{\texorpdfstring{epsilon()}{epsilon()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} \& Catch\+::\+Detail\+::\+Approx\+::epsilon (\begin{DoxyParamCaption}\item[{double}]{new\+Epsilon }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02671}{2671}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02671\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02672\ \ \ \ \ \ \ \ \ \ \ \ \ m\_epsilon\ =\ newEpsilon;}
+\DoxyCodeLine{02673\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{02674\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_detail_1_1_approx_a48c9cbc28a05dc9dc8c3973b9eae2268}\label{class_catch_1_1_detail_1_1_approx_a48c9cbc28a05dc9dc8c3973b9eae2268} 
+\index{Catch::Detail::Approx@{Catch::Detail::Approx}!operator()@{operator()}}
+\index{operator()@{operator()}!Catch::Detail::Approx@{Catch::Detail::Approx}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} Catch\+::\+Detail\+::\+Approx\+::operator() (\begin{DoxyParamCaption}\item[{double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02647}{2647}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02647\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02648\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}}\ approx(\ value\ );}
+\DoxyCodeLine{02649\ \ \ \ \ \ \ \ \ \ \ \ \ approx.epsilon(\ m\_epsilon\ );}
+\DoxyCodeLine{02650\ \ \ \ \ \ \ \ \ \ \ \ \ approx.scale(\ m\_scale\ );}
+\DoxyCodeLine{02651\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ approx;}
+\DoxyCodeLine{02652\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_detail_1_1_approx_a326c85d3311cd7703530a5c2deab3df3}\label{class_catch_1_1_detail_1_1_approx_a326c85d3311cd7703530a5c2deab3df3} 
+\index{Catch::Detail::Approx@{Catch::Detail::Approx}!scale@{scale}}
+\index{scale@{scale}!Catch::Detail::Approx@{Catch::Detail::Approx}}
+\doxysubsubsection{\texorpdfstring{scale()}{scale()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} \& Catch\+::\+Detail\+::\+Approx\+::scale (\begin{DoxyParamCaption}\item[{double}]{new\+Scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02676}{2676}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02676\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02677\ \ \ \ \ \ \ \ \ \ \ \ \ m\_scale\ =\ newScale;}
+\DoxyCodeLine{02678\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{02679\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_detail_1_1_approx_a972fd9ac60607483263f1b0f0f9955e6}\label{class_catch_1_1_detail_1_1_approx_a972fd9ac60607483263f1b0f0f9955e6} 
+\index{Catch::Detail::Approx@{Catch::Detail::Approx}!toString@{toString}}
+\index{toString@{toString}!Catch::Detail::Approx@{Catch::Detail::Approx}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily std\+::string Catch\+::\+Detail\+::\+Approx\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02681}{2681}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02681\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02682\ \ \ \ \ \ \ \ \ \ \ \ \ std::ostringstream\ oss;}
+\DoxyCodeLine{02683\ \ \ \ \ \ \ \ \ \ \ \ \ oss\ <<\ \textcolor{stringliteral}{"{}Approx(\ "{}}\ <<\ Catch::toString(\ m\_value\ )\ <<\ \textcolor{stringliteral}{"{}\ )"{}};}
+\DoxyCodeLine{02684\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ oss.str();}
+\DoxyCodeLine{02685\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{class_catch_1_1_detail_1_1_approx_a7497ef839f8026cc0edd6269a80f3e09}\label{class_catch_1_1_detail_1_1_approx_a7497ef839f8026cc0edd6269a80f3e09} 
+\index{Catch::Detail::Approx@{Catch::Detail::Approx}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Catch::Detail::Approx@{Catch::Detail::Approx}}
+\doxysubsubsection{\texorpdfstring{operator"!=}{operator!=}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool operator!= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} const \&}]{lhs,  }\item[{double}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02667}{2667}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02667\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02668\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !operator==(\ rhs,\ lhs\ );}
+\DoxyCodeLine{02669\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_detail_1_1_approx_a83b3763569a7ecc143c335b630be0e47}\label{class_catch_1_1_detail_1_1_approx_a83b3763569a7ecc143c335b630be0e47} 
+\index{Catch::Detail::Approx@{Catch::Detail::Approx}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Catch::Detail::Approx@{Catch::Detail::Approx}}
+\doxysubsubsection{\texorpdfstring{operator"!=}{operator!=}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool operator!= (\begin{DoxyParamCaption}\item[{double}]{lhs,  }\item[{\mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} const \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02663}{2663}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02663\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02664\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !operator==(\ lhs,\ rhs\ );}
+\DoxyCodeLine{02665\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_detail_1_1_approx_a35999631e6cef569f9da9f3fa910db22}\label{class_catch_1_1_detail_1_1_approx_a35999631e6cef569f9da9f3fa910db22} 
+\index{Catch::Detail::Approx@{Catch::Detail::Approx}!operator==@{operator==}}
+\index{operator==@{operator==}!Catch::Detail::Approx@{Catch::Detail::Approx}}
+\doxysubsubsection{\texorpdfstring{operator==}{operator==}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} const \&}]{lhs,  }\item[{double}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02659}{2659}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02659\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02660\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ operator==(\ rhs,\ lhs\ );}
+\DoxyCodeLine{02661\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_detail_1_1_approx_ac766f044f1c63f0c5997982baefd9049}\label{class_catch_1_1_detail_1_1_approx_ac766f044f1c63f0c5997982baefd9049} 
+\index{Catch::Detail::Approx@{Catch::Detail::Approx}!operator==@{operator==}}
+\index{operator==@{operator==}!Catch::Detail::Approx@{Catch::Detail::Approx}}
+\doxysubsubsection{\texorpdfstring{operator==}{operator==}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool operator== (\begin{DoxyParamCaption}\item[{double}]{lhs,  }\item[{\mbox{\hyperlink{class_catch_1_1_detail_1_1_approx}{Approx}} const \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02654}{2654}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02654\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02655\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Thanks\ to\ Richard\ Harris\ for\ his\ help\ refining\ this\ formula}}
+\DoxyCodeLine{02656\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fabs(\ lhs\ -\/\ rhs.m\_value\ )\ <\ rhs.m\_epsilon\ *\ (rhs.m\_scale\ +\ (std::max)(\ fabs(lhs),\ fabs(rhs.m\_value)\ )\ );}
+\DoxyCodeLine{02657\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/catch/catch.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,63 @@
+\doxysection{odb\+\_\+report.\+hpp}
+\hypertarget{odb__report_8hpp_source}{}\label{odb__report_8hpp_source}\index{inc/vcf/odb\_report.hpp@{inc/vcf/odb\_report.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ VCF\_ODB\_REPORT\_HPP}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ VCF\_ODB\_REPORT\_HPP}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <boost/filesystem/path.hpp>}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <boost/filesystem/operations.hpp>}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <odb/database.hxx>}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <odb/sqlite/query.hxx>}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <odb/schema-\/catalog.hxx>}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ <odb/sqlite/database.hxx>}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00028}00028\ \textcolor{preprocessor}{\#include\ "{}vcf/report\_writer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00029}00029\ \textcolor{preprocessor}{\#include\ "{}vcf/report\_reader.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00030}00030\ \textcolor{preprocessor}{\#include\ "{}vcf/error-\/odb.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00032}00032\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00033}00033\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00034}00034\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00035}00035\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00036}\mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w}{00036}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w}{OdbReportRW}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_report_writer}{ReportWriter}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_report_reader}{ReportReader}}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00037}00037\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00038}00038\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w}{OdbReportRW}}(\textcolor{keyword}{const}\ std::string\ \&db\_name);}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w}{\string~OdbReportRW}}();}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ flush();\ \ \ \textcolor{comment}{//\ before\ reading,\ make\ sure\ you\ destroy\ or\ flush\ the\ writer\ OdbReportRW}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ReportWriter\ implementation}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ write\_error(\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ write\_warning(\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ write\_message(\textcolor{keyword}{const}\ std::string\ \&report\_result)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ReportReader\ implementation}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ count\_warnings()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ for\_each\_warning(std::function<\textcolor{keywordtype}{void}(std::shared\_ptr<Error>)>\ user\_function)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ count\_errors()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ for\_each\_error(std::function<\textcolor{keywordtype}{void}(std::shared\_ptr<Error>)>\ user\_function)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ get\_report\_message()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00057}00057\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ std::string\ db\_name;}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ std::unique\_ptr<odb::core::database>\ db;}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ odb::core::transaction\ transaction;}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ current\_transaction\_size;}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ transaction\_size;}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ write(\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}}\ \&error);}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ for\_each(std::function<\textcolor{keywordtype}{void}(std::shared\_ptr<Error>)>\ user\_function,\ odb::query<Error>\ query);}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count(odb::query<ErrorCount>\ query);}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00067}00067\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00068}00068\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00069}00069\ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8hpp_source_l00072}00072\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VCF\_ODB\_REPORT\_HPP}}
+
+\end{DoxyCode}

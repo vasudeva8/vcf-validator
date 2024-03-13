@@ -1,0 +1,13 @@
+<map id="ebi::vcf::ParsingState" name="ebi::vcf::ParsingState">
+<area shape="rect" id="Node000001" title=" " alt="" coords="255,5,393,471"/>
+<area shape="rect" id="Node000002" href="$d0/d18/classebi_1_1vcf_1_1_parser_impl.html" title=" " alt="" coords="261,519,387,744"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="327,486,327,519,321,519,321,486"/>
+<area shape="rect" id="Node000003" href="$da/d70/classebi_1_1vcf_1_1_parser_impl__v41.html" title=" " alt="" coords="5,792,147,872"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="251,695,126,794,123,790,247,690"/>
+<area shape="rect" id="Node000004" href="$dd/d74/classebi_1_1vcf_1_1_parser_impl__v42.html" title=" " alt="" coords="171,792,312,872"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="274,759,260,793,255,791,269,757"/>
+<area shape="rect" id="Node000005" href="$da/d62/classebi_1_1vcf_1_1_parser_impl__v43.html" title=" " alt="" coords="336,792,477,872"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="379,757,393,791,388,793,374,759"/>
+<area shape="rect" id="Node000006" href="$d6/d2a/classebi_1_1vcf_1_1_parser_impl__v44.html" title=" " alt="" coords="501,792,643,872"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="401,690,525,790,522,794,397,695"/>
+</map>

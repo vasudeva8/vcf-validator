@@ -1,0 +1,33 @@
+\doxysection{logger.\+hpp}
+\hypertarget{logger_8hpp_source}{}\label{logger_8hpp_source}\index{inc/util/logger.hpp@{inc/util/logger.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ UTIL\_LOGGER\_HPP}}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ UTIL\_LOGGER\_HPP}}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}boost/log/trivial.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}boost/log/expressions.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}boost/log/utility/setup/console.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00024}00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00025}00025\ \{}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00026}00026\ \ \ \textcolor{keyword}{namespace\ }util}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00027}00027\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ init\_boost\_loggers()}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00029}00029\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00030}00030\ \ \ \ \ \ \ \ \ boost::log::add\_console\_log}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00031}00031\ \ \ \ \ \ \ \ \ (}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ std::clog,}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ boost::log::keywords::format\ =}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ (}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ boost::log::expressions::stream\ <<\ \textcolor{stringliteral}{"{}["{}}\ <<\ boost::log::trivial::severity\ <<\ \textcolor{stringliteral}{"{}]\ "{}}\ <<\ boost::log::expressions::smessage}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00037}00037\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00038}00038\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00039}00039\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00040}00040\ \}}
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{logger_8hpp_source_l00042}00042\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ UTIL\_LOGGER\_HPP}}
+
+\end{DoxyCode}

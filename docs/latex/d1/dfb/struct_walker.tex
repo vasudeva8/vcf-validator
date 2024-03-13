@@ -1,0 +1,186 @@
+\doxysection{Walker Struct Reference}
+\hypertarget{struct_walker}{}\label{struct_walker}\index{Walker@{Walker}}
+
+
+Collaboration diagram for Walker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d1/d96/struct_walker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_parse}{Parse}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_walker_ac6e8e756b5da8f187b9cf6b94560f352}{p\+Parse}}
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_walker_a46cbdf0ccdcf736096a2f168218d28fe}{x\+Expr\+Callback}} )(\mbox{\hyperlink{struct_walker}{Walker}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_expr}{Expr}} \texorpdfstring{$\ast$}{*})
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_walker_a76a2f8850bf1db17955fe85d65831cb0}{x\+Select\+Callback}} )(\mbox{\hyperlink{struct_walker}{Walker}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_select}{Select}} \texorpdfstring{$\ast$}{*})
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_walker_ad35c57031847321ab3db9b7c0946b5e7}{x\+Select\+Callback2}} )(\mbox{\hyperlink{struct_walker}{Walker}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_select}{Select}} \texorpdfstring{$\ast$}{*})
+\item 
+int \mbox{\hyperlink{struct_walker_a1183df46d2b0ecac73e76336067cf207}{walker\+Depth}}
+\item 
+u8 \mbox{\hyperlink{struct_walker_a462e077f572efcae6a708f0640561807}{e\+Code}}
+\item 
+\Hypertarget{struct_walker_ad6d396712eb946e7ad875e9755cdbcda}\label{struct_walker_ad6d396712eb946e7ad875e9755cdbcda} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\mbox{\hyperlink{struct_name_context}{NameContext}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_walker_adbf5872a6c5a9311adbfe01c0e444388}{pNC}}\\
+\>int \mbox{\hyperlink{struct_walker_af204341fce4aff29cd9158450226b05d}{n}}\\
+\>int \mbox{\hyperlink{struct_walker_afb8e209cee52c2f25e89b89bdbeb25f5}{iCur}}\\
+\>\mbox{\hyperlink{struct_src_list}{SrcList}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_walker_aa09fe5df040b732226cdae1bff741e0d}{pSrcList}}\\
+\>struct \mbox{\hyperlink{struct_src_count}{SrcCount}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_walker_a4bdd17ab02d057797f9f9e8735bdc6f3}{pSrcCount}}\\
+\>struct CCurHint \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_walker_a70279073fa129d7495c7a88af55cf4b4}{pCCurHint}}\\
+\>int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_walker_abf7a6262dd1656e813b150a46c4b170e}{aiCol}}\\
+\} {\bfseries u}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15649}{15649}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_walker_abf7a6262dd1656e813b150a46c4b170e}\label{struct_walker_abf7a6262dd1656e813b150a46c4b170e} 
+\index{Walker@{Walker}!aiCol@{aiCol}}
+\index{aiCol@{aiCol}!Walker@{Walker}}
+\doxysubsubsection{\texorpdfstring{aiCol}{aiCol}}
+{\footnotesize\ttfamily int\texorpdfstring{$\ast$}{*} Walker\+::ai\+Col}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15663}{15663}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_walker_a462e077f572efcae6a708f0640561807}\label{struct_walker_a462e077f572efcae6a708f0640561807} 
+\index{Walker@{Walker}!eCode@{eCode}}
+\index{eCode@{eCode}!Walker@{Walker}}
+\doxysubsubsection{\texorpdfstring{eCode}{eCode}}
+{\footnotesize\ttfamily u8 Walker\+::e\+Code}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15655}{15655}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_walker_afb8e209cee52c2f25e89b89bdbeb25f5}\label{struct_walker_afb8e209cee52c2f25e89b89bdbeb25f5} 
+\index{Walker@{Walker}!iCur@{iCur}}
+\index{iCur@{iCur}!Walker@{Walker}}
+\doxysubsubsection{\texorpdfstring{iCur}{iCur}}
+{\footnotesize\ttfamily int Walker\+::i\+Cur}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15659}{15659}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_walker_af204341fce4aff29cd9158450226b05d}\label{struct_walker_af204341fce4aff29cd9158450226b05d} 
+\index{Walker@{Walker}!n@{n}}
+\index{n@{n}!Walker@{Walker}}
+\doxysubsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily int Walker\+::n}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15658}{15658}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_walker_a70279073fa129d7495c7a88af55cf4b4}\label{struct_walker_a70279073fa129d7495c7a88af55cf4b4} 
+\index{Walker@{Walker}!pCCurHint@{pCCurHint}}
+\index{pCCurHint@{pCCurHint}!Walker@{Walker}}
+\doxysubsubsection{\texorpdfstring{pCCurHint}{pCCurHint}}
+{\footnotesize\ttfamily struct CCur\+Hint\texorpdfstring{$\ast$}{*} Walker\+::p\+CCur\+Hint}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15662}{15662}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_walker_adbf5872a6c5a9311adbfe01c0e444388}\label{struct_walker_adbf5872a6c5a9311adbfe01c0e444388} 
+\index{Walker@{Walker}!pNC@{pNC}}
+\index{pNC@{pNC}!Walker@{Walker}}
+\doxysubsubsection{\texorpdfstring{pNC}{pNC}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_name_context}{Name\+Context}}\texorpdfstring{$\ast$}{*} Walker\+::p\+NC}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15657}{15657}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_walker_ac6e8e756b5da8f187b9cf6b94560f352}\label{struct_walker_ac6e8e756b5da8f187b9cf6b94560f352} 
+\index{Walker@{Walker}!pParse@{pParse}}
+\index{pParse@{pParse}!Walker@{Walker}}
+\doxysubsubsection{\texorpdfstring{pParse}{pParse}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_parse}{Parse}}\texorpdfstring{$\ast$}{*} Walker\+::p\+Parse}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15650}{15650}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_walker_a4bdd17ab02d057797f9f9e8735bdc6f3}\label{struct_walker_a4bdd17ab02d057797f9f9e8735bdc6f3} 
+\index{Walker@{Walker}!pSrcCount@{pSrcCount}}
+\index{pSrcCount@{pSrcCount}!Walker@{Walker}}
+\doxysubsubsection{\texorpdfstring{pSrcCount}{pSrcCount}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_src_count}{Src\+Count}}\texorpdfstring{$\ast$}{*} Walker\+::p\+Src\+Count}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15661}{15661}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_walker_aa09fe5df040b732226cdae1bff741e0d}\label{struct_walker_aa09fe5df040b732226cdae1bff741e0d} 
+\index{Walker@{Walker}!pSrcList@{pSrcList}}
+\index{pSrcList@{pSrcList}!Walker@{Walker}}
+\doxysubsubsection{\texorpdfstring{pSrcList}{pSrcList}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_src_list}{Src\+List}}\texorpdfstring{$\ast$}{*} Walker\+::p\+Src\+List}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15660}{15660}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_walker_a1183df46d2b0ecac73e76336067cf207}\label{struct_walker_a1183df46d2b0ecac73e76336067cf207} 
+\index{Walker@{Walker}!walkerDepth@{walkerDepth}}
+\index{walkerDepth@{walkerDepth}!Walker@{Walker}}
+\doxysubsubsection{\texorpdfstring{walkerDepth}{walkerDepth}}
+{\footnotesize\ttfamily int Walker\+::walker\+Depth}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15654}{15654}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_walker_a46cbdf0ccdcf736096a2f168218d28fe}\label{struct_walker_a46cbdf0ccdcf736096a2f168218d28fe} 
+\index{Walker@{Walker}!xExprCallback@{xExprCallback}}
+\index{xExprCallback@{xExprCallback}!Walker@{Walker}}
+\doxysubsubsection{\texorpdfstring{xExprCallback}{xExprCallback}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Walker\+::x\+Expr\+Callback) (\mbox{\hyperlink{struct_walker}{Walker}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_expr}{Expr}} \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15651}{15651}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_walker_a76a2f8850bf1db17955fe85d65831cb0}\label{struct_walker_a76a2f8850bf1db17955fe85d65831cb0} 
+\index{Walker@{Walker}!xSelectCallback@{xSelectCallback}}
+\index{xSelectCallback@{xSelectCallback}!Walker@{Walker}}
+\doxysubsubsection{\texorpdfstring{xSelectCallback}{xSelectCallback}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Walker\+::x\+Select\+Callback) (\mbox{\hyperlink{struct_walker}{Walker}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_select}{Select}} \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15652}{15652}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_walker_ad35c57031847321ab3db9b7c0946b5e7}\label{struct_walker_ad35c57031847321ab3db9b7c0946b5e7} 
+\index{Walker@{Walker}!xSelectCallback2@{xSelectCallback2}}
+\index{xSelectCallback2@{xSelectCallback2}!Walker@{Walker}}
+\doxysubsubsection{\texorpdfstring{xSelectCallback2}{xSelectCallback2}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} Walker\+::x\+Select\+Callback2) (\mbox{\hyperlink{struct_walker}{Walker}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_select}{Select}} \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15653}{15653}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

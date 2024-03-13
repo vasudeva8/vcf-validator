@@ -1,0 +1,19 @@
+<map id="ebi::vcf::MetaEntry" name="ebi::vcf::MetaEntry">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,263,159,468"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="116,582,237,676"/>
+<area shape="poly" id="edge8_Node000006_Node000001" title=" " alt="" coords="98,467,110,513,126,557,131,566,126,569,121,559,105,514,93,469"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="216,135,287,200"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,189,192,206,169,226,147,251,143,248,165,222,189,201,215,185"/>
+<area shape="rect" id="Node000005" href="$d7/dda/structebi_1_1vcf_1_1_source.html" title=" " alt="" coords="180,739,285,825"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="288,183,313,200,335,222,410,339,438,393,456,446,464,500,461,555,444,614,414,678,392,706,364,730,333,748,302,762,300,758,330,744,361,725,388,703,409,675,439,612,456,554,459,500,451,447,433,395,406,342,331,226,310,204,285,187"/>
+<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="243,200,225,264,211,345,205,410,201,475,191,558,190,565,185,564,186,557,195,474,199,410,205,345,219,262,237,199"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="227,492,385,558"/>
+<area shape="poly" id="edge10_Node000007_Node000002" title=" " alt="" coords="259,199,301,475,296,476,253,200"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="193,5,310,85"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="254,100,254,135,249,135,249,100"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="35,888,164,968"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="95,888,83,485,88,485,101,888"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="196,826,149,877,145,874,193,822"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="176,675,183,715,187,724,182,726,178,716,171,676"/>
+<area shape="poly" id="edge9_Node000005_Node000007" title=" " alt="" coords="305,558,293,631,270,716,266,725,261,723,265,714,288,630,300,557"/>
+</map>

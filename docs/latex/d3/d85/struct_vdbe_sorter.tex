@@ -1,0 +1,246 @@
+\doxysection{Vdbe\+Sorter Struct Reference}
+\hypertarget{struct_vdbe_sorter}{}\label{struct_vdbe_sorter}\index{VdbeSorter@{VdbeSorter}}
+
+
+Collaboration diagram for Vdbe\+Sorter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{dd/d4b/struct_vdbe_sorter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_vdbe_sorter_a6d201d0f496260f7f2c7f450cae5898b}{mn\+Pma\+Size}}
+\item 
+int \mbox{\hyperlink{struct_vdbe_sorter_ab23b8039f7b58052b6c6dfc32aa895ed}{mx\+Pma\+Size}}
+\item 
+int \mbox{\hyperlink{struct_vdbe_sorter_a378f212fc0dc1eb53662fe9651c83e92}{mx\+Keysize}}
+\item 
+int \mbox{\hyperlink{struct_vdbe_sorter_adf515e49daec945d414c95c5793d8b92}{pgsz}}
+\item 
+\mbox{\hyperlink{struct_pma_reader}{Pma\+Reader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vdbe_sorter_ae5e5be145520adddd62d221dcdc1aa8e}{p\+Reader}}
+\item 
+\mbox{\hyperlink{struct_merge_engine}{Merge\+Engine}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vdbe_sorter_a8771886d3d97de93fd786b4ec9f2c185}{p\+Merger}}
+\item 
+\mbox{\hyperlink{structsqlite3}{sqlite3}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vdbe_sorter_a8289109b89d3798362e4edc596c3c887}{db}}
+\item 
+\mbox{\hyperlink{struct_key_info}{Key\+Info}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vdbe_sorter_a97c1a2aefd6dd093e82eddbf1bc9ffde}{p\+Key\+Info}}
+\item 
+\mbox{\hyperlink{struct_unpacked_record}{Unpacked\+Record}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vdbe_sorter_a0d85cdf1cf25c75cf90394d1bcfd27b9}{p\+Unpacked}}
+\item 
+\mbox{\hyperlink{struct_sorter_list}{Sorter\+List}} \mbox{\hyperlink{struct_vdbe_sorter_a5e4a486d8aba4b45e3b7000d0a3b2b5b}{list}}
+\item 
+int \mbox{\hyperlink{struct_vdbe_sorter_a32ec545e32e7b79fe8f72e15f4656786}{i\+Memory}}
+\item 
+int \mbox{\hyperlink{struct_vdbe_sorter_a53740d50989018beadaff7fe814407f5}{n\+Memory}}
+\item 
+u8 \mbox{\hyperlink{struct_vdbe_sorter_ae373cf1d1f102b34e005f0326f690bd7}{b\+Use\+PMA}}
+\item 
+u8 \mbox{\hyperlink{struct_vdbe_sorter_aaf62cb4ac61aa2bcbf4ee00a2e12fe90}{b\+Use\+Threads}}
+\item 
+u8 \mbox{\hyperlink{struct_vdbe_sorter_aa7cc8519f1b6d621de13fc383fb5478a}{i\+Prev}}
+\item 
+u8 \mbox{\hyperlink{struct_vdbe_sorter_a5a6475ca0a9de4321653a4afb4fcbef0}{n\+Task}}
+\item 
+u8 \mbox{\hyperlink{struct_vdbe_sorter_a75a7b43b4fe86ee6348dd576b4fb1c1f}{type\+Mask}}
+\item 
+\mbox{\hyperlink{struct_sort_subtask}{Sort\+Subtask}} \mbox{\hyperlink{struct_vdbe_sorter_abf5c3d717a20bf0ce713862f0c7b2653}{a\+Task}} \mbox{[}1\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84435}{84435}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_vdbe_sorter_abf5c3d717a20bf0ce713862f0c7b2653}\label{struct_vdbe_sorter_abf5c3d717a20bf0ce713862f0c7b2653} 
+\index{VdbeSorter@{VdbeSorter}!aTask@{aTask}}
+\index{aTask@{aTask}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{aTask}{aTask}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_sort_subtask}{Sort\+Subtask}} Vdbe\+Sorter\+::a\+Task\mbox{[}1\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84453}{84453}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_ae373cf1d1f102b34e005f0326f690bd7}\label{struct_vdbe_sorter_ae373cf1d1f102b34e005f0326f690bd7} 
+\index{VdbeSorter@{VdbeSorter}!bUsePMA@{bUsePMA}}
+\index{bUsePMA@{bUsePMA}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{bUsePMA}{bUsePMA}}
+{\footnotesize\ttfamily u8 Vdbe\+Sorter\+::b\+Use\+PMA}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84448}{84448}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_aaf62cb4ac61aa2bcbf4ee00a2e12fe90}\label{struct_vdbe_sorter_aaf62cb4ac61aa2bcbf4ee00a2e12fe90} 
+\index{VdbeSorter@{VdbeSorter}!bUseThreads@{bUseThreads}}
+\index{bUseThreads@{bUseThreads}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{bUseThreads}{bUseThreads}}
+{\footnotesize\ttfamily u8 Vdbe\+Sorter\+::b\+Use\+Threads}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84449}{84449}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_a8289109b89d3798362e4edc596c3c887}\label{struct_vdbe_sorter_a8289109b89d3798362e4edc596c3c887} 
+\index{VdbeSorter@{VdbeSorter}!db@{db}}
+\index{db@{db}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{db}{db}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsqlite3}{sqlite3}}\texorpdfstring{$\ast$}{*} Vdbe\+Sorter\+::db}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84442}{84442}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_a32ec545e32e7b79fe8f72e15f4656786}\label{struct_vdbe_sorter_a32ec545e32e7b79fe8f72e15f4656786} 
+\index{VdbeSorter@{VdbeSorter}!iMemory@{iMemory}}
+\index{iMemory@{iMemory}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{iMemory}{iMemory}}
+{\footnotesize\ttfamily int Vdbe\+Sorter\+::i\+Memory}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84446}{84446}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_aa7cc8519f1b6d621de13fc383fb5478a}\label{struct_vdbe_sorter_aa7cc8519f1b6d621de13fc383fb5478a} 
+\index{VdbeSorter@{VdbeSorter}!iPrev@{iPrev}}
+\index{iPrev@{iPrev}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{iPrev}{iPrev}}
+{\footnotesize\ttfamily u8 Vdbe\+Sorter\+::i\+Prev}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84450}{84450}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_a5e4a486d8aba4b45e3b7000d0a3b2b5b}\label{struct_vdbe_sorter_a5e4a486d8aba4b45e3b7000d0a3b2b5b} 
+\index{VdbeSorter@{VdbeSorter}!list@{list}}
+\index{list@{list}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{list}{list}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_sorter_list}{Sorter\+List}} Vdbe\+Sorter\+::list}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84445}{84445}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_a6d201d0f496260f7f2c7f450cae5898b}\label{struct_vdbe_sorter_a6d201d0f496260f7f2c7f450cae5898b} 
+\index{VdbeSorter@{VdbeSorter}!mnPmaSize@{mnPmaSize}}
+\index{mnPmaSize@{mnPmaSize}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{mnPmaSize}{mnPmaSize}}
+{\footnotesize\ttfamily int Vdbe\+Sorter\+::mn\+Pma\+Size}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84436}{84436}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_a378f212fc0dc1eb53662fe9651c83e92}\label{struct_vdbe_sorter_a378f212fc0dc1eb53662fe9651c83e92} 
+\index{VdbeSorter@{VdbeSorter}!mxKeysize@{mxKeysize}}
+\index{mxKeysize@{mxKeysize}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{mxKeysize}{mxKeysize}}
+{\footnotesize\ttfamily int Vdbe\+Sorter\+::mx\+Keysize}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84438}{84438}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_ab23b8039f7b58052b6c6dfc32aa895ed}\label{struct_vdbe_sorter_ab23b8039f7b58052b6c6dfc32aa895ed} 
+\index{VdbeSorter@{VdbeSorter}!mxPmaSize@{mxPmaSize}}
+\index{mxPmaSize@{mxPmaSize}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{mxPmaSize}{mxPmaSize}}
+{\footnotesize\ttfamily int Vdbe\+Sorter\+::mx\+Pma\+Size}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84437}{84437}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_a53740d50989018beadaff7fe814407f5}\label{struct_vdbe_sorter_a53740d50989018beadaff7fe814407f5} 
+\index{VdbeSorter@{VdbeSorter}!nMemory@{nMemory}}
+\index{nMemory@{nMemory}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{nMemory}{nMemory}}
+{\footnotesize\ttfamily int Vdbe\+Sorter\+::n\+Memory}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84447}{84447}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_a5a6475ca0a9de4321653a4afb4fcbef0}\label{struct_vdbe_sorter_a5a6475ca0a9de4321653a4afb4fcbef0} 
+\index{VdbeSorter@{VdbeSorter}!nTask@{nTask}}
+\index{nTask@{nTask}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{nTask}{nTask}}
+{\footnotesize\ttfamily u8 Vdbe\+Sorter\+::n\+Task}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84451}{84451}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_adf515e49daec945d414c95c5793d8b92}\label{struct_vdbe_sorter_adf515e49daec945d414c95c5793d8b92} 
+\index{VdbeSorter@{VdbeSorter}!pgsz@{pgsz}}
+\index{pgsz@{pgsz}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{pgsz}{pgsz}}
+{\footnotesize\ttfamily int Vdbe\+Sorter\+::pgsz}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84439}{84439}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_a97c1a2aefd6dd093e82eddbf1bc9ffde}\label{struct_vdbe_sorter_a97c1a2aefd6dd093e82eddbf1bc9ffde} 
+\index{VdbeSorter@{VdbeSorter}!pKeyInfo@{pKeyInfo}}
+\index{pKeyInfo@{pKeyInfo}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{pKeyInfo}{pKeyInfo}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_key_info}{Key\+Info}}\texorpdfstring{$\ast$}{*} Vdbe\+Sorter\+::p\+Key\+Info}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84443}{84443}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_a8771886d3d97de93fd786b4ec9f2c185}\label{struct_vdbe_sorter_a8771886d3d97de93fd786b4ec9f2c185} 
+\index{VdbeSorter@{VdbeSorter}!pMerger@{pMerger}}
+\index{pMerger@{pMerger}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{pMerger}{pMerger}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_merge_engine}{Merge\+Engine}}\texorpdfstring{$\ast$}{*} Vdbe\+Sorter\+::p\+Merger}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84441}{84441}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_ae5e5be145520adddd62d221dcdc1aa8e}\label{struct_vdbe_sorter_ae5e5be145520adddd62d221dcdc1aa8e} 
+\index{VdbeSorter@{VdbeSorter}!pReader@{pReader}}
+\index{pReader@{pReader}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{pReader}{pReader}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_pma_reader}{Pma\+Reader}}\texorpdfstring{$\ast$}{*} Vdbe\+Sorter\+::p\+Reader}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84440}{84440}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_a0d85cdf1cf25c75cf90394d1bcfd27b9}\label{struct_vdbe_sorter_a0d85cdf1cf25c75cf90394d1bcfd27b9} 
+\index{VdbeSorter@{VdbeSorter}!pUnpacked@{pUnpacked}}
+\index{pUnpacked@{pUnpacked}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{pUnpacked}{pUnpacked}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_unpacked_record}{Unpacked\+Record}}\texorpdfstring{$\ast$}{*} Vdbe\+Sorter\+::p\+Unpacked}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84444}{84444}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_vdbe_sorter_a75a7b43b4fe86ee6348dd576b4fb1c1f}\label{struct_vdbe_sorter_a75a7b43b4fe86ee6348dd576b4fb1c1f} 
+\index{VdbeSorter@{VdbeSorter}!typeMask@{typeMask}}
+\index{typeMask@{typeMask}!VdbeSorter@{VdbeSorter}}
+\doxysubsubsection{\texorpdfstring{typeMask}{typeMask}}
+{\footnotesize\ttfamily u8 Vdbe\+Sorter\+::type\+Mask}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84452}{84452}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

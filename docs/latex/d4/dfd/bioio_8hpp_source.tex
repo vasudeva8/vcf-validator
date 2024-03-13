@@ -1,0 +1,775 @@
+\doxysection{bioio.\+hpp}
+\hypertarget{bioio_8hpp_source}{}\label{bioio_8hpp_source}\index{lib/bioio/bioio.hpp@{lib/bioio/bioio.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00001}00001\ \textcolor{comment}{/*\ \ bioio.hpp\ -\/-\/\ FASTA/Q\ I/O}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00002}00002\ \textcolor{comment}{\ }}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00003}00003\ \textcolor{comment}{\ Copyright\ (C)\ 2017\ University\ of\ Oxford.}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00004}00004\ \textcolor{comment}{\ }}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00005}00005\ \textcolor{comment}{\ Author:\ Daniel\ Cooke\ <dcooke@well.ox.ac.uk>}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00006}00006\ \textcolor{comment}{\ }}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00007}00007\ \textcolor{comment}{\ Use\ of\ this\ source\ code\ is\ governed\ by\ the\ MIT\ license\ that\ can\ be\ found\ in\ the\ LICENSE\ file.\ */}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00009}00009\ \textcolor{preprocessor}{\#ifndef\ \_\_bioio\_\_bioio\_\_}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00010}00010\ \textcolor{preprocessor}{\#define\ \_\_bioio\_\_bioio\_\_}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00025}00025\ \textcolor{keyword}{namespace\ }bioio\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00027}00027\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00029}00029\ \textcolor{keyword}{inline}\ std::vector<std::string>\ split(\textcolor{keyword}{const}\ std::string\&\ str,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ delim)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00030}00030\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00031}00031\ \ \ \ \ std::stringstream\ ss\ \{str\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00032}00032\ \ \ \ \ std::string\ item;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00033}00033\ \ \ \ \ std::vector<std::string>\ result\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(ss,\ item,\ delim))\ result.emplace\_back(item);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00036}00036\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00038}00038\ \}\ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00040}00040\ \textcolor{comment}{/*=======================================================================================}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00041}00041\ \textcolor{comment}{Types}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00042}00042\ \textcolor{comment}{=======================================================================================*/}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00044}\mbox{\hyperlink{structbioio_1_1_fasta_contig_index}{00044}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structbioio_1_1_fasta_contig_index}{FastaContigIndex}}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00045}00045\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00046}00046\ \ \ \ \ std::string\ contig\_name;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00047}00047\ \ \ \ \ std::size\_t\ length;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00048}00048\ \ \ \ \ std::size\_t\ offset;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00049}00049\ \ \ \ \ std::size\_t\ line\_length;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00050}00050\ \ \ \ \ std::size\_t\ line\_byte\_length;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00051}00051\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00052}00052\ \ \ \ \ \mbox{\hyperlink{structbioio_1_1_fasta_contig_index}{FastaContigIndex}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00053}00053\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00054}00054\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00055}00055\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structbioio_1_1_fasta_contig_index}{FastaContigIndex}}(T\&\&\ contig\_name,\ std::size\_t\ length,\ std::size\_t\ offset,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::size\_t\ line\_length,\ std::size\_t\ line\_byte\_length)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00057}00057\ \ \ \ \ :\ contig\_name\ \{std::forward<T>(contig\_name)\}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00058}00058\ \ \ \ \ ,\ offset\ \{offset\}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00059}00059\ \ \ \ \ ,\ length\ \{length\}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00060}00060\ \ \ \ \ ,\ line\_length\ \{line\_length\}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00061}00061\ \ \ \ \ ,\ line\_byte\_length\ \{line\_byte\_length\}\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00062}00062\ \ \ \ \ \{\}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00063}00063\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00064}00064\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00065}00065\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structbioio_1_1_fasta_contig_index}{FastaContigIndex}}(\textcolor{keyword}{const}\ T\&\ fasta\_index\_line)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00066}00066\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ parts\ =\ detail::split(fasta\_index\_line,\ \textcolor{charliteral}{'\(\backslash\)t'});}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00068}00068\ \ \ \ \ \ \ \ \ contig\_name\ \ \ \ \ \ =\ parts[0];}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00069}00069\ \ \ \ \ \ \ \ \ length\ \ \ \ \ \ \ \ \ \ \ =\ std::stoull(parts[1]);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00070}00070\ \ \ \ \ \ \ \ \ offset\ \ \ \ \ \ \ \ \ \ \ =\ std::stoull(parts[2]);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00071}00071\ \ \ \ \ \ \ \ \ line\_length\ \ \ \ \ \ =\ std::stoull(parts[3]);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00072}00072\ \ \ \ \ \ \ \ \ line\_byte\_length\ =\ std::stoull(parts[4]);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00073}00073\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00074}00074\ \};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00076}00076\ \textcolor{keyword}{using\ }FastaIndex\ =\ std::unordered\_map<std::string,\ FastaContigIndex>;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00078}00078\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::\textcolor{keywordtype}{string},\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00079}\mbox{\hyperlink{structbioio_1_1_fasta_record}{00079}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structbioio_1_1_fasta_record}{FastaRecord}}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00080}00080\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00081}00081\ \ \ \ \ StringType\ name;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00082}00082\ \ \ \ \ SequenceType\ sequence;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00083}00083\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00084}00084\ \ \ \ \ \mbox{\hyperlink{structbioio_1_1_fasta_record}{FastaRecord}}()\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00085}00085\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\_,\ \textcolor{keyword}{typename}\ SequenceType\_>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00086}00086\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structbioio_1_1_fasta_record}{FastaRecord}}(StringType\_\&\&\ name,\ SequenceType\_\&\&\ sequence)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00087}00087\ \ \ \ \ :\ name\ \{std::forward<StringType\_>(name)\}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00088}00088\ \ \ \ \ ,\ sequence\ \{std::forward<SequenceType\_>(sequence)\}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00089}00089\ \ \ \ \ \{\}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00090}00090\ \};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00092}00092\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType1\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ SequenceType2\ =\ std::string>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00094}\mbox{\hyperlink{structbioio_1_1_fastq_record}{00094}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structbioio_1_1_fastq_record}{FastqRecord}}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00095}00095\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00096}00096\ \ \ \ \ StringType\ name;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00097}00097\ \ \ \ \ SequenceType1\ seq;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00098}00098\ \ \ \ \ SequenceType2\ qual;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00099}00099\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00100}00100\ \ \ \ \ \mbox{\hyperlink{structbioio_1_1_fastq_record}{FastqRecord}}()\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00101}00101\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\_,\ \textcolor{keyword}{typename}\ SequenceType1\_,\ \textcolor{keyword}{typename}\ SequenceType2\_>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00102}00102\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structbioio_1_1_fastq_record}{FastqRecord}}(StringType\_\&\&\ name,\ SequenceType1\_\&\&\ seq,\ SequenceType2\_\&\&\ qual)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00103}00103\ \ \ \ \ :name\ \{std::forward<StringType\_>(name)\}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00104}00104\ \ \ \ \ ,\ seq\ \{std::forward<SequenceType1\_>(seq)\}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00105}00105\ \ \ \ \ ,\ qual\ \{std::forward<SequenceType2\_>(qual)\}\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00106}00106\ \ \ \ \ \{\}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00107}00107\ \};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00109}00109\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00110}00110\ \textcolor{keyword}{using\ }ReadIds\ =\ std::vector<StringType>;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00112}00112\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::\textcolor{keywordtype}{string},\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00113}00113\ \textcolor{keyword}{using\ }FastaMap\ =\ std::unordered\_map<StringType,\ SequenceType>;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00115}00115\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType1\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ SequenceType2\ =\ std::string>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00117}00117\ \textcolor{keyword}{using\ }FastqMap\ =\ std::unordered\_map<StringType,\ std::pair<SequenceType1,\ SequenceType2>>;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00119}00119\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::\textcolor{keywordtype}{string},\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00120}00120\ \textcolor{keyword}{using\ }FastaReads\ =\ std::pair<ReadIds<StringType>,\ FastaMap<StringType,\ SequenceType>>;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00122}00122\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ SequenceType2\ =\ std::string>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00124}00124\ \textcolor{keyword}{using\ }FastqReads\ =\ std::pair<ReadIds<StringType>,\ FastqMap<StringType,\ SequenceType,\ SequenceType2>>;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00126}00126\ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00127}00127\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00128}00128\ \ \ \ \ \textcolor{comment}{//\ Counts\ the\ occurrences\ of\ record\_delim\ that\ follow\ a\ newline\ '\(\backslash\)n'}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00129}00129\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{size\_t}\ count\_records(std::istream\&\ is,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ record\_delim)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00130}00130\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ current\_position\ =\ is.tellg();}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ result\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (is)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is.peek()\ ==\ record\_delim)\ ++result;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ is.ignore(std::numeric\_limits<std::streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00137}00137\ \ \ \ \ \ \ \ \ is.clear();}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00138}00138\ \ \ \ \ \ \ \ \ is.seekg(current\_position,\ std::ios::beg);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00140}00140\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00141}00141\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00142}00142\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ fasta\_delim\ \{\textcolor{charliteral}{'>'}\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00143}00143\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ fastq\_delim\ \{\textcolor{charliteral}{'@'}\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00144}00144\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00145}00145\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::\textcolor{keywordtype}{string},\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00146}00146\ \ \ \ \ \mbox{\hyperlink{structbioio_1_1_fasta_record}{::bioio::FastaRecord<StringType,\ SequenceType>}}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00147}00147\ \ \ \ \ read\_fasta\_record(std::istream\&\ fasta)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00148}00148\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00149}00149\ \ \ \ \ \ \ \ \ StringType\ name;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00150}00150\ \ \ \ \ \ \ \ \ std::getline(fasta,\ name);\ \textcolor{comment}{//\ name\ is\ always\ a\ single\ line}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00151}00151\ \ \ \ \ \ \ \ \ SequenceType\ line;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00152}00152\ \ \ \ \ \ \ \ \ std::getline(fasta,\ line);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00153}00153\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ FASTA\ format\ is\ not\ as\ simple\ as\ FASTQ\ -\/\ the\ sequence}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ may\ be\ broken\ into\ multiple\ lines.\ We\ assume\ each\ line\ is\ the\ same\ size.}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!fasta.good()\ ||\ fasta.peek()\ ==\ fasta\_delim)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ return\ ::bioio::FastaRecord<StringType,\ SequenceType>\ \{std::move(name),\ std::move(line)\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ line\_size\ =\ line.size();}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ line.resize(line\_size);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ SequenceType\ seq\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ seq.reserve(line\_size\ *\ 100);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ line\_begin\ =\ line.cbegin(),\ line\_end\ =\ line.cend();}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ seq.insert(seq.end(),\ line\_begin,\ line\_end);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (fasta.good())\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fasta.getline(\&line[0],\ line\_size\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.front()\ ==\ fasta\_delim)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fasta.good())\ fasta.seekg(-\/fasta.gcount(),\ std::ios\_base::cur);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fasta.gcount()\ <\ line\_size)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seq.insert(seq.end(),\ line\_begin,\ line\_begin\ +\ fasta.gcount()\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seq.insert(seq.end(),\ line\_begin,\ line\_end);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ seq.shrink\_to\_fit();}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ return\ ::bioio::FastaRecord<StringType,\ SequenceType>\ \{std::move(name),\ std::move(seq)\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00180}00180\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00181}00181\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00182}00182\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType1\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ SequenceType2\ =\ std::string>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00184}00184\ \ \ \ \ \mbox{\hyperlink{structbioio_1_1_fastq_record}{::bioio::FastqRecord<StringType,\ SequenceType1,\ SequenceType2>}}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00185}00185\ \ \ \ \ read\_fastq\_record(std::istream\&\ fastq)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00186}00186\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00187}00187\ \ \ \ \ \ \ \ \ StringType\ name;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00188}00188\ \ \ \ \ \ \ \ \ SequenceType1\ seq;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00189}00189\ \ \ \ \ \ \ \ \ SequenceType2\ quals;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00190}00190\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unlike\ FASTA,\ FASTQ\ always\ use\ one\ line\ per\ field.}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00192}00192\ \ \ \ \ \ \ \ \ std::getline(fastq,\ name);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00193}00193\ \ \ \ \ \ \ \ \ std::getline(fastq,\ seq);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00194}00194\ \ \ \ \ \ \ \ \ fastq.ignore(std::numeric\_limits<std::streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00195}00195\ \ \ \ \ \ \ \ \ std::getline(fastq,\ quals);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00196}00196\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00197}00197\ \ \ \ \ \ \ \ \ return\ ::bioio::FastqRecord<StringType,\ SequenceType1,\ SequenceType2>\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{std::move(name),\ std::move(seq),\ std::move(quals)\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00199}00199\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00200}00200\ \}\ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00202}00202\ \textcolor{comment}{/*=======================================================================================}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00203}00203\ \textcolor{comment}{\ INDEX:\ For\ reading\ FASTA\ index\ files}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00204}00204\ \textcolor{comment}{\ =======================================================================================*/}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00206}00206\ \textcolor{keyword}{inline}\ std::size\_t\ count\_contigs\_in\_fasta\_index(std::istream\&\ fasta\_index)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00207}00207\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00208}00208\ \ \ \ \ \textcolor{keywordflow}{return}\ std::count(std::istreambuf\_iterator<char>(fasta\_index),\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::istreambuf\_iterator<char>(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00210}00210\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00212}00212\ \textcolor{keyword}{inline}\ std::size\_t\ count\_contigs\_in\_fasta\_index(\textcolor{keyword}{const}\ std::string\&\ fasta\_index\_path)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00213}00213\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00214}00214\ \ \ \ \ std::ifstream\ fasta\_index\ \{fasta\_index\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00215}00215\ \ \ \ \ \textcolor{keywordflow}{return}\ count\_contigs\_in\_fasta\_index(fasta\_index);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00216}00216\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00218}00218\ \textcolor{keyword}{inline}\ std::vector<std::string>\ read\_fasta\_index\_contig\_names(std::istream\&\ fasta\_index)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00219}00219\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00220}00220\ \ \ \ \ std::vector<std::string>\ result\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00221}00221\ \ \ \ \ result.reserve(100);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00222}00222\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00223}00223\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(fasta\_index,\ line))\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00224}00224\ \ \ \ \ \ \ \ \ result.emplace\_back(line.substr(0,\ line.find(\textcolor{charliteral}{'\(\backslash\)t'})));}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00225}00225\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00226}00226\ \ \ \ \ result.shrink\_to\_fit();}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00227}00227\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00228}00228\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00230}00230\ \textcolor{keyword}{inline}\ std::vector<std::string>\ read\_fasta\_index\_contig\_names(\textcolor{keyword}{const}\ std::string\&\ fasta\_index\_path)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00231}00231\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00232}00232\ \ \ \ \ std::ifstream\ fasta\_index\ \{fasta\_index\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00233}00233\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_index\_contig\_names(fasta\_index);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00234}00234\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00236}00236\ \textcolor{keyword}{inline}\ FastaIndex\ read\_fasta\_index(std::istream\&\ fasta\_index)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00237}00237\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00238}00238\ \ \ \ \ FastaIndex\ result\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00239}00239\ \ \ \ \ result.reserve(100);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00240}00240\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00241}00241\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(fasta\_index,\ line))\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00242}00242\ \ \ \ \ \ \ \ \ FastaContigIndex\ contig\_index\ \{line\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00243}00243\ \ \ \ \ \ \ \ \ result.emplace(contig\_index.contig\_name,\ std::move(contig\_index));}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00244}00244\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00245}00245\ \ \ \ \ result.rehash(result.size());}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00246}00246\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00247}00247\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00248}00248\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00249}00249\ \textcolor{keyword}{inline}\ FastaIndex\ read\_fasta\_index(\textcolor{keyword}{const}\ std::string\&\ fasta\_index\_path)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00250}00250\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00251}00251\ \ \ \ \ std::ifstream\ fasta\_index\ \{fasta\_index\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00252}00252\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_index(fasta\_index);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00253}00253\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00255}00255\ \textcolor{keyword}{inline}\ std::size\_t\ calculate\_contig\_size(std::istream\&\ fasta\_index,\ \textcolor{keyword}{const}\ std::string\&\ contig\_name)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00256}00256\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00257}00257\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ current\_position\ =\ fasta\_index.tellg();}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00258}00258\ \ \ \ \ fasta\_index.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00259}00259\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00260}00260\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(fasta\_index,\ line))\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00261}00261\ \ \ \ \ \ \ \ \ FastaContigIndex\ contig\_index\ \{line\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00262}00262\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (contig\_index.contig\_name\ ==\ contig\_name)\ \textcolor{keywordflow}{return}\ contig\_index.length;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00263}00263\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00264}00264\ \ \ \ \ fasta\_index.clear();}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00265}00265\ \ \ \ \ fasta\_index.seekg(current\_position,\ std::ios::beg);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00266}00266\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00267}00267\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00269}00269\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{size\_t}\ calculate\_contig\_size(\textcolor{keyword}{const}\ std::string\&\ fasta\_index\_path,\ \textcolor{keyword}{const}\ std::string\&\ contig\_name)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00270}00270\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00271}00271\ \ \ \ \ std::ifstream\ fasta\_index\ \{fasta\_index\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00272}00272\ \ \ \ \ \textcolor{keywordflow}{return}\ calculate\_contig\_size(fasta\_index,\ contig\_name);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00273}00273\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00274}00274\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00275}00275\ \textcolor{comment}{/*=======================================================================================}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00276}00276\ \textcolor{comment}{\ FASTA:\ For\ reading\ FASTAs\ with\ index\ files}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00277}00277\ \textcolor{comment}{\ =======================================================================================*/}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00278}00278\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00279}00279\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00280}00280\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00281}00281\ \textcolor{keyword}{inline}\ std::size\_t\ line\_offset(const\ ::bioio::FastaContigIndex\&\ index,\ \textcolor{keyword}{const}\ std::size\_t\ begin)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00282}00282\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00283}00283\ \ \ \ \ \textcolor{keywordflow}{return}\ begin\ \%\ index.line\_length;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00284}00284\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00285}00285\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00286}00286\ \textcolor{keyword}{inline}\ std::size\_t\ region\_offset(const\ ::bioio::FastaContigIndex\&\ index,\ \textcolor{keyword}{const}\ std::size\_t\ begin)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00287}00287\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00288}00288\ \ \ \ \ \textcolor{keywordflow}{return}\ index.offset\ +\ begin\ /\ index.line\_length\ *\ index.line\_byte\_length\ +\ line\_offset(index,\ begin);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00289}00289\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00291}00291\ \textcolor{keyword}{inline}\ std::size\_t\ remaining\_line\_length(const\ ::bioio::FastaContigIndex\&\ index,\ \textcolor{keyword}{const}\ std::size\_t\ begin)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00292}00292\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00293}00293\ \ \ \ \ \textcolor{keywordflow}{return}\ index.line\_length\ -\/\ line\_offset(index,\ begin);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00294}00294\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00295}00295\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00296}00296\ \}\ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00297}00297\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00298}00298\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00299}00299\ SequenceType\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00300}00300\ read\_fasta\_contig(std::istream\&\ fasta,\ \textcolor{keyword}{const}\ FastaContigIndex\&\ index,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ begin,\ std::size\_t\ length)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00302}00302\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00303}00303\ \ \ \ \ SequenceType\ result\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00304}00304\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0\ ||\ begin\ >=\ index.length)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00305}00305\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00306}00306\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00307}00307\ \ \ \ \ fasta.seekg(detail::region\_offset(index,\ begin),\ std::ios::beg);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00308}00308\ \ \ \ \ length\ =\ std::min(length,\ index.length\ -\/\ begin);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00309}00309\ \ \ \ \ \textcolor{keywordflow}{if}\ (index.line\_length\ ==\ index.line\_byte\_length)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00310}00310\ \ \ \ \ \ \ \ \ result.resize(length);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00311}00311\ \ \ \ \ \ \ \ \ fasta.read(\&result[0],\ length);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00312}00312\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00313}00313\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ num\_line\_end\_bytes\ =\ index.line\_byte\_length\ -\/\ index.line\_length;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00314}00314\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ num\_remaining\_curr\_line\_bytes\ =\ detail::remaining\_line\_length(index,\ begin);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00315}00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ <=\ num\_remaining\_curr\_line\_bytes)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ result.resize(length);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ fasta.read(\&result[0],\ length);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00318}00318\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Allocate\ enough\ space\ to\ fit\ a\ full\ last\ line\ so\ we\ don't\ need\ to\ keep}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ checking\ how\ much\ of\ the\ final\ line\ to\ read.}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ result.resize(length\ +\ detail::remaining\_line\_length(index,\ begin\ +\ length)\ +\ num\_line\_end\_bytes);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ fasta.read(\&result[0],\ num\_remaining\_curr\_line\_bytes\ +\ num\_line\_end\_bytes);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ pos\ =\ num\_remaining\_curr\_line\_bytes;\ pos\ <\ length;\ pos\ +=\ index.line\_length)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fasta.read(\&result[pos],\ index.line\_byte\_length);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ result.resize(length);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00327}00327\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00328}00328\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00329}00329\ \ \ \ \ fasta.clear();\ \textcolor{comment}{//\ assumes\ indexed\ queries\ do\ not\ need\ eof\ flag}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00330}00330\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00331}00331\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00333}00333\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00334}00334\ SequenceType}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00335}00335\ read\_fasta\_contig(\textcolor{keyword}{const}\ std::string\&\ fasta\_path,\ \textcolor{keyword}{const}\ FastaContigIndex\&\ index,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ begin,\ \textcolor{keyword}{const}\ std::size\_t\ length)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00337}00337\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00338}00338\ \ \ \ \ std::ifstream\ fasta\ \{fasta\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00339}00339\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_contig<SequenceType>(fasta,\ index,\ begin,\ length);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00340}00340\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00341}00341\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00342}00342\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00343}00343\ SequenceType\ read\_fasta\_contig(std::istream\&\ fasta,\ \textcolor{keyword}{const}\ FastaContigIndex\&\ index)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00344}00344\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00345}00345\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_contig<SequenceType>(fasta,\ index,\ 0,\ index.length);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00346}00346\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00347}00347\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00348}00348\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00349}00349\ SequenceType\ read\_fasta\_contig(\textcolor{keyword}{const}\ std::string\&\ fasta\_path,\ \textcolor{keyword}{const}\ FastaContigIndex\&\ index)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00350}00350\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00351}00351\ \ \ \ \ std::ifstream\ fasta\ \{fasta\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00352}00352\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_contig<SequenceType>(fasta,\ index);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00353}00353\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00354}00354\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00355}00355\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00356}00356\ std::ostream\&\ operator<<(std::ostream\&\ os,\ \textcolor{keyword}{const}\ FastaRecord<T,\ U>\&\ data)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00357}00357\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00358}00358\ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}>"{}}\ <<\ data.first\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ <<\ data.second;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00359}00359\ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00360}00360\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00361}00361\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00362}00362\ \textcolor{comment}{/*=======================================================================================}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00363}00363\ \textcolor{comment}{FASTA:\ Optimised\ for\ reading\ a\ Fasta\ file\ with\ a\ single\ contig\ without\ an\ index}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00364}00364\ \textcolor{comment}{=======================================================================================*/}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00365}00365\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00366}00366\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::\textcolor{keywordtype}{string},\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00367}00367\ FastaRecord<StringType,\ SequenceType>\ read\_single\_contig\_fasta(\textcolor{keyword}{const}\ std::string\&\ fasta\_path)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00368}00368\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00369}00369\ \ \ \ \ std::ifstream\ fasta\ \{fasta\_path,\ std::ios::binary\ |\ std::ios::ate\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00370}00370\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ file\_length\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(fasta.tellg());}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00371}00371\ \ \ \ \ fasta.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00372}00372\ \ \ \ \ StringType\ name;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00373}00373\ \ \ \ \ std::getline(fasta,\ name);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00374}00374\ \ \ \ \ SequenceType\ sequence;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00375}00375\ \ \ \ \ sequence.resize(file\_length\ -\/\ name.size()\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00376}00376\ \ \ \ \ fasta.read(\&sequence[0],\ sequence.size());}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00377}00377\ \ \ \ \ sequence.erase(std::remove(sequence.begin(),\ sequence.end(),\ \textcolor{charliteral}{'\(\backslash\)n'}),\ sequence.end());}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00378}00378\ \ \ \ \ \textcolor{keywordflow}{return}\ FastaRecord<StringType,\ SequenceType>\ \{std::move(name),\ std::move(sequence)\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00379}00379\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00380}00380\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00381}00381\ \textcolor{comment}{/*=======================================================================================}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00382}00382\ \textcolor{comment}{\ FASTA:\ For\ reading\ multiple\ record\ Fasta\ files\ without\ an\ index}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00383}00383\ \textcolor{comment}{\ =======================================================================================*/}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00384}00384\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00385}00385\ \textcolor{keyword}{inline}\ std::size\_t\ count\_fasta\_records(std::istream\&\ fasta)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00386}00386\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00387}00387\ \ \ \ \ \textcolor{keywordflow}{return}\ detail::count\_records(fasta,\ detail::fasta\_delim);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00388}00388\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00389}00389\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00390}00390\ \textcolor{keyword}{inline}\ std::size\_t\ count\_fasta\_records(\textcolor{keyword}{const}\ std::string\&\ fasta\_path)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00391}00391\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00392}00392\ \ \ \ \ std::ifstream\ fasta\ \{fasta\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00393}00393\ \ \ \ \ \textcolor{keywordflow}{return}\ count\_fasta\_records(fasta);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00394}00394\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00395}00395\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00396}00396\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ UnaryPredicate,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ =\ \textcolor{keyword}{typename}\ std::enable\_if<}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !std::is\_convertible<UnaryPredicate,\ std::string>::value}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ >::type>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00400}00400\ \textcolor{keywordtype}{bool}\ seek\_fasta\_record(std::istream\&\ fasta,\ UnaryPredicate\ pred)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00401}00401\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00402}00402\ \ \ \ \ std::string\ record;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00403}00403\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(fasta,\ record))\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00404}00404\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pred(record))\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ fasta.seekg(-\/(record.size()\ +\ 1),\ std::ios\_base::cur);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00407}00407\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00408}00408\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (fasta)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fasta.peek()\ ==\ detail::fasta\_delim)\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ fasta.ignore(std::numeric\_limits<std::streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00411}00411\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00412}00412\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00413}00413\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00414}00414\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00415}00415\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00416}00416\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ seek\_fasta\_record(std::istream\&\ fasta,\ \textcolor{keyword}{const}\ std::string\&\ name)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00417}00417\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00418}00418\ \ \ \ \ \textcolor{keywordflow}{return}\ seek\_fasta\_record(fasta,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&]\ (\textcolor{keyword}{const}\ std::string\&\ fasta\_record)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fasta\_record.size()\ <\ name.size())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00421}00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::equal(name.cbegin(),\ name.cend(),}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::next(fasta\_record.cbegin()));}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00424}00424\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00425}00425\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00426}00426\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string},\ \textcolor{keyword}{typename}\ UnaryPredicate>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00427}00427\ SequenceType\ read\_fasta\_seq(std::istream\&\ fasta,\ UnaryPredicate\ pred)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00428}00428\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00429}00429\ \ \ \ \ \textcolor{keywordflow}{if}\ (seek\_fasta\_record(fasta,\ pred))\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00430}00430\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::read\_fasta\_record<std::string,\ SequenceType>(fasta).sequence;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00431}00431\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00432}00432\ \ \ \ \ \textcolor{keywordflow}{return}\ SequenceType\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00433}00433\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00434}00434\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00435}00435\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string},\ \textcolor{keyword}{typename}\ UnaryPredicate>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00436}00436\ SequenceType\ read\_fasta\_seq(\textcolor{keyword}{const}\ std::string\&\ fasta\_path,\ UnaryPredicate\ pred)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00437}00437\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00438}00438\ \ \ \ \ std::ifstream\ fasta\ \{fasta\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00439}00439\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_seq(fasta,\ pred);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00440}00440\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00442}00442\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00443}00443\ SequenceType\ read\_fasta\_seq(std::istream\&\ fasta,\ \textcolor{keyword}{const}\ std::string\&\ name)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00444}00444\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00445}00445\ \ \ \ \ \textcolor{keywordflow}{if}\ (seek\_fasta\_record(fasta,\ name))\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00446}00446\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::read\_fasta\_record<std::string,\ SequenceType>(fasta).sequence;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00447}00447\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00448}00448\ \ \ \ \ \textcolor{keywordflow}{return}\ SequenceType\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00449}00449\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00450}00450\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00451}00451\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00452}00452\ SequenceType\ read\_fasta\_seq(\textcolor{keyword}{const}\ std::string\&\ fasta\_path,\ \textcolor{keyword}{const}\ std::string\&\ name)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00453}00453\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00454}00454\ \ \ \ \ std::ifstream\ fasta\ \{fasta\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00455}00455\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_seq(fasta,\ name);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00456}00456\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00457}00457\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00458}00458\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Container\ =\ std::vector<std::\textcolor{keywordtype}{string}>>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00459}00459\ Container\ read\_fasta\_seqs(std::istream\&\ fasta,\ \textcolor{keywordtype}{size\_t}\ num\_records)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00460}00460\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00461}00461\ \ \ \ \ Container\ result\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00462}00462\ \ \ \ \ result.reserve(num\_records);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00463}00463\ \ \ \ \ \textcolor{keyword}{using\ }SequenceType\ =\ \textcolor{keyword}{typename}\ Container::value\_type;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00464}00464\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ num\_records\ >\ 0;\ -\/-\/num\_records)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00465}00465\ \ \ \ \ \ \ \ \ result.emplace\_back(detail::read\_fasta\_record<std::string,\ SequenceType>(fasta).sequence);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00466}00466\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00467}00467\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00468}00468\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00469}00469\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00470}00470\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Container\ =\ std::vector<std::\textcolor{keywordtype}{string}>>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00471}00471\ Container\ read\_fasta\_seqs(std::istream\&\ fasta)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00472}00472\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00473}00473\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_seqs<Container>(fasta,\ count\_fasta\_records(fasta));}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00474}00474\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00475}00475\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00476}00476\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Container\ =\ std::vector<std::\textcolor{keywordtype}{string}>>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00477}00477\ Container\ read\_fasta\_seqs(\textcolor{keyword}{const}\ std::string\&\ fasta\_path)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00478}00478\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00479}00479\ \ \ \ \ std::ifstream\ fasta\ \{fasta\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00480}00480\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_seqs<Container>(fasta);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00481}00481\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00482}00482\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00483}00483\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Container\ =\ std::vector<std::\textcolor{keywordtype}{string}>>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00484}00484\ Container\ read\_fasta\_seqs(\textcolor{keyword}{const}\ std::string\&\ fasta\_path,\ \textcolor{keyword}{const}\ std::size\_t\ num\_records)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00485}00485\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00486}00486\ \ \ \ \ std::ifstream\ fasta\ \{fasta\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00487}00487\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_seqs<Container>(fasta,\ num\_records);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00488}00488\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00489}00489\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00490}00490\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::\textcolor{keywordtype}{string},\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00491}00491\ std::vector<FastaRecord<StringType,\ SequenceType>>\ read\_fasta(std::istream\&\ fasta,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00492}00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::size\_t\ num\_records)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00493}00493\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00494}00494\ \ \ \ \ std::vector<FastaRecord<StringType,\ SequenceType>>\ result\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00495}00495\ \ \ \ \ result.reserve(num\_records);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00496}00496\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ num\_records\ >\ 0;\ -\/-\/num\_records)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00497}00497\ \ \ \ \ \ \ \ \ result.emplace\_back(detail::read\_fasta\_record<StringType,\ SequenceType>(fasta));}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00498}00498\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00499}00499\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00500}00500\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00501}00501\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00502}00502\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::\textcolor{keywordtype}{string},\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00503}00503\ std::vector<FastaRecord<StringType,\ SequenceType>>\ read\_fasta(std::istream\&\ fasta)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00504}00504\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00505}00505\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta<StringType,\ SequenceType>(fasta,\ count\_fasta\_records(fasta));}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00506}00506\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00507}00507\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00508}00508\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::\textcolor{keywordtype}{string},\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00509}00509\ std::vector<FastaRecord<StringType,\ SequenceType>>\ read\_fasta(\textcolor{keyword}{const}\ std::string\&\ fasta\_path)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00510}00510\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00511}00511\ \ \ \ \ std::ifstream\ fasta\ \{fasta\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00512}00512\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta<StringType,\ SequenceType>(fasta);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00513}00513\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00514}00514\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00515}00515\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::\textcolor{keywordtype}{string},\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00516}00516\ std::vector<FastaRecord<StringType,\ SequenceType>>\ read\_fasta(\textcolor{keyword}{const}\ std::string\&\ fasta\_path,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00517}00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ num\_records)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00518}00518\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00519}00519\ \ \ \ \ std::ifstream\ fasta\ \{fasta\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00520}00520\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta<StringType,\ SequenceType>(fasta,\ num\_records);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00521}00521\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00522}00522\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00523}00523\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00524}00524\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ UnaryOperation>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00525}00525\ FastaReads<StringType,\ SequenceType>\ read\_fasta\_map(std::istream\&\ fasta,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00526}00526\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::size\_t\ num\_records,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00527}00527\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnaryOperation\ unary\_op)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00528}00528\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00529}00529\ \ \ \ \ FastaMap<StringType,\ SequenceType>\ records\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00530}00530\ \ \ \ \ records.reserve(num\_records);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00531}00531\ \ \ \ \ ReadIds<StringType>\ contig\_names\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00532}00532\ \ \ \ \ contig\_names.reserve(num\_records);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00533}00533\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ num\_records\ >\ 0;\ -\/-\/num\_records)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00534}00534\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ record\ =\ detail::read\_fasta\_record<StringType,\ SequenceType>(fasta);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00535}00535\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ f\_name\ =\ unary\_op(std::move(record.name));}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00536}00536\ \ \ \ \ \ \ \ \ records.emplace(f\_name,\ std::move(record.sequence));}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00537}00537\ \ \ \ \ \ \ \ \ contig\_names.insert(std::move(f\_name));}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00538}00538\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00539}00539\ \ \ \ \ \textcolor{keywordflow}{return}\ FastaReads<StringType,\ SequenceType>\ \{std::move(contig\_names),\ std::move(records)\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00540}00540\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00541}00541\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00542}00542\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00543}00543\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ UnaryOperation>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00544}00544\ FastaReads<StringType,\ SequenceType>\ read\_fasta\_map(std::istream\&\ fasta,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00545}00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnaryOperation\ unary\_op)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00546}00546\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00547}00547\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_map<StringType,\ SequenceType,\ UnaryOperation>(fasta,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count\_fasta\_records(fasta),}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00549}00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ unary\_op);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00550}00550\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00551}00551\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00552}00552\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00553}00553\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ UnaryOperation>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00554}00554\ FastaReads<StringType,\ SequenceType>\ read\_fasta\_map(\textcolor{keyword}{const}\ std::string\&\ fasta\_path,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00555}00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnaryOperation\ unary\_op)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00556}00556\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00557}00557\ \ \ \ \ std::ifstream\ fasta\ \{fasta\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00558}00558\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_map<StringType,\ SequenceType,\ UnaryOperation>(fasta,\ unary\_op);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00559}00559\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00560}00560\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00561}00561\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ UnaryOperation>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00563}00563\ FastaReads<StringType,\ SequenceType>\ read\_fasta\_map(\textcolor{keyword}{const}\ std::string\&\ fasta\_path,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ num\_records,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnaryOperation\ unary\_op)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00566}00566\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00567}00567\ \ \ \ \ std::ifstream\ fasta\ \{fasta\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00568}00568\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_map<StringType,\ SequenceType,\ UnaryOperation>(fasta,\ num\_records,\ unary\_op);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00569}00569\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00570}00570\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00571}00571\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::\textcolor{keywordtype}{string},\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00572}00572\ FastaReads<StringType,\ SequenceType>\ read\_fasta\_map(\textcolor{keyword}{const}\ std::string\&\ fasta\_path)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00573}00573\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00574}00574\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_map<StringType,\ SequenceType>(fasta\_path,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ []\ (StringType\&\&\ name)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ name;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00578}00578\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00579}00579\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00580}00580\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00581}00581\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ UnaryOperation>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00582}00582\ FastaReads<StringType,\ SequenceType>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00583}00583\ read\_fasta\_map(std::istream\&\ fasta,\ \textcolor{keyword}{const}\ ReadIds<StringType>\&\ names,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00584}00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnaryOperation\ unary\_op)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00585}00585\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00586}00586\ \ \ \ \ \textcolor{keyword}{auto}\ num\_records\ =\ names.size();}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00587}00587\ \ \ \ \ FastaMap<StringType,\ SequenceType>\ records\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00588}00588\ \ \ \ \ records.reserve(num\_records);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00589}00589\ \ \ \ \ ReadIds<StringType>\ f\_names\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00590}00590\ \ \ \ \ f\_names.reserve(num\_records);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00591}00591\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ num\_records\ >\ 0;\ -\/-\/num\_records)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00592}00592\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ record\ =\ detail::read\_fasta\_record<StringType,\ SequenceType>(fasta);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00593}00593\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ f\_name\ =\ unary\_op(std::move(record.name));}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00594}00594\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (names.find(f\_name)\ !=\ names.end())\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00595}00595\ \ \ \ \ \ \ \ \ \ \ \ \ records.emplace(f\_name,\ std::move(record.sequence));}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00596}00596\ \ \ \ \ \ \ \ \ \ \ \ \ f\_names.insert(std::move(f\_name));}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00597}00597\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00598}00598\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00599}00599\ \ \ \ \ \textcolor{keywordflow}{return}\ FastaReads<StringType,\ SequenceType>\ \{std::move(f\_names),\ std::move(records)\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00600}00600\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00601}00601\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00602}00602\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00603}00603\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ UnaryOperation>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00604}00604\ FastaReads<StringType,\ SequenceType>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00605}00605\ read\_fasta\_map(\textcolor{keyword}{const}\ std::string\&\ fasta\_path,\ \textcolor{keyword}{const}\ ReadIds<StringType>\&\ names,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00606}00606\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnaryOperation\ unary\_op)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00607}00607\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00608}00608\ \ \ \ \ std::ifstream\ fasta\ \{fasta\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00609}00609\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_map<StringType,\ SequenceType,\ UnaryOperation>(fasta,\ names,\ unary\_op);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00610}00610\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00611}00611\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00612}00612\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::\textcolor{keywordtype}{string},\ \textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00613}00613\ FastaReads<StringType,\ SequenceType>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00614}00614\ read\_fasta\_map(\textcolor{keyword}{const}\ std::string\&\ path,\ \textcolor{keyword}{const}\ ReadIds<StringType>\&\ names)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00615}00615\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00616}00616\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fasta\_map(path,\ names,\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00617}00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ []\ (StringType\&\&\ name)\ \{\ \textcolor{keywordflow}{return}\ name;\ \});}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00618}00618\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00619}00619\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00620}00620\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00621}00621\ std::ostream\&\ operator<<(std::ostream\&\ os,\ \textcolor{keyword}{const}\ FastaReads<T,\ U>\&\ records)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00622}00622\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00623}00623\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ name\ :\ records.first)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00624}00624\ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}>"{}}\ <<\ name\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ <<\ records.second.at(name);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00625}00625\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00626}00626\ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00627}00627\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00628}00628\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00629}00629\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00630}00630\ \textcolor{keywordtype}{void}\ write\_fasta(\textcolor{keyword}{const}\ std::string\&\ path,\ \textcolor{keyword}{const}\ FastaReads<T,\ U>\&\ records)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00631}00631\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00632}00632\ \ \ \ \ std::ofstream\ fasta\ \{path,\ std::ios::out\ |\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00633}00633\ \ \ \ \ fasta\ <<\ records;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00634}00634\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00635}00635\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00636}00636\ \textcolor{comment}{/*=======================================================================================}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00637}00637\ \textcolor{comment}{\ FASTQ:\ For\ reading\ multiple\ line\ Fastq\ files.}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00638}00638\ \textcolor{comment}{\ =======================================================================================*/}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00639}00639\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00640}00640\ \textcolor{keyword}{inline}\ std::size\_t\ count\_fastq\_records(std::istream\&\ fastq)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00641}00641\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00642}00642\ \ \ \ \ \textcolor{keywordflow}{return}\ detail::count\_records(fastq,\ detail::fastq\_delim);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00643}00643\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00644}00644\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00645}00645\ \textcolor{keyword}{inline}\ std::size\_t\ count\_fastq\_records(\textcolor{keyword}{const}\ std::string\&\ fastq\_path)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00646}00646\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00647}00647\ \ \ \ \ std::ifstream\ fastq\ \{fastq\_path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00648}00648\ \ \ \ \ \textcolor{keywordflow}{return}\ count\_fasta\_records(fastq);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00649}00649\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00650}00650\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00651}00651\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00652}00652\ std::vector<SequenceType>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00653}00653\ read\_fastq\_seqs(std::istream\&\ fastq)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00654}00654\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00655}00655\ \ \ \ \ \textcolor{keyword}{auto}\ num\_records\ =\ count\_fastq\_records(fastq);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00656}00656\ \ \ \ \ std::vector<SequenceType>\ result\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00657}00657\ \ \ \ \ result.reserve(num\_records);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00658}00658\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ num\_records\ >\ 0;\ -\/-\/num\_records)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00659}00659\ \ \ \ \ \ \ \ \ result.push\_back(detail::read\_fastq\_record<std::string,\ SequenceType,\ std::string>(fastq).seq);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00660}00660\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00661}00661\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00662}00662\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00663}00663\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00664}00664\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SequenceType\ =\ std::\textcolor{keywordtype}{string}>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00665}00665\ std::vector<SequenceType>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00666}00666\ read\_fastq\_seqs(\textcolor{keyword}{const}\ std::string\&\ path)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00667}00667\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00668}00668\ \ \ \ \ std::ifstream\ fastq\ \{path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00669}00669\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fastq\_seqs(fastq);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00670}00670\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00671}00671\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00672}00672\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType1\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00673}00673\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ SequenceType2\ =\ std::string,\ \textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00674}00674\ std::vector<FastqRecord<StringType,\ SequenceType1,\ SequenceType2>>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00675}00675\ read\_fastq(std::istream\&\ fastq,\ std::size\_t\ num\_records,\ F\ f)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00676}00676\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00677}00677\ \ \ \ \ std::vector<FastqRecord<StringType,\ SequenceType1,\ SequenceType2>>\ result\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00678}00678\ \ \ \ \ result.reserve(num\_records);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00679}00679\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ num\_records\ >\ 0;\ -\/-\/num\_records)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00680}00680\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ record\ =\ detail::read\_fastq\_record<StringType,\ SequenceType1,\ SequenceType2>(fastq);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00681}00681\ \ \ \ \ \ \ \ \ result.emplace\_back(f(std::move(record.name)),\ std::move(record.seq),\ std::move(record.qual));}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00682}00682\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00683}00683\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00684}00684\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00685}00685\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00686}00686\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType1\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00687}00687\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ SequenceType2\ =\ std::string,\ \textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00688}00688\ std::vector<FastqRecord<StringType,\ SequenceType1,\ SequenceType2>>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00689}00689\ read\_fastq(std::istream\&\ fastq,\ F\ f)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00690}00690\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00691}00691\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fastq<StringType,\ SequenceType1,\ SequenceType2,\ F>(fastq,\ count\_fastq\_records(fastq),\ f);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00692}00692\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00693}00693\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00694}00694\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType1\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00695}00695\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ SequenceType2\ =\ std::string,\ \textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00696}00696\ std::vector<FastqRecord<StringType,\ SequenceType1,\ SequenceType2>>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00697}00697\ read\_fastq(\textcolor{keyword}{const}\ std::string\&\ path,\ \textcolor{keyword}{const}\ std::size\_t\ num\_records,\ F\ f)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00698}00698\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00699}00699\ \ \ \ \ std::ifstream\ fastq\ \{path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00700}00700\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fastq<StringType,\ SequenceType1,\ SequenceType2,\ F>(fastq,\ num\_records,\ f);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00701}00701\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00702}00702\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00703}00703\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType1\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00704}00704\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ SequenceType2\ =\ std::string,\ \textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00705}00705\ std::vector<FastqRecord<StringType,\ SequenceType1,\ SequenceType2>>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00706}00706\ read\_fastq(\textcolor{keyword}{const}\ std::string\&\ path,\ F\ f)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00707}00707\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00708}00708\ \ \ \ \ std::ifstream\ fastq\ \{path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00709}00709\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fastq<StringType,\ SequenceType1,\ SequenceType2,\ F>(fastq,\ f);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00710}00710\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00711}00711\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00712}00712\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType1\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00713}00713\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ SequenceType2\ =\ std::string>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00714}00714\ std::vector<FastqRecord<StringType,\ SequenceType1,\ SequenceType2>>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00715}00715\ read\_fastq(\textcolor{keyword}{const}\ std::string\&\ path)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00716}00716\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00717}00717\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fastq<StringType,\ SequenceType1,\ SequenceType2>(path,\ []\ (\textcolor{keyword}{const}\ StringType\&\ name)\ \{\ \textcolor{keywordflow}{return}\ name;\ \});}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00718}00718\ \}\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00719}00719\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00720}00720\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType1\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00721}00721\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ SequenceType2\ =\ std::string>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00722}00722\ std::vector<FastqRecord<StringType,\ SequenceType1,\ SequenceType2>>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00723}00723\ read\_fastq(std::istream\&\ fastq)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00724}00724\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00725}00725\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fastq<StringType,\ SequenceType1,\ SequenceType2>(fastq,\ []\ (\textcolor{keyword}{const}\ StringType\&\ name)\ \{\ \textcolor{keywordflow}{return}\ name;\ \});}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00726}00726\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00727}00727\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00728}00728\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType1\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00729}00729\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ SequenceType2\ =\ std::string>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00730}00730\ std::vector<FastqRecord<StringType,\ SequenceType1,\ SequenceType2>>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00731}00731\ read\_fastq(std::istream\&\ fastq,\ \textcolor{keyword}{const}\ std::size\_t\ num\_records)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00732}00732\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00733}00733\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fastq<StringType,\ SequenceType1,\ SequenceType2>(fastq,\ num\_records,\ []\ (\textcolor{keyword}{const}\ StringType\&\ name)\ \{\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00734}00734\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ name;\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00735}00735\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00736}00736\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00737}00737\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00738}00738\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType1\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00739}00739\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ SequenceType2\ =\ std::string,\ \textcolor{keyword}{typename}\ IntegerType>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00740}00740\ std::vector<FastqRecord<StringType,\ SequenceType1,\ SequenceType2>>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00741}00741\ read\_fastq(\textcolor{keyword}{const}\ std::string\&\ path,\ \textcolor{keyword}{const}\ std::size\_t\ num\_records)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00742}00742\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00743}00743\ \ \ \ \ std::ifstream\ fastq\ \{path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00744}00744\ \ \ \ \ \textcolor{keywordflow}{return}\ read\_fastq<StringType,\ SequenceType1,\ SequenceType2>(fastq,\ num\_records,\ []\ (\textcolor{keyword}{const}\ StringType\&\ name)\ \{\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00745}00745\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ name;\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00746}00746\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00747}00747\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00748}00748\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00749}00749\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ StringType\ =\ std::string,\ \textcolor{keyword}{typename}\ SequenceType1\ =\ std::string,}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00750}00750\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ SequenceType2\ =\ std::string>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00751}00751\ FastqReads<StringType,\ SequenceType1,\ SequenceType2>}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00752}00752\ read\_fastq\_map(\textcolor{keyword}{const}\ std::string\&\ path)}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00753}00753\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00754}00754\ \ \ \ \ std::ifstream\ fastq\ \{path,\ std::ios::binary\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00755}00755\ \ \ \ \ \textcolor{keyword}{auto}\ num\_records\ =\ count\_fastq\_records(fastq);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00756}00756\ \ \ \ \ ReadIds<StringType>\ names\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00757}00757\ \ \ \ \ FastqMap<StringType,\ SequenceType1,\ SequenceType2>\ data\ \{\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00758}00758\ \ \ \ \ data.reserve(num\_records);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00759}00759\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ num\_records\ >\ 0;\ -\/-\/num\_records)\ \{}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00760}00760\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ record\ =\ detail::read\_fastq\_record<StringType,\ SequenceType1,\ SequenceType2>(fastq);}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00761}00761\ \ \ \ \ \ \ \ \ data.emplace(record.name,\ \{std::move(record.seq),\ std::move(record.qual)\});}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00762}00762\ \ \ \ \ \ \ \ \ names.insert(std::move(record.name));}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00763}00763\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00764}00764\ \ \ \ \ \textcolor{keywordflow}{return}\ \{names,\ data\};}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00765}00765\ \}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00766}00766\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00767}00767\ \}\ \textcolor{comment}{//\ namespace\ bioio}}
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00768}00768\ }
+\DoxyCodeLine{\Hypertarget{bioio_8hpp_source_l00769}00769\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

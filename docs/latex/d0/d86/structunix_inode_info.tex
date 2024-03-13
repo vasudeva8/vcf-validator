@@ -1,0 +1,150 @@
+\doxysection{unix\+Inode\+Info Struct Reference}
+\hypertarget{structunix_inode_info}{}\label{structunix_inode_info}\index{unixInodeInfo@{unixInodeInfo}}
+
+
+Collaboration diagram for unix\+Inode\+Info\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{de/d4d/structunix_inode_info__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structunix_file_id}{unix\+File\+Id}} \mbox{\hyperlink{structunix_inode_info_ae692731d449f4462a921dda9a061faa6}{file\+Id}}
+\item 
+int \mbox{\hyperlink{structunix_inode_info_a0d7f8dd92964f53e59c8d741dbe00a61}{n\+Shared}}
+\item 
+unsigned char \mbox{\hyperlink{structunix_inode_info_a010a765bb3feecb16b650f68fc3a3c1f}{e\+File\+Lock}}
+\item 
+unsigned char \mbox{\hyperlink{structunix_inode_info_ade689e4231dd80bb33c86da1e5ed1586}{b\+Process\+Lock}}
+\item 
+int \mbox{\hyperlink{structunix_inode_info_a65cbd1fd05ed00f03a252266b04a8221}{n\+Ref}}
+\item 
+\mbox{\hyperlink{structunix_shm_node}{unix\+Shm\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structunix_inode_info_a302a8b82e27d5b3624ec122bc9c2ed61}{p\+Shm\+Node}}
+\item 
+int \mbox{\hyperlink{structunix_inode_info_a477f3357a32adbc1a9b05017e535444d}{n\+Lock}}
+\item 
+\mbox{\hyperlink{struct_unix_unused_fd}{Unix\+Unused\+Fd}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structunix_inode_info_a0dda9ad35734fa161d1f0b13b671c1c6}{p\+Unused}}
+\item 
+\mbox{\hyperlink{structunix_inode_info}{unix\+Inode\+Info}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structunix_inode_info_a80181ba4ef71dd0d8e55e97baedc761e}{p\+Next}}
+\item 
+\mbox{\hyperlink{structunix_inode_info}{unix\+Inode\+Info}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structunix_inode_info_a6575edce9898b48870c6f48047c01d01}{p\+Prev}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l30171}{30171}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structunix_inode_info_ade689e4231dd80bb33c86da1e5ed1586}\label{structunix_inode_info_ade689e4231dd80bb33c86da1e5ed1586} 
+\index{unixInodeInfo@{unixInodeInfo}!bProcessLock@{bProcessLock}}
+\index{bProcessLock@{bProcessLock}!unixInodeInfo@{unixInodeInfo}}
+\doxysubsubsection{\texorpdfstring{bProcessLock}{bProcessLock}}
+{\footnotesize\ttfamily unsigned char unix\+Inode\+Info\+::b\+Process\+Lock}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l30175}{30175}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structunix_inode_info_a010a765bb3feecb16b650f68fc3a3c1f}\label{structunix_inode_info_a010a765bb3feecb16b650f68fc3a3c1f} 
+\index{unixInodeInfo@{unixInodeInfo}!eFileLock@{eFileLock}}
+\index{eFileLock@{eFileLock}!unixInodeInfo@{unixInodeInfo}}
+\doxysubsubsection{\texorpdfstring{eFileLock}{eFileLock}}
+{\footnotesize\ttfamily unsigned char unix\+Inode\+Info\+::e\+File\+Lock}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l30174}{30174}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structunix_inode_info_ae692731d449f4462a921dda9a061faa6}\label{structunix_inode_info_ae692731d449f4462a921dda9a061faa6} 
+\index{unixInodeInfo@{unixInodeInfo}!fileId@{fileId}}
+\index{fileId@{fileId}!unixInodeInfo@{unixInodeInfo}}
+\doxysubsubsection{\texorpdfstring{fileId}{fileId}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structunix_file_id}{unix\+File\+Id}} unix\+Inode\+Info\+::file\+Id}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l30172}{30172}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structunix_inode_info_a477f3357a32adbc1a9b05017e535444d}\label{structunix_inode_info_a477f3357a32adbc1a9b05017e535444d} 
+\index{unixInodeInfo@{unixInodeInfo}!nLock@{nLock}}
+\index{nLock@{nLock}!unixInodeInfo@{unixInodeInfo}}
+\doxysubsubsection{\texorpdfstring{nLock}{nLock}}
+{\footnotesize\ttfamily int unix\+Inode\+Info\+::n\+Lock}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l30178}{30178}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structunix_inode_info_a65cbd1fd05ed00f03a252266b04a8221}\label{structunix_inode_info_a65cbd1fd05ed00f03a252266b04a8221} 
+\index{unixInodeInfo@{unixInodeInfo}!nRef@{nRef}}
+\index{nRef@{nRef}!unixInodeInfo@{unixInodeInfo}}
+\doxysubsubsection{\texorpdfstring{nRef}{nRef}}
+{\footnotesize\ttfamily int unix\+Inode\+Info\+::n\+Ref}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l30176}{30176}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structunix_inode_info_a0d7f8dd92964f53e59c8d741dbe00a61}\label{structunix_inode_info_a0d7f8dd92964f53e59c8d741dbe00a61} 
+\index{unixInodeInfo@{unixInodeInfo}!nShared@{nShared}}
+\index{nShared@{nShared}!unixInodeInfo@{unixInodeInfo}}
+\doxysubsubsection{\texorpdfstring{nShared}{nShared}}
+{\footnotesize\ttfamily int unix\+Inode\+Info\+::n\+Shared}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l30173}{30173}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structunix_inode_info_a80181ba4ef71dd0d8e55e97baedc761e}\label{structunix_inode_info_a80181ba4ef71dd0d8e55e97baedc761e} 
+\index{unixInodeInfo@{unixInodeInfo}!pNext@{pNext}}
+\index{pNext@{pNext}!unixInodeInfo@{unixInodeInfo}}
+\doxysubsubsection{\texorpdfstring{pNext}{pNext}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structunix_inode_info}{unix\+Inode\+Info}}\texorpdfstring{$\ast$}{*} unix\+Inode\+Info\+::p\+Next}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l30180}{30180}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structunix_inode_info_a6575edce9898b48870c6f48047c01d01}\label{structunix_inode_info_a6575edce9898b48870c6f48047c01d01} 
+\index{unixInodeInfo@{unixInodeInfo}!pPrev@{pPrev}}
+\index{pPrev@{pPrev}!unixInodeInfo@{unixInodeInfo}}
+\doxysubsubsection{\texorpdfstring{pPrev}{pPrev}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structunix_inode_info}{unix\+Inode\+Info}}\texorpdfstring{$\ast$}{*} unix\+Inode\+Info\+::p\+Prev}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l30181}{30181}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structunix_inode_info_a302a8b82e27d5b3624ec122bc9c2ed61}\label{structunix_inode_info_a302a8b82e27d5b3624ec122bc9c2ed61} 
+\index{unixInodeInfo@{unixInodeInfo}!pShmNode@{pShmNode}}
+\index{pShmNode@{pShmNode}!unixInodeInfo@{unixInodeInfo}}
+\doxysubsubsection{\texorpdfstring{pShmNode}{pShmNode}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structunix_shm_node}{unix\+Shm\+Node}}\texorpdfstring{$\ast$}{*} unix\+Inode\+Info\+::p\+Shm\+Node}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l30177}{30177}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structunix_inode_info_a0dda9ad35734fa161d1f0b13b671c1c6}\label{structunix_inode_info_a0dda9ad35734fa161d1f0b13b671c1c6} 
+\index{unixInodeInfo@{unixInodeInfo}!pUnused@{pUnused}}
+\index{pUnused@{pUnused}!unixInodeInfo@{unixInodeInfo}}
+\doxysubsubsection{\texorpdfstring{pUnused}{pUnused}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_unix_unused_fd}{Unix\+Unused\+Fd}}\texorpdfstring{$\ast$}{*} unix\+Inode\+Info\+::p\+Unused}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l30179}{30179}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

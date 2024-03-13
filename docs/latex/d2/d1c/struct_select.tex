@@ -1,0 +1,234 @@
+\doxysection{Select Struct Reference}
+\hypertarget{struct_select}{}\label{struct_select}\index{Select@{Select}}
+
+
+Collaboration diagram for Select\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/db2/struct_select__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_expr_list}{Expr\+List}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_select_acf92c5d6b0e0e6a3263a77696baaadc8}{p\+EList}}
+\item 
+u8 \mbox{\hyperlink{struct_select_a84506d61248313b5e10f7891cb7482be}{op}}
+\item 
+Log\+Est \mbox{\hyperlink{struct_select_af9e46e47a41ceb9815690851f7e88219}{n\+Select\+Row}}
+\item 
+u32 \mbox{\hyperlink{struct_select_a8114a0684cb5f38d5f6ef3855114c928}{sel\+Flags}}
+\item 
+int \mbox{\hyperlink{struct_select_abf68908bf029af42a32c60a2558a8b1e}{i\+Limit}}
+\item 
+int \mbox{\hyperlink{struct_select_ac12bebd00ed988df3ad1efb8e6c63fe4}{i\+Offset}}
+\item 
+int \mbox{\hyperlink{struct_select_a7b55849c381b5452e42313aa7aa183ec}{addr\+Open\+Ephm}} \mbox{[}2\mbox{]}
+\item 
+\mbox{\hyperlink{struct_src_list}{Src\+List}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_select_a4e3b9b176a8e1b4af988405ff1f090db}{p\+Src}}
+\item 
+\mbox{\hyperlink{struct_expr}{Expr}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_select_a0562c1e19acde263a04af015611d8ce8}{p\+Where}}
+\item 
+\mbox{\hyperlink{struct_expr_list}{Expr\+List}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_select_a5b625c7495468ae56ca2f214a76231a0}{p\+Group\+By}}
+\item 
+\mbox{\hyperlink{struct_expr}{Expr}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_select_ad09e0b115e6e1599e3075b87dfa6e66e}{p\+Having}}
+\item 
+\mbox{\hyperlink{struct_expr_list}{Expr\+List}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_select_a73c474cd4a9a9b9aa4e3187d8bf2d886}{p\+Order\+By}}
+\item 
+\mbox{\hyperlink{struct_select}{Select}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_select_a51d1a253b0aba5a54b11b3bf3896d056}{p\+Prior}}
+\item 
+\mbox{\hyperlink{struct_select}{Select}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_select_a96aa0caf60390b8f5e88589639205c40}{p\+Next}}
+\item 
+\mbox{\hyperlink{struct_expr}{Expr}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_select_a11d3b48d04d58be818cdefb10aa061a0}{p\+Limit}}
+\item 
+\mbox{\hyperlink{struct_expr}{Expr}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_select_aeaf016a10203b911000354122562fb46}{p\+Offset}}
+\item 
+\mbox{\hyperlink{struct_with}{With}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_select_a3ab5597bdc6b219ea03a6aca93260e9f}{p\+With}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15039}{15039}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_select_a7b55849c381b5452e42313aa7aa183ec}\label{struct_select_a7b55849c381b5452e42313aa7aa183ec} 
+\index{Select@{Select}!addrOpenEphm@{addrOpenEphm}}
+\index{addrOpenEphm@{addrOpenEphm}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{addrOpenEphm}{addrOpenEphm}}
+{\footnotesize\ttfamily int Select\+::addr\+Open\+Ephm\mbox{[}2\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15048}{15048}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_abf68908bf029af42a32c60a2558a8b1e}\label{struct_select_abf68908bf029af42a32c60a2558a8b1e} 
+\index{Select@{Select}!iLimit@{iLimit}}
+\index{iLimit@{iLimit}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{iLimit}{iLimit}}
+{\footnotesize\ttfamily int Select\+::i\+Limit}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15044}{15044}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_ac12bebd00ed988df3ad1efb8e6c63fe4}\label{struct_select_ac12bebd00ed988df3ad1efb8e6c63fe4} 
+\index{Select@{Select}!iOffset@{iOffset}}
+\index{iOffset@{iOffset}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{iOffset}{iOffset}}
+{\footnotesize\ttfamily int Select\+::i\+Offset}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15044}{15044}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_af9e46e47a41ceb9815690851f7e88219}\label{struct_select_af9e46e47a41ceb9815690851f7e88219} 
+\index{Select@{Select}!nSelectRow@{nSelectRow}}
+\index{nSelectRow@{nSelectRow}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{nSelectRow}{nSelectRow}}
+{\footnotesize\ttfamily Log\+Est Select\+::n\+Select\+Row}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15042}{15042}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_a84506d61248313b5e10f7891cb7482be}\label{struct_select_a84506d61248313b5e10f7891cb7482be} 
+\index{Select@{Select}!op@{op}}
+\index{op@{op}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{op}{op}}
+{\footnotesize\ttfamily u8 Select\+::op}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15041}{15041}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_acf92c5d6b0e0e6a3263a77696baaadc8}\label{struct_select_acf92c5d6b0e0e6a3263a77696baaadc8} 
+\index{Select@{Select}!pEList@{pEList}}
+\index{pEList@{pEList}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{pEList}{pEList}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_expr_list}{Expr\+List}}\texorpdfstring{$\ast$}{*} Select\+::p\+EList}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15040}{15040}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_a5b625c7495468ae56ca2f214a76231a0}\label{struct_select_a5b625c7495468ae56ca2f214a76231a0} 
+\index{Select@{Select}!pGroupBy@{pGroupBy}}
+\index{pGroupBy@{pGroupBy}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{pGroupBy}{pGroupBy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_expr_list}{Expr\+List}}\texorpdfstring{$\ast$}{*} Select\+::p\+Group\+By}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15051}{15051}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_ad09e0b115e6e1599e3075b87dfa6e66e}\label{struct_select_ad09e0b115e6e1599e3075b87dfa6e66e} 
+\index{Select@{Select}!pHaving@{pHaving}}
+\index{pHaving@{pHaving}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{pHaving}{pHaving}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_expr}{Expr}}\texorpdfstring{$\ast$}{*} Select\+::p\+Having}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15052}{15052}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_a11d3b48d04d58be818cdefb10aa061a0}\label{struct_select_a11d3b48d04d58be818cdefb10aa061a0} 
+\index{Select@{Select}!pLimit@{pLimit}}
+\index{pLimit@{pLimit}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{pLimit}{pLimit}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_expr}{Expr}}\texorpdfstring{$\ast$}{*} Select\+::p\+Limit}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15056}{15056}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_a96aa0caf60390b8f5e88589639205c40}\label{struct_select_a96aa0caf60390b8f5e88589639205c40} 
+\index{Select@{Select}!pNext@{pNext}}
+\index{pNext@{pNext}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{pNext}{pNext}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_select}{Select}}\texorpdfstring{$\ast$}{*} Select\+::p\+Next}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15055}{15055}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_aeaf016a10203b911000354122562fb46}\label{struct_select_aeaf016a10203b911000354122562fb46} 
+\index{Select@{Select}!pOffset@{pOffset}}
+\index{pOffset@{pOffset}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{pOffset}{pOffset}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_expr}{Expr}}\texorpdfstring{$\ast$}{*} Select\+::p\+Offset}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15057}{15057}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_a73c474cd4a9a9b9aa4e3187d8bf2d886}\label{struct_select_a73c474cd4a9a9b9aa4e3187d8bf2d886} 
+\index{Select@{Select}!pOrderBy@{pOrderBy}}
+\index{pOrderBy@{pOrderBy}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{pOrderBy}{pOrderBy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_expr_list}{Expr\+List}}\texorpdfstring{$\ast$}{*} Select\+::p\+Order\+By}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15053}{15053}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_a51d1a253b0aba5a54b11b3bf3896d056}\label{struct_select_a51d1a253b0aba5a54b11b3bf3896d056} 
+\index{Select@{Select}!pPrior@{pPrior}}
+\index{pPrior@{pPrior}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{pPrior}{pPrior}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_select}{Select}}\texorpdfstring{$\ast$}{*} Select\+::p\+Prior}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15054}{15054}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_a4e3b9b176a8e1b4af988405ff1f090db}\label{struct_select_a4e3b9b176a8e1b4af988405ff1f090db} 
+\index{Select@{Select}!pSrc@{pSrc}}
+\index{pSrc@{pSrc}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{pSrc}{pSrc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_src_list}{Src\+List}}\texorpdfstring{$\ast$}{*} Select\+::p\+Src}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15049}{15049}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_a0562c1e19acde263a04af015611d8ce8}\label{struct_select_a0562c1e19acde263a04af015611d8ce8} 
+\index{Select@{Select}!pWhere@{pWhere}}
+\index{pWhere@{pWhere}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{pWhere}{pWhere}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_expr}{Expr}}\texorpdfstring{$\ast$}{*} Select\+::p\+Where}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15050}{15050}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_a3ab5597bdc6b219ea03a6aca93260e9f}\label{struct_select_a3ab5597bdc6b219ea03a6aca93260e9f} 
+\index{Select@{Select}!pWith@{pWith}}
+\index{pWith@{pWith}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{pWith}{pWith}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_with}{With}}\texorpdfstring{$\ast$}{*} Select\+::p\+With}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15058}{15058}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_select_a8114a0684cb5f38d5f6ef3855114c928}\label{struct_select_a8114a0684cb5f38d5f6ef3855114c928} 
+\index{Select@{Select}!selFlags@{selFlags}}
+\index{selFlags@{selFlags}!Select@{Select}}
+\doxysubsubsection{\texorpdfstring{selFlags}{selFlags}}
+{\footnotesize\ttfamily u32 Select\+::sel\+Flags}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15043}{15043}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

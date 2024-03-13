@@ -1,0 +1,183 @@
+\doxysection{validator\+\_\+main.\+cpp}
+\hypertarget{validator__main_8cpp_source}{}\label{validator__main_8cpp_source}\index{src/validator\_main.cpp@{src/validator\_main.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ <boost/program\_options.hpp>}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ <boost/filesystem/operations.hpp>}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00029}00029\ \textcolor{preprocessor}{\#include\ "{}cmake\_config.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00030}00030\ \textcolor{preprocessor}{\#include\ "{}util/cli\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00031}00031\ \textcolor{preprocessor}{\#include\ "{}util/logger.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}vcf/file\_structure.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00033}00033\ \textcolor{preprocessor}{\#include\ "{}vcf/odb\_report.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00034}00034\ \textcolor{preprocessor}{\#include\ "{}vcf/report\_writer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00035}00035\ \textcolor{preprocessor}{\#include\ "{}vcf/summary\_report\_writer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00036}00036\ \textcolor{preprocessor}{\#include\ "{}vcf/validator.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00038}00038\ \textcolor{keyword}{namespace}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00039}00039\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keyword}{namespace\ }po\ =\ boost::program\_options;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ version\_info\ =\ \textcolor{stringliteral}{"{}vcf\_validator\ version\ "{}}\ +\ std::to\_string(VERSION\_MAJOR)\ +\ \textcolor{stringliteral}{"{}."{}}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ std::to\_string(VERSION\_MINOR)\ +\ \textcolor{stringliteral}{"{}."{}}\ +\ std::to\_string(VERSION\_PATCH);}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00045}00045\ \ \ \ \ po::options\_description\ build\_command\_line\_options()}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00046}00046\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ po::options\_description\ description(version\_info\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)nUsage:\ vcf-\/validator\ [OPTIONS]\ [<\ input\_file]\(\backslash\)nAllowed\ options"{}});}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ description.add\_options()}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::HELP\_OPTION,\ \textcolor{stringliteral}{"{}Display\ this\ help"{}})}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::VERSION\_OPTION,\ \textcolor{stringliteral}{"{}Display\ version\ of\ the\ validator"{}})}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::INPUT\_OPTION,\ po::value<std::string>()-\/>default\_value(ebi::vcf::STDIN),\ \textcolor{stringliteral}{"{}Path\ to\ the\ input\ VCF\ file,\ or\ stdin"{}})}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::LEVEL\_OPTION,\ po::value<std::string>()-\/>default\_value(ebi::vcf::WARNING\_LEVEL),\ \textcolor{stringliteral}{"{}Validation\ level\ (error,\ warning,\ stop)"{}})}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::REPORT\_OPTION,\ po::value<std::string>()-\/>default\_value(ebi::vcf::SUMMARY),\ \textcolor{stringliteral}{"{}Comma\ separated\ values\ for\ types\ of\ reports\ (summary,\ text,\ database)"{}})}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::OUTDIR\_OPTION,\ po::value<std::string>()-\/>default\_value(\textcolor{stringliteral}{"{}"{}}),\ \textcolor{stringliteral}{"{}Output\ directory"{}})}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::CHECK\_EVIDENCE,\ \textcolor{stringliteral}{"{}Flag\ to\ check\ genotypes\ or\ allele\ frequencies\ are\ present"{}})}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ description;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00062}00062\ \ \ \ \ \textcolor{keywordtype}{int}\ check\_command\_line\_options(po::variables\_map\ \textcolor{keyword}{const}\ \&\ vm,\ po::options\_description\ \textcolor{keyword}{const}\ \&\ desc)}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00063}00063\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vm.count(ebi::vcf::HELP))\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ desc\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vm.count(ebi::vcf::VERSION))\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ version\_info\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ std::string\ level\ =\ vm[ebi::vcf::LEVEL].as<std::string>();}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (level\ !=\ ebi::vcf::ERROR\_LEVEL\ \&\&\ level\ !=\ ebi::vcf::WARNING\_LEVEL\ \&\&\ level\ !=\ ebi::vcf::STOP\_LEVEL)\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ desc\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(error)\ <<\ \textcolor{stringliteral}{"{}Please\ choose\ one\ of\ the\ accepted\ validation\ levels"{}};}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00082}00082\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00084}00084\ \ \ \ \ ebi::vcf::ValidationLevel\ get\_validation\_level(std::string\ \textcolor{keyword}{const}\ \&\ level\_str)}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00085}00085\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (level\_str\ ==\ ebi::vcf::ERROR\_LEVEL)\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ebi::vcf::ValidationLevel::error;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (level\_str\ ==\ ebi::vcf::WARNING\_LEVEL)\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ebi::vcf::ValidationLevel::warning;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (level\_str\ ==\ ebi::vcf::STOP\_LEVEL)\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ebi::vcf::ValidationLevel::stop;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument\{\textcolor{stringliteral}{"{}Please\ choose\ one\ of\ the\ accepted\ validation\ levels"{}}\};}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00095}00095\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00097}00097\ \ \ \ \ std::vector<std::unique\_ptr<ebi::vcf::ReportWriter>>\ get\_outputs(std::string\ \textcolor{keyword}{const}\ \&output\_str,\ std::string\ \textcolor{keyword}{const}\ \&input)}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00098}00098\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ std::vector<std::string>\ outs;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ ebi::util::string\_split(output\_str,\ \textcolor{stringliteral}{"{},"{}},\ outs);}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ initial\_size\ =\ outs.size();}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ don't\ write\ several\ times\ to\ the\ same\ output}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ std::sort(outs.begin(),\ outs.end());}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ std::unique(outs.begin(),\ outs.end());}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (initial\_size\ !=\ outs.size())\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(warning)\ <<\ \textcolor{stringliteral}{"{}Duplicated\ outputs!\ will\ write\ just\ once\ to\ each\ output\ specified\ by\ -\/r/-\/-\/report"{}};}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ std::vector<std::unique\_ptr<ebi::vcf::ReportWriter>>\ outputs;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ epoch\ =\ std::chrono::system\_clock::now().time\_since\_epoch();}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ timestamp\ =\ std::chrono::duration\_cast<std::chrono::milliseconds>(epoch).count();}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ out\ :\ outs)\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (out\ ==\ ebi::vcf::DATABASE\ ||\ out\ ==\ ebi::vcf::TEXT\ ||\ out\ ==\ ebi::vcf::SUMMARY)\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ filetype\ =\ (out\ ==\ ebi::vcf::DATABASE\ ?\ \textcolor{stringliteral}{"{}db"{}}\ :\ \textcolor{stringliteral}{"{}txt"{}});}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ errortype\ =\ (out\ ==\ ebi::vcf::SUMMARY)\ ?\ \textcolor{stringliteral}{"{}errors\_summary"{}}\ :\ \textcolor{stringliteral}{"{}errors"{}};}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ filename\ =\ input\ +\ \textcolor{stringliteral}{"{}."{}}\ +\ errortype\ +\ \textcolor{stringliteral}{"{}."{}}\ +\ std::to\_string(timestamp)\ +\ \textcolor{stringliteral}{"{}."{}}\ +\ filetype;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ boost::filesystem::path\ file\{filename\};}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (boost::filesystem::exists(file))\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error\{\textcolor{stringliteral}{"{}Report\ file\ already\ exists\ on\ "{}}\ +\ filename\ +\ \textcolor{stringliteral}{"{},\ please\ delete\ it\ or\ rename\ it"{}}\};}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (out\ ==\ ebi::vcf::DATABASE)\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outputs.emplace\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w}{ebi::vcf::OdbReportRW}}(filename));}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (out\ ==\ ebi::vcf::TEXT)\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outputs.emplace\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_file_report_writer}{ebi::vcf::FileReportWriter}}(filename));}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outputs.emplace\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_summary_report_writer}{ebi::vcf::SummaryReportWriter}}(filename));}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument\{\textcolor{stringliteral}{"{}Please\ use\ only\ valid\ report\ types"{}}\};}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ outputs;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00136}00136\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00138}00138\ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00140}00140\ \textcolor{keywordtype}{int}\ main(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv)}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00141}00141\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00142}00142\ \ \ \ \ ebi::util::init\_boost\_loggers();}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00144}00144\ \ \ \ \ po::options\_description\ desc\ =\ build\_command\_line\_options();}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00145}00145\ \ \ \ \ po::variables\_map\ vm\ =\ ebi::util::build\_variables\_map(argc,\ argv,\ desc);}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00146}00146\ \ \ \ \ \textcolor{keywordtype}{int}\ check\_options\ =\ check\_command\_line\_options(vm,\ desc);}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00147}00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (check\_options\ <\ 0)\ \{\ \textcolor{keywordflow}{return}\ 0;\ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00148}00148\ \ \ \ \ \textcolor{keywordflow}{if}\ (check\_options\ >\ 0)\ \{\ \textcolor{keywordflow}{return}\ check\_options;\ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00150}00150\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_valid;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00151}00151\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ path\ =\ vm[ebi::vcf::INPUT].as<std::string>();}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ level\ =\ vm[ebi::vcf::LEVEL].as<std::string>();}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ ebi::vcf::ValidationLevel\ validationLevel\ =\ get\_validation\_level(level);}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ outdir\ =\ ebi::util::get\_output\_path(vm[ebi::vcf::OUTDIR].as<std::string>(),\ path);}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ outputs\ =\ get\_outputs(vm[ebi::vcf::REPORT].as<std::string>(),\ outdir);}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ checkEvidence\ =\ vm.count(ebi::vcf::CHECK\_EVIDENCE)\ >=\ 1;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{ebi::vcf::AdditionalChecks}}\ additionalChecks\ \{\ checkEvidence\ \};}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (path\ ==\ ebi::vcf::STDIN)\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Reading\ from\ standard\ input..."{}};}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ is\_valid\ =\ ebi::vcf::is\_valid\_vcf\_file(std::cin,\ path,\ validationLevel,\ outputs,\ additionalChecks);}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Reading\ from\ input\ file..."{}};}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ input\{path\};}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!input)\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error\{\textcolor{stringliteral}{"{}Couldn't\ open\ file\ "{}}\ +\ path\};}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_valid\ =\ ebi::vcf::is\_valid\_vcf\_file(input,\ path,\ validationLevel,\ outputs,\ additionalChecks);}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ std::string\ report\_result\ =\ \textcolor{stringliteral}{"{}According\ to\ the\ VCF\ specification,\ the\ input\ file\ is\ "{}}\ +\ std::string(is\_valid\ ?\ \textcolor{stringliteral}{"{}"{}}\ :\ \textcolor{stringliteral}{"{}not\ "{}})\ +\ \textcolor{stringliteral}{"{}valid"{}};}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ output\ :\ outputs)\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ output-\/>get\_report\_message();}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ output-\/>write\_message(report\_result);}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ report\_result;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !is\_valid;\ \textcolor{comment}{//\ A\ valid\ file\ returns\ an\ exit\ code\ 0}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00181}00181\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::invalid\_argument\ \textcolor{keyword}{const}\ \&\ ex)\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(error)\ <<\ ex.what();}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00184}00184\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::runtime\_error\ \textcolor{keyword}{const}\ \&\ ex)\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(error)\ <<\ \textcolor{stringliteral}{"{}The\ validation\ could\ not\ be\ completed:\ "{}}\ <<\ ex.what();}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00187}00187\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::exception\ \textcolor{keyword}{const}\ \&ex)\ \{}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(error)\ <<\ ex.what();}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00190}00190\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{validator__main_8cpp_source_l00192}00192\ \}}
+
+\end{DoxyCode}

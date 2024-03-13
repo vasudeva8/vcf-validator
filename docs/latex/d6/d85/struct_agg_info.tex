@@ -1,0 +1,175 @@
+\doxysection{Agg\+Info Struct Reference}
+\hypertarget{struct_agg_info}{}\label{struct_agg_info}\index{AggInfo@{AggInfo}}
+
+
+Collaboration diagram for Agg\+Info\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d5/db9/struct_agg_info__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_agg_info_1_1_agg_info__col}{Agg\+Info\+\_\+col}}
+\item 
+struct \mbox{\hyperlink{struct_agg_info_1_1_agg_info__func}{Agg\+Info\+\_\+func}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+u8 \mbox{\hyperlink{struct_agg_info_aaa57d294016ac7e17e7cacaa7b25634e}{direct\+Mode}}
+\item 
+u8 \mbox{\hyperlink{struct_agg_info_a8173a7ea13c4a12ce4befbcb40719073}{use\+Sorting\+Idx}}
+\item 
+int \mbox{\hyperlink{struct_agg_info_a97ce74f509ca908a616c123e7196797b}{sorting\+Idx}}
+\item 
+int \mbox{\hyperlink{struct_agg_info_a7faac4c3996598960fc46f0c173b244c}{sorting\+Idx\+PTab}}
+\item 
+int \mbox{\hyperlink{struct_agg_info_a89925dccd1a0ec51d2a5a5dbaead66dc}{n\+Sorting\+Column}}
+\item 
+int \mbox{\hyperlink{struct_agg_info_aa9a656c3db8fe0f2905062bbcc55efdc}{mn\+Reg}}
+\item 
+int \mbox{\hyperlink{struct_agg_info_a7aec99396ee3da0bdd985685de1b9da2}{mx\+Reg}}
+\item 
+\mbox{\hyperlink{struct_expr_list}{Expr\+List}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_agg_info_aa8e942103d224c4db847743670907781}{p\+Group\+By}}
+\item 
+\Hypertarget{struct_agg_info_a52fa1a7eb3145c27be13b2bcccd57d62}\label{struct_agg_info_a52fa1a7eb3145c27be13b2bcccd57d62} 
+struct \mbox{\hyperlink{struct_agg_info_1_1_agg_info__col}{Agg\+Info\+::\+Agg\+Info\+\_\+col}} \texorpdfstring{$\ast$}{*} {\bfseries a\+Col}
+\item 
+int \mbox{\hyperlink{struct_agg_info_a9cbfa5fc33328cf3500426674e036a8b}{n\+Column}}
+\item 
+int \mbox{\hyperlink{struct_agg_info_ad2251760d95af9024f0a3170405cb53b}{n\+Accumulator}}
+\item 
+\Hypertarget{struct_agg_info_a4e201acd6a1f8aed360c58e45f47c803}\label{struct_agg_info_a4e201acd6a1f8aed360c58e45f47c803} 
+struct \mbox{\hyperlink{struct_agg_info_1_1_agg_info__func}{Agg\+Info\+::\+Agg\+Info\+\_\+func}} \texorpdfstring{$\ast$}{*} {\bfseries a\+Func}
+\item 
+int \mbox{\hyperlink{struct_agg_info_a5bfde7ca00d28da6edbda523ab038e38}{n\+Func}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l14555}{14555}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_agg_info_aaa57d294016ac7e17e7cacaa7b25634e}\label{struct_agg_info_aaa57d294016ac7e17e7cacaa7b25634e} 
+\index{AggInfo@{AggInfo}!directMode@{directMode}}
+\index{directMode@{directMode}!AggInfo@{AggInfo}}
+\doxysubsubsection{\texorpdfstring{directMode}{directMode}}
+{\footnotesize\ttfamily u8 Agg\+Info\+::direct\+Mode}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l14556}{14556}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_agg_info_aa9a656c3db8fe0f2905062bbcc55efdc}\label{struct_agg_info_aa9a656c3db8fe0f2905062bbcc55efdc} 
+\index{AggInfo@{AggInfo}!mnReg@{mnReg}}
+\index{mnReg@{mnReg}!AggInfo@{AggInfo}}
+\doxysubsubsection{\texorpdfstring{mnReg}{mnReg}}
+{\footnotesize\ttfamily int Agg\+Info\+::mn\+Reg}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l14563}{14563}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_agg_info_a7aec99396ee3da0bdd985685de1b9da2}\label{struct_agg_info_a7aec99396ee3da0bdd985685de1b9da2} 
+\index{AggInfo@{AggInfo}!mxReg@{mxReg}}
+\index{mxReg@{mxReg}!AggInfo@{AggInfo}}
+\doxysubsubsection{\texorpdfstring{mxReg}{mxReg}}
+{\footnotesize\ttfamily int Agg\+Info\+::mx\+Reg}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l14563}{14563}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_agg_info_ad2251760d95af9024f0a3170405cb53b}\label{struct_agg_info_ad2251760d95af9024f0a3170405cb53b} 
+\index{AggInfo@{AggInfo}!nAccumulator@{nAccumulator}}
+\index{nAccumulator@{nAccumulator}!AggInfo@{AggInfo}}
+\doxysubsubsection{\texorpdfstring{nAccumulator}{nAccumulator}}
+{\footnotesize\ttfamily int Agg\+Info\+::n\+Accumulator}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l14574}{14574}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_agg_info_a9cbfa5fc33328cf3500426674e036a8b}\label{struct_agg_info_a9cbfa5fc33328cf3500426674e036a8b} 
+\index{AggInfo@{AggInfo}!nColumn@{nColumn}}
+\index{nColumn@{nColumn}!AggInfo@{AggInfo}}
+\doxysubsubsection{\texorpdfstring{nColumn}{nColumn}}
+{\footnotesize\ttfamily int Agg\+Info\+::n\+Column}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l14573}{14573}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_agg_info_a5bfde7ca00d28da6edbda523ab038e38}\label{struct_agg_info_a5bfde7ca00d28da6edbda523ab038e38} 
+\index{AggInfo@{AggInfo}!nFunc@{nFunc}}
+\index{nFunc@{nFunc}!AggInfo@{AggInfo}}
+\doxysubsubsection{\texorpdfstring{nFunc}{nFunc}}
+{\footnotesize\ttfamily int Agg\+Info\+::n\+Func}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l14583}{14583}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_agg_info_a89925dccd1a0ec51d2a5a5dbaead66dc}\label{struct_agg_info_a89925dccd1a0ec51d2a5a5dbaead66dc} 
+\index{AggInfo@{AggInfo}!nSortingColumn@{nSortingColumn}}
+\index{nSortingColumn@{nSortingColumn}!AggInfo@{AggInfo}}
+\doxysubsubsection{\texorpdfstring{nSortingColumn}{nSortingColumn}}
+{\footnotesize\ttfamily int Agg\+Info\+::n\+Sorting\+Column}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l14562}{14562}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_agg_info_aa8e942103d224c4db847743670907781}\label{struct_agg_info_aa8e942103d224c4db847743670907781} 
+\index{AggInfo@{AggInfo}!pGroupBy@{pGroupBy}}
+\index{pGroupBy@{pGroupBy}!AggInfo@{AggInfo}}
+\doxysubsubsection{\texorpdfstring{pGroupBy}{pGroupBy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_expr_list}{Expr\+List}}\texorpdfstring{$\ast$}{*} Agg\+Info\+::p\+Group\+By}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l14564}{14564}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_agg_info_a97ce74f509ca908a616c123e7196797b}\label{struct_agg_info_a97ce74f509ca908a616c123e7196797b} 
+\index{AggInfo@{AggInfo}!sortingIdx@{sortingIdx}}
+\index{sortingIdx@{sortingIdx}!AggInfo@{AggInfo}}
+\doxysubsubsection{\texorpdfstring{sortingIdx}{sortingIdx}}
+{\footnotesize\ttfamily int Agg\+Info\+::sorting\+Idx}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l14560}{14560}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_agg_info_a7faac4c3996598960fc46f0c173b244c}\label{struct_agg_info_a7faac4c3996598960fc46f0c173b244c} 
+\index{AggInfo@{AggInfo}!sortingIdxPTab@{sortingIdxPTab}}
+\index{sortingIdxPTab@{sortingIdxPTab}!AggInfo@{AggInfo}}
+\doxysubsubsection{\texorpdfstring{sortingIdxPTab}{sortingIdxPTab}}
+{\footnotesize\ttfamily int Agg\+Info\+::sorting\+Idx\+PTab}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l14561}{14561}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_agg_info_a8173a7ea13c4a12ce4befbcb40719073}\label{struct_agg_info_a8173a7ea13c4a12ce4befbcb40719073} 
+\index{AggInfo@{AggInfo}!useSortingIdx@{useSortingIdx}}
+\index{useSortingIdx@{useSortingIdx}!AggInfo@{AggInfo}}
+\doxysubsubsection{\texorpdfstring{useSortingIdx}{useSortingIdx}}
+{\footnotesize\ttfamily u8 Agg\+Info\+::use\+Sorting\+Idx}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l14558}{14558}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

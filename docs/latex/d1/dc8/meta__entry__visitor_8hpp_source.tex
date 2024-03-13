@@ -1,0 +1,55 @@
+\doxysection{meta\+\_\+entry\+\_\+visitor.\+hpp}
+\hypertarget{meta__entry__visitor_8hpp_source}{}\label{meta__entry__visitor_8hpp_source}\index{inc/vcf/meta\_entry\_visitor.hpp@{inc/vcf/meta\_entry\_visitor.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ VCF\_META\_ENTRY\_VISITOR\_HPP}}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ VCF\_META\_ENTRY\_VISITOR\_HPP}}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <boost/variant/static\_visitor.hpp>}}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}file\_structure.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00027}00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00028}00028\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00029}00029\ \ \ \textcolor{keyword}{namespace\ }vcf\ }
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00030}00030\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00031}\mbox{\hyperlink{classebi_1_1vcf_1_1_meta_entry_visitor}{00031}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_meta_entry_visitor}{MetaEntryVisitor}}\ :\ \textcolor{keyword}{public}\ boost::static\_visitor<>}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00032}00032\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{MetaEntry}}\ entry;}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00035}00035\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_meta_entry_visitor}{MetaEntryVisitor}}(\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{MetaEntry}}\ \textcolor{keyword}{const}\ \&\ entry);}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator()(std::string\ \&\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator()(std::map<std::string,\ std::string>\ \&\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00041}00041\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_key\_is\_present(std::string\ \textcolor{keyword}{const}\ \&\ field,\ std::string\ \textcolor{keyword}{const}\ \&\ key,\ \textcolor{keywordtype}{int}\ key\_count)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_alt(std::map<std::string,\ std::string>\ \&\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_alt\_id(std::string\ \textcolor{keyword}{const}\ \&\ id\_field)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_contig(std::map<std::string,\ std::string>\ \&\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_filter(std::map<std::string,\ std::string>\ \&\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_filter\_id(std::string\ \textcolor{keyword}{const}\ \&\ id\_field)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_format(std::map<std::string,\ std::string>\ \&\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_format\_or\_info\_number(std::string\ \textcolor{keyword}{const}\ \&\ number\_field,\ std::string\ \textcolor{keyword}{const}\ \&\ field)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_format\_type(std::string\ \textcolor{keyword}{const}\ \&\ type\_field)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_info(std::map<std::string,\ std::string>\ \&\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_info\_type(std::string\ \textcolor{keyword}{const}\ \&\ type\_field)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_predefined\_tag(std::string\ \textcolor{keyword}{const}\ \&\ tag\_field,\ std::string\ \textcolor{keyword}{const}\ \&\ meta\_entry\_property,}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::string>\ \&\ meta\_entry,}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::pair<std::string,\ std::string>>\ \textcolor{keyword}{const}\ \&\ predefined\_meta\_entries)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_sample(std::map<std::string,\ std::string>\ \&\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00058}00058\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00060}00060\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00061}00061\ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00063}00063\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VCF\_META\_ENTRY\_VISITOR\_HPP}}
+\DoxyCodeLine{\Hypertarget{meta__entry__visitor_8hpp_source_l00064}00064\ }
+
+\end{DoxyCode}

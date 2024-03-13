@@ -1,0 +1,306 @@
+\doxysection{Wal Struct Reference}
+\hypertarget{struct_wal}{}\label{struct_wal}\index{Wal@{Wal}}
+
+
+Collaboration diagram for Wal\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d8/dd5/struct_wal__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structsqlite3__vfs}{sqlite3\+\_\+vfs}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_wal_a5431b060acbc998a7e3710587abaa11e}{p\+Vfs}}
+\item 
+\mbox{\hyperlink{structsqlite3__file}{sqlite3\+\_\+file}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_wal_a3a4d051c55228e554b36691c5095ed14}{p\+Db\+Fd}}
+\item 
+\mbox{\hyperlink{structsqlite3__file}{sqlite3\+\_\+file}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_wal_aea2a72ead42cfe57e3a6809e80884397}{p\+Wal\+Fd}}
+\item 
+u32 \mbox{\hyperlink{struct_wal_aae230a2317817739a5f08ebb28b644b0}{i\+Callback}}
+\item 
+i64 \mbox{\hyperlink{struct_wal_a413f9f82c15d31627a2ed6eac9b6cc27}{mx\+Wal\+Size}}
+\item 
+int \mbox{\hyperlink{struct_wal_ae3e69420adab92acd90dd7c03d37815f}{n\+Wi\+Data}}
+\item 
+int \mbox{\hyperlink{struct_wal_a901c02626270f4d51db89786e4994da9}{sz\+First\+Block}}
+\item 
+volatile u32 \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_wal_a2b0078e3adfd1fb21794561bb12bbfac}{ap\+Wi\+Data}}
+\item 
+u32 \mbox{\hyperlink{struct_wal_a771c3a8c81326babc7d623255a6034c5}{sz\+Page}}
+\item 
+i16 \mbox{\hyperlink{struct_wal_a260550c859ac7224fbdad0586dca664a}{read\+Lock}}
+\item 
+u8 \mbox{\hyperlink{struct_wal_ac1382875f5fe049ccf09f1c2d370c429}{sync\+Flags}}
+\item 
+u8 \mbox{\hyperlink{struct_wal_ada255c96ca65d9d8955bbf139af4e6f4}{exclusive\+Mode}}
+\item 
+u8 \mbox{\hyperlink{struct_wal_ad7f4ba84f07115b7ce3a6133479c9d24}{write\+Lock}}
+\item 
+u8 \mbox{\hyperlink{struct_wal_a29153bfb37a9a32f1171e5c1d10994d2}{ckpt\+Lock}}
+\item 
+u8 \mbox{\hyperlink{struct_wal_a38f0810e34bdc89acdf27574473c0495}{read\+Only}}
+\item 
+u8 \mbox{\hyperlink{struct_wal_a12870bbe7755271c94c3eb1fd0280c56}{truncate\+On\+Commit}}
+\item 
+u8 \mbox{\hyperlink{struct_wal_ae3de9666170c103a835a2c767932d3f9}{sync\+Header}}
+\item 
+u8 \mbox{\hyperlink{struct_wal_af10e79ca8fe617d7df706182ebdf7039}{pad\+To\+Sector\+Boundary}}
+\item 
+\mbox{\hyperlink{struct_wal_index_hdr}{Wal\+Index\+Hdr}} \mbox{\hyperlink{struct_wal_adbeef9e632541fbf07c926652b165906}{hdr}}
+\item 
+u32 \mbox{\hyperlink{struct_wal_a8062e125a5a4393c34cd1d9758a82e74}{min\+Frame}}
+\item 
+u32 \mbox{\hyperlink{struct_wal_a409c7d261a92893913e2e631974bf1aa}{i\+Re\+Cksum}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_wal_ac54961758701702d67eaf3ce15c69ea5}{z\+Wal\+Name}}
+\item 
+u32 \mbox{\hyperlink{struct_wal_a8fbe9b014342db76d8167b518b70acad}{n\+Ckpt}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53695}{53695}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_wal_a2b0078e3adfd1fb21794561bb12bbfac}\label{struct_wal_a2b0078e3adfd1fb21794561bb12bbfac} 
+\index{Wal@{Wal}!apWiData@{apWiData}}
+\index{apWiData@{apWiData}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{apWiData}{apWiData}}
+{\footnotesize\ttfamily volatile u32\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Wal\+::ap\+Wi\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53703}{53703}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_a29153bfb37a9a32f1171e5c1d10994d2}\label{struct_wal_a29153bfb37a9a32f1171e5c1d10994d2} 
+\index{Wal@{Wal}!ckptLock@{ckptLock}}
+\index{ckptLock@{ckptLock}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{ckptLock}{ckptLock}}
+{\footnotesize\ttfamily u8 Wal\+::ckpt\+Lock}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53709}{53709}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_ada255c96ca65d9d8955bbf139af4e6f4}\label{struct_wal_ada255c96ca65d9d8955bbf139af4e6f4} 
+\index{Wal@{Wal}!exclusiveMode@{exclusiveMode}}
+\index{exclusiveMode@{exclusiveMode}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{exclusiveMode}{exclusiveMode}}
+{\footnotesize\ttfamily u8 Wal\+::exclusive\+Mode}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53707}{53707}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_adbeef9e632541fbf07c926652b165906}\label{struct_wal_adbeef9e632541fbf07c926652b165906} 
+\index{Wal@{Wal}!hdr@{hdr}}
+\index{hdr@{hdr}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{hdr}{hdr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_wal_index_hdr}{Wal\+Index\+Hdr}} Wal\+::hdr}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53714}{53714}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_aae230a2317817739a5f08ebb28b644b0}\label{struct_wal_aae230a2317817739a5f08ebb28b644b0} 
+\index{Wal@{Wal}!iCallback@{iCallback}}
+\index{iCallback@{iCallback}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{iCallback}{iCallback}}
+{\footnotesize\ttfamily u32 Wal\+::i\+Callback}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53699}{53699}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_a409c7d261a92893913e2e631974bf1aa}\label{struct_wal_a409c7d261a92893913e2e631974bf1aa} 
+\index{Wal@{Wal}!iReCksum@{iReCksum}}
+\index{iReCksum@{iReCksum}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{iReCksum}{iReCksum}}
+{\footnotesize\ttfamily u32 Wal\+::i\+Re\+Cksum}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53716}{53716}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_a8062e125a5a4393c34cd1d9758a82e74}\label{struct_wal_a8062e125a5a4393c34cd1d9758a82e74} 
+\index{Wal@{Wal}!minFrame@{minFrame}}
+\index{minFrame@{minFrame}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{minFrame}{minFrame}}
+{\footnotesize\ttfamily u32 Wal\+::min\+Frame}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53715}{53715}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_a413f9f82c15d31627a2ed6eac9b6cc27}\label{struct_wal_a413f9f82c15d31627a2ed6eac9b6cc27} 
+\index{Wal@{Wal}!mxWalSize@{mxWalSize}}
+\index{mxWalSize@{mxWalSize}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{mxWalSize}{mxWalSize}}
+{\footnotesize\ttfamily i64 Wal\+::mx\+Wal\+Size}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53700}{53700}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_a8fbe9b014342db76d8167b518b70acad}\label{struct_wal_a8fbe9b014342db76d8167b518b70acad} 
+\index{Wal@{Wal}!nCkpt@{nCkpt}}
+\index{nCkpt@{nCkpt}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{nCkpt}{nCkpt}}
+{\footnotesize\ttfamily u32 Wal\+::n\+Ckpt}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53718}{53718}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_ae3e69420adab92acd90dd7c03d37815f}\label{struct_wal_ae3e69420adab92acd90dd7c03d37815f} 
+\index{Wal@{Wal}!nWiData@{nWiData}}
+\index{nWiData@{nWiData}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{nWiData}{nWiData}}
+{\footnotesize\ttfamily int Wal\+::n\+Wi\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53701}{53701}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_af10e79ca8fe617d7df706182ebdf7039}\label{struct_wal_af10e79ca8fe617d7df706182ebdf7039} 
+\index{Wal@{Wal}!padToSectorBoundary@{padToSectorBoundary}}
+\index{padToSectorBoundary@{padToSectorBoundary}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{padToSectorBoundary}{padToSectorBoundary}}
+{\footnotesize\ttfamily u8 Wal\+::pad\+To\+Sector\+Boundary}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53713}{53713}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_a3a4d051c55228e554b36691c5095ed14}\label{struct_wal_a3a4d051c55228e554b36691c5095ed14} 
+\index{Wal@{Wal}!pDbFd@{pDbFd}}
+\index{pDbFd@{pDbFd}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{pDbFd}{pDbFd}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsqlite3__file}{sqlite3\+\_\+file}}\texorpdfstring{$\ast$}{*} Wal\+::p\+Db\+Fd}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53697}{53697}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_a5431b060acbc998a7e3710587abaa11e}\label{struct_wal_a5431b060acbc998a7e3710587abaa11e} 
+\index{Wal@{Wal}!pVfs@{pVfs}}
+\index{pVfs@{pVfs}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{pVfs}{pVfs}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsqlite3__vfs}{sqlite3\+\_\+vfs}}\texorpdfstring{$\ast$}{*} Wal\+::p\+Vfs}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53696}{53696}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_aea2a72ead42cfe57e3a6809e80884397}\label{struct_wal_aea2a72ead42cfe57e3a6809e80884397} 
+\index{Wal@{Wal}!pWalFd@{pWalFd}}
+\index{pWalFd@{pWalFd}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{pWalFd}{pWalFd}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsqlite3__file}{sqlite3\+\_\+file}}\texorpdfstring{$\ast$}{*} Wal\+::p\+Wal\+Fd}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53698}{53698}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_a260550c859ac7224fbdad0586dca664a}\label{struct_wal_a260550c859ac7224fbdad0586dca664a} 
+\index{Wal@{Wal}!readLock@{readLock}}
+\index{readLock@{readLock}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{readLock}{readLock}}
+{\footnotesize\ttfamily i16 Wal\+::read\+Lock}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53705}{53705}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_a38f0810e34bdc89acdf27574473c0495}\label{struct_wal_a38f0810e34bdc89acdf27574473c0495} 
+\index{Wal@{Wal}!readOnly@{readOnly}}
+\index{readOnly@{readOnly}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{readOnly}{readOnly}}
+{\footnotesize\ttfamily u8 Wal\+::read\+Only}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53710}{53710}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_ac1382875f5fe049ccf09f1c2d370c429}\label{struct_wal_ac1382875f5fe049ccf09f1c2d370c429} 
+\index{Wal@{Wal}!syncFlags@{syncFlags}}
+\index{syncFlags@{syncFlags}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{syncFlags}{syncFlags}}
+{\footnotesize\ttfamily u8 Wal\+::sync\+Flags}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53706}{53706}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_ae3de9666170c103a835a2c767932d3f9}\label{struct_wal_ae3de9666170c103a835a2c767932d3f9} 
+\index{Wal@{Wal}!syncHeader@{syncHeader}}
+\index{syncHeader@{syncHeader}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{syncHeader}{syncHeader}}
+{\footnotesize\ttfamily u8 Wal\+::sync\+Header}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53712}{53712}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_a901c02626270f4d51db89786e4994da9}\label{struct_wal_a901c02626270f4d51db89786e4994da9} 
+\index{Wal@{Wal}!szFirstBlock@{szFirstBlock}}
+\index{szFirstBlock@{szFirstBlock}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{szFirstBlock}{szFirstBlock}}
+{\footnotesize\ttfamily int Wal\+::sz\+First\+Block}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53702}{53702}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_a771c3a8c81326babc7d623255a6034c5}\label{struct_wal_a771c3a8c81326babc7d623255a6034c5} 
+\index{Wal@{Wal}!szPage@{szPage}}
+\index{szPage@{szPage}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{szPage}{szPage}}
+{\footnotesize\ttfamily u32 Wal\+::sz\+Page}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53704}{53704}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_a12870bbe7755271c94c3eb1fd0280c56}\label{struct_wal_a12870bbe7755271c94c3eb1fd0280c56} 
+\index{Wal@{Wal}!truncateOnCommit@{truncateOnCommit}}
+\index{truncateOnCommit@{truncateOnCommit}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{truncateOnCommit}{truncateOnCommit}}
+{\footnotesize\ttfamily u8 Wal\+::truncate\+On\+Commit}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53711}{53711}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_ad7f4ba84f07115b7ce3a6133479c9d24}\label{struct_wal_ad7f4ba84f07115b7ce3a6133479c9d24} 
+\index{Wal@{Wal}!writeLock@{writeLock}}
+\index{writeLock@{writeLock}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{writeLock}{writeLock}}
+{\footnotesize\ttfamily u8 Wal\+::write\+Lock}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53708}{53708}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_ac54961758701702d67eaf3ce15c69ea5}\label{struct_wal_ac54961758701702d67eaf3ce15c69ea5} 
+\index{Wal@{Wal}!zWalName@{zWalName}}
+\index{zWalName@{zWalName}!Wal@{Wal}}
+\doxysubsubsection{\texorpdfstring{zWalName}{zWalName}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} Wal\+::z\+Wal\+Name}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53717}{53717}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

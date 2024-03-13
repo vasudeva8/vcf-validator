@@ -1,0 +1,88 @@
+\doxysection{ebi\+::vcf\+::Summary\+Tracker Class Reference}
+\hypertarget{classebi_1_1vcf_1_1_summary_tracker}{}\label{classebi_1_1vcf_1_1_summary_tracker}\index{ebi::vcf::SummaryTracker@{ebi::vcf::SummaryTracker}}
+
+
+Collaboration diagram for ebi\+::vcf\+::Summary\+Tracker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=347pt]{db/d49/classebi_1_1vcf_1_1_summary_tracker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_summary_tracker_aee0af8e7f24db0441bcc7dd82ed503e4}{add\+\_\+to\+\_\+summary}} (std\+::string const \&error\+\_\+message, size\+\_\+t error\+\_\+line)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{structebi_1_1vcf_1_1_error_summary}{Error\+Summary}} $>$ \mbox{\hyperlink{classebi_1_1vcf_1_1_summary_tracker_a79b580dc833acdf4e87b3597dc80daa5}{error\+\_\+summary\+\_\+report}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classebi_1_1vcf_1_1_summary_tracker_a910d0712c1934f5a346010a991447ab5}{error\+\_\+order}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that ensures similar kind of errors are reported only once.
+
+The intended algorithm is that errors and warnings will be printed only the first time they occur, and won\textquotesingle{}t be printed again.
+
+The summary displays the count(number of times it occurs) of the error, and the line number of its first occurrence. We distinguish between different types of errors based on their simple error message (which contains no details). The {\ttfamily error\+\_\+order} basically maintains the order in which these errors appear for the first time. 
+
+Definition at line \mbox{\hyperlink{summary__report__writer_8hpp_source_l00047}{47}} of file \mbox{\hyperlink{summary__report__writer_8hpp_source}{summary\+\_\+report\+\_\+writer.\+hpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_summary_tracker_aee0af8e7f24db0441bcc7dd82ed503e4}\label{classebi_1_1vcf_1_1_summary_tracker_aee0af8e7f24db0441bcc7dd82ed503e4} 
+\index{ebi::vcf::SummaryTracker@{ebi::vcf::SummaryTracker}!add\_to\_summary@{add\_to\_summary}}
+\index{add\_to\_summary@{add\_to\_summary}!ebi::vcf::SummaryTracker@{ebi::vcf::SummaryTracker}}
+\doxysubsubsection{\texorpdfstring{add\_to\_summary()}{add\_to\_summary()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Summary\+Tracker\+::add\+\_\+to\+\_\+summary (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{error\+\_\+message,  }\item[{size\+\_\+t}]{error\+\_\+line }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{summary__report__writer_8hpp_source_l00053}{53}} of file \mbox{\hyperlink{summary__report__writer_8hpp_source}{summary\+\_\+report\+\_\+writer.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (error\_summary\_report.find(error\_message)\ ==\ error\_summary\_report.end())\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\_order.push\_back(error\_message);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\_summary\_report[error\_message]\ =\ ErrorSummary\{1,\ error\_line\};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\_summary\_report[error\_message].occurrences++;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_summary_tracker_a910d0712c1934f5a346010a991447ab5}\label{classebi_1_1vcf_1_1_summary_tracker_a910d0712c1934f5a346010a991447ab5} 
+\index{ebi::vcf::SummaryTracker@{ebi::vcf::SummaryTracker}!error\_order@{error\_order}}
+\index{error\_order@{error\_order}!ebi::vcf::SummaryTracker@{ebi::vcf::SummaryTracker}}
+\doxysubsubsection{\texorpdfstring{error\_order}{error\_order}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ ebi\+::vcf\+::\+Summary\+Tracker\+::error\+\_\+order}
+
+
+
+Definition at line \mbox{\hyperlink{summary__report__writer_8hpp_source_l00051}{51}} of file \mbox{\hyperlink{summary__report__writer_8hpp_source}{summary\+\_\+report\+\_\+writer.\+hpp}}.
+
+\Hypertarget{classebi_1_1vcf_1_1_summary_tracker_a79b580dc833acdf4e87b3597dc80daa5}\label{classebi_1_1vcf_1_1_summary_tracker_a79b580dc833acdf4e87b3597dc80daa5} 
+\index{ebi::vcf::SummaryTracker@{ebi::vcf::SummaryTracker}!error\_summary\_report@{error\_summary\_report}}
+\index{error\_summary\_report@{error\_summary\_report}!ebi::vcf::SummaryTracker@{ebi::vcf::SummaryTracker}}
+\doxysubsubsection{\texorpdfstring{error\_summary\_report}{error\_summary\_report}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, \mbox{\hyperlink{structebi_1_1vcf_1_1_error_summary}{Error\+Summary}}$>$ ebi\+::vcf\+::\+Summary\+Tracker\+::error\+\_\+summary\+\_\+report}
+
+
+
+Definition at line \mbox{\hyperlink{summary__report__writer_8hpp_source_l00050}{50}} of file \mbox{\hyperlink{summary__report__writer_8hpp_source}{summary\+\_\+report\+\_\+writer.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/summary\+\_\+report\+\_\+writer.\+hpp\end{DoxyCompactItemize}

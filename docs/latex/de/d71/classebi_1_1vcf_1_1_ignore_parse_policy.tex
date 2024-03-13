@@ -1,0 +1,285 @@
+\doxysection{ebi\+::vcf\+::Ignore\+Parse\+Policy Class Reference}
+\hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy}{}\label{classebi_1_1vcf_1_1_ignore_parse_policy}\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+
+
+Collaboration diagram for ebi\+::vcf\+::Ignore\+Parse\+Policy\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{d4/d9f/classebi_1_1vcf_1_1_ignore_parse_policy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_a791187c0f7522479f094a56e7373e91f}{handle\+\_\+token\+\_\+begin}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_a3802e3b983135860406679dfba3cbc69}{handle\+\_\+token\+\_\+char}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state, char c)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_a5ab01bc69b9cbd7f8d363fb6baa7101e}{handle\+\_\+token\+\_\+end}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_a69668c147e2ac44695f85fec6bf480e0}{handle\+\_\+token\+\_\+end}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state, std\+::string token)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_af578a28fe482dcf498b426ea43c45f1b}{handle\+\_\+newline}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_a5be2123a1feb287fffba1d87fb533374}{handle\+\_\+fileformat}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_a711bbf9f458d8da22a273db1836914a6}{handle\+\_\+meta\+\_\+typeid}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_a6b200fdf49211097b68065219bffe5f3}{handle\+\_\+meta\+\_\+typeid}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state, std\+::string type\+\_\+id)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_a606220a360bcb630abce05c84f0bd15a}{handle\+\_\+meta\+\_\+line}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_a98df41b1893733997bde4b75bd512faf}{handle\+\_\+sample\+\_\+name}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_a63306e3da43350a163d4cf26c7d21c1f}{handle\+\_\+header\+\_\+line}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_ae09f83ad004bdf519d7e9c067a87d3bc}{handle\+\_\+column\+\_\+end}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state, size\+\_\+t n\+\_\+columns)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_a5bc72f95310e4865af9df57113073d6a}{handle\+\_\+body\+\_\+line}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&state)
+\item 
+std\+::string \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_a8735aa68ac67d2ae165896d5f078f551}{current\+\_\+token}} () const
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classebi_1_1vcf_1_1_ignore_parse_policy_ae3946c604077cac1420af5007793768a}{column\+\_\+tokens}} (std\+::string const \&column) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parsing policy that ignores the parsed tokens 
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00037}{37}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_ae3946c604077cac1420af5007793768a}\label{classebi_1_1vcf_1_1_ignore_parse_policy_ae3946c604077cac1420af5007793768a} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!column\_tokens@{column\_tokens}}
+\index{column\_tokens@{column\_tokens}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{column\_tokens()}{column\_tokens()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::column\+\_\+tokens (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{column }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00060}{60}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00060\ \{\ \textcolor{keywordflow}{return}\ \{\};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_a8735aa68ac67d2ae165896d5f078f551}\label{classebi_1_1vcf_1_1_ignore_parse_policy_a8735aa68ac67d2ae165896d5f078f551} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!current\_token@{current\_token}}
+\index{current\_token@{current\_token}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{current\_token()}{current\_token()}}
+{\footnotesize\ttfamily std\+::string ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::current\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00058}{58}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00058\ \{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_a5bc72f95310e4865af9df57113073d6a}\label{classebi_1_1vcf_1_1_ignore_parse_policy_a5bc72f95310e4865af9df57113073d6a} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!handle\_body\_line@{handle\_body\_line}}
+\index{handle\_body\_line@{handle\_body\_line}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_body\_line()}{handle\_body\_line()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::handle\+\_\+body\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00056}{56}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00056\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_ae09f83ad004bdf519d7e9c067a87d3bc}\label{classebi_1_1vcf_1_1_ignore_parse_policy_ae09f83ad004bdf519d7e9c067a87d3bc} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!handle\_column\_end@{handle\_column\_end}}
+\index{handle\_column\_end@{handle\_column\_end}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_column\_end()}{handle\_column\_end()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::handle\+\_\+column\+\_\+end (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state,  }\item[{size\+\_\+t}]{n\+\_\+columns }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00055}{55}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00055\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_a5be2123a1feb287fffba1d87fb533374}\label{classebi_1_1vcf_1_1_ignore_parse_policy_a5be2123a1feb287fffba1d87fb533374} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!handle\_fileformat@{handle\_fileformat}}
+\index{handle\_fileformat@{handle\_fileformat}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_fileformat()}{handle\_fileformat()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::handle\+\_\+fileformat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00046}{46}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_a63306e3da43350a163d4cf26c7d21c1f}\label{classebi_1_1vcf_1_1_ignore_parse_policy_a63306e3da43350a163d4cf26c7d21c1f} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!handle\_header\_line@{handle\_header\_line}}
+\index{handle\_header\_line@{handle\_header\_line}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_header\_line()}{handle\_header\_line()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::handle\+\_\+header\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00053}{53}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00053\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_a606220a360bcb630abce05c84f0bd15a}\label{classebi_1_1vcf_1_1_ignore_parse_policy_a606220a360bcb630abce05c84f0bd15a} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!handle\_meta\_line@{handle\_meta\_line}}
+\index{handle\_meta\_line@{handle\_meta\_line}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_meta\_line()}{handle\_meta\_line()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::handle\+\_\+meta\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00050}{50}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00050\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_a711bbf9f458d8da22a273db1836914a6}\label{classebi_1_1vcf_1_1_ignore_parse_policy_a711bbf9f458d8da22a273db1836914a6} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!handle\_meta\_typeid@{handle\_meta\_typeid}}
+\index{handle\_meta\_typeid@{handle\_meta\_typeid}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_meta\_typeid()}{handle\_meta\_typeid()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::handle\+\_\+meta\+\_\+typeid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00048}{48}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_a6b200fdf49211097b68065219bffe5f3}\label{classebi_1_1vcf_1_1_ignore_parse_policy_a6b200fdf49211097b68065219bffe5f3} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!handle\_meta\_typeid@{handle\_meta\_typeid}}
+\index{handle\_meta\_typeid@{handle\_meta\_typeid}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_meta\_typeid()}{handle\_meta\_typeid()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::handle\+\_\+meta\+\_\+typeid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state,  }\item[{std\+::string}]{type\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00049}{49}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00049\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_af578a28fe482dcf498b426ea43c45f1b}\label{classebi_1_1vcf_1_1_ignore_parse_policy_af578a28fe482dcf498b426ea43c45f1b} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!handle\_newline@{handle\_newline}}
+\index{handle\_newline@{handle\_newline}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_newline()}{handle\_newline()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::handle\+\_\+newline (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00044}{44}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_a98df41b1893733997bde4b75bd512faf}\label{classebi_1_1vcf_1_1_ignore_parse_policy_a98df41b1893733997bde4b75bd512faf} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!handle\_sample\_name@{handle\_sample\_name}}
+\index{handle\_sample\_name@{handle\_sample\_name}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_sample\_name()}{handle\_sample\_name()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::handle\+\_\+sample\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00052}{52}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_a791187c0f7522479f094a56e7373e91f}\label{classebi_1_1vcf_1_1_ignore_parse_policy_a791187c0f7522479f094a56e7373e91f} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!handle\_token\_begin@{handle\_token\_begin}}
+\index{handle\_token\_begin@{handle\_token\_begin}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_token\_begin()}{handle\_token\_begin()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::handle\+\_\+token\+\_\+begin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00040}{40}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00040\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_a3802e3b983135860406679dfba3cbc69}\label{classebi_1_1vcf_1_1_ignore_parse_policy_a3802e3b983135860406679dfba3cbc69} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!handle\_token\_char@{handle\_token\_char}}
+\index{handle\_token\_char@{handle\_token\_char}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_token\_char()}{handle\_token\_char()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::handle\+\_\+token\+\_\+char (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state,  }\item[{char}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00041}{41}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00041\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_a5ab01bc69b9cbd7f8d363fb6baa7101e}\label{classebi_1_1vcf_1_1_ignore_parse_policy_a5ab01bc69b9cbd7f8d363fb6baa7101e} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!handle\_token\_end@{handle\_token\_end}}
+\index{handle\_token\_end@{handle\_token\_end}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_token\_end()}{handle\_token\_end()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::handle\+\_\+token\+\_\+end (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00042}{42}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_ignore_parse_policy_a69668c147e2ac44695f85fec6bf480e0}\label{classebi_1_1vcf_1_1_ignore_parse_policy_a69668c147e2ac44695f85fec6bf480e0} 
+\index{ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}!handle\_token\_end@{handle\_token\_end}}
+\index{handle\_token\_end@{handle\_token\_end}!ebi::vcf::IgnoreParsePolicy@{ebi::vcf::IgnoreParsePolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_token\_end()}{handle\_token\_end()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Ignore\+Parse\+Policy\+::handle\+\_\+token\+\_\+end (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state,  }\item[{std\+::string}]{token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{parse__policy_8hpp_source_l00043}{43}} of file \mbox{\hyperlink{parse__policy_8hpp_source}{parse\+\_\+policy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043\ \{\}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/parse\+\_\+policy.\+hpp\end{DoxyCompactItemize}

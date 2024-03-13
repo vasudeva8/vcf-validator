@@ -1,0 +1,138 @@
+\doxysection{Sort\+Subtask Struct Reference}
+\hypertarget{struct_sort_subtask}{}\label{struct_sort_subtask}\index{SortSubtask@{SortSubtask}}
+
+
+Collaboration diagram for Sort\+Subtask\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d0/df2/struct_sort_subtask__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_s_q_lite_thread}{SQLite\+Thread}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_sort_subtask_abb534010ac35e0c37e41c26712e7b58c}{p\+Thread}}
+\item 
+int \mbox{\hyperlink{struct_sort_subtask_a156fc75053f13e877c36d80885338060}{b\+Done}}
+\item 
+\mbox{\hyperlink{struct_vdbe_sorter}{Vdbe\+Sorter}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_sort_subtask_a2a8ec6b4b0d29090e3b33b1a6647655a}{p\+Sorter}}
+\item 
+\mbox{\hyperlink{struct_unpacked_record}{Unpacked\+Record}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_sort_subtask_af2312bacbb7e4cbe905eae20a60a3f39}{p\+Unpacked}}
+\item 
+\mbox{\hyperlink{struct_sorter_list}{Sorter\+List}} \mbox{\hyperlink{struct_sort_subtask_a0a79fd21798a08ceede3febbd08c88a2}{list}}
+\item 
+int \mbox{\hyperlink{struct_sort_subtask_a6ecceaeda562346b298aa9fb95355071}{n\+PMA}}
+\item 
+Sorter\+Compare \mbox{\hyperlink{struct_sort_subtask_a42bfd224f9e8125c22c2cc66f865d9af}{x\+Compare}}
+\item 
+\mbox{\hyperlink{struct_sorter_file}{Sorter\+File}} \mbox{\hyperlink{struct_sort_subtask_a077f999ff1e4148e48bd8df25092fd85}{file}}
+\item 
+\mbox{\hyperlink{struct_sorter_file}{Sorter\+File}} \mbox{\hyperlink{struct_sort_subtask_a23b46687f7a96ef1052a062f8097234e}{file2}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84413}{84413}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_sort_subtask_a156fc75053f13e877c36d80885338060}\label{struct_sort_subtask_a156fc75053f13e877c36d80885338060} 
+\index{SortSubtask@{SortSubtask}!bDone@{bDone}}
+\index{bDone@{bDone}!SortSubtask@{SortSubtask}}
+\doxysubsubsection{\texorpdfstring{bDone}{bDone}}
+{\footnotesize\ttfamily int Sort\+Subtask\+::b\+Done}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84415}{84415}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_sort_subtask_a077f999ff1e4148e48bd8df25092fd85}\label{struct_sort_subtask_a077f999ff1e4148e48bd8df25092fd85} 
+\index{SortSubtask@{SortSubtask}!file@{file}}
+\index{file@{file}!SortSubtask@{SortSubtask}}
+\doxysubsubsection{\texorpdfstring{file}{file}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_sorter_file}{Sorter\+File}} Sort\+Subtask\+::file}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84421}{84421}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_sort_subtask_a23b46687f7a96ef1052a062f8097234e}\label{struct_sort_subtask_a23b46687f7a96ef1052a062f8097234e} 
+\index{SortSubtask@{SortSubtask}!file2@{file2}}
+\index{file2@{file2}!SortSubtask@{SortSubtask}}
+\doxysubsubsection{\texorpdfstring{file2}{file2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_sorter_file}{Sorter\+File}} Sort\+Subtask\+::file2}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84422}{84422}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_sort_subtask_a0a79fd21798a08ceede3febbd08c88a2}\label{struct_sort_subtask_a0a79fd21798a08ceede3febbd08c88a2} 
+\index{SortSubtask@{SortSubtask}!list@{list}}
+\index{list@{list}!SortSubtask@{SortSubtask}}
+\doxysubsubsection{\texorpdfstring{list}{list}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_sorter_list}{Sorter\+List}} Sort\+Subtask\+::list}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84418}{84418}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_sort_subtask_a6ecceaeda562346b298aa9fb95355071}\label{struct_sort_subtask_a6ecceaeda562346b298aa9fb95355071} 
+\index{SortSubtask@{SortSubtask}!nPMA@{nPMA}}
+\index{nPMA@{nPMA}!SortSubtask@{SortSubtask}}
+\doxysubsubsection{\texorpdfstring{nPMA}{nPMA}}
+{\footnotesize\ttfamily int Sort\+Subtask\+::n\+PMA}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84419}{84419}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_sort_subtask_a2a8ec6b4b0d29090e3b33b1a6647655a}\label{struct_sort_subtask_a2a8ec6b4b0d29090e3b33b1a6647655a} 
+\index{SortSubtask@{SortSubtask}!pSorter@{pSorter}}
+\index{pSorter@{pSorter}!SortSubtask@{SortSubtask}}
+\doxysubsubsection{\texorpdfstring{pSorter}{pSorter}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vdbe_sorter}{Vdbe\+Sorter}}\texorpdfstring{$\ast$}{*} Sort\+Subtask\+::p\+Sorter}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84416}{84416}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_sort_subtask_abb534010ac35e0c37e41c26712e7b58c}\label{struct_sort_subtask_abb534010ac35e0c37e41c26712e7b58c} 
+\index{SortSubtask@{SortSubtask}!pThread@{pThread}}
+\index{pThread@{pThread}!SortSubtask@{SortSubtask}}
+\doxysubsubsection{\texorpdfstring{pThread}{pThread}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_s_q_lite_thread}{SQLite\+Thread}}\texorpdfstring{$\ast$}{*} Sort\+Subtask\+::p\+Thread}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84414}{84414}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_sort_subtask_af2312bacbb7e4cbe905eae20a60a3f39}\label{struct_sort_subtask_af2312bacbb7e4cbe905eae20a60a3f39} 
+\index{SortSubtask@{SortSubtask}!pUnpacked@{pUnpacked}}
+\index{pUnpacked@{pUnpacked}!SortSubtask@{SortSubtask}}
+\doxysubsubsection{\texorpdfstring{pUnpacked}{pUnpacked}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_unpacked_record}{Unpacked\+Record}}\texorpdfstring{$\ast$}{*} Sort\+Subtask\+::p\+Unpacked}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84417}{84417}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_sort_subtask_a42bfd224f9e8125c22c2cc66f865d9af}\label{struct_sort_subtask_a42bfd224f9e8125c22c2cc66f865d9af} 
+\index{SortSubtask@{SortSubtask}!xCompare@{xCompare}}
+\index{xCompare@{xCompare}!SortSubtask@{SortSubtask}}
+\doxysubsubsection{\texorpdfstring{xCompare}{xCompare}}
+{\footnotesize\ttfamily Sorter\+Compare Sort\+Subtask\+::x\+Compare}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l84420}{84420}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

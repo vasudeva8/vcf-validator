@@ -1,0 +1,150 @@
+\doxysection{Trigger\+Step Struct Reference}
+\hypertarget{struct_trigger_step}{}\label{struct_trigger_step}\index{TriggerStep@{TriggerStep}}
+
+
+Collaboration diagram for Trigger\+Step\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d5/da4/struct_trigger_step__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+u8 \mbox{\hyperlink{struct_trigger_step_a20269855c80d869d498fcb93401832fd}{op}}
+\item 
+u8 \mbox{\hyperlink{struct_trigger_step_a4ed8b2571fde96e84f637184453e73e3}{orconf}}
+\item 
+\mbox{\hyperlink{struct_trigger}{Trigger}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_trigger_step_a70671e85796776db06c732ab6ae4ae0d}{p\+Trig}}
+\item 
+\mbox{\hyperlink{struct_select}{Select}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_trigger_step_a90bf3353653cedf364a7fb2eb89a19c4}{p\+Select}}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_trigger_step_a5e48fd22b4e42ca72ae6e505861483df}{z\+Target}}
+\item 
+\mbox{\hyperlink{struct_expr}{Expr}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_trigger_step_ad4c293b04dfda535f3aad5b9e02726c7}{p\+Where}}
+\item 
+\mbox{\hyperlink{struct_expr_list}{Expr\+List}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_trigger_step_a607602af65ecf6c7e6cac4ea8532ac1d}{p\+Expr\+List}}
+\item 
+\mbox{\hyperlink{struct_id_list}{Id\+List}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_trigger_step_a6b91bf578544104f8bd4bd5b958ddd8c}{p\+Id\+List}}
+\item 
+\mbox{\hyperlink{struct_trigger_step}{Trigger\+Step}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_trigger_step_a0757a0d22dbe2f7f57706014dd35759b}{p\+Next}}
+\item 
+\mbox{\hyperlink{struct_trigger_step}{Trigger\+Step}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_trigger_step_a0aae9ea7f436881c0e9e614476a69584}{p\+Last}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15505}{15505}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_trigger_step_a20269855c80d869d498fcb93401832fd}\label{struct_trigger_step_a20269855c80d869d498fcb93401832fd} 
+\index{TriggerStep@{TriggerStep}!op@{op}}
+\index{op@{op}!TriggerStep@{TriggerStep}}
+\doxysubsubsection{\texorpdfstring{op}{op}}
+{\footnotesize\ttfamily u8 Trigger\+Step\+::op}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15506}{15506}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_trigger_step_a4ed8b2571fde96e84f637184453e73e3}\label{struct_trigger_step_a4ed8b2571fde96e84f637184453e73e3} 
+\index{TriggerStep@{TriggerStep}!orconf@{orconf}}
+\index{orconf@{orconf}!TriggerStep@{TriggerStep}}
+\doxysubsubsection{\texorpdfstring{orconf}{orconf}}
+{\footnotesize\ttfamily u8 Trigger\+Step\+::orconf}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15507}{15507}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_trigger_step_a607602af65ecf6c7e6cac4ea8532ac1d}\label{struct_trigger_step_a607602af65ecf6c7e6cac4ea8532ac1d} 
+\index{TriggerStep@{TriggerStep}!pExprList@{pExprList}}
+\index{pExprList@{pExprList}!TriggerStep@{TriggerStep}}
+\doxysubsubsection{\texorpdfstring{pExprList}{pExprList}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_expr_list}{Expr\+List}}\texorpdfstring{$\ast$}{*} Trigger\+Step\+::p\+Expr\+List}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15512}{15512}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_trigger_step_a6b91bf578544104f8bd4bd5b958ddd8c}\label{struct_trigger_step_a6b91bf578544104f8bd4bd5b958ddd8c} 
+\index{TriggerStep@{TriggerStep}!pIdList@{pIdList}}
+\index{pIdList@{pIdList}!TriggerStep@{TriggerStep}}
+\doxysubsubsection{\texorpdfstring{pIdList}{pIdList}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_id_list}{Id\+List}}\texorpdfstring{$\ast$}{*} Trigger\+Step\+::p\+Id\+List}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15513}{15513}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_trigger_step_a0aae9ea7f436881c0e9e614476a69584}\label{struct_trigger_step_a0aae9ea7f436881c0e9e614476a69584} 
+\index{TriggerStep@{TriggerStep}!pLast@{pLast}}
+\index{pLast@{pLast}!TriggerStep@{TriggerStep}}
+\doxysubsubsection{\texorpdfstring{pLast}{pLast}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_trigger_step}{Trigger\+Step}}\texorpdfstring{$\ast$}{*} Trigger\+Step\+::p\+Last}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15515}{15515}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_trigger_step_a0757a0d22dbe2f7f57706014dd35759b}\label{struct_trigger_step_a0757a0d22dbe2f7f57706014dd35759b} 
+\index{TriggerStep@{TriggerStep}!pNext@{pNext}}
+\index{pNext@{pNext}!TriggerStep@{TriggerStep}}
+\doxysubsubsection{\texorpdfstring{pNext}{pNext}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_trigger_step}{Trigger\+Step}}\texorpdfstring{$\ast$}{*} Trigger\+Step\+::p\+Next}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15514}{15514}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_trigger_step_a90bf3353653cedf364a7fb2eb89a19c4}\label{struct_trigger_step_a90bf3353653cedf364a7fb2eb89a19c4} 
+\index{TriggerStep@{TriggerStep}!pSelect@{pSelect}}
+\index{pSelect@{pSelect}!TriggerStep@{TriggerStep}}
+\doxysubsubsection{\texorpdfstring{pSelect}{pSelect}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_select}{Select}}\texorpdfstring{$\ast$}{*} Trigger\+Step\+::p\+Select}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15509}{15509}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_trigger_step_a70671e85796776db06c732ab6ae4ae0d}\label{struct_trigger_step_a70671e85796776db06c732ab6ae4ae0d} 
+\index{TriggerStep@{TriggerStep}!pTrig@{pTrig}}
+\index{pTrig@{pTrig}!TriggerStep@{TriggerStep}}
+\doxysubsubsection{\texorpdfstring{pTrig}{pTrig}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_trigger}{Trigger}}\texorpdfstring{$\ast$}{*} Trigger\+Step\+::p\+Trig}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15508}{15508}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_trigger_step_ad4c293b04dfda535f3aad5b9e02726c7}\label{struct_trigger_step_ad4c293b04dfda535f3aad5b9e02726c7} 
+\index{TriggerStep@{TriggerStep}!pWhere@{pWhere}}
+\index{pWhere@{pWhere}!TriggerStep@{TriggerStep}}
+\doxysubsubsection{\texorpdfstring{pWhere}{pWhere}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_expr}{Expr}}\texorpdfstring{$\ast$}{*} Trigger\+Step\+::p\+Where}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15511}{15511}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_trigger_step_a5e48fd22b4e42ca72ae6e505861483df}\label{struct_trigger_step_a5e48fd22b4e42ca72ae6e505861483df} 
+\index{TriggerStep@{TriggerStep}!zTarget@{zTarget}}
+\index{zTarget@{zTarget}!TriggerStep@{TriggerStep}}
+\doxysubsubsection{\texorpdfstring{zTarget}{zTarget}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} Trigger\+Step\+::z\+Target}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15510}{15510}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

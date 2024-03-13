@@ -1,0 +1,229 @@
+\doxysection{report\+\_\+writer\+\_\+test.\+cpp}
+\hypertarget{report__writer__test_8cpp_source}{}\label{report__writer__test_8cpp_source}\index{test/vcf/report\_writer\_test.cpp@{test/vcf/report\_writer\_test.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <boost/filesystem.hpp>}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}catch/catch.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}test\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}vcf/error.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00028}00028\ \textcolor{preprocessor}{\#include\ "{}vcf/file\_structure.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00029}00029\ \textcolor{preprocessor}{\#include\ "{}vcf/odb\_report.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00030}00030\ \textcolor{preprocessor}{\#include\ "{}vcf/report\_writer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00031}00031\ \textcolor{preprocessor}{\#include\ "{}vcf/summary\_report\_writer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}vcf/validator.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00034}00034\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00035}00035\ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00036}00036\ \ \ \textcolor{keywordtype}{bool}\ is\_valid(std::string\ path,\ std::unique\_ptr<ebi::vcf::ReportWriter>\ output)}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00037}00037\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00038}00038\ \ \ \ \ \ \ std::ifstream\ input\{path\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00039}00039\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!input)\ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}file\ not\ found:\ "{}}\ +\ path);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00041}00041\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00042}00042\ \ \ \ \ \ \ std::vector<std::unique\_ptr<vcf::ReportWriter>>\ outputs;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00043}00043\ \ \ \ \ \ \ outputs.push\_back(std::move(output));}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00045}00045\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ebi::vcf::is\_valid\_vcf\_file(input,\ path,\ vcf::ValidationLevel::warning,\ outputs,\ vcf::AdditionalChecks());}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00046}00046\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00048}00048\ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Unit\ test:\ odb"{}},\ \textcolor{stringliteral}{"{}[output]"{}})}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00049}00049\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00050}00050\ \ \ \ \ \ \ std::string\ db\_dir\ =\ boost::filesystem::temp\_directory\_path().string()\ +\ \textcolor{stringliteral}{"{}/vcf\_db"{}};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00051}00051\ \ \ \ \ \ \ boost::filesystem::path\ db\_dir\_path(db\_dir);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00052}00052\ \ \ \ \ \ \ boost::filesystem::create\_directory(db\_dir);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00054}00054\ \ \ \ \ \ \ \textcolor{comment}{//this\ was\ tried\ because\ it\ boost::filesystem::remove\ was\ failing\ to\ remove\ file\ already\ opened}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00055}00055\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ epoch\ =\ std::chrono::system\_clock::now().time\_since\_epoch();}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00056}00056\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ timestamp\ =\ std::chrono::duration\_cast<std::chrono::milliseconds>(epoch).count();}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00057}00057\ \ \ \ \ \ \ std::string\ db\_name\ =\ db\_dir\ \ +\ \textcolor{stringliteral}{"{}/sqlite\_test.errors."{}}\ +\ std::to\_string(timestamp)\ +\ \textcolor{stringliteral}{"{}.odb.db"{}};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00058}00058\ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w}{ebi::vcf::OdbReportRW}}\ errorDAO\{db\_name\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00060}00060\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Write\ and\ count\ errors"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{ebi::vcf::Error}}\ test\_error\{1,\ \textcolor{stringliteral}{"{}testing\ errors"{}}\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ errorDAO.write\_error(test\_error);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ errorDAO.write\_error(test\_error);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ errorDAO.flush();}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\_errors\ =\ errorDAO.count\_errors();}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\_warnings\ =\ errorDAO.count\_warnings();}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ CHECK(count\_errors\ ==\ 2);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ CHECK(count\_warnings\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00069}00069\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00071}00071\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Write\ and\ count\ warnings"{}})}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00072}00072\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{ebi::vcf::Error}}\ test\_error\{1,\ \textcolor{stringliteral}{"{}testing\ warnings"{}}\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ errorDAO.write\_warning(test\_error);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ errorDAO.flush();}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\_errors\ =\ errorDAO.count\_errors();}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\_warnings\ =\ errorDAO.count\_warnings();}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ CHECK(count\_errors\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ CHECK(count\_warnings\ ==\ 1);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00080}00080\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00082}00082\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Write\ and\ read\ errors"{}})}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00083}00083\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ line\ =\ 8;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ std::string\ message\{\textcolor{stringliteral}{"{}testing\ errors"{}}\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{ebi::vcf::Error}}\ test\_error\{line,\ message\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ errorDAO.write\_error(test\_error);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ errorDAO.flush();}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ errors\_read\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ errorDAO.for\_each\_error([\&](std::shared\_ptr<ebi::vcf::Error>\ error)\ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(error-\/>line\ ==\ line);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(error-\/>message\ ==\ message);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ errors\_read++;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ CHECK(errors\_read\ ==\ 1);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00097}00097\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00099}00099\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Write\ and\ read\ warnings"{}})}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00100}00100\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ line\ =\ 10;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ std::string\ message\{\textcolor{stringliteral}{"{}testing\ warnings"{}}\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{ebi::vcf::Error}}\ test\_error\{line,\ message\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ errorDAO.write\_warning(test\_error);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ errorDAO.flush();}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ errors\_read\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ errorDAO.for\_each\_warning([\&](std::shared\_ptr<ebi::vcf::Error>\ error)\ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(error-\/>line\ ==\ line);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(error-\/>message\ ==\ message);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ errors\_read++;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ CHECK(errors\_read\ ==\ 1);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00114}00114\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00117}00117\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Write\ and\ read\ error\ codes"{}})}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00118}00118\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ line\ =\ 8;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ std::string\ message\{\textcolor{stringliteral}{"{}testing\ errors"{}}\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{ebi::vcf::Error}}\ generic\_error\{line,\ message\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_section_error}{ebi::vcf::MetaSectionError}}\ meta\_section\_error\{line,\ message\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_samples_body_error}{ebi::vcf::SamplesBodyError}}\ samples\_body\_error\{line,\ message\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ errorDAO.write\_error(generic\_error);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ errorDAO.write\_error(meta\_section\_error);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ errorDAO.write\_error(samples\_body\_error);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ errorDAO.flush();}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ std::vector<std::shared\_ptr<ebi::vcf::Error>>\ errors;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ errorDAO.for\_each\_error([\&](std::shared\_ptr<ebi::vcf::Error>\ error)\ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ errors.push\_back(error);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ CHECK(errors.size());}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ CHECK(\textcolor{keyword}{typeid}(*errors[0]).name()\ ==\ \textcolor{keyword}{typeid}(\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{ebi::vcf::Error}}).name());}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ CHECK(\textcolor{keyword}{typeid}(*errors[1]).name()\ ==\ \textcolor{keyword}{typeid}(\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_section_error}{ebi::vcf::MetaSectionError}}).name());}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ CHECK(\textcolor{keyword}{typeid}(*errors[2]).name()\ ==\ \textcolor{keyword}{typeid}(\mbox{\hyperlink{structebi_1_1vcf_1_1_samples_body_error}{ebi::vcf::SamplesBodyError}}).name());}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00138}00138\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00140}00140\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00142}00142\ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Integration\ test:\ validator\ and\ odb"{}},\ \textcolor{stringliteral}{"{}[output]"{}})}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00143}00143\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00144}00144\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ path\ =\ boost::filesystem::path(\textcolor{stringliteral}{"{}test/input\_files/v4.1/failed/failed\_body\_sample\_000.vcf"{}});}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00146}00146\ \ \ \ \ \ \ std::string\ db\_name\ =\ path.string()\ +\ \textcolor{stringliteral}{"{}.errors.db"{}};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00148}00148\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ std::unique\_ptr<ebi::vcf::ReportWriter>\ output\{\textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w}{ebi::vcf::OdbReportRW}}\{db\_name\}\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ CHECK\_FALSE(is\_valid(path.string(),\ std::move(output)));}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00151}00151\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00153}00153\ \ \ \ \ \ \ SECTION(path.string()\ +\ \textcolor{stringliteral}{"{}\ error\ count"{}})}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00154}00154\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\_errors;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\_warnings;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w}{ebi::vcf::OdbReportRW}}\ errorsDAO\{db\_name\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count\_errors\ =\ errorsDAO.count\_errors();}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count\_warnings\ =\ errorsDAO.count\_warnings();}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ CHECK(count\_errors\ ==\ 1);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ CHECK(count\_warnings\ ==\ 1);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00166}00166\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00168}00168\ \ \ \ \ \ \ SECTION(path.string()\ +\ \textcolor{stringliteral}{"{}\ error\ details"{}})}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00169}00169\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ errors\_read\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w}{ebi::vcf::OdbReportRW}}\ errorsDAO\{db\_name\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ errorsDAO.for\_each\_error([\&errors\_read](std::shared\_ptr<ebi::vcf::Error>\ error)\ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(error-\/>line\ ==\ 4);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(error-\/>message\ ==\ \textcolor{stringliteral}{"{}Allele\ must\ be\ a\ non-\/negative\ integer\ number"{}});}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ errors\_read++;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ do\ we\ prefer\ this?}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00180}00180\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ for(ebi::vcf::Error*\ error\ :\ errorsDAO.read\_errors())\ \{}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00181}00181\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(error-\/>get\_line()\ ==\ 1);}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00182}00182\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(error-\/>get\_raw\_message()\ ==\ "{}The\ fileformat\ declaration\ is\ not\ 'fileformat=VCFv4.1'"{});}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00183}00183\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ errors\_read++;}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00184}00184\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ CHECK(errors\_read\ ==\ 1);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00187}00187\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00189}00189\ \ \ \ \ \ \ boost::filesystem::path\ db\_file\{db\_name\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00190}00190\ \ \ \ \ \ \ boost::filesystem::remove(db\_file);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00191}00191\ \ \ \ \ \ \ CHECK\_FALSE(boost::filesystem::exists(db\_file));}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00193}00193\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00195}00195\ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Unit\ test:\ summary\ tracker"{}},\ \textcolor{stringliteral}{"{}[output]"{}})}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00196}00196\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00197}00197\ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}SummaryTracker\ should\ skip\ repeated\ Errors"{}})}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00198}00198\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_summary_tracker}{ebi::vcf::SummaryTracker}}\ reporter;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_format_body_error}{ebi::vcf::FormatBodyError}}\ error\{7,\ \textcolor{stringliteral}{"{}format\ body\ error"{}}\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ reporter.add\_to\_summary(error.message,\ error.line);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ REQUIRE(reporter.error\_summary\_report[error.message].occurrences\ ==\ 1);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ REQUIRE(reporter.error\_summary\_report[error.message].first\_occurrence\_line\ ==\ 7);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ reporter.add\_to\_summary(error.message,\ 11);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ REQUIRE(reporter.error\_summary\_report[error.message].occurrences\ ==\ 2);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ REQUIRE(reporter.error\_summary\_report[error.message].first\_occurrence\_line\ ==\ 7);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00209}00209\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00210}00210\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00212}00212\ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Integration\ test:\ summary\ report"{}},\ \textcolor{stringliteral}{"{}[output]"{}})}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00213}00213\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00214}00214\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ path\ =\ boost::filesystem::path(\textcolor{stringliteral}{"{}test/input\_files/v4.3/passed/passed\_body\_format.vcf"{}});}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00215}00215\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ summary\_path\ =\ path;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00216}00216\ \ \ \ \ \ \ summary\_path\ +=\ \textcolor{stringliteral}{"{}.errors\_summary.txt"{}};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00218}00218\ \ \ \ \ \ \ SECTION(path.string()\ +\ \textcolor{stringliteral}{"{}\ summary\ error\ count"{}})}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00219}00219\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ output\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_summary_report_writer}{ebi::vcf::SummaryReportWriter}}\{summary\_path.string()\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::unique\_ptr<ebi::vcf::ReportWriter>>\ outputs;}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outputs.emplace\_back(output);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ input\{path.string()\};}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vcf::is\_valid\_vcf\_file(input,\ path.string(),\ vcf::ValidationLevel::warning,\ outputs,}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vcf::AdditionalChecks());}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ input.close();}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ CHECK(\mbox{\hyperlink{namespaceebi_a9b9d0dcb441bb9f9cafa425af87c193a}{count\_lines}}(summary\_path.string())\ ==\ 3);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00232}00232\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00233}00233\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00234}00234\ \ \ \ \ \ \ boost::filesystem::remove(summary\_path);}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00235}00235\ \ \ \ \ \ \ CHECK\_FALSE(boost::filesystem::exists(summary\_path));}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00236}00236\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{report__writer__test_8cpp_source_l00238}00238\ \}}
+
+\end{DoxyCode}

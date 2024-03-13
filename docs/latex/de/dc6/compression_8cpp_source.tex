@@ -1,0 +1,134 @@
+\doxysection{compression.\+cpp}
+\hypertarget{compression_8cpp_source}{}\label{compression_8cpp_source}\index{src/vcf/compression.cpp@{src/vcf/compression.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}vcf/compression.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00019}00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00020}00020\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00021}00021\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00022}00022\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00023}00023\ \ \ \ \ std::string\ get\_compression\_from\_extension(std::string\ \textcolor{keyword}{const}\ \&\ source);}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00025}00025\ \ \ \ \ std::string\ get\_compression\_from\_magic\_num(\textcolor{keyword}{const}\ std::vector<char>\ \&line);}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00027}00027\ \ \ \ \ \textcolor{keywordtype}{void}\ compressed\_file\_warning(std::string\ \textcolor{keyword}{const}\ \&\ file\_extension);}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{keywordtype}{void}\ create\_uncompressed\_stream(std::istream\ \&\ input,}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\ file\_extension,}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ boost::iostreams::filtering\_istream\ \&\ uncompressed\_input)}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00032}00032\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(file\_extension\ ==\ BZ2)\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ uncompressed\_input.push(boost::iostreams::bzip2\_decompressor());}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(file\_extension\ ==\ GZ)\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ uncompressed\_input.push(boost::iostreams::gzip\_decompressor());}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ uncompressed\_input.push(input);}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordtype}{void}\ get\_magic\_num(std::istream\ \&\ stream,\ std::vector<char>\ \&\ container)}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00043}00043\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ c;}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ container.clear();}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (stream\ \&\&\ stream.get(c))\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ container.push\_back(c);}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'\(\backslash\)n'}\ ||\ i\ >\ 4)\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ (\textcolor{keywordtype}{int})container.size()-\/1;\ j\ >=\ 0;\ -\/-\/j)\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ stream.putback(container[j]);}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (stream.fail())\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Stream\ failed\ while\ putting\ the\ magic\ numbers\ back\ into\ stream"{}});}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00062}00062\ \ \ \ \ std::string\ get\_compression(std::string\ \textcolor{keyword}{const}\ \&\ source,}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<char>\ \&line)}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00064}00064\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ std::string\ file\_extension\ =\ get\_compression\_from\_extension(source);}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source\ !=\ ebi::vcf::STDIN\ \&\&\ file\_extension\ !=\ NO\_EXT)\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ file\_extension;}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ get\_compression\_from\_magic\_num(line);}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00071}00071\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00073}00073\ \ \ \ \ std::string\ get\_compression\_from\_extension(std::string\ \textcolor{keyword}{const}\ \&\ source)}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00074}00074\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ boost::filesystem::path\ source\_name(source);}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ std::string\ file\_extension\ =\ source\_name.extension().string();}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_extension\ ==\ BZ2\ ||\ file\_extension\ ==\ RAR\ ||\ file\_extension\ ==\ TAR\ ||\ file\_extension\ ==\ GZ\ ||}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ file\_extension\ ==\ XZ\ ||\ file\_extension\ ==\ Z\ ||\ file\_extension\ ==\ ZIP\ ||\ file\_extension\ ==\ ZLIB)\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ compressed\_file\_warning(file\_extension);}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ file\_extension;}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NO\_EXT;}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{keywordtype}{void}\ compressed\_file\_warning(std::string\ \textcolor{keyword}{const}\ \&\ file\_extension)}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00087}00087\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(debug)\ <<\ \textcolor{stringliteral}{"{}Detected\ "{}}\ <<\ file\_extension}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ compression"{}};}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00090}00090\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00092}00092\ \ \ \ \ std::string\ get\_compression\_from\_magic\_num(\textcolor{keyword}{const}\ std::vector<char>\ \&line)}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00093}00093\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ std::vector<std::pair<std::vector<char>,\ std::string>>\ types\ =\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \{\ 66,\ 90,\ 104\ \},\ BZ2\ \},}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \{\ 31,\ -\/117\ \},\ GZ\ \},}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \{\ -\/3,\ 55,\ 122,\ 88,\ 90\ \},\ XZ\ \},}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \{\ 31,\ -\/99\ \},\ Z\ \},}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \{\ 80,\ 75,\ 3,\ 4\ \},\ ZIP\ \},}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \{\ 120,\ -\/100\ \},\ ZLIB\ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ type\ :\ types)\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00105}00105\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ If\ the\ first\ line\ of\ the\ VCF\ file\ is\ shorter\ than\ the\ magic\ number\ string\ (stored\ in\ the}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00106}00106\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ variable\ "{}types"{}),\ the\ std::equal\ call\ below\ will\ cause\ a\ segmentation\ fault.}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00107}00107\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (type.first.size()\ >\ line.size())\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::equal(type.first.begin(),\ type.first.end(),\ line.begin()))\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ compressed\_file\_warning(type.second);}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ type.second;}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NO\_EXT;}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00119}00119\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00121}00121\ \ \ \ \ \textcolor{keywordtype}{void}\ check\_readability\_of\_file(\textcolor{keyword}{const}\ std::string\ \&\ file\_ext)}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00122}00122\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ std::set<std::string>\ readable\_extensions\ =\ \{BZ2,\ GZ,\ NO\_EXT\};}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!readable\_extensions.count(file\_ext))\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument\{\textcolor{stringliteral}{"{}Compression\ type\ "{}}\ +file\_ext+\ \textcolor{stringliteral}{"{}\ is\ not\ supported"{}}\};}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00128}00128\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00130}00130\ \ \ \ \ \textcolor{keywordtype}{void}\ check\_readability\_of\_stream(\textcolor{keyword}{const}\ std::vector<char>\ \&line)}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00131}00131\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ std::string\ compression\_type\ =\ ebi::vcf::get\_compression\_from\_magic\_num(line);}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.size()\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(warning)\ <<\ \textcolor{stringliteral}{"{}The\ VCF\ file\ provided\ is\ empty"{}};}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (compression\_type\ !=\ NO\_EXT)\ \{}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument\{\textcolor{stringliteral}{"{}Input\ file\ should\ not\ be\ compressed\ twice"{}}\};}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00141}00141\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00142}00142\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{compression_8cpp_source_l00143}00143\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,354 @@
+\chapter{vcf-\/validator \texorpdfstring{$\vert$}{|} \texorpdfstring{$<$}{<}a href="{}https\+://github.\+com/\+EBIvariation/vcf-\/validator/actions/workflows/build.\+yml/badge.\+svg?branch=master"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://github.\+com/\+EBIvariation/vcf-\/validator/actions/workflows/build.\+yml/badge.\+svg?branch=master"{} alt="{}\+Build Status"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://ci.\+appveyor.\+com/project/ebivariation-\/bot/vcf-\/validator/branch/master"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://ci.\+appveyor.\+com/api/projects/status/vt4ldlwhm91e3n49/branch/master?svg=true"{} alt="{}\+Build status"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>}}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{vcf-\/validator \texttt{"|} $<$a href="{}https://github.com/EBIvariation/vcf-\/validator/actions/workflows/build.yml/badge.svg?branch=master"{} $>$$<$img src="{}https://github.com/EBIvariation/vcf-\/validator/actions/workflows/build.yml/badge.svg?branch=master"{} alt="{}Build Status"{}/$>$$<$/a$>$ $<$a href="{}https://ci.appveyor.com/project/ebivariation-\/bot/vcf-\/validator/branch/master"{} $>$$<$img src="{}https://ci.appveyor.com/api/projects/status/vt4ldlwhm91e3n49/branch/master?svg=true"{} alt="{}Build status"{}/$>$$<$/a$>$@{vcf-\/validator \texttt{"|} $<$a href=""https://github.com/EBIvariation/vcf-\/validator/actions/workflows/build.yml/badge.svg?branch=master"" $>$$<$img src=""https://github.com/EBIvariation/vcf-\/validator/actions/workflows/build.yml/badge.svg?branch=master"" alt=""Build Status""/$>$$<$/a$>$ $<$a href=""https://ci.appveyor.com/project/ebivariation-\/bot/vcf-\/validator/branch/master"" $>$$<$img src=""https://ci.appveyor.com/api/projects/status/vt4ldlwhm91e3n49/branch/master?svg=true"" alt=""Build status""/$>$$<$/a$>$}}
+\label{md__r_e_a_d_m_e_autotoc_md22}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md22}%
+Validation suite for Variant Call Format (VCF) files. Please find below instructions on how to download and run, or read the wiki for more details about checks already implemented.
+
+This suite includes all the checks from the vcftools suite as well as additional lexical, syntactic and semantic analysis of the VCF input. If any inconsistencies are found, they are classified in one of the following categories\+:
+
+
+\begin{DoxyItemize}
+\item Errors\+: Violations of the VCF specification
+\item Warnings\+: A recommendation is not followed or potentially wrong information appears in the file
+\end{DoxyItemize}
+
+These tools have been implemented using C++11.\hypertarget{md__r_e_a_d_m_e_autotoc_md23}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__r_e_a_d_m_e_autotoc_md23}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md24}{}\doxysubsection{\texorpdfstring{From Binaries}{From Binaries}}\label{md__r_e_a_d_m_e_autotoc_md24}
+The vcf-\/validator is built with all the dependencies included. It can be downloaded directly from the \href{https://github.com/EBIvariation/vcf-validator/releases}{\texttt{ latest release}} for the most stable experience using vcf-\/validator. Along with the release notes, you will find the executables {\ttfamily vcf\+\_\+validator}, {\ttfamily vcf\+\_\+assembly\+\_\+checker} and {\ttfamily vcf\+\_\+debugulator} for Linux, mac\+OS and Windows. For Windows, please also download the libraries in the \href{https://github.com/EBIvariation/vcf-validator/tree/master/lib/windows_specific/}{\texttt{ lib/windows\+\_\+specific/}} folder.\hypertarget{md__r_e_a_d_m_e_autotoc_md25}{}\doxysubsection{\texorpdfstring{From conda}{From conda}}\label{md__r_e_a_d_m_e_autotoc_md25}
+Starting from \href{https://github.com/EBIvariation/vcf-validator/releases/tag/v0.9.6}{\texttt{ v0.\+9.\+6}}, you can install vcf-\/validator via conda using
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{conda\ install\ -\/c\ bioconda\ vcf-\/validator}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md26}{}\doxysection{\texorpdfstring{Run}{Run}}\label{md__r_e_a_d_m_e_autotoc_md26}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md27}{}\doxysubsection{\texorpdfstring{Validator}{Validator}}\label{md__r_e_a_d_m_e_autotoc_md27}
+vcf-\/validator accepts both compressed and non-\/compressed input VCF files. Supported compression formats are .gz and .bz2. For other formats such as .zip, the {\ttfamily zcat} command and a pipe can be used (see below).
+
+Reading uncompressed files\+:
+\begin{DoxyItemize}
+\item File path as argument\+: {\ttfamily vcf\+\_\+validator -\/i /path/to/file.vcf}
+\item Standard input\+: {\ttfamily vcf\+\_\+validator \texorpdfstring{$<$}{<} /path/to/file.vcf}
+\item Standard input from pipe\+: {\ttfamily cat /path/to/file.vcf \texorpdfstring{$\vert$}{|} vcf\+\_\+validator}
+\end{DoxyItemize}
+
+Reading compressed files\+:
+\begin{DoxyItemize}
+\item File path as argument\+: {\ttfamily vcf\+\_\+validator -\/i /path/to/compressed\+\_\+file.vcf.\+gz}
+\item Standard input\+: {\ttfamily vcf\+\_\+validator \texorpdfstring{$<$}{<} /path/to/compressed\+\_\+file.vcf.\+bz2}
+\item Standard input from pipe\+: {\ttfamily zcat /path/to/compressed\+\_\+file.vcf.\+zip \texorpdfstring{$\vert$}{|} vcf\+\_\+validator}
+\end{DoxyItemize}
+
+The validation level can be configured using {\ttfamily -\/l} / {\ttfamily -\/-\/level}. This parameter is optional and accepts 3 values\+:
+
+
+\begin{DoxyItemize}
+\item error\+: Display only syntax errors
+\item warning\+: Display both syntax and semantic, both errors and warnings (default)
+\item stop\+: Stop after the first syntax error is found
+\end{DoxyItemize}
+
+Different types of validation reports can be written with the {\ttfamily -\/r} / {\ttfamily -\/-\/report} option. Several ones may be specified in the same execution, using commas to separate each type (without spaces, e.\+g.\+: {\ttfamily -\/r summary,database,text}).
+
+
+\begin{DoxyItemize}
+\item summary\+: Write a human-\/readable summary report to a file. This includes one line for each type of error and the number of occurrences, along with the first line that shows that type of error (default)
+\item text\+: Write a human-\/readable report to a file, with one description line for each VCF line that has an error.
+\item database\+: Write structured report to a database file. The database engine used is SQLite3, so the results can be inspected manually, but they are intended to be consumed by the debugulator.
+\end{DoxyItemize}
+
+Each report is written into its own file and it is named after the input file, followed by a timestamp. The default output directory is the same as the input file\textquotesingle{}s if provided using {\ttfamily -\/i}, or the current directory if using the standard input; it can be changed with the {\ttfamily -\/o} / {\ttfamily -\/-\/outdir} option.
+
+A flag for validating evidence can be passed with {\ttfamily -\/-\/require-\/evidence}. This will validate whether the VCF includes either Genotypes or Allele Frequencies. This flag will be {\bfseries{false}} by default.\hypertarget{md__r_e_a_d_m_e_autotoc_md28}{}\doxysubsection{\texorpdfstring{Debugulator}{Debugulator}}\label{md__r_e_a_d_m_e_autotoc_md28}
+There are some simple errors that can be automatically fixed. The most common error is the presence of duplicate variants. The needed parameters are the original VCF and the report generated by a previous run of the validator with the option {\ttfamily -\/r database}.
+
+The fixed VCF will be written into the standard output, which you can redirect to a file, or use the {\ttfamily -\/o} / {\ttfamily -\/-\/output} option and specify the desired file name.
+
+The logs about what the debugulator is doing will be written into the error output. The logs may be redirected to a log file using {\ttfamily 2\texorpdfstring{$>$}{>}debugulator\+\_\+log.\+txt} or completely discarded with {\ttfamily 2\texorpdfstring{$>$}{>}/dev/null}.\hypertarget{md__r_e_a_d_m_e_autotoc_md29}{}\doxysubsection{\texorpdfstring{Assembly Checker}{Assembly Checker}}\label{md__r_e_a_d_m_e_autotoc_md29}
+vcf-\/assembly-\/checker assesses the correctness of a VCF file with respect to a FASTA file (that should contain the reference sequence). The assembly checker reads the CHR, POS and REF columns from the VCF, and for each line, looks into the FASTA file to see if the REF allele matches that region. A VCF file is considered valid if all the variants match the sequence in the FASTA file.
+
+vcf-\/assembly-\/checker requires a FASTA-\/index file with extension {\ttfamily .fai} for efficient reading of the FASTA file.
+
+If the VCF and FASTA files to compare don\textquotesingle{}t use the same contig name nomenclature (Gen\+Bank, Ref\+Seq, UCSC...) you may provide an assembly report file to map between them, using the {\ttfamily -\/a} option.
+
+vcf-\/assembly-\/checker accepts both compressed and non-\/compressed input VCF files. Supported compression formats are .gz and .bz2. For other formats such as .zip, the {\ttfamily zcat} command and a pipe can be used (see below).
+
+Reading uncompressed files\+:
+\begin{DoxyItemize}
+\item File path as argument\+: {\ttfamily vcf\+\_\+assembly\+\_\+checker -\/i /path/to/vcf-\/file -\/f /path/to/fasta-\/file -\/a /path/to/assembly-\/report}
+\item Standard input\+: {\ttfamily vcf\+\_\+assembly\+\_\+checker -\/f /path/to/fasta-\/file -\/a /path/to/assembly-\/report \texorpdfstring{$<$}{<} /path/to/vcf-\/file}
+\item Standard input from pipe\+: {\ttfamily cat /path/to/vcf-\/file \texorpdfstring{$\vert$}{|} vcf\+\_\+assembly\+\_\+checker -\/f /path/to/fasta-\/file -\/a /path/to/assembly-\/report}
+\end{DoxyItemize}
+
+Reading compressed files\+:
+\begin{DoxyItemize}
+\item File path as argument\+: {\ttfamily vcf\+\_\+assembly\+\_\+checker -\/i /path/to/compressed-\/vcf-\/file -\/f /path/to/fasta-\/file -\/a /path/to/assembly-\/report}
+\item Standard input\+: {\ttfamily vcf\+\_\+assembly\+\_\+checker -\/f /path/to/fasta-\/file -\/a /path/to/assembly-\/report \texorpdfstring{$<$}{<} /path/to/compressed-\/vcf-\/file}
+\item Standard input from pipe\+: {\ttfamily zcat /path/to/compressed-\/vcf-\/file \texorpdfstring{$\vert$}{|} vcf\+\_\+assembly\+\_\+checker -\/f /path/to/fasta-\/file -\/a /path/to/assembly-\/report}
+\end{DoxyItemize}
+
+Different types of validation reports can be written with the {\ttfamily -\/r} / {\ttfamily -\/-\/report} option. Several ones may be specified in the same execution, using commas to separate each type (without spaces, e.\+g.\+: {\ttfamily -\/r summary,valid,text}).
+
+
+\begin{DoxyItemize}
+\item {\ttfamily summary} -\/ Logs the number of matches, total variants checked and percentage of correctness of VCF file on the terminal.
+\item {\ttfamily valid} -\/ Write valid lines (including meta-\/info lines) from the input VCF file into an output file.
+\item {\ttfamily text} -\/ Write a human readable into file, containing errors and warnings generated while checking a VCF file.
+\end{DoxyItemize}
+
+Each report is written into its own file and it is named after the input file, followed by a timestamp. The default output directory is the same as the input file\textquotesingle{}s if provided using {\ttfamily -\/i}, or the current directory if using the standard input; it can be changed with the {\ttfamily -\/o} / {\ttfamily -\/-\/outdir} option.\hypertarget{md__r_e_a_d_m_e_autotoc_md30}{}\doxysubsection{\texorpdfstring{Examples}{Examples}}\label{md__r_e_a_d_m_e_autotoc_md30}
+Simple example\+: {\ttfamily vcf\+\_\+validator -\/i /path/to/file.vcf}
+
+Full example\+: {\ttfamily vcf\+\_\+validator -\/i /path/to/file.vcf -\/l stop -\/r database,stdout -\/o /path/to/output/folder/}
+
+Debugulator example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{vcf\_validator\ -\/i\ /path/to/file.vcf\ -\/r\ database\ -\/o\ /path/to/write/report/}
+\DoxyCodeLine{vcf\_debugulator\ -\/i\ /path/to/file.vcf\ -\/e\ /path/to/write/report/vcf.errors.timestamp.db\ -\/o\ /path/to/fixed.vcf\ 2>debugulator\_log.txt}
+
+\end{DoxyCode}
+
+
+Assembly Checker example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Pass\ input\ (-\/i)\ and\ FASTA\ file\ (-\/f)\ paths\ }
+\DoxyCodeLine{vcf\_assembly\_checker\ -\/i\ /path/to/file.vcf\ -\/f\ /path/to/fasta\_file.fa}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Pass\ input\ (-\/i)\ paths\ but\ read\ VCF\ input\ from\ command\ line\ (<)}
+\DoxyCodeLine{\#\ Report\ output\ required\ (-\/r)}
+\DoxyCodeLine{vcf\_assembly\_checker\ -\/f\ /path/to/fasta.fa\ -\/r\ text\ <\ /path/to/file.vcf}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Pass\ input\ (-\/i),\ FASTA\ (-\/f)\ and\ assembly\ report\ (-\/a)\ paths}
+\DoxyCodeLine{\#\ Report\ output\ required\ (-\/r)}
+\DoxyCodeLine{\#\ If\ submitting\ to\ EVA,\ check\ if\ contigs\ have\ Genbank\ accessions\ (-\/-\/require-\/genbank)}
+\DoxyCodeLine{\ \ \ \#\ see\ https://www.ebi.ac.uk/eva/?Submit-\/Data\ \ }
+\DoxyCodeLine{vcf\_assembly\_checker\ -\/i\ /path/to/file.vcf\ -\/f\ /path/to/fasta\_file.fa\ -\/r\ valid\ -\/a\ /path/to/assembly\_report\ -\/-\/require-\/genbank}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md31}{}\doxysection{\texorpdfstring{Build}{Build}}\label{md__r_e_a_d_m_e_autotoc_md31}
+If you would like to use an unreleased version of vcf-\/validator, you can clone the repository and build it under 3 platforms\+: Linux, mac\+OS and Windows. A statically linked executable will be generated, which means you won\textquotesingle{}t need to install any dependencies in the machine that will run it; only install the dependencies in the machine that will build it.
+
+If you plan to make changes, make sure to check the \doxysectlink{md_docs_2developer-guide}{docs/developer-\/guide.md}{0}.\hypertarget{md__r_e_a_d_m_e_autotoc_md32}{}\doxysubsection{\texorpdfstring{Linux}{Linux}}\label{md__r_e_a_d_m_e_autotoc_md32}
+The build has been tested on the following compilers\+:
+\begin{DoxyItemize}
+\item Clang 10
+\item GCC 9
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md33}{}\doxysubsubsection{\texorpdfstring{Dependencies}{Dependencies}}\label{md__r_e_a_d_m_e_autotoc_md33}
+Some dependencies have to be installed manually and others can be installed automatically. We recommend using the automatic install when possible.
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Dependency   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Version   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Instalation method    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Dependency   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Version   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Instalation method    }\\\cline{1-3}
+\endhead
+\PBS\centering Cmake   &\PBS\centering \texorpdfstring{$>$}{>}=2.\+8   &\PBS\centering manual    \\\cline{1-3}
+\PBS\centering Sqlite3   &\PBS\centering \texorpdfstring{$>$}{>}=3   &\PBS\centering manual    \\\cline{1-3}
+\PBS\centering ODB compiler   &\PBS\centering 2.\+4.\+0   &\PBS\centering manual or automatic    \\\cline{1-3}
+\PBS\centering ODB common runtime   &\PBS\centering 2.\+4.\+0   &\PBS\centering manual or automatic    \\\cline{1-3}
+\PBS\centering ODB SQLite runtime   &\PBS\centering 2.\+4.\+0   &\PBS\centering manual or automatic    \\\cline{1-3}
+\PBS\centering bzip2   &\PBS\centering 1.\+0.\+6   &\PBS\centering manual or automatic    \\\cline{1-3}
+\PBS\centering zlib   &\PBS\centering 1.\+2.\+11   &\PBS\centering manual or automatic    \\\cline{1-3}
+\PBS\centering Boost\texorpdfstring{$\ast$}{*}   &\PBS\centering \texorpdfstring{$>$}{>}=1.\+65   &\PBS\centering manual or automatic   \\\cline{1-3}
+\end{longtabu}
+
+
+\texorpdfstring{$\ast$}{*}\+: See below the exact subset of Boost packages required.
+
+If you are using Ubuntu 16, you can prepare all dependencies and compile the Validation Suite with these commands\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo\ apt-\/get\ install\ libsqlite3-\/0\ libsqlite3-\/dev\ cmake\ wget\ build-\/essential}
+\DoxyCodeLine{./install\_dependencies.sh\ linux}
+\DoxyCodeLine{mkdir\ build\ \&\&\ cd\ build\ \&\&\ cmake\ -\/G\ "{}Unix\ Makefiles"{}\ ..}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+
+The VCF Validation Suite binaries will be created in the {\ttfamily build/bin} subfolder. Optionally, read below for the explanation of the previous commands.\hypertarget{md__r_e_a_d_m_e_autotoc_md34}{}\doxyparagraph{\texorpdfstring{SQLite, CMake and automatic installation}{SQLite, CMake and automatic installation}}\label{md__r_e_a_d_m_e_autotoc_md34}
+The automatic install {\bfseries{requires}} CMake, SQLite3 and wget to be installed before running the script (as ODB and zlib require them to be installed). Also, the script will compile some dependencies so a compilation environment is needed. If you are using Ubuntu, you can install all that with the command {\ttfamily sudo apt-\/get install libsqlite3-\/0 libsqlite3-\/dev cmake wget build-\/essential}. After installing that, use the command {\ttfamily ./install\+\_\+dependencies.sh linux}.
+
+A subfolder named {\ttfamily linux\+\_\+dependencies} will be created, with all the required libraries copied into it.\hypertarget{md__r_e_a_d_m_e_autotoc_md35}{}\doxyparagraph{\texorpdfstring{Boost}{Boost}}\label{md__r_e_a_d_m_e_autotoc_md35}
+{\bfseries{Note}}\+: You can ignore this section if you are using the {\ttfamily install\+\_\+dependencies.\+sh} script.
+
+The dependencies are the Boost library core, and its submodules\+: Boost.\+filesystem, Boost.\+iostreams, Boost.\+program\+\_\+options, Boost.\+regex, Boost.\+log and Boost.\+system. If you are using Ubuntu, you can install them with the command {\ttfamily sudo apt-\/get install libboost-\/dev libboost-\/filesystem-\/dev libboost-\/iostreams-\/dev libboost-\/program-\/options-\/dev libboost-\/regex-\/dev libboost-\/log-\/dev}.\hypertarget{md__r_e_a_d_m_e_autotoc_md36}{}\doxyparagraph{\texorpdfstring{ODB}{ODB}}\label{md__r_e_a_d_m_e_autotoc_md36}
+{\bfseries{Note}}\+: You can ignore this section if you are using the {\ttfamily install\+\_\+dependencies.\+sh} script.
+
+You will need to download the ODB compiler, the ODB common runtime library, and the SQLite database runtime library from \href{http://codesynthesis.com/products/odb/download.xhtml}{\texttt{ this page}}.
+
+ODB requires SQLite3 to be installed. If you are using Ubuntu, the required packages\textquotesingle{} names will be {\ttfamily libsqlite3-\/0} and {\ttfamily libsqlite3-\/dev}.
+
+To install the ODB compiler, the easiest way is to download the {\ttfamily .deb} or {\ttfamily .rpm} packages and install them automatically with {\ttfamily dpkg} or {\ttfamily rpm} respectively. Both the ODB common runtime and SQLite database runtime libraries can be installed manually running {\ttfamily ./configure \&\& make \&\& sudo make install}. This will install the libraries in {\ttfamily /usr/local/lib}.
+
+If you don\textquotesingle{}t have root permissions, please run {\ttfamily ./configure -\/-\/prefix=/path/to/odb/libraries/folder} to specify which folder to install ODB in, then {\ttfamily make \&\& make install}, without {\ttfamily sudo}. Also you will have to provide the path to ODB while configuring libodb-\/sqlite using {\ttfamily ./configure -\/-\/with-\/libodb=/path/to/odb/libraries}.\hypertarget{md__r_e_a_d_m_e_autotoc_md37}{}\doxysubsubsection{\texorpdfstring{Compile}{Compile}}\label{md__r_e_a_d_m_e_autotoc_md37}
+In order to create the build scripts, please run {\ttfamily cmake} with your preferred generator. For instance, {\ttfamily mkdir build \&\& cd build \&\& cmake -\/G "{}\+Unix Makefiles"{} ..} will create Makefiles, and to build the binaries, you will need to run {\ttfamily make}.
+
+If the ODB libraries were not found during the build, please run {\ttfamily sudo updatedb \&\& sudo ldconfig}. Also, if ODB has been installed in a non-\/default location, the option {\ttfamily -\/DEXT\+\_\+\+LIB\+\_\+\+PATH=/path/to/external/libraries/folder} must be also provided to the {\ttfamily cmake} command.
+
+The VCF Validation Suite binaries will be created in the {\ttfamily build/bin} subfolder.\hypertarget{md__r_e_a_d_m_e_autotoc_md38}{}\doxysubsection{\texorpdfstring{mac\+OS}{mac\+OS}}\label{md__r_e_a_d_m_e_autotoc_md38}
+On mac\+OS the binaries obtained will only have system libraries dynamically linked. This means you will need to install dependencies to build vcf-\/validator but not to run it.\hypertarget{md__r_e_a_d_m_e_autotoc_md39}{}\doxysubsubsection{\texorpdfstring{Dependencies}{Dependencies}}\label{md__r_e_a_d_m_e_autotoc_md39}
+Some dependencies have to be installed manually and others can be installed automatically. We recommend using the automatic install when possible.
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Dependency   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Version   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Instalation method    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Dependency   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Version   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Instalation method    }\\\cline{1-3}
+\endhead
+\PBS\centering Cmake   &\PBS\centering \texorpdfstring{$>$}{>}=2.\+8   &\PBS\centering manual    \\\cline{1-3}
+\PBS\centering Sqlite3   &\PBS\centering \texorpdfstring{$>$}{>}=3   &\PBS\centering manual    \\\cline{1-3}
+\PBS\centering ODB compiler   &\PBS\centering 2.\+4.\+0   &\PBS\centering manual or automatic    \\\cline{1-3}
+\PBS\centering ODB common runtime   &\PBS\centering 2.\+4.\+0   &\PBS\centering manual or automatic    \\\cline{1-3}
+\PBS\centering ODB SQLite runtime   &\PBS\centering 2.\+4.\+0   &\PBS\centering manual or automatic    \\\cline{1-3}
+\PBS\centering bzip2   &\PBS\centering 1.\+0.\+6   &\PBS\centering manual or automatic    \\\cline{1-3}
+\PBS\centering zlib   &\PBS\centering 1.\+2.\+11   &\PBS\centering manual or automatic    \\\cline{1-3}
+\PBS\centering Boost   &\PBS\centering \texorpdfstring{$>$}{>}=1.\+65   &\PBS\centering manual   \\\cline{1-3}
+\end{longtabu}
+
+
+You can prepare all dependencies and compile the Validation Suite with these commands\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{brew\ install\ cmake\ boost\ sqlite3}
+\DoxyCodeLine{./install\_dependencies.sh\ osx}
+\DoxyCodeLine{mkdir\ build\ \&\&\ cd\ build\ \&\&\ cmake\ -\/G\ "{}Unix\ Makefiles"{}\ ..}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+
+The VCF Validation Suite binaries will be created in the {\ttfamily build/bin} subfolder. Optionally, read below for the explanation of the previous commands.\hypertarget{md__r_e_a_d_m_e_autotoc_md40}{}\doxyparagraph{\texorpdfstring{SQLite, CMake and automatic installation}{SQLite, CMake and automatic installation}}\label{md__r_e_a_d_m_e_autotoc_md40}
+The automatic install requires CMake, SQLite3 and wget to be installed before running the script (as ODB and zlib require them to be installed). In order to set up the environment to compile the dependencies, first you need to run {\ttfamily brew install cmake boost \doxylink{structsqlite3}{sqlite3}}.
+
+Now you can easily install the ODB ORM and compression libraries just by running {\ttfamily ./install\+\_\+dependencies.sh osx}. You may run {\ttfamily ./install\+\_\+dependencies.sh -\/-\/help} for usage instructions.
+
+A subfolder named {\ttfamily osx\+\_\+dependencies} will be created, with all the required libraries copied into it.\hypertarget{md__r_e_a_d_m_e_autotoc_md41}{}\doxysubsubsection{\texorpdfstring{Compile}{Compile}}\label{md__r_e_a_d_m_e_autotoc_md41}
+In order to create the build scripts, please run {\ttfamily cmake} with your preferred generator. For instance, {\ttfamily mkdir build \&\& cd build \&\& cmake -\/G "{}\+Unix Makefiles"{} ..} will create Makefiles, and to build the binaries, you will need to run {\ttfamily make}.
+
+The VCF Validation Suite binaries will be created in the {\ttfamily bin} subfolder.\hypertarget{md__r_e_a_d_m_e_autotoc_md42}{}\doxysubsection{\texorpdfstring{Windows}{Windows}}\label{md__r_e_a_d_m_e_autotoc_md42}
+On Windows the binaries obtained will only have ODB libraries dynamically linked. We provide a pre-\/compiled version of these within the repository because they are not easy to build; but if you would like to do it yourself, please check the {\itshape Miscellaneous} section below.\hypertarget{md__r_e_a_d_m_e_autotoc_md43}{}\doxysubsubsection{\texorpdfstring{Dependencies}{Dependencies}}\label{md__r_e_a_d_m_e_autotoc_md43}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md44}{}\doxyparagraph{\texorpdfstring{Compression libraries}{Compression libraries}}\label{md__r_e_a_d_m_e_autotoc_md44}
+You will need to download the bzip2 and zlib source code, from \href{http://www.bzip.org/downloads.html}{\texttt{ here}} and \href{https://zlib.net/zlib1211.zip}{\texttt{ here}} respectively.\hypertarget{md__r_e_a_d_m_e_autotoc_md45}{}\doxyparagraph{\texorpdfstring{Boost}{Boost}}\label{md__r_e_a_d_m_e_autotoc_md45}
+The dependencies are the Boost library core, and its submodules\+: Boost.\+filesystem, Boost.\+iostreams, Boost.\+program\+\_\+options, Boost.\+regex, Boost.\+log and Boost.\+system. You will need to compile them with zlib and bzip2 support and statically linking the runtime libraries.
+
+
+\begin{DoxyItemize}
+\item Download Boost from \href{https://www.boost.org/users/download/}{\texttt{ here}} and uncompress it
+\item From the directory where Boost was uncompressed, run these commands\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{bootstrap}
+\DoxyCodeLine{.\(\backslash\)b2\ -\/-\/with-\/atomic\ -\/-\/with-\/chrono\ -\/-\/with-\/date\_time\ -\/-\/with-\/filesystem\ -\/-\/with-\/log\ -\/-\/with-\/program\_options\ -\/-\/with-\/regex\ -\/-\/with-\/system\ -\/-\/with-\/thread\ -\/-\/with-\/iostreams\ -\/sBZIP2\_SOURCE=path\(\backslash\)to\(\backslash\)bzip2-\/1.x.x\ -\/sZLIB\_SOURCE=path\(\backslash\)to\(\backslash\)zlib-\/1.x.x\ runtime-\/link=static\ -\/-\/build-\/type=complete}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Add boost\+\_\+1\+\_\+xx\+\_\+x/stage/lib folder to the environment variable {\ttfamily LIB}
+\item Add boost\+\_\+1\+\_\+xx\+\_\+x folder to the environment variable {\ttfamily INCLUDE}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md46}{}\doxyparagraph{\texorpdfstring{ODB}{ODB}}\label{md__r_e_a_d_m_e_autotoc_md46}
+Precompiled libraries of ODB and the ODB SQLite runtime are provided. In order to download headers, simply run the comand {\ttfamily install\+\_\+dependencies.\+bat}, which will create a {\ttfamily windows\+\_\+dependencies} folder in the root directory of the project.\hypertarget{md__r_e_a_d_m_e_autotoc_md47}{}\doxysubsubsection{\texorpdfstring{Compile}{Compile}}\label{md__r_e_a_d_m_e_autotoc_md47}
+In order to create the build scripts and compile vcf-\/validator, please run the following commands from the project root folder\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cmake\ -\/DCMAKE\_BUILD\_TYPE=Release\ -\/G\ "{}NMake\ Makefiles"{}\ /path/to/CMakeLists.txt}
+\DoxyCodeLine{nmake}
+
+\end{DoxyCode}
+
+
+Binaries will be created in the {\ttfamily bin} subfolder.
+
+In order to run those binaries, you will need to add the {\ttfamily lib/windows\+\_\+specific} directory to the {\ttfamily PATH}. This will allow the dll files inside that directory to be found.\hypertarget{md__r_e_a_d_m_e_autotoc_md48}{}\doxysection{\texorpdfstring{Deliverables}{Deliverables}}\label{md__r_e_a_d_m_e_autotoc_md48}
+The following binaries are be created after successful build\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily vcf\+\_\+validator}\+: VCF validation tool
+\item {\ttfamily vcf\+\_\+debugulator}\+: automatic VCF fixing tool
+\item {\ttfamily vcf\+\_\+assembly\+\_\+checker}\+: variant checking tool against FASTA sequence
+\item {\ttfamily test\+\_\+validation\+\_\+suite} and derivatives\+: testing correct behaviour of the tools listed above
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md49}{}\doxysection{\texorpdfstring{Tests}{Tests}}\label{md__r_e_a_d_m_e_autotoc_md49}
+Unit tests can be run using the binary {\ttfamily bin/test\+\_\+validation\+\_\+suite} or, if the generator supports it, a command like {\ttfamily make test}. The first option may provide a more detailed output in case of test failure.
+
+{\bfseries{Note}}\+: Tests that require input files will only work when executed with {\ttfamily make test} or running the binary from the project root folder (not the {\ttfamily bin} subfolder).\hypertarget{md__r_e_a_d_m_e_autotoc_md50}{}\doxysection{\texorpdfstring{Generate code from descriptors}{Generate code from descriptors}}\label{md__r_e_a_d_m_e_autotoc_md50}
+Code generated from descriptors shall be always up-\/to-\/date in the Git\+Hub repository. If changes to the source descriptors were necessary, please generate the Ragel machines C code from {\ttfamily .ragel} files using\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ragel\ -\/G2\ src/vcf/vcf\_v41.ragel\ -\/o\ inc/vcf/validator\_detail\_v41.hpp}
+\DoxyCodeLine{ragel\ -\/G2\ src/vcf/vcf\_v42.ragel\ -\/o\ inc/vcf/validator\_detail\_v42.hpp}
+\DoxyCodeLine{ragel\ -\/G2\ src/vcf/vcf\_v43.ragel\ -\/o\ inc/vcf/validator\_detail\_v43.hpp}
+
+\end{DoxyCode}
+
+
+And the full ODB-\/based code from the classes definitions using\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{odb\ -\/-\/include-\/prefix\ vcf\ -\/-\/std\ c++11\ -\/d\ sqlite\ -\/-\/generate-\/query\ -\/-\/generate-\/schema\ -\/-\/hxx-\/suffix\ .hpp\ -\/-\/ixx-\/suffix\ .ipp\ -\/-\/cxx-\/suffix\ .cpp\ -\/-\/output-\/dir\ inc/vcf/\ inc/vcf/error.hpp}
+\DoxyCodeLine{mv\ inc/vcf/error-\/odb.cpp\ src/vcf/error-\/odb.cpp}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md51}{}\doxysection{\texorpdfstring{Miscellaneous}{Miscellaneous}}\label{md__r_e_a_d_m_e_autotoc_md51}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md52}{}\doxysubsection{\texorpdfstring{Build ODB Libraries for windows}{Build ODB Libraries for windows}}\label{md__r_e_a_d_m_e_autotoc_md52}
+This section describes how to build the ODB libraries for Windows. You may ignore it if you want to use pre-\/compiled libraries provided inside the repository. To build those libraries, first download the source code using {\ttfamily install\+\_\+dependencies.\+bat}, which will create the following subfolder inside {\ttfamily windows\+\_\+dependencies}\+:
+
+
+\begin{DoxyItemize}
+\item libodb-\/2.\+4.\+0
+\item libodb-\/sqlite-\/2.\+4.\+0
+\item sqlite
+\item odb (header files only)
+\end{DoxyItemize}
+
+You will have to compile libodb-\/2.\+4.\+0, sqlite and then libodb-\/sqlite-\/2.\+4.\+0. The build has been tested on Visual Studio 2017.\hypertarget{md__r_e_a_d_m_e_autotoc_md53}{}\doxysubsubsection{\texorpdfstring{Build ODB runtime}{Build ODB runtime}}\label{md__r_e_a_d_m_e_autotoc_md53}
+
+\begin{DoxyEnumerate}
+\item Open libodb-\/2.\+4.\+0/libodb-\/vc12.sln in VS-\/\+Studio. File-\/\texorpdfstring{$>$}{>}Open-\/\texorpdfstring{$>$}{>}Project/\+Solution.
+\item Retarget the solution file to latest version. Project-\/\texorpdfstring{$>$}{>}Retarget Solution.
+\item \doxylink{struct_select}{Select} Build type Release and configuration win32.
+\item \doxylink{struct_select}{Select} /\+MT in Project-\/\texorpdfstring{$>$}{>}Properties-\/\texorpdfstring{$>$}{>}Configuration Properties-\/\texorpdfstring{$>$}{>}C/\+C++-\/\texorpdfstring{$>$}{>}Code Generation-\/\texorpdfstring{$>$}{>}Runtime Library options.
+\item Build the solution using Build-\/\texorpdfstring{$>$}{>}Build Solution.
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md54}{}\doxysubsubsection{\texorpdfstring{Build SQLite for odb-\/sqlite}{Build SQLite for odb-\/sqlite}}\label{md__r_e_a_d_m_e_autotoc_md54}
+
+\begin{DoxyEnumerate}
+\item Open sqlite/sqlite3-\/vc12.\+sln in VS-\/\+Studio.
+\item Retarget the solution file.
+\item \doxylink{struct_select}{Select} Build type Release and configuration win32.
+\item \doxylink{struct_select}{Select} /\+MT in Project-\/\texorpdfstring{$>$}{>}Properties-\/\texorpdfstring{$>$}{>}Configuration Properties-\/\texorpdfstring{$>$}{>}C/\+C++-\/\texorpdfstring{$>$}{>}Code Generation-\/\texorpdfstring{$>$}{>}Runtime Library options.
+\item Build the solution using Build-\/\texorpdfstring{$>$}{>}Build Solution.
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md55}{}\doxysubsubsection{\texorpdfstring{Build ODB-\/\+SQLite runtime}{Build ODB-\/\+SQLite runtime}}\label{md__r_e_a_d_m_e_autotoc_md55}
+
+\begin{DoxyEnumerate}
+\item Open libodb-\/sqlite-\/2.\+4.\+0/libodb-\/sqlite-\/vc12.sln in VS-\/\+Studio.
+\item Retarget the solution file.
+\item \doxylink{struct_select}{Select} Build type Release and configuration win32.
+\item \doxylink{struct_select}{Select} /\+MT in Project-\/\texorpdfstring{$>$}{>}Properties-\/\texorpdfstring{$>$}{>}Configuration Properties-\/\texorpdfstring{$>$}{>}C/\+C++-\/\texorpdfstring{$>$}{>}Code Generation-\/\texorpdfstring{$>$}{>}Runtime Library options.
+\item Go to Project-\/\texorpdfstring{$>$}{>}Properties-\/\texorpdfstring{$>$}{>}Configuration Properties-\/\texorpdfstring{$>$}{>}VC++ Directories and append these paths to following variables.
+\begin{DoxyItemize}
+\item Executable Directories =\texorpdfstring{$>$}{>} path/to/libodb-\/2.\+4.\+0/bin and path/to/sqlite/bin
+\item Include Directories =\texorpdfstring{$>$}{>} path/to/libodb-\/2.\+4.\+0 and path/to/sqlite
+\item Library Directories =\texorpdfstring{$>$}{>} path/to/libodb-\/2.\+4.\+0/lib and path/to/sqlite/lib Note the paths should be absolute and the directories will be present within windows\+\_\+dependencies folder.
+\end{DoxyItemize}
+\item Build the solution using Build-\/\texorpdfstring{$>$}{>}Build Solution.
+\end{DoxyEnumerate}
+
+Now you will obtain compiled LIB and DLL files, in the {\ttfamily lib} and {\ttfamily bin} folders respectively. 

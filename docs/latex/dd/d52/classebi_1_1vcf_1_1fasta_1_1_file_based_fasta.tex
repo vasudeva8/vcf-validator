@@ -1,0 +1,228 @@
+\doxysection{ebi\+::vcf\+::fasta\+::File\+Based\+Fasta Class Reference}
+\hypertarget{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta}{}\label{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta}\index{ebi::vcf::fasta::FileBasedFasta@{ebi::vcf::fasta::FileBasedFasta}}
+
+
+Inheritance diagram for ebi\+::vcf\+::fasta\+::File\+Based\+Fasta\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{dc/dce/classebi_1_1vcf_1_1fasta_1_1_file_based_fasta__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ebi\+::vcf\+::fasta\+::File\+Based\+Fasta\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{d9/d82/classebi_1_1vcf_1_1fasta_1_1_file_based_fasta__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_a850998d6ecb20f028fe0419ac65cc285}{File\+Based\+Fasta}} (const std\+::string \&fasta\+\_\+path, const std\+::string \&fasta\+\_\+index\+\_\+path)
+\item 
+std\+::string \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_ac45f423fa0388193bd76b9f2da867387}{sequence}} (const std\+::string \&contig, const size\+\_\+t pos, const size\+\_\+t length)
+\item 
+bool \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_ab4809e90f37baab9cebe18a08b99bc5b}{sequence\+\_\+exists}} (const std\+::string \&contig) const
+\item 
+size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_a57e7d975ccf4c172d3c081542ca0ab12}{sequence\+\_\+length}} (const std\+::string \&contig) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{fasta_8hpp_source_l00062}{62}} of file \mbox{\hyperlink{fasta_8hpp_source}{fasta.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_a850998d6ecb20f028fe0419ac65cc285}\label{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_a850998d6ecb20f028fe0419ac65cc285} 
+\index{ebi::vcf::fasta::FileBasedFasta@{ebi::vcf::fasta::FileBasedFasta}!FileBasedFasta@{FileBasedFasta}}
+\index{FileBasedFasta@{FileBasedFasta}!ebi::vcf::fasta::FileBasedFasta@{ebi::vcf::fasta::FileBasedFasta}}
+\doxysubsubsection{\texorpdfstring{FileBasedFasta()}{FileBasedFasta()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::fasta\+::\+File\+Based\+Fasta\+::\+File\+Based\+Fasta (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fasta\+\_\+path,  }\item[{const std\+::string \&}]{fasta\+\_\+index\+\_\+path }\end{DoxyParamCaption})}
+
+Copyright 2018 EMBL -\/ European Bioinformatics Institute
+
+Licensed under the Apache License, Version 2.\+0 (the "{}\+License"{}); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+\href{http://www.apache.org/licenses/LICENSE-2.0}{\texttt{ http\+://www.\+apache.\+org/licenses/\+LICENSE-\/2.\+0}}
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "{}\+AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. 
+
+Definition at line \mbox{\hyperlink{fasta_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{fasta_8cpp_source}{fasta.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Reading\ from\ input\ FASTA\ file..."{}};}
+\DoxyCodeLine{00037\ \ \ \ \ ebi::util::open\_file(fasta\_input,\ fasta\_path,\ std::ifstream::binary);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Reading\ from\ input\ FASTA\ index\ file..."{}};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ std::ifstream\ fs;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ ebi::util::open\_file(fs,\ fasta\_index\_path,\ std::ifstream::binary);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ fasta\_index\ =\ bioio::read\_fasta\_index(fs);}
+\DoxyCodeLine{00044\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::runtime\_error\&\ error)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fasta\ index\ file\ does\ not\ exist.\ Create\ index\ on-\/the-\/fly.}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Creating\ index\ from\ input\ FASTA\ file..."{}};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ std::stringstream\ faidx\_index;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ ebi::vcf::faidx::index\_fasta(fasta\_input,\ faidx\_index);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ fasta\_input.clear();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ fasta\_input.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ fasta\_index\ =\ bioio::read\_fasta\_index(faidx\_index);}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{fasta_8cpp_source_l00034}{File\+Based\+Fasta()}}.
+
+
+
+Referenced by \mbox{\hyperlink{fasta_8cpp_source_l00034}{File\+Based\+Fasta()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{dd/d52/classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_a850998d6ecb20f028fe0419ac65cc285_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{dd/d52/classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_a850998d6ecb20f028fe0419ac65cc285_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_afa9049e88d0ac32a5b0a3918f9a7de0c}\label{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_afa9049e88d0ac32a5b0a3918f9a7de0c} 
+\index{ebi::vcf::fasta::FileBasedFasta@{ebi::vcf::fasta::FileBasedFasta}!````~FileBasedFasta@{\texorpdfstring{$\sim$}{\string~}FileBasedFasta}}
+\index{````~FileBasedFasta@{\texorpdfstring{$\sim$}{\string~}FileBasedFasta}!ebi::vcf::fasta::FileBasedFasta@{ebi::vcf::fasta::FileBasedFasta}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}FileBasedFasta()}{\string~FileBasedFasta()}}
+{\footnotesize\ttfamily virtual ebi\+::vcf\+::fasta\+::\+File\+Based\+Fasta\+::\texorpdfstring{$\sim$}{\string~}\+File\+Based\+Fasta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{fasta_8hpp_source_l00066}{66}} of file \mbox{\hyperlink{fasta_8hpp_source}{fasta.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00066\ \{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_ac45f423fa0388193bd76b9f2da867387}\label{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_ac45f423fa0388193bd76b9f2da867387} 
+\index{ebi::vcf::fasta::FileBasedFasta@{ebi::vcf::fasta::FileBasedFasta}!sequence@{sequence}}
+\index{sequence@{sequence}!ebi::vcf::fasta::FileBasedFasta@{ebi::vcf::fasta::FileBasedFasta}}
+\doxysubsubsection{\texorpdfstring{sequence()}{sequence()}}
+{\footnotesize\ttfamily std\+::string ebi\+::vcf\+::fasta\+::\+File\+Based\+Fasta\+::sequence (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{contig,  }\item[{const size\+\_\+t}]{pos,  }\item[{const size\+\_\+t}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Extract n base pairs from the contig starting from an offset 
+\begin{DoxyParams}{Parameters}
+{\em contig} & -\/ the name of the contig to extract the sequence from \\
+\hline
+{\em pos} & -\/ the starting offset position \\
+\hline
+{\em length} & -\/ the number of base pairs to be extracted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the sequence string, empty if nothing can be extracted. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_i_fasta_aa6377ac082f7b9f3d956cef7a4ea3d99}{ebi\+::vcf\+::fasta\+::\+IFasta}}.
+
+
+
+Definition at line \mbox{\hyperlink{fasta_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{fasta_8cpp_source}{fasta.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (fasta\_index.find(contig)\ ==\ fasta\_index.cend())\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ bioio::read\_fasta\_contig(fasta\_input,\ fasta\_index.at(contig),\ pos,\ length);}
+\DoxyCodeLine{00062\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_ab4809e90f37baab9cebe18a08b99bc5b}\label{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_ab4809e90f37baab9cebe18a08b99bc5b} 
+\index{ebi::vcf::fasta::FileBasedFasta@{ebi::vcf::fasta::FileBasedFasta}!sequence\_exists@{sequence\_exists}}
+\index{sequence\_exists@{sequence\_exists}!ebi::vcf::fasta::FileBasedFasta@{ebi::vcf::fasta::FileBasedFasta}}
+\doxysubsubsection{\texorpdfstring{sequence\_exists()}{sequence\_exists()}}
+{\footnotesize\ttfamily bool ebi\+::vcf\+::fasta\+::\+File\+Based\+Fasta\+::sequence\+\_\+exists (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{contig }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Check if a contig exists in a FASTA. 
+\begin{DoxyParams}{Parameters}
+{\em contig} & -\/ the name of the contig \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the contig exists in the FASTA, false if the contig is not found. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_i_fasta_a9af306075c243560085a718896c74c6d}{ebi\+::vcf\+::fasta\+::\+IFasta}}.
+
+
+
+Definition at line \mbox{\hyperlink{fasta_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{fasta_8cpp_source}{fasta.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ fasta\_index.count(contig)\ >\ 0;}
+\DoxyCodeLine{00068\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_a57e7d975ccf4c172d3c081542ca0ab12}\label{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_a57e7d975ccf4c172d3c081542ca0ab12} 
+\index{ebi::vcf::fasta::FileBasedFasta@{ebi::vcf::fasta::FileBasedFasta}!sequence\_length@{sequence\_length}}
+\index{sequence\_length@{sequence\_length}!ebi::vcf::fasta::FileBasedFasta@{ebi::vcf::fasta::FileBasedFasta}}
+\doxysubsubsection{\texorpdfstring{sequence\_length()}{sequence\_length()}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::fasta\+::\+File\+Based\+Fasta\+::sequence\+\_\+length (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{contig }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Get the length of the sequence for a contig 
+\begin{DoxyParams}{Parameters}
+{\em contig} & -\/ the name of the contig \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the length of the sequence for the contig. 0 if the contig is not found. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_i_fasta_aa4e10949593f7264c8aae236f99e5df3}{ebi\+::vcf\+::fasta\+::\+IFasta}}.
+
+
+
+Definition at line \mbox{\hyperlink{fasta_8cpp_source_l00071}{71}} of file \mbox{\hyperlink{fasta_8cpp_source}{fasta.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{auto}\ iter\ =\ fasta\_index.find(contig);}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{if}\ (iter\ ==\ fasta\_index.cend())\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{return}\ (iter-\/>second).length;}
+\DoxyCodeLine{00078\ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/fasta/fasta.\+hpp\item 
+src/fasta/fasta.\+cpp\end{DoxyCompactItemize}

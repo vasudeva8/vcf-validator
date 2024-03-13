@@ -1,0 +1,162 @@
+\doxysection{Wal\+Index\+Hdr Struct Reference}
+\hypertarget{struct_wal_index_hdr}{}\label{struct_wal_index_hdr}\index{WalIndexHdr@{WalIndexHdr}}
+
+
+Collaboration diagram for Wal\+Index\+Hdr\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{d0/d15/struct_wal_index_hdr__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+u32 \mbox{\hyperlink{struct_wal_index_hdr_a49295f5eb9d6f37a1498cf1a66410b92}{i\+Version}}
+\item 
+u32 \mbox{\hyperlink{struct_wal_index_hdr_aa00596b4ad38dce7f97261a49ce64d74}{unused}}
+\item 
+u32 \mbox{\hyperlink{struct_wal_index_hdr_a9fafc4d4af9ab741b3b8733380a7927f}{i\+Change}}
+\item 
+u8 \mbox{\hyperlink{struct_wal_index_hdr_a1cc0dc2be6cd108a7bcca260be3e4cb9}{is\+Init}}
+\item 
+u8 \mbox{\hyperlink{struct_wal_index_hdr_aa6be53a6a60ea0b2a97a245b5ca68d61}{big\+End\+Cksum}}
+\item 
+u16 \mbox{\hyperlink{struct_wal_index_hdr_a74e9182803402942cf6e45d8e23589c7}{sz\+Page}}
+\item 
+u32 \mbox{\hyperlink{struct_wal_index_hdr_aa697dbe8134daf3d02dce07feb897f41}{mx\+Frame}}
+\item 
+u32 \mbox{\hyperlink{struct_wal_index_hdr_ae4ca33947cd629feb9dce2b1f976c364}{n\+Page}}
+\item 
+u32 \mbox{\hyperlink{struct_wal_index_hdr_a425dff294e0f0b30b6819c273404c721}{a\+Frame\+Cksum}} \mbox{[}2\mbox{]}
+\item 
+u32 \mbox{\hyperlink{struct_wal_index_hdr_af99b92f673fd7ba1e4e4f9feb955453f}{a\+Salt}} \mbox{[}2\mbox{]}
+\item 
+u32 \mbox{\hyperlink{struct_wal_index_hdr_aa202339b02766d088717bfce9e3a9c0e}{a\+Cksum}} \mbox{[}2\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53573}{53573}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_wal_index_hdr_aa202339b02766d088717bfce9e3a9c0e}\label{struct_wal_index_hdr_aa202339b02766d088717bfce9e3a9c0e} 
+\index{WalIndexHdr@{WalIndexHdr}!aCksum@{aCksum}}
+\index{aCksum@{aCksum}!WalIndexHdr@{WalIndexHdr}}
+\doxysubsubsection{\texorpdfstring{aCksum}{aCksum}}
+{\footnotesize\ttfamily u32 Wal\+Index\+Hdr\+::a\+Cksum\mbox{[}2\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53584}{53584}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_index_hdr_a425dff294e0f0b30b6819c273404c721}\label{struct_wal_index_hdr_a425dff294e0f0b30b6819c273404c721} 
+\index{WalIndexHdr@{WalIndexHdr}!aFrameCksum@{aFrameCksum}}
+\index{aFrameCksum@{aFrameCksum}!WalIndexHdr@{WalIndexHdr}}
+\doxysubsubsection{\texorpdfstring{aFrameCksum}{aFrameCksum}}
+{\footnotesize\ttfamily u32 Wal\+Index\+Hdr\+::a\+Frame\+Cksum\mbox{[}2\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53582}{53582}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_index_hdr_af99b92f673fd7ba1e4e4f9feb955453f}\label{struct_wal_index_hdr_af99b92f673fd7ba1e4e4f9feb955453f} 
+\index{WalIndexHdr@{WalIndexHdr}!aSalt@{aSalt}}
+\index{aSalt@{aSalt}!WalIndexHdr@{WalIndexHdr}}
+\doxysubsubsection{\texorpdfstring{aSalt}{aSalt}}
+{\footnotesize\ttfamily u32 Wal\+Index\+Hdr\+::a\+Salt\mbox{[}2\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53583}{53583}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_index_hdr_aa6be53a6a60ea0b2a97a245b5ca68d61}\label{struct_wal_index_hdr_aa6be53a6a60ea0b2a97a245b5ca68d61} 
+\index{WalIndexHdr@{WalIndexHdr}!bigEndCksum@{bigEndCksum}}
+\index{bigEndCksum@{bigEndCksum}!WalIndexHdr@{WalIndexHdr}}
+\doxysubsubsection{\texorpdfstring{bigEndCksum}{bigEndCksum}}
+{\footnotesize\ttfamily u8 Wal\+Index\+Hdr\+::big\+End\+Cksum}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53578}{53578}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_index_hdr_a9fafc4d4af9ab741b3b8733380a7927f}\label{struct_wal_index_hdr_a9fafc4d4af9ab741b3b8733380a7927f} 
+\index{WalIndexHdr@{WalIndexHdr}!iChange@{iChange}}
+\index{iChange@{iChange}!WalIndexHdr@{WalIndexHdr}}
+\doxysubsubsection{\texorpdfstring{iChange}{iChange}}
+{\footnotesize\ttfamily u32 Wal\+Index\+Hdr\+::i\+Change}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53576}{53576}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_index_hdr_a1cc0dc2be6cd108a7bcca260be3e4cb9}\label{struct_wal_index_hdr_a1cc0dc2be6cd108a7bcca260be3e4cb9} 
+\index{WalIndexHdr@{WalIndexHdr}!isInit@{isInit}}
+\index{isInit@{isInit}!WalIndexHdr@{WalIndexHdr}}
+\doxysubsubsection{\texorpdfstring{isInit}{isInit}}
+{\footnotesize\ttfamily u8 Wal\+Index\+Hdr\+::is\+Init}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53577}{53577}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_index_hdr_a49295f5eb9d6f37a1498cf1a66410b92}\label{struct_wal_index_hdr_a49295f5eb9d6f37a1498cf1a66410b92} 
+\index{WalIndexHdr@{WalIndexHdr}!iVersion@{iVersion}}
+\index{iVersion@{iVersion}!WalIndexHdr@{WalIndexHdr}}
+\doxysubsubsection{\texorpdfstring{iVersion}{iVersion}}
+{\footnotesize\ttfamily u32 Wal\+Index\+Hdr\+::i\+Version}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53574}{53574}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_index_hdr_aa697dbe8134daf3d02dce07feb897f41}\label{struct_wal_index_hdr_aa697dbe8134daf3d02dce07feb897f41} 
+\index{WalIndexHdr@{WalIndexHdr}!mxFrame@{mxFrame}}
+\index{mxFrame@{mxFrame}!WalIndexHdr@{WalIndexHdr}}
+\doxysubsubsection{\texorpdfstring{mxFrame}{mxFrame}}
+{\footnotesize\ttfamily u32 Wal\+Index\+Hdr\+::mx\+Frame}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53580}{53580}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_index_hdr_ae4ca33947cd629feb9dce2b1f976c364}\label{struct_wal_index_hdr_ae4ca33947cd629feb9dce2b1f976c364} 
+\index{WalIndexHdr@{WalIndexHdr}!nPage@{nPage}}
+\index{nPage@{nPage}!WalIndexHdr@{WalIndexHdr}}
+\doxysubsubsection{\texorpdfstring{nPage}{nPage}}
+{\footnotesize\ttfamily u32 Wal\+Index\+Hdr\+::n\+Page}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53581}{53581}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_index_hdr_a74e9182803402942cf6e45d8e23589c7}\label{struct_wal_index_hdr_a74e9182803402942cf6e45d8e23589c7} 
+\index{WalIndexHdr@{WalIndexHdr}!szPage@{szPage}}
+\index{szPage@{szPage}!WalIndexHdr@{WalIndexHdr}}
+\doxysubsubsection{\texorpdfstring{szPage}{szPage}}
+{\footnotesize\ttfamily u16 Wal\+Index\+Hdr\+::sz\+Page}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53579}{53579}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_wal_index_hdr_aa00596b4ad38dce7f97261a49ce64d74}\label{struct_wal_index_hdr_aa00596b4ad38dce7f97261a49ce64d74} 
+\index{WalIndexHdr@{WalIndexHdr}!unused@{unused}}
+\index{unused@{unused}!WalIndexHdr@{WalIndexHdr}}
+\doxysubsubsection{\texorpdfstring{unused}{unused}}
+{\footnotesize\ttfamily u32 Wal\+Index\+Hdr\+::unused}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l53575}{53575}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

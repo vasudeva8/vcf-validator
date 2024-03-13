@@ -1,0 +1,938 @@
+\doxysection{Parse Struct Reference}
+\hypertarget{struct_parse}{}\label{struct_parse}\index{Parse@{Parse}}
+
+
+Collaboration diagram for Parse\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{de/d3a/struct_parse__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_parse_1_1y_col_cache}{y\+Col\+Cache}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structsqlite3}{sqlite3}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a44364e5e1197927f89864ec345bc5491}{db}}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a04146757986ff4654c7b321654896e81}{z\+Err\+Msg}}
+\item 
+\mbox{\hyperlink{struct_vdbe}{Vdbe}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a81774053fd5063046f532c07e3daa98b}{p\+Vdbe}}
+\item 
+int \mbox{\hyperlink{struct_parse_a897c2ea40a1065d49a134f18ca251637}{rc}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_a4c71fde634168abc1e3e32c70704b1ac}{col\+Names\+Set}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_a13b660ed90fc83565aa542a10549ec9f}{check\+Schema}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_a33d62687b6d368acf94e954490358819}{nested}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_ae292001c732781b6b94d28ca303e1aa5}{n\+Temp\+Reg}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_a027d06007eab8e01b8930357f321344b}{is\+Multi\+Write}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_a1813c80797fcdba29e95813284619e57}{may\+Abort}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_a53c500179a70ea59816dea3f6fa04b96}{has\+Compound}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_ad9f3adb62af32e4fa5fe0c0d8621ae7b}{ok\+Const\+Factor}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_a633c38a8e4512eb6415813636e2e97b4}{disable\+Lookaside}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_a23b721a6d1beab831c1b88ebbf30f57e}{n\+Col\+Cache}}
+\item 
+int \mbox{\hyperlink{struct_parse_ae2bd2e74d0caaab7a741d17b62f01ebc}{a\+Temp\+Reg}} \mbox{[}8\mbox{]}
+\item 
+int \mbox{\hyperlink{struct_parse_ae32922d3d20171f4acc426714b497e6f}{n\+Range\+Reg}}
+\item 
+int \mbox{\hyperlink{struct_parse_a715f56a596d5172926c20dd7f91600b6}{i\+Range\+Reg}}
+\item 
+int \mbox{\hyperlink{struct_parse_ac7206f0c7e580ab32b7dfb20950bb1c9}{n\+Err}}
+\item 
+int \mbox{\hyperlink{struct_parse_a6b3a46e1f275962fa8808dddba20ba23}{n\+Tab}}
+\item 
+int \mbox{\hyperlink{struct_parse_aa66b48b0ababc17403615c899cddec9c}{n\+Mem}}
+\item 
+int \mbox{\hyperlink{struct_parse_ac84102ff47885dfa854de5af1d15605b}{n\+Set}}
+\item 
+int \mbox{\hyperlink{struct_parse_a86d32dcaec08841210090c261c69a8b1}{n\+Once}}
+\item 
+int \mbox{\hyperlink{struct_parse_a84dadce444e15f0584fa2a35a4e5eadf}{n\+Op\+Alloc}}
+\item 
+int \mbox{\hyperlink{struct_parse_af9d073fc2f41afbe5a2f1c580f2333c9}{sz\+Op\+Alloc}}
+\item 
+int \mbox{\hyperlink{struct_parse_a892313092a7c97ffcf975c8a074f19b9}{i\+Fixed\+Op}}
+\item 
+int \mbox{\hyperlink{struct_parse_a07e8e916fb569a86acfa5f380afaaf77}{ck\+Base}}
+\item 
+int \mbox{\hyperlink{struct_parse_a5858bb3d9d291446cb5c435aa0ce9dbc}{i\+Self\+Tab}}
+\item 
+int \mbox{\hyperlink{struct_parse_a5b06d03e7605a6f55369481c050ac0a8}{i\+Cache\+Level}}
+\item 
+int \mbox{\hyperlink{struct_parse_ac4633493fd5f100fa823344be1c19d1e}{i\+Cache\+Cnt}}
+\item 
+int \mbox{\hyperlink{struct_parse_ab1a2fa5eb16fefcff4f61b19a1468f7d}{n\+Label}}
+\item 
+int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a67e861822e4cec97b0e45ec16fac3250}{a\+Label}}
+\item 
+\Hypertarget{struct_parse_adfb144f9b5a70c8de1ee69b66ca53424}\label{struct_parse_adfb144f9b5a70c8de1ee69b66ca53424} 
+struct \mbox{\hyperlink{struct_parse_1_1y_col_cache}{Parse\+::y\+Col\+Cache}} {\bfseries a\+Col\+Cache} \mbox{[}SQLITE\+\_\+\+N\+\_\+\+COLCACHE\mbox{]}
+\item 
+\mbox{\hyperlink{struct_expr_list}{Expr\+List}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_ab908ea67b6ac078ee3836fb8bf243002}{p\+Const\+Expr}}
+\item 
+\mbox{\hyperlink{struct_token}{Token}} \mbox{\hyperlink{struct_parse_a40cbce90eedbd57143416c8bc28fec46}{constraint\+Name}}
+\item 
+y\+Db\+Mask \mbox{\hyperlink{struct_parse_a4939b6d4fd3f48731b58b8a6f51417cd}{write\+Mask}}
+\item 
+y\+Db\+Mask \mbox{\hyperlink{struct_parse_a7c0b37cf797fd157234cb2e306cba2e4}{cookie\+Mask}}
+\item 
+int \mbox{\hyperlink{struct_parse_a6023169734f87ce27a760e0f9026c381}{cookie\+Value}} \mbox{[}SQLITE\+\_\+\+MAX\+\_\+\+ATTACHED+2\mbox{]}
+\item 
+int \mbox{\hyperlink{struct_parse_a63f71c268a7a77cb0df5619dd8ebbacd}{reg\+Rowid}}
+\item 
+int \mbox{\hyperlink{struct_parse_afcf3d47e9424b79e6911cf366cb73bd4}{reg\+Root}}
+\item 
+int \mbox{\hyperlink{struct_parse_aab781bff62f93c0f9a7ca979a3b3a820}{n\+Max\+Arg}}
+\item 
+int \mbox{\hyperlink{struct_parse_a8c61b1b13dcb394b190fa09f5c253928}{n\+Table\+Lock}}
+\item 
+\mbox{\hyperlink{struct_table_lock}{Table\+Lock}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_ae8e553d660dc69d285945d3db8f127c7}{a\+Table\+Lock}}
+\item 
+\mbox{\hyperlink{struct_autoinc_info}{Autoinc\+Info}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a23de0e2b2dc60ac5f5932c5b2cd34f10}{p\+Ainc}}
+\item 
+\mbox{\hyperlink{struct_parse}{Parse}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a739df7b56510f22e64aba1ed203fec76}{p\+Toplevel}}
+\item 
+\mbox{\hyperlink{struct_table}{Table}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_aad9b1145e39b240e842f9c2ad8e7e230}{p\+Trigger\+Tab}}
+\item 
+int \mbox{\hyperlink{struct_parse_a4ca16d26d451cd965dbb81906f9c6b0e}{addr\+Cr\+Tab}}
+\item 
+u32 \mbox{\hyperlink{struct_parse_ae85aa19104aeeab3cc7241bfd8b5d553}{n\+Query\+Loop}}
+\item 
+u32 \mbox{\hyperlink{struct_parse_acda3334b932ac6541f45fa939053e942}{oldmask}}
+\item 
+u32 \mbox{\hyperlink{struct_parse_a698d9e9d4938cc35a4ef9137a46f1840}{newmask}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_addd3028173ab100a8802dfcc9b13ffb7}{e\+Trigger\+Op}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_a67083fd2286b7d5276831e84a1a16680}{e\+Orconf}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_a5ea9b658f4cfacf4b35f18c51e144ef1}{disable\+Triggers}}
+\item 
+yn\+Var \mbox{\hyperlink{struct_parse_ae529f84d792c36e3f474e2ff89f0b6e4}{n\+Var}}
+\item 
+int \mbox{\hyperlink{struct_parse_ac9cf894d9dfd0ba37d9467cd9d2e48f0}{nz\+Var}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_a2be71f432ab79d2db44f1fcbbce55488}{i\+Pk\+Sort\+Order}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_a41f7ea55f0d6523295a5d958e25a2787}{explain}}
+\item 
+u8 \mbox{\hyperlink{struct_parse_a86c869df65cd788025680de9b6a9b1f1}{declare\+Vtab}}
+\item 
+int \mbox{\hyperlink{struct_parse_a7db8fe1ce2f0ec6bda7dc729a0e6a6e3}{n\+Vtab\+Lock}}
+\item 
+int \mbox{\hyperlink{struct_parse_a47336e4cdbb0edeeac919980c8cde018}{n\+Alias}}
+\item 
+int \mbox{\hyperlink{struct_parse_af4ec053d44a2a3bc8ae82b69a7327c3c}{n\+Height}}
+\item 
+int \mbox{\hyperlink{struct_parse_a7474fa0bf9ad160cbdf723406c306d9d}{i\+Select\+Id}}
+\item 
+int \mbox{\hyperlink{struct_parse_aab76240bd43c005941431179d4f9bf49}{i\+Next\+Select\+Id}}
+\item 
+char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a907e389eb399f3e76a0cc6b469e4e252}{az\+Var}}
+\item 
+\mbox{\hyperlink{struct_vdbe}{Vdbe}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a5e250f77353fb3df6660ff29ffa53790}{p\+Reprepare}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a14f58728b3ae2a297272510ae4bd9a89}{z\+Tail}}
+\item 
+\mbox{\hyperlink{struct_table}{Table}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a4788769c077dc86ffa3ee1e40ed6b4a1}{p\+New\+Table}}
+\item 
+\mbox{\hyperlink{struct_trigger}{Trigger}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a92ea8f2ac3190dd7c8360e0334ae78b3}{p\+New\+Trigger}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a12c6e2fb69848bcc57169d44993c351f}{z\+Auth\+Context}}
+\item 
+\mbox{\hyperlink{struct_token}{Token}} \mbox{\hyperlink{struct_parse_afd929c54566cfc4d6f748fcc6b79b973}{s\+Name\+Token}}
+\item 
+\mbox{\hyperlink{struct_token}{Token}} \mbox{\hyperlink{struct_parse_ad499020d1bf06f3c98c8d36e2ceb83fd}{s\+Last\+Token}}
+\item 
+\mbox{\hyperlink{struct_token}{Token}} \mbox{\hyperlink{struct_parse_aa3fe38b31dd1cd0fbea4de0e77891642}{s\+Arg}}
+\item 
+\mbox{\hyperlink{struct_table}{Table}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_acdfd318c0f04ec640d6affc85ef8a009}{ap\+Vtab\+Lock}}
+\item 
+\mbox{\hyperlink{struct_table}{Table}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a4e8319f0a7f0d21e472c13ac6cf67060}{p\+Zombie\+Tab}}
+\item 
+\mbox{\hyperlink{struct_trigger_prg}{Trigger\+Prg}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a0891dbd3b583594c5d07d7b061026ea4}{p\+Trigger\+Prg}}
+\item 
+\mbox{\hyperlink{struct_with}{With}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_a7a812b036ddcc4b838b956328e1ff03e}{p\+With}}
+\item 
+\mbox{\hyperlink{struct_with}{With}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_parse_ae8e4463fa9d87da2833a542e27dd722d}{p\+With\+To\+Free}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15270}{15270}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_parse_a4ca16d26d451cd965dbb81906f9c6b0e}\label{struct_parse_a4ca16d26d451cd965dbb81906f9c6b0e} 
+\index{Parse@{Parse}!addrCrTab@{addrCrTab}}
+\index{addrCrTab@{addrCrTab}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{addrCrTab}{addrCrTab}}
+{\footnotesize\ttfamily int Parse\+::addr\+Cr\+Tab}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15331}{15331}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a67e861822e4cec97b0e45ec16fac3250}\label{struct_parse_a67e861822e4cec97b0e45ec16fac3250} 
+\index{Parse@{Parse}!aLabel@{aLabel}}
+\index{aLabel@{aLabel}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{aLabel}{aLabel}}
+{\footnotesize\ttfamily int\texorpdfstring{$\ast$}{*} Parse\+::a\+Label}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15301}{15301}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_acdfd318c0f04ec640d6affc85ef8a009}\label{struct_parse_acdfd318c0f04ec640d6affc85ef8a009} 
+\index{Parse@{Parse}!apVtabLock@{apVtabLock}}
+\index{apVtabLock@{apVtabLock}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{apVtabLock}{apVtabLock}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_table}{Table}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Parse\+::ap\+Vtab\+Lock}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15370}{15370}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ae8e553d660dc69d285945d3db8f127c7}\label{struct_parse_ae8e553d660dc69d285945d3db8f127c7} 
+\index{Parse@{Parse}!aTableLock@{aTableLock}}
+\index{aTableLock@{aTableLock}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{aTableLock}{aTableLock}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_table_lock}{Table\+Lock}}\texorpdfstring{$\ast$}{*} Parse\+::a\+Table\+Lock}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15324}{15324}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ae2bd2e74d0caaab7a741d17b62f01ebc}\label{struct_parse_ae2bd2e74d0caaab7a741d17b62f01ebc} 
+\index{Parse@{Parse}!aTempReg@{aTempReg}}
+\index{aTempReg@{aTempReg}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{aTempReg}{aTempReg}}
+{\footnotesize\ttfamily int Parse\+::a\+Temp\+Reg\mbox{[}8\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15285}{15285}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a907e389eb399f3e76a0cc6b469e4e252}\label{struct_parse_a907e389eb399f3e76a0cc6b469e4e252} 
+\index{Parse@{Parse}!azVar@{azVar}}
+\index{azVar@{azVar}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{azVar}{azVar}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Parse\+::az\+Var}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15360}{15360}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a13b660ed90fc83565aa542a10549ec9f}\label{struct_parse_a13b660ed90fc83565aa542a10549ec9f} 
+\index{Parse@{Parse}!checkSchema@{checkSchema}}
+\index{checkSchema@{checkSchema}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{checkSchema}{checkSchema}}
+{\footnotesize\ttfamily u8 Parse\+::check\+Schema}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15276}{15276}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a07e8e916fb569a86acfa5f380afaaf77}\label{struct_parse_a07e8e916fb569a86acfa5f380afaaf77} 
+\index{Parse@{Parse}!ckBase@{ckBase}}
+\index{ckBase@{ckBase}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{ckBase}{ckBase}}
+{\footnotesize\ttfamily int Parse\+::ck\+Base}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15296}{15296}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a4c71fde634168abc1e3e32c70704b1ac}\label{struct_parse_a4c71fde634168abc1e3e32c70704b1ac} 
+\index{Parse@{Parse}!colNamesSet@{colNamesSet}}
+\index{colNamesSet@{colNamesSet}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{colNamesSet}{colNamesSet}}
+{\footnotesize\ttfamily u8 Parse\+::col\+Names\+Set}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15275}{15275}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a40cbce90eedbd57143416c8bc28fec46}\label{struct_parse_a40cbce90eedbd57143416c8bc28fec46} 
+\index{Parse@{Parse}!constraintName@{constraintName}}
+\index{constraintName@{constraintName}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{constraintName}{constraintName}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_token}{Token}} Parse\+::constraint\+Name}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15311}{15311}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a7c0b37cf797fd157234cb2e306cba2e4}\label{struct_parse_a7c0b37cf797fd157234cb2e306cba2e4} 
+\index{Parse@{Parse}!cookieMask@{cookieMask}}
+\index{cookieMask@{cookieMask}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{cookieMask}{cookieMask}}
+{\footnotesize\ttfamily y\+Db\+Mask Parse\+::cookie\+Mask}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15313}{15313}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a6023169734f87ce27a760e0f9026c381}\label{struct_parse_a6023169734f87ce27a760e0f9026c381} 
+\index{Parse@{Parse}!cookieValue@{cookieValue}}
+\index{cookieValue@{cookieValue}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{cookieValue}{cookieValue}}
+{\footnotesize\ttfamily int Parse\+::cookie\+Value\mbox{[}SQLITE\+\_\+\+MAX\+\_\+\+ATTACHED+2\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15314}{15314}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a44364e5e1197927f89864ec345bc5491}\label{struct_parse_a44364e5e1197927f89864ec345bc5491} 
+\index{Parse@{Parse}!db@{db}}
+\index{db@{db}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{db}{db}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsqlite3}{sqlite3}}\texorpdfstring{$\ast$}{*} Parse\+::db}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15271}{15271}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a86c869df65cd788025680de9b6a9b1f1}\label{struct_parse_a86c869df65cd788025680de9b6a9b1f1} 
+\index{Parse@{Parse}!declareVtab@{declareVtab}}
+\index{declareVtab@{declareVtab}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{declareVtab}{declareVtab}}
+{\footnotesize\ttfamily u8 Parse\+::declare\+Vtab}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15351}{15351}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a633c38a8e4512eb6415813636e2e97b4}\label{struct_parse_a633c38a8e4512eb6415813636e2e97b4} 
+\index{Parse@{Parse}!disableLookaside@{disableLookaside}}
+\index{disableLookaside@{disableLookaside}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{disableLookaside}{disableLookaside}}
+{\footnotesize\ttfamily u8 Parse\+::disable\+Lookaside}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15283}{15283}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a5ea9b658f4cfacf4b35f18c51e144ef1}\label{struct_parse_a5ea9b658f4cfacf4b35f18c51e144ef1} 
+\index{Parse@{Parse}!disableTriggers@{disableTriggers}}
+\index{disableTriggers@{disableTriggers}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{disableTriggers}{disableTriggers}}
+{\footnotesize\ttfamily u8 Parse\+::disable\+Triggers}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15337}{15337}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a67083fd2286b7d5276831e84a1a16680}\label{struct_parse_a67083fd2286b7d5276831e84a1a16680} 
+\index{Parse@{Parse}!eOrconf@{eOrconf}}
+\index{eOrconf@{eOrconf}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{eOrconf}{eOrconf}}
+{\footnotesize\ttfamily u8 Parse\+::e\+Orconf}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15336}{15336}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_addd3028173ab100a8802dfcc9b13ffb7}\label{struct_parse_addd3028173ab100a8802dfcc9b13ffb7} 
+\index{Parse@{Parse}!eTriggerOp@{eTriggerOp}}
+\index{eTriggerOp@{eTriggerOp}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{eTriggerOp}{eTriggerOp}}
+{\footnotesize\ttfamily u8 Parse\+::e\+Trigger\+Op}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15335}{15335}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a41f7ea55f0d6523295a5d958e25a2787}\label{struct_parse_a41f7ea55f0d6523295a5d958e25a2787} 
+\index{Parse@{Parse}!explain@{explain}}
+\index{explain@{explain}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{explain}{explain}}
+{\footnotesize\ttfamily u8 Parse\+::explain}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15349}{15349}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a53c500179a70ea59816dea3f6fa04b96}\label{struct_parse_a53c500179a70ea59816dea3f6fa04b96} 
+\index{Parse@{Parse}!hasCompound@{hasCompound}}
+\index{hasCompound@{hasCompound}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{hasCompound}{hasCompound}}
+{\footnotesize\ttfamily u8 Parse\+::has\+Compound}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15281}{15281}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ac4633493fd5f100fa823344be1c19d1e}\label{struct_parse_ac4633493fd5f100fa823344be1c19d1e} 
+\index{Parse@{Parse}!iCacheCnt@{iCacheCnt}}
+\index{iCacheCnt@{iCacheCnt}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{iCacheCnt}{iCacheCnt}}
+{\footnotesize\ttfamily int Parse\+::i\+Cache\+Cnt}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15299}{15299}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a5b06d03e7605a6f55369481c050ac0a8}\label{struct_parse_a5b06d03e7605a6f55369481c050ac0a8} 
+\index{Parse@{Parse}!iCacheLevel@{iCacheLevel}}
+\index{iCacheLevel@{iCacheLevel}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{iCacheLevel}{iCacheLevel}}
+{\footnotesize\ttfamily int Parse\+::i\+Cache\+Level}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15298}{15298}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a892313092a7c97ffcf975c8a074f19b9}\label{struct_parse_a892313092a7c97ffcf975c8a074f19b9} 
+\index{Parse@{Parse}!iFixedOp@{iFixedOp}}
+\index{iFixedOp@{iFixedOp}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{iFixedOp}{iFixedOp}}
+{\footnotesize\ttfamily int Parse\+::i\+Fixed\+Op}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15295}{15295}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_aab76240bd43c005941431179d4f9bf49}\label{struct_parse_aab76240bd43c005941431179d4f9bf49} 
+\index{Parse@{Parse}!iNextSelectId@{iNextSelectId}}
+\index{iNextSelectId@{iNextSelectId}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{iNextSelectId}{iNextSelectId}}
+{\footnotesize\ttfamily int Parse\+::i\+Next\+Select\+Id}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15358}{15358}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a2be71f432ab79d2db44f1fcbbce55488}\label{struct_parse_a2be71f432ab79d2db44f1fcbbce55488} 
+\index{Parse@{Parse}!iPkSortOrder@{iPkSortOrder}}
+\index{iPkSortOrder@{iPkSortOrder}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{iPkSortOrder}{iPkSortOrder}}
+{\footnotesize\ttfamily u8 Parse\+::i\+Pk\+Sort\+Order}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15348}{15348}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a715f56a596d5172926c20dd7f91600b6}\label{struct_parse_a715f56a596d5172926c20dd7f91600b6} 
+\index{Parse@{Parse}!iRangeReg@{iRangeReg}}
+\index{iRangeReg@{iRangeReg}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{iRangeReg}{iRangeReg}}
+{\footnotesize\ttfamily int Parse\+::i\+Range\+Reg}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15287}{15287}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a7474fa0bf9ad160cbdf723406c306d9d}\label{struct_parse_a7474fa0bf9ad160cbdf723406c306d9d} 
+\index{Parse@{Parse}!iSelectId@{iSelectId}}
+\index{iSelectId@{iSelectId}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{iSelectId}{iSelectId}}
+{\footnotesize\ttfamily int Parse\+::i\+Select\+Id}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15357}{15357}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a5858bb3d9d291446cb5c435aa0ce9dbc}\label{struct_parse_a5858bb3d9d291446cb5c435aa0ce9dbc} 
+\index{Parse@{Parse}!iSelfTab@{iSelfTab}}
+\index{iSelfTab@{iSelfTab}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{iSelfTab}{iSelfTab}}
+{\footnotesize\ttfamily int Parse\+::i\+Self\+Tab}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15297}{15297}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a027d06007eab8e01b8930357f321344b}\label{struct_parse_a027d06007eab8e01b8930357f321344b} 
+\index{Parse@{Parse}!isMultiWrite@{isMultiWrite}}
+\index{isMultiWrite@{isMultiWrite}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{isMultiWrite}{isMultiWrite}}
+{\footnotesize\ttfamily u8 Parse\+::is\+Multi\+Write}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15279}{15279}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a1813c80797fcdba29e95813284619e57}\label{struct_parse_a1813c80797fcdba29e95813284619e57} 
+\index{Parse@{Parse}!mayAbort@{mayAbort}}
+\index{mayAbort@{mayAbort}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{mayAbort}{mayAbort}}
+{\footnotesize\ttfamily u8 Parse\+::may\+Abort}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15280}{15280}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a47336e4cdbb0edeeac919980c8cde018}\label{struct_parse_a47336e4cdbb0edeeac919980c8cde018} 
+\index{Parse@{Parse}!nAlias@{nAlias}}
+\index{nAlias@{nAlias}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nAlias}{nAlias}}
+{\footnotesize\ttfamily int Parse\+::n\+Alias}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15354}{15354}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a23b721a6d1beab831c1b88ebbf30f57e}\label{struct_parse_a23b721a6d1beab831c1b88ebbf30f57e} 
+\index{Parse@{Parse}!nColCache@{nColCache}}
+\index{nColCache@{nColCache}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nColCache}{nColCache}}
+{\footnotesize\ttfamily u8 Parse\+::n\+Col\+Cache}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15284}{15284}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ac7206f0c7e580ab32b7dfb20950bb1c9}\label{struct_parse_ac7206f0c7e580ab32b7dfb20950bb1c9} 
+\index{Parse@{Parse}!nErr@{nErr}}
+\index{nErr@{nErr}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nErr}{nErr}}
+{\footnotesize\ttfamily int Parse\+::n\+Err}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15288}{15288}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a33d62687b6d368acf94e954490358819}\label{struct_parse_a33d62687b6d368acf94e954490358819} 
+\index{Parse@{Parse}!nested@{nested}}
+\index{nested@{nested}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nested}{nested}}
+{\footnotesize\ttfamily u8 Parse\+::nested}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15277}{15277}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a698d9e9d4938cc35a4ef9137a46f1840}\label{struct_parse_a698d9e9d4938cc35a4ef9137a46f1840} 
+\index{Parse@{Parse}!newmask@{newmask}}
+\index{newmask@{newmask}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{newmask}{newmask}}
+{\footnotesize\ttfamily u32 Parse\+::newmask}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15334}{15334}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_af4ec053d44a2a3bc8ae82b69a7327c3c}\label{struct_parse_af4ec053d44a2a3bc8ae82b69a7327c3c} 
+\index{Parse@{Parse}!nHeight@{nHeight}}
+\index{nHeight@{nHeight}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nHeight}{nHeight}}
+{\footnotesize\ttfamily int Parse\+::n\+Height}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15355}{15355}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ab1a2fa5eb16fefcff4f61b19a1468f7d}\label{struct_parse_ab1a2fa5eb16fefcff4f61b19a1468f7d} 
+\index{Parse@{Parse}!nLabel@{nLabel}}
+\index{nLabel@{nLabel}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nLabel}{nLabel}}
+{\footnotesize\ttfamily int Parse\+::n\+Label}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15300}{15300}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_aab781bff62f93c0f9a7ca979a3b3a820}\label{struct_parse_aab781bff62f93c0f9a7ca979a3b3a820} 
+\index{Parse@{Parse}!nMaxArg@{nMaxArg}}
+\index{nMaxArg@{nMaxArg}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nMaxArg}{nMaxArg}}
+{\footnotesize\ttfamily int Parse\+::n\+Max\+Arg}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15317}{15317}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_aa66b48b0ababc17403615c899cddec9c}\label{struct_parse_aa66b48b0ababc17403615c899cddec9c} 
+\index{Parse@{Parse}!nMem@{nMem}}
+\index{nMem@{nMem}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nMem}{nMem}}
+{\footnotesize\ttfamily int Parse\+::n\+Mem}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15290}{15290}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a86d32dcaec08841210090c261c69a8b1}\label{struct_parse_a86d32dcaec08841210090c261c69a8b1} 
+\index{Parse@{Parse}!nOnce@{nOnce}}
+\index{nOnce@{nOnce}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nOnce}{nOnce}}
+{\footnotesize\ttfamily int Parse\+::n\+Once}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15292}{15292}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a84dadce444e15f0584fa2a35a4e5eadf}\label{struct_parse_a84dadce444e15f0584fa2a35a4e5eadf} 
+\index{Parse@{Parse}!nOpAlloc@{nOpAlloc}}
+\index{nOpAlloc@{nOpAlloc}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nOpAlloc}{nOpAlloc}}
+{\footnotesize\ttfamily int Parse\+::n\+Op\+Alloc}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15293}{15293}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ae85aa19104aeeab3cc7241bfd8b5d553}\label{struct_parse_ae85aa19104aeeab3cc7241bfd8b5d553} 
+\index{Parse@{Parse}!nQueryLoop@{nQueryLoop}}
+\index{nQueryLoop@{nQueryLoop}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nQueryLoop}{nQueryLoop}}
+{\footnotesize\ttfamily u32 Parse\+::n\+Query\+Loop}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15332}{15332}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ae32922d3d20171f4acc426714b497e6f}\label{struct_parse_ae32922d3d20171f4acc426714b497e6f} 
+\index{Parse@{Parse}!nRangeReg@{nRangeReg}}
+\index{nRangeReg@{nRangeReg}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nRangeReg}{nRangeReg}}
+{\footnotesize\ttfamily int Parse\+::n\+Range\+Reg}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15286}{15286}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ac84102ff47885dfa854de5af1d15605b}\label{struct_parse_ac84102ff47885dfa854de5af1d15605b} 
+\index{Parse@{Parse}!nSet@{nSet}}
+\index{nSet@{nSet}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nSet}{nSet}}
+{\footnotesize\ttfamily int Parse\+::n\+Set}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15291}{15291}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a6b3a46e1f275962fa8808dddba20ba23}\label{struct_parse_a6b3a46e1f275962fa8808dddba20ba23} 
+\index{Parse@{Parse}!nTab@{nTab}}
+\index{nTab@{nTab}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nTab}{nTab}}
+{\footnotesize\ttfamily int Parse\+::n\+Tab}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15289}{15289}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a8c61b1b13dcb394b190fa09f5c253928}\label{struct_parse_a8c61b1b13dcb394b190fa09f5c253928} 
+\index{Parse@{Parse}!nTableLock@{nTableLock}}
+\index{nTableLock@{nTableLock}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nTableLock}{nTableLock}}
+{\footnotesize\ttfamily int Parse\+::n\+Table\+Lock}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15323}{15323}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ae292001c732781b6b94d28ca303e1aa5}\label{struct_parse_ae292001c732781b6b94d28ca303e1aa5} 
+\index{Parse@{Parse}!nTempReg@{nTempReg}}
+\index{nTempReg@{nTempReg}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nTempReg}{nTempReg}}
+{\footnotesize\ttfamily u8 Parse\+::n\+Temp\+Reg}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15278}{15278}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ae529f84d792c36e3f474e2ff89f0b6e4}\label{struct_parse_ae529f84d792c36e3f474e2ff89f0b6e4} 
+\index{Parse@{Parse}!nVar@{nVar}}
+\index{nVar@{nVar}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nVar}{nVar}}
+{\footnotesize\ttfamily yn\+Var Parse\+::n\+Var}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15346}{15346}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a7db8fe1ce2f0ec6bda7dc729a0e6a6e3}\label{struct_parse_a7db8fe1ce2f0ec6bda7dc729a0e6a6e3} 
+\index{Parse@{Parse}!nVtabLock@{nVtabLock}}
+\index{nVtabLock@{nVtabLock}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nVtabLock}{nVtabLock}}
+{\footnotesize\ttfamily int Parse\+::n\+Vtab\+Lock}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15352}{15352}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ac9cf894d9dfd0ba37d9467cd9d2e48f0}\label{struct_parse_ac9cf894d9dfd0ba37d9467cd9d2e48f0} 
+\index{Parse@{Parse}!nzVar@{nzVar}}
+\index{nzVar@{nzVar}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{nzVar}{nzVar}}
+{\footnotesize\ttfamily int Parse\+::nz\+Var}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15347}{15347}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ad9f3adb62af32e4fa5fe0c0d8621ae7b}\label{struct_parse_ad9f3adb62af32e4fa5fe0c0d8621ae7b} 
+\index{Parse@{Parse}!okConstFactor@{okConstFactor}}
+\index{okConstFactor@{okConstFactor}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{okConstFactor}{okConstFactor}}
+{\footnotesize\ttfamily u8 Parse\+::ok\+Const\+Factor}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15282}{15282}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_acda3334b932ac6541f45fa939053e942}\label{struct_parse_acda3334b932ac6541f45fa939053e942} 
+\index{Parse@{Parse}!oldmask@{oldmask}}
+\index{oldmask@{oldmask}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{oldmask}{oldmask}}
+{\footnotesize\ttfamily u32 Parse\+::oldmask}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15333}{15333}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a23de0e2b2dc60ac5f5932c5b2cd34f10}\label{struct_parse_a23de0e2b2dc60ac5f5932c5b2cd34f10} 
+\index{Parse@{Parse}!pAinc@{pAinc}}
+\index{pAinc@{pAinc}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{pAinc}{pAinc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_autoinc_info}{Autoinc\+Info}}\texorpdfstring{$\ast$}{*} Parse\+::p\+Ainc}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15326}{15326}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ab908ea67b6ac078ee3836fb8bf243002}\label{struct_parse_ab908ea67b6ac078ee3836fb8bf243002} 
+\index{Parse@{Parse}!pConstExpr@{pConstExpr}}
+\index{pConstExpr@{pConstExpr}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{pConstExpr}{pConstExpr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_expr_list}{Expr\+List}}\texorpdfstring{$\ast$}{*} Parse\+::p\+Const\+Expr}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15310}{15310}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a4788769c077dc86ffa3ee1e40ed6b4a1}\label{struct_parse_a4788769c077dc86ffa3ee1e40ed6b4a1} 
+\index{Parse@{Parse}!pNewTable@{pNewTable}}
+\index{pNewTable@{pNewTable}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{pNewTable}{pNewTable}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_table}{Table}}\texorpdfstring{$\ast$}{*} Parse\+::p\+New\+Table}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15363}{15363}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a92ea8f2ac3190dd7c8360e0334ae78b3}\label{struct_parse_a92ea8f2ac3190dd7c8360e0334ae78b3} 
+\index{Parse@{Parse}!pNewTrigger@{pNewTrigger}}
+\index{pNewTrigger@{pNewTrigger}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{pNewTrigger}{pNewTrigger}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_trigger}{Trigger}}\texorpdfstring{$\ast$}{*} Parse\+::p\+New\+Trigger}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15364}{15364}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a5e250f77353fb3df6660ff29ffa53790}\label{struct_parse_a5e250f77353fb3df6660ff29ffa53790} 
+\index{Parse@{Parse}!pReprepare@{pReprepare}}
+\index{pReprepare@{pReprepare}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{pReprepare}{pReprepare}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vdbe}{Vdbe}}\texorpdfstring{$\ast$}{*} Parse\+::p\+Reprepare}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15361}{15361}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a739df7b56510f22e64aba1ed203fec76}\label{struct_parse_a739df7b56510f22e64aba1ed203fec76} 
+\index{Parse@{Parse}!pToplevel@{pToplevel}}
+\index{pToplevel@{pToplevel}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{pToplevel}{pToplevel}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_parse}{Parse}}\texorpdfstring{$\ast$}{*} Parse\+::p\+Toplevel}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15329}{15329}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a0891dbd3b583594c5d07d7b061026ea4}\label{struct_parse_a0891dbd3b583594c5d07d7b061026ea4} 
+\index{Parse@{Parse}!pTriggerPrg@{pTriggerPrg}}
+\index{pTriggerPrg@{pTriggerPrg}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{pTriggerPrg}{pTriggerPrg}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_trigger_prg}{Trigger\+Prg}}\texorpdfstring{$\ast$}{*} Parse\+::p\+Trigger\+Prg}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15373}{15373}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_aad9b1145e39b240e842f9c2ad8e7e230}\label{struct_parse_aad9b1145e39b240e842f9c2ad8e7e230} 
+\index{Parse@{Parse}!pTriggerTab@{pTriggerTab}}
+\index{pTriggerTab@{pTriggerTab}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{pTriggerTab}{pTriggerTab}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_table}{Table}}\texorpdfstring{$\ast$}{*} Parse\+::p\+Trigger\+Tab}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15330}{15330}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a81774053fd5063046f532c07e3daa98b}\label{struct_parse_a81774053fd5063046f532c07e3daa98b} 
+\index{Parse@{Parse}!pVdbe@{pVdbe}}
+\index{pVdbe@{pVdbe}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{pVdbe}{pVdbe}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vdbe}{Vdbe}}\texorpdfstring{$\ast$}{*} Parse\+::p\+Vdbe}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15273}{15273}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a7a812b036ddcc4b838b956328e1ff03e}\label{struct_parse_a7a812b036ddcc4b838b956328e1ff03e} 
+\index{Parse@{Parse}!pWith@{pWith}}
+\index{pWith@{pWith}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{pWith}{pWith}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_with}{With}}\texorpdfstring{$\ast$}{*} Parse\+::p\+With}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15374}{15374}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ae8e4463fa9d87da2833a542e27dd722d}\label{struct_parse_ae8e4463fa9d87da2833a542e27dd722d} 
+\index{Parse@{Parse}!pWithToFree@{pWithToFree}}
+\index{pWithToFree@{pWithToFree}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{pWithToFree}{pWithToFree}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_with}{With}}\texorpdfstring{$\ast$}{*} Parse\+::p\+With\+To\+Free}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15375}{15375}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a4e8319f0a7f0d21e472c13ac6cf67060}\label{struct_parse_a4e8319f0a7f0d21e472c13ac6cf67060} 
+\index{Parse@{Parse}!pZombieTab@{pZombieTab}}
+\index{pZombieTab@{pZombieTab}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{pZombieTab}{pZombieTab}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_table}{Table}}\texorpdfstring{$\ast$}{*} Parse\+::p\+Zombie\+Tab}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15372}{15372}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a897c2ea40a1065d49a134f18ca251637}\label{struct_parse_a897c2ea40a1065d49a134f18ca251637} 
+\index{Parse@{Parse}!rc@{rc}}
+\index{rc@{rc}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{rc}{rc}}
+{\footnotesize\ttfamily int Parse\+::rc}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15274}{15274}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_afcf3d47e9424b79e6911cf366cb73bd4}\label{struct_parse_afcf3d47e9424b79e6911cf366cb73bd4} 
+\index{Parse@{Parse}!regRoot@{regRoot}}
+\index{regRoot@{regRoot}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{regRoot}{regRoot}}
+{\footnotesize\ttfamily int Parse\+::reg\+Root}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15316}{15316}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a63f71c268a7a77cb0df5619dd8ebbacd}\label{struct_parse_a63f71c268a7a77cb0df5619dd8ebbacd} 
+\index{Parse@{Parse}!regRowid@{regRowid}}
+\index{regRowid@{regRowid}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{regRowid}{regRowid}}
+{\footnotesize\ttfamily int Parse\+::reg\+Rowid}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15315}{15315}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_aa3fe38b31dd1cd0fbea4de0e77891642}\label{struct_parse_aa3fe38b31dd1cd0fbea4de0e77891642} 
+\index{Parse@{Parse}!sArg@{sArg}}
+\index{sArg@{sArg}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{sArg}{sArg}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_token}{Token}} Parse\+::s\+Arg}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15369}{15369}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_ad499020d1bf06f3c98c8d36e2ceb83fd}\label{struct_parse_ad499020d1bf06f3c98c8d36e2ceb83fd} 
+\index{Parse@{Parse}!sLastToken@{sLastToken}}
+\index{sLastToken@{sLastToken}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{sLastToken}{sLastToken}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_token}{Token}} Parse\+::s\+Last\+Token}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15367}{15367}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_afd929c54566cfc4d6f748fcc6b79b973}\label{struct_parse_afd929c54566cfc4d6f748fcc6b79b973} 
+\index{Parse@{Parse}!sNameToken@{sNameToken}}
+\index{sNameToken@{sNameToken}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{sNameToken}{sNameToken}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_token}{Token}} Parse\+::s\+Name\+Token}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15366}{15366}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_af9d073fc2f41afbe5a2f1c580f2333c9}\label{struct_parse_af9d073fc2f41afbe5a2f1c580f2333c9} 
+\index{Parse@{Parse}!szOpAlloc@{szOpAlloc}}
+\index{szOpAlloc@{szOpAlloc}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{szOpAlloc}{szOpAlloc}}
+{\footnotesize\ttfamily int Parse\+::sz\+Op\+Alloc}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15294}{15294}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a4939b6d4fd3f48731b58b8a6f51417cd}\label{struct_parse_a4939b6d4fd3f48731b58b8a6f51417cd} 
+\index{Parse@{Parse}!writeMask@{writeMask}}
+\index{writeMask@{writeMask}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{writeMask}{writeMask}}
+{\footnotesize\ttfamily y\+Db\+Mask Parse\+::write\+Mask}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15312}{15312}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a12c6e2fb69848bcc57169d44993c351f}\label{struct_parse_a12c6e2fb69848bcc57169d44993c351f} 
+\index{Parse@{Parse}!zAuthContext@{zAuthContext}}
+\index{zAuthContext@{zAuthContext}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{zAuthContext}{zAuthContext}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} Parse\+::z\+Auth\+Context}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15365}{15365}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a04146757986ff4654c7b321654896e81}\label{struct_parse_a04146757986ff4654c7b321654896e81} 
+\index{Parse@{Parse}!zErrMsg@{zErrMsg}}
+\index{zErrMsg@{zErrMsg}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{zErrMsg}{zErrMsg}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} Parse\+::z\+Err\+Msg}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15272}{15272}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_parse_a14f58728b3ae2a297272510ae4bd9a89}\label{struct_parse_a14f58728b3ae2a297272510ae4bd9a89} 
+\index{Parse@{Parse}!zTail@{zTail}}
+\index{zTail@{zTail}!Parse@{Parse}}
+\doxysubsubsection{\texorpdfstring{zTail}{zTail}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} Parse\+::z\+Tail}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l15362}{15362}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

@@ -1,0 +1,163 @@
+\doxysection{odb\+\_\+report.\+cpp}
+\hypertarget{odb__report_8cpp_source}{}\label{odb__report_8cpp_source}\index{src/vcf/odb\_report.cpp@{src/vcf/odb\_report.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}util/logger.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}vcf/odb\_report.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00020}00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00022}00022\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00023}00023\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00024}00024\ \ \ \ \ OdbReportRW::OdbReportRW(\textcolor{keyword}{const}\ std::string\ \&db\_name)\ :\ db\_name(db\_name),\ current\_transaction\_size\{0\},}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction\_size\{1000000\}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00026}00026\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ boost::filesystem::path\ db\_file\{db\_name\};}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (boost::filesystem::exists(db\_file))\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ db\ =\ std::unique\_ptr<odb::sqlite::database>\ (}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ odb::sqlite::database\{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ db\_name,\ SQLITE\_OPEN\_READWRITE\});}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ the\ file\ doesn't\ exist,\ create\ database\ and\ schema}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ db\ =\ std::unique\_ptr<odb::sqlite::database>(}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ odb::sqlite::database\{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ db\_name,\ SQLITE\_OPEN\_READWRITE\ |\ SQLITE\_OPEN\_CREATE\});}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ database\ schema.\ Due\ to\ bugs\ in\ SQLite\ foreign\ key}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ support\ for\ DDL\ statements,\ we\ need\ to\ temporarily\ disable}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ foreign\ keys.}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ odb::core::connection\_ptr\ c\{db-\/>connection()\};}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c-\/>execute(\textcolor{stringliteral}{"{}PRAGMA\ foreign\_keys=OFF"{}});}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ odb::core::transaction\ t\{c-\/>begin()\};}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ odb::core::schema\_catalog::create\_schema(*db);}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t.commit();}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c-\/>execute(\textcolor{stringliteral}{"{}PRAGMA\ foreign\_keys=ON"{}});}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ odb::exception\&\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error\{\textcolor{stringliteral}{"{}ODB\ report:\ Can't\ initialize\ database\ file\ \(\backslash\)"{}"{}}\ +\ db\_name\ +\ \textcolor{stringliteral}{"{}\(\backslash\)"{}:\ "{}}\ +\ e.what()\};}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00059}00059\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00061}00061\ \ \ \ \ OdbReportRW::\string~OdbReportRW()}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00062}00062\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ flush();}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::exception\ \&e)\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(error)\ <<\ \textcolor{stringliteral}{"{}An\ error\ occurred\ finalizing\ the\ error\ reporting:\ "{}}\ <<\ e.what();}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00068}00068\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordtype}{void}\ OdbReportRW::flush()}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00071}00071\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ possible\ recovery\ can\ be\ done\ here,\ ODB\ rollbacks\ automatically\ on\ error,\ and\ throws.}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (transaction.has\_current())\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ transaction.commit();}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ odb::core::connection\_ptr\ c\{db-\/>connection()\};}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ c-\/>execute(\textcolor{stringliteral}{"{}PRAGMA\ shrink\_memory"{}});}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00081}00081\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00083}00083\ \ \ \ \ \textcolor{comment}{//\ ReportWriter\ implementation}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{keywordtype}{void}\ OdbReportRW::write\_error(Error\ \&error)}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00085}00085\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ error.severity\ =\ Severity::ERROR\_LEVEL;}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ write(error);}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00088}00088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{keywordtype}{void}\ OdbReportRW::write\_warning(Error\ \&error)}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00090}00090\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ error.severity\ =\ Severity::WARNING\_LEVEL;}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ write(error);}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00093}00093\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00094}00094\ \ \ \ \ \textcolor{keywordtype}{void}\ OdbReportRW::write\_message(\textcolor{keyword}{const}\ std::string\ \&report\_result)}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00095}00095\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ do\ nothing}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00097}00097\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keywordtype}{void}\ OdbReportRW::write(Error\ \&error)}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00100}00100\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current\_transaction\_size\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ start\ transaction}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ transaction.reset(db-\/>begin());}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ db-\/>persist(error);}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ ++current\_transaction\_size;}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current\_transaction\_size\ ==\ transaction\_size)\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ commit\ transaction}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ flush();}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ current\_transaction\_size\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00114}00114\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00116}00116\ \ \ \ \ \textcolor{comment}{//\ ReportReader\ implementation}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00117}00117\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ OdbReportRW::count\_warnings()}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00118}00118\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ count(odb::query<ErrorCount>::severity\ ==\ Severity::WARNING\_LEVEL);}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00120}00120\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00121}00121\ \ \ \ \ \textcolor{keywordtype}{void}\ OdbReportRW::for\_each\_warning(std::function<\textcolor{keywordtype}{void}(std::shared\_ptr<Error>)>\ user\_function)}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00122}00122\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ for\_each(user\_function,\ odb::query<Error>::severity\ ==\ Severity::WARNING\_LEVEL);}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00124}00124\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00126}00126\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ OdbReportRW::count\_errors()}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00127}00127\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ count(odb::query<ErrorCount>::severity\ ==\ Severity::ERROR\_LEVEL);}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00129}00129\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00130}00130\ \ \ \ \ \textcolor{keywordtype}{void}\ OdbReportRW::for\_each\_error(std::function<\textcolor{keywordtype}{void}(std::shared\_ptr<Error>)>\ user\_function)}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00131}00131\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ for\_each(user\_function,\ odb::query<Error>::severity\ ==\ Severity::ERROR\_LEVEL);}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00133}00133\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00135}00135\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ OdbReportRW::count(odb::query<ErrorCount>\ query)}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00136}00136\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ ErrorCount\ count;}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (transaction.has\_current())\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error\{\textcolor{stringliteral}{"{}There's\ another\ transaction\ active.\ You\ can\ only\ read\ if\ the\ changes\ were\ flushed"{}}\};}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ transaction.reset(db-\/>begin());}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00142}00142\ \textcolor{comment}{//\ \ \ \ \ \ \ \ size\_t\ count\ =\ db-\/>execute("{}SELECT\ COUNT(*)\ FROM\ Error"{});}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ count\ =\ db-\/>query\_value<ErrorCount>(query);}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ flush();}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ count.count;}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00147}00147\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00148}00148\ \ \ \ \ \textcolor{keywordtype}{void}\ OdbReportRW::for\_each(std::function<\textcolor{keywordtype}{void}(std::shared\_ptr<Error>)>\ user\_function,\ odb::query<Error>\ query)}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00149}00149\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ odb::result<Error>\ result\_t;}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (transaction.has\_current())\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error\{\textcolor{stringliteral}{"{}There's\ another\ transaction\ active.\ You\ can\ only\ read\ if\ the\ changes\ were\ flushed"{}}\};}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ transaction.reset(db-\/>begin());}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ result\_t\ result\{db-\/>query<Error>(query\ +\ \textcolor{stringliteral}{"{}\ ORDER\ BY\ "{}}\ +\ odb::query<Error>::line)\};}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (result\_t::iterator\ it\{result.begin()\};\ it\ !=\ result.end();\ ++it)\ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ user\_function(std::shared\_ptr<ebi::vcf::Error>\{it.load()\});}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ transaction.commit();}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00165}00165\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00167}00167\ \ \ \ \ std::string\ OdbReportRW::get\_report\_message()}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00168}00168\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Database\ report\ written\ to\ :\ "{}}\ +\ db\_name;}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00170}00170\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00171}00171\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odb__report_8cpp_source_l00172}00172\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,106 @@
+\doxysection{Catch\+::Copyable\+Stream Struct Reference}
+\hypertarget{struct_catch_1_1_copyable_stream}{}\label{struct_catch_1_1_copyable_stream}\index{Catch::CopyableStream@{Catch::CopyableStream}}
+
+
+Collaboration diagram for Catch\+::Copyable\+Stream\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d6/dd9/struct_catch_1_1_copyable_stream__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_catch_1_1_copyable_stream_a0e72dc16240653f52c17106f4bf34da8}{Copyable\+Stream}} (\mbox{\hyperlink{struct_catch_1_1_copyable_stream}{Copyable\+Stream}} const \&other)
+\item 
+\mbox{\hyperlink{struct_catch_1_1_copyable_stream}{Copyable\+Stream}} \& \mbox{\hyperlink{struct_catch_1_1_copyable_stream_a50afa925fa9482dd9340575a8fd0953c}{operator=}} (\mbox{\hyperlink{struct_catch_1_1_copyable_stream}{Copyable\+Stream}} const \&other)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostringstream \mbox{\hyperlink{struct_catch_1_1_copyable_stream_ae123fb4d673e7d7a13a3c5f6bc5d426c}{oss}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l01215}{1215}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_catch_1_1_copyable_stream_a5a61d0da675ae00cd46efaef4c445cdd}\label{struct_catch_1_1_copyable_stream_a5a61d0da675ae00cd46efaef4c445cdd} 
+\index{Catch::CopyableStream@{Catch::CopyableStream}!CopyableStream@{CopyableStream}}
+\index{CopyableStream@{CopyableStream}!Catch::CopyableStream@{Catch::CopyableStream}}
+\doxysubsubsection{\texorpdfstring{CopyableStream()}{CopyableStream()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Catch\+::\+Copyable\+Stream\+::\+Copyable\+Stream (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l01216}{1216}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01216\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{struct_catch_1_1_copyable_stream_a0e72dc16240653f52c17106f4bf34da8}\label{struct_catch_1_1_copyable_stream_a0e72dc16240653f52c17106f4bf34da8} 
+\index{Catch::CopyableStream@{Catch::CopyableStream}!CopyableStream@{CopyableStream}}
+\index{CopyableStream@{CopyableStream}!Catch::CopyableStream@{Catch::CopyableStream}}
+\doxysubsubsection{\texorpdfstring{CopyableStream()}{CopyableStream()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Catch\+::\+Copyable\+Stream\+::\+Copyable\+Stream (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_catch_1_1_copyable_stream}{Copyable\+Stream}} const \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l01217}{1217}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01218\ \ \ \ \ \ \ \ \ \ \ \ \ oss\ <<\ other.oss.str();}
+\DoxyCodeLine{01219\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_catch_1_1_copyable_stream_a50afa925fa9482dd9340575a8fd0953c}\label{struct_catch_1_1_copyable_stream_a50afa925fa9482dd9340575a8fd0953c} 
+\index{Catch::CopyableStream@{Catch::CopyableStream}!operator=@{operator=}}
+\index{operator=@{operator=}!Catch::CopyableStream@{Catch::CopyableStream}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_catch_1_1_copyable_stream}{Copyable\+Stream}} \& Catch\+::\+Copyable\+Stream\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_catch_1_1_copyable_stream}{Copyable\+Stream}} const \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l01220}{1220}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01221\ \ \ \ \ \ \ \ \ \ \ \ \ oss.str(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{01222\ \ \ \ \ \ \ \ \ \ \ \ \ oss\ <<\ other.oss.str();}
+\DoxyCodeLine{01223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{01224\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_catch_1_1_copyable_stream_ae123fb4d673e7d7a13a3c5f6bc5d426c}\label{struct_catch_1_1_copyable_stream_ae123fb4d673e7d7a13a3c5f6bc5d426c} 
+\index{Catch::CopyableStream@{Catch::CopyableStream}!oss@{oss}}
+\index{oss@{oss}!Catch::CopyableStream@{Catch::CopyableStream}}
+\doxysubsubsection{\texorpdfstring{oss}{oss}}
+{\footnotesize\ttfamily std\+::ostringstream Catch\+::\+Copyable\+Stream\+::oss}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l01225}{1225}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/catch/catch.\+hpp\end{DoxyCompactItemize}

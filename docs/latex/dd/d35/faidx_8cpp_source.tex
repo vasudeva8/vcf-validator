@@ -1,0 +1,188 @@
+\doxysection{faidx.\+cpp}
+\hypertarget{faidx_8cpp_source}{}\label{faidx_8cpp_source}\index{src/fasta/faidx.cpp@{src/fasta/faidx.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}fasta/faidx.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00024}\mbox{\hyperlink{struct_contig_index}{00024}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_contig_index}{ContigIndex}}\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00025}00025\ \ \ \ \ std::string\ name;\ \ \ \ \ \textcolor{comment}{//\ Name\ of\ this\ contig}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00026}00026\ \ \ \ \ uint64\_t\ seq\_length;\ \ \textcolor{comment}{//\ Total\ length\ of\ this\ contig,\ in\ bases}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00027}00027\ \ \ \ \ uint64\_t\ seq\_offset;\ \ \textcolor{comment}{//\ Offset\ in\ the\ FASTA\ file\ of\ this\ contig's\ first\ base}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00028}00028\ \ \ \ \ uint32\_t\ line\_length;\ \textcolor{comment}{//\ The\ number\ of\ bases\ in\ each\ line}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00029}00029\ \ \ \ \ uint32\_t\ line\_bytes;\ \ \textcolor{comment}{//\ The\ number\ of\ bytes\ in\ each\ line,\ including\ the\ newline}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00030}00030\ \};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00032}00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_fasta_indexer_state}{FastaIndexerState}};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00034}\mbox{\hyperlink{class_fasta_indexer}{00034}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_fasta_indexer}{FastaIndexer}}\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00035}00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00036}00036\ \ \ \ \ std::ostream\ \&\ index(std::istream\ \&\ input,\ std::ostream\ \&\ output);}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00038}00038\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_new_contig_state}{NewContigState}};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_contig_name_state}{ContigNameState}};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_contig_description_state}{ContigDescriptionState}};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_contig_sequence_state}{ContigSequenceState}};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordtype}{void}\ set\_state(\mbox{\hyperlink{class_fasta_indexer_state}{FastaIndexerState}}*\ state);}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00046}00046\ \ \ \ \ std::unique\_ptr<FastaIndexerState>\ current\_state;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00047}00047\ \ \ \ \ std::vector<ContigIndex>\ fasta\_index;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00048}00048\ \};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00050}\mbox{\hyperlink{class_fasta_indexer_state}{00050}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_fasta_indexer_state}{FastaIndexerState}}\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00051}00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ process(\mbox{\hyperlink{class_fasta_indexer}{FastaIndexer}}\ *\ fasta\_indexer,\ std::istream\ \&\ input)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_fasta_indexer_state}{\string~FastaIndexerState}}()\{\}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00054}00054\ \};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00056}\mbox{\hyperlink{class_new_contig_state}{00056}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_new_contig_state}{NewContigState}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_fasta_indexer_state}{FastaIndexerState}}\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00057}00057\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{keywordtype}{void}\ process(\mbox{\hyperlink{class_fasta_indexer}{FastaIndexer}}\ *\ fasta\_indexer,\ std::istream\ \&\ input);}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00059}00059\ \};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00061}\mbox{\hyperlink{class_contig_name_state}{00061}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_contig_name_state}{ContigNameState}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_fasta_indexer_state}{FastaIndexerState}}\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00062}00062\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{keywordtype}{void}\ process(\mbox{\hyperlink{class_fasta_indexer}{FastaIndexer}}\ *\ fasta\_indexer,\ std::istream\ \&\ input);}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00064}00064\ \};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00066}\mbox{\hyperlink{class_contig_description_state}{00066}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_contig_description_state}{ContigDescriptionState}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_fasta_indexer_state}{FastaIndexerState}}\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00067}00067\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00068}00068\ \ \ \ \ \textcolor{keywordtype}{void}\ process(\mbox{\hyperlink{class_fasta_indexer}{FastaIndexer}}\ *\ fasta\_indexer,\ std::istream\ \&\ input);}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00069}00069\ \};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00071}\mbox{\hyperlink{class_contig_sequence_state}{00071}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_contig_sequence_state}{ContigSequenceState}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_fasta_indexer_state}{FastaIndexerState}}\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00072}00072\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{keywordtype}{void}\ process(\mbox{\hyperlink{class_fasta_indexer}{FastaIndexer}}\ *\ fasta\_indexer,\ std::istream\ \&\ input);}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00074}00074\ \};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00076}00076\ std::ostream\ \&}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00077}00077\ FastaIndexer::index(std::istream\ \&input,\ std::ostream\ \&output)}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00078}00078\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00079}00079\ \ \ \ \ current\_state.reset(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00080}00080\ \ \ \ \ fasta\_index.clear();}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{keywordtype}{char}\ c;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (input\ \&\&\ input.get(c))\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'>'})\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ set\_state(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_new_contig_state}{NewContigState}}());}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (current\_state.get())\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_state-\/>process(\textcolor{keyword}{this},\ input);}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00090}00090\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00092}00092\ \ \ \ \ output.clear();}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00093}00093\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{struct_contig_index}{ContigIndex}}\ contig\_index\ :\ fasta\_index)\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ output\ <<\ contig\_index.name\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ contig\_index.seq\_length\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ contig\_index.seq\_offset\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ contig\_index.line\_length\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ contig\_index.line\_bytes\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00099}00099\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{return}\ output;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00102}00102\ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00104}00104\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00105}00105\ FastaIndexer::set\_state(\mbox{\hyperlink{class_fasta_indexer_state}{FastaIndexerState}}\ *state)}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00106}00106\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00107}00107\ \ \ \ \ current\_state.reset(state);}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00108}00108\ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00110}00110\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00111}00111\ NewContigState::process(\mbox{\hyperlink{class_fasta_indexer}{FastaIndexer}}\ *fasta\_indexer,\ std::istream\ \&\ input)}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00112}00112\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00113}00113\ \ \ \ \ fasta\_indexer-\/>fasta\_index.push\_back(\{\textcolor{stringliteral}{"{}"{}},\ 0,\ 0,\ 0,\ 0\});}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00114}00114\ \ \ \ \ fasta\_indexer-\/>set\_state(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_contig_name_state}{ContigNameState}}());}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00115}00115\ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00117}00117\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00118}00118\ ContigNameState::process(\mbox{\hyperlink{class_fasta_indexer}{FastaIndexer}}\ *fasta\_indexer,\ std::istream\ \&\ input)}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00119}00119\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00120}00120\ \ \ \ \ \textcolor{keywordtype}{char}\ c;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00121}00121\ \ \ \ \ \mbox{\hyperlink{struct_contig_index}{ContigIndex}}\ \&\ contig\_index\ =\ fasta\_indexer-\/>fasta\_index[fasta\_indexer-\/>fasta\_index.size()-\/1];}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00122}00122\ \ \ \ \ \textcolor{keywordflow}{while}\ (input\ \&\&\ input.get(c))\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'\ '})\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ fasta\_indexer-\/>set\_state(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_contig_description_state}{ContigDescriptionState}}());}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ fasta\_indexer-\/>set\_state(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_contig_sequence_state}{ContigSequenceState}}());}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ contig\_index.name.push\_back(c);}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00134}00134\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00136}00136\ \ \ \ \ fasta\_indexer-\/>set\_state(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00137}00137\ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00139}00139\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00140}00140\ ContigDescriptionState::process(\mbox{\hyperlink{class_fasta_indexer}{FastaIndexer}}\ *fasta\_indexer,\ std::istream\ \&\ input)}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00141}00141\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00142}00142\ \ \ \ \ \textcolor{keywordtype}{char}\ c;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00143}00143\ \ \ \ \ \textcolor{keywordflow}{while}\ (input\ \&\&\ input.get(c))\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ fasta\_indexer-\/>set\_state(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_contig_sequence_state}{ContigSequenceState}}());}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00148}00148\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00150}00150\ \ \ \ \ fasta\_indexer-\/>set\_state(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00151}00151\ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00153}00153\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00154}00154\ ContigSequenceState::process(\mbox{\hyperlink{class_fasta_indexer}{FastaIndexer}}\ *fasta\_indexer,\ std::istream\ \&\ input)}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00155}00155\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00156}00156\ \ \ \ \ \mbox{\hyperlink{struct_contig_index}{ContigIndex}}\ \&\ contig\_index\ =\ fasta\_indexer-\/>fasta\_index[fasta\_indexer-\/>fasta\_index.size()-\/1];}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00157}00157\ \ \ \ \ contig\_index.seq\_offset\ =\ input.tellg();}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00159}00159\ \ \ \ \ uint64\_t\ seq\_length\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00160}00160\ \ \ \ \ uint32\_t\ line\_length\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00161}00161\ \ \ \ \ uint32\_t\ line\_bytes\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00162}00162\ \ \ \ \ \textcolor{keywordtype}{char}\ c;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00163}00163\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_first\_line\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00164}00164\ \ \ \ \ \textcolor{keywordflow}{while}\ (input\ \&\&\ input.get(c))\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_first\_line)\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++line\_bytes;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contig\_index.line\_length\ =\ line\_length;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contig\_index.line\_bytes\ =\ line\_bytes;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_first\_line\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'>'})\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ contig\_index.seq\_length\ =\ seq\_length;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ fasta\_indexer-\/>set\_state(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_new_contig_state}{NewContigState}}());}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_first\_line)\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++line\_length;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++line\_bytes;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ ++seq\_length;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00185}00185\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00187}00187\ \ \ \ \ contig\_index.seq\_length\ =\ seq\_length;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00188}00188\ \ \ \ \ fasta\_indexer-\/>set\_state(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00189}00189\ \}}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00191}00191\ std::ostream\ \&}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00192}00192\ ebi::vcf::faidx::index\_fasta(std::istream\ \&\ input,\ std::ostream\ \&\ output)}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00193}00193\ \{}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00194}00194\ \ \ \ \ \mbox{\hyperlink{class_fasta_indexer}{FastaIndexer}}\ fasta\_indexer;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00195}00195\ \ \ \ \ fasta\_indexer.index(input,\ output);}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00196}00196\ \ \ \ \ \textcolor{keywordflow}{return}\ output;}
+\DoxyCodeLine{\Hypertarget{faidx_8cpp_source_l00197}00197\ \}}
+
+\end{DoxyCode}

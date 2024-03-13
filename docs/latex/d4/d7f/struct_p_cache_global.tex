@@ -1,0 +1,186 @@
+\doxysection{PCache\+Global Struct Reference}
+\hypertarget{struct_p_cache_global}{}\label{struct_p_cache_global}\index{PCacheGlobal@{PCacheGlobal}}
+
+
+Collaboration diagram for PCache\+Global\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{db/d4c/struct_p_cache_global__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_p_group}{PGroup}} \mbox{\hyperlink{struct_p_cache_global_a0b05c7641a431aeed1ea24f99ab2ecd7}{grp}}
+\item 
+int \mbox{\hyperlink{struct_p_cache_global_ae0e2bc49e28b9f0cf53c7e1a01c41bc4}{is\+Init}}
+\item 
+int \mbox{\hyperlink{struct_p_cache_global_a10d40772c985cc20e6fdd3d49ee7e5f9}{separate\+Cache}}
+\item 
+int \mbox{\hyperlink{struct_p_cache_global_a795a183edd692396de9386900f7ee6d0}{n\+Init\+Page}}
+\item 
+int \mbox{\hyperlink{struct_p_cache_global_acaac974ff5d639fd41bd4ba209192981}{sz\+Slot}}
+\item 
+int \mbox{\hyperlink{struct_p_cache_global_a99bf99dc34047fafaa7045483e91097a}{n\+Slot}}
+\item 
+int \mbox{\hyperlink{struct_p_cache_global_aa3e1433dba1b860b14db27c00b169acf}{n\+Reserve}}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_p_cache_global_abba42637dea7324713e5329a7216cdec}{p\+Start}}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_p_cache_global_aec236718debd15bfeedec210978c338b}{p\+End}}
+\item 
+\mbox{\hyperlink{structsqlite3__mutex}{sqlite3\+\_\+mutex}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_p_cache_global_a50443ccdade1651a94b63cdea1bcb966}{mutex}}
+\item 
+\mbox{\hyperlink{struct_pg_freeslot}{Pg\+Freeslot}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_p_cache_global_a40c7637e78c1912b5f54d0d18bc466eb}{p\+Free}}
+\item 
+int \mbox{\hyperlink{struct_p_cache_global_a41bfc176dfedd84d6e538f959ea03990}{n\+Free\+Slot}}
+\item 
+int \mbox{\hyperlink{struct_p_cache_global_adf740d364f04d03f6a2c4d12b165684f}{b\+Under\+Pressure}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l44162}{44162}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_p_cache_global_adf740d364f04d03f6a2c4d12b165684f}\label{struct_p_cache_global_adf740d364f04d03f6a2c4d12b165684f} 
+\index{PCacheGlobal@{PCacheGlobal}!bUnderPressure@{bUnderPressure}}
+\index{bUnderPressure@{bUnderPressure}!PCacheGlobal@{PCacheGlobal}}
+\doxysubsubsection{\texorpdfstring{bUnderPressure}{bUnderPressure}}
+{\footnotesize\ttfamily int PCache\+Global\+::b\+Under\+Pressure}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l44185}{44185}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_global_a0b05c7641a431aeed1ea24f99ab2ecd7}\label{struct_p_cache_global_a0b05c7641a431aeed1ea24f99ab2ecd7} 
+\index{PCacheGlobal@{PCacheGlobal}!grp@{grp}}
+\index{grp@{grp}!PCacheGlobal@{PCacheGlobal}}
+\doxysubsubsection{\texorpdfstring{grp}{grp}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_p_group}{PGroup}} PCache\+Global\+::grp}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l44163}{44163}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_global_ae0e2bc49e28b9f0cf53c7e1a01c41bc4}\label{struct_p_cache_global_ae0e2bc49e28b9f0cf53c7e1a01c41bc4} 
+\index{PCacheGlobal@{PCacheGlobal}!isInit@{isInit}}
+\index{isInit@{isInit}!PCacheGlobal@{PCacheGlobal}}
+\doxysubsubsection{\texorpdfstring{isInit}{isInit}}
+{\footnotesize\ttfamily int PCache\+Global\+::is\+Init}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l44170}{44170}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_global_a50443ccdade1651a94b63cdea1bcb966}\label{struct_p_cache_global_a50443ccdade1651a94b63cdea1bcb966} 
+\index{PCacheGlobal@{PCacheGlobal}!mutex@{mutex}}
+\index{mutex@{mutex}!PCacheGlobal@{PCacheGlobal}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsqlite3__mutex}{sqlite3\+\_\+mutex}}\texorpdfstring{$\ast$}{*} PCache\+Global\+::mutex}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l44178}{44178}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_global_a41bfc176dfedd84d6e538f959ea03990}\label{struct_p_cache_global_a41bfc176dfedd84d6e538f959ea03990} 
+\index{PCacheGlobal@{PCacheGlobal}!nFreeSlot@{nFreeSlot}}
+\index{nFreeSlot@{nFreeSlot}!PCacheGlobal@{PCacheGlobal}}
+\doxysubsubsection{\texorpdfstring{nFreeSlot}{nFreeSlot}}
+{\footnotesize\ttfamily int PCache\+Global\+::n\+Free\+Slot}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l44180}{44180}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_global_a795a183edd692396de9386900f7ee6d0}\label{struct_p_cache_global_a795a183edd692396de9386900f7ee6d0} 
+\index{PCacheGlobal@{PCacheGlobal}!nInitPage@{nInitPage}}
+\index{nInitPage@{nInitPage}!PCacheGlobal@{PCacheGlobal}}
+\doxysubsubsection{\texorpdfstring{nInitPage}{nInitPage}}
+{\footnotesize\ttfamily int PCache\+Global\+::n\+Init\+Page}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l44172}{44172}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_global_aa3e1433dba1b860b14db27c00b169acf}\label{struct_p_cache_global_aa3e1433dba1b860b14db27c00b169acf} 
+\index{PCacheGlobal@{PCacheGlobal}!nReserve@{nReserve}}
+\index{nReserve@{nReserve}!PCacheGlobal@{PCacheGlobal}}
+\doxysubsubsection{\texorpdfstring{nReserve}{nReserve}}
+{\footnotesize\ttfamily int PCache\+Global\+::n\+Reserve}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l44175}{44175}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_global_a99bf99dc34047fafaa7045483e91097a}\label{struct_p_cache_global_a99bf99dc34047fafaa7045483e91097a} 
+\index{PCacheGlobal@{PCacheGlobal}!nSlot@{nSlot}}
+\index{nSlot@{nSlot}!PCacheGlobal@{PCacheGlobal}}
+\doxysubsubsection{\texorpdfstring{nSlot}{nSlot}}
+{\footnotesize\ttfamily int PCache\+Global\+::n\+Slot}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l44174}{44174}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_global_aec236718debd15bfeedec210978c338b}\label{struct_p_cache_global_aec236718debd15bfeedec210978c338b} 
+\index{PCacheGlobal@{PCacheGlobal}!pEnd@{pEnd}}
+\index{pEnd@{pEnd}!PCacheGlobal@{PCacheGlobal}}
+\doxysubsubsection{\texorpdfstring{pEnd}{pEnd}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} PCache\+Global\+::p\+End}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l44176}{44176}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_global_a40c7637e78c1912b5f54d0d18bc466eb}\label{struct_p_cache_global_a40c7637e78c1912b5f54d0d18bc466eb} 
+\index{PCacheGlobal@{PCacheGlobal}!pFree@{pFree}}
+\index{pFree@{pFree}!PCacheGlobal@{PCacheGlobal}}
+\doxysubsubsection{\texorpdfstring{pFree}{pFree}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_pg_freeslot}{Pg\+Freeslot}}\texorpdfstring{$\ast$}{*} PCache\+Global\+::p\+Free}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l44179}{44179}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_global_abba42637dea7324713e5329a7216cdec}\label{struct_p_cache_global_abba42637dea7324713e5329a7216cdec} 
+\index{PCacheGlobal@{PCacheGlobal}!pStart@{pStart}}
+\index{pStart@{pStart}!PCacheGlobal@{PCacheGlobal}}
+\doxysubsubsection{\texorpdfstring{pStart}{pStart}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} PCache\+Global\+::p\+Start}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l44176}{44176}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_global_a10d40772c985cc20e6fdd3d49ee7e5f9}\label{struct_p_cache_global_a10d40772c985cc20e6fdd3d49ee7e5f9} 
+\index{PCacheGlobal@{PCacheGlobal}!separateCache@{separateCache}}
+\index{separateCache@{separateCache}!PCacheGlobal@{PCacheGlobal}}
+\doxysubsubsection{\texorpdfstring{separateCache}{separateCache}}
+{\footnotesize\ttfamily int PCache\+Global\+::separate\+Cache}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l44171}{44171}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_global_acaac974ff5d639fd41bd4ba209192981}\label{struct_p_cache_global_acaac974ff5d639fd41bd4ba209192981} 
+\index{PCacheGlobal@{PCacheGlobal}!szSlot@{szSlot}}
+\index{szSlot@{szSlot}!PCacheGlobal@{PCacheGlobal}}
+\doxysubsubsection{\texorpdfstring{szSlot}{szSlot}}
+{\footnotesize\ttfamily int PCache\+Global\+::sz\+Slot}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l44173}{44173}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

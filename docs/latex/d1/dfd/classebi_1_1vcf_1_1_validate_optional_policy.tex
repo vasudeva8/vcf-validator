@@ -1,0 +1,131 @@
+\doxysection{ebi\+::vcf\+::Validate\+Optional\+Policy Class Reference}
+\hypertarget{classebi_1_1vcf_1_1_validate_optional_policy}{}\label{classebi_1_1vcf_1_1_validate_optional_policy}\index{ebi::vcf::ValidateOptionalPolicy@{ebi::vcf::ValidateOptionalPolicy}}
+
+
+Collaboration diagram for ebi\+::vcf\+::Validate\+Optional\+Policy\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{dd/dee/classebi_1_1vcf_1_1_validate_optional_policy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_validate_optional_policy_a6883d2e223d752d11c0dde321a1d9b32}{optional\+\_\+check\+\_\+meta\+\_\+section}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state) const
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_validate_optional_policy_aa59b17f2db2a5d1b39046a4f07cbdc60}{optional\+\_\+check\+\_\+body\+\_\+entry}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&state, \mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}} const \&record)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_validate_optional_policy_a68758b866d3862962f8dd1dece11a2d3}{optional\+\_\+check\+\_\+body\+\_\+section}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&state) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Validation policy that runs optional and context-\/based validations 
+
+Definition at line \mbox{\hyperlink{optional__policy_8hpp_source_l00044}{44}} of file \mbox{\hyperlink{optional__policy_8hpp_source}{optional\+\_\+policy.\+hpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_validate_optional_policy_aa59b17f2db2a5d1b39046a4f07cbdc60}\label{classebi_1_1vcf_1_1_validate_optional_policy_aa59b17f2db2a5d1b39046a4f07cbdc60} 
+\index{ebi::vcf::ValidateOptionalPolicy@{ebi::vcf::ValidateOptionalPolicy}!optional\_check\_body\_entry@{optional\_check\_body\_entry}}
+\index{optional\_check\_body\_entry@{optional\_check\_body\_entry}!ebi::vcf::ValidateOptionalPolicy@{ebi::vcf::ValidateOptionalPolicy}}
+\doxysubsubsection{\texorpdfstring{optional\_check\_body\_entry()}{optional\_check\_body\_entry()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Validate\+Optional\+Policy\+::optional\+\_\+check\+\_\+body\+\_\+entry (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&}]{state,  }\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}} const \&}]{record }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{validate__optional__policy_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{validate__optional__policy_8cpp_source}{validate\+\_\+optional\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Position\ zero\ should\ only\ be\ used\ for\ telomeres}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ check\_body\_entry\_position\_zero(state,\ record);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ standard\ separator\ is\ semi-\/colon,\ commas\ are\ accepted\ but\ most\ probably\ a\ mistake}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ check\_body\_entry\_id\_commas(state,\ record);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reference\ and\ alternate\ alleles\ in\ indels\ should\ share\ the\ first\ nucleotide}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ check\_body\_entry\_reference\_alternate\_matching(state,\ record);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0/0\ genotypes\ should\ be\ present\ when\ ALT\ is\ <*>,\ as\ it\ is\ supposed\ to\ be\ a\ reference\ region}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ check\_body\_entry\_alt\_gvcf\_gt\_value(state,\ record);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ gVCF\ fields\ should\ provide\ END,\ as\ <*>\ is\ supposed\ to\ represent\ a\ region}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ check\_body\_entry\_info\_gvcf\_end(state,\ record);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ a\ variant\ is\ flagged\ as\ precise,\ then\ it\ should\ not\ contain\ imprecise\ variant\ fields\ like\ CIPOS\ or\ CIEND}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ check\_body\_entry\_info\_imprecise(state,\ record);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ number\ of\ values\ in\ SVLEN\ should\ match\ the\ number\ of\ alternate\ alleles}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ check\_body\_entry\_info\_svlen(state,\ record);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Confidence\ interval\ tags\ should\ have\ first\ value\ <=0\ and\ second\ value\ >=\ 0}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ check\_body\_entry\_info\_confidence\_interval(state,\ record);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Once\ some\ meta-\/data\ is\ marked\ as\ in/correct\ there\ is\ no\ need\ again,\ so\ all\ the\ following\ have\ been\ }}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ optimised\ using\ a\ map\ for\ correctly\ defined\ meta-\/data\ and\ another\ one\ for\ incorrectly\ defined.}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ chromosome/contig\ should\ be\ described\ in\ the\ meta\ section}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ check\_contig\_meta(state,\ record);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Alternate\ alleles\ of\ the\ form\ <SOME\_ALT>\ should\ be\ described\ in\ the\ meta\ section}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ check\_alternate\_allele\_meta(state,\ record);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Filters\ should\ be\ described\ in\ the\ meta\ section}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ check\_filter\_meta(state,\ record);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Info\ fields\ should\ be\ described\ in\ the\ meta\ section}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ check\_info\_meta(state,\ record);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Format\ fields\ should\ be\ described\ in\ the\ meta\ section}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ check\_format\_meta(state,\ record);}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_validate_optional_policy_a68758b866d3862962f8dd1dece11a2d3}\label{classebi_1_1vcf_1_1_validate_optional_policy_a68758b866d3862962f8dd1dece11a2d3} 
+\index{ebi::vcf::ValidateOptionalPolicy@{ebi::vcf::ValidateOptionalPolicy}!optional\_check\_body\_section@{optional\_check\_body\_section}}
+\index{optional\_check\_body\_section@{optional\_check\_body\_section}!ebi::vcf::ValidateOptionalPolicy@{ebi::vcf::ValidateOptionalPolicy}}
+\doxysubsubsection{\texorpdfstring{optional\_check\_body\_section()}{optional\_check\_body\_section()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Validate\+Optional\+Policy\+::optional\+\_\+check\+\_\+body\+\_\+section (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{validate__optional__policy_8cpp_source_l00079}{79}} of file \mbox{\hyperlink{validate__optional__policy_8cpp_source}{validate\+\_\+optional\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_validate_optional_policy_a6883d2e223d752d11c0dde321a1d9b32}\label{classebi_1_1vcf_1_1_validate_optional_policy_a6883d2e223d752d11c0dde321a1d9b32} 
+\index{ebi::vcf::ValidateOptionalPolicy@{ebi::vcf::ValidateOptionalPolicy}!optional\_check\_meta\_section@{optional\_check\_meta\_section}}
+\index{optional\_check\_meta\_section@{optional\_check\_meta\_section}!ebi::vcf::ValidateOptionalPolicy@{ebi::vcf::ValidateOptionalPolicy}}
+\doxysubsubsection{\texorpdfstring{optional\_check\_meta\_section()}{optional\_check\_meta\_section()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Validate\+Optional\+Policy\+::optional\+\_\+check\+\_\+meta\+\_\+section (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} const \&}]{state }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{validate__optional__policy_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{validate__optional__policy_8cpp_source}{validate\+\_\+optional\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (state.source-\/>meta\_entries.find(REFERENCE)\ ==\ state.source-\/>meta\_entries.end())\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ MetaSectionError\{state.n\_lines,\ \textcolor{stringliteral}{"{}A\ valid\ 'reference'\ entry\ is\ not\ listed\ in\ the\ meta\ section"{}}\};}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/optional\+\_\+policy.\+hpp\item 
+src/vcf/validate\+\_\+optional\+\_\+policy.\+cpp\end{DoxyCompactItemize}

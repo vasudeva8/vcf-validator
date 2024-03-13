@@ -1,0 +1,51 @@
+\doxysection{Catch\+::Exception\+Translator\+Registrar Class Reference}
+\hypertarget{class_catch_1_1_exception_translator_registrar}{}\label{class_catch_1_1_exception_translator_registrar}\index{Catch::ExceptionTranslatorRegistrar@{Catch::ExceptionTranslatorRegistrar}}
+
+
+Collaboration diagram for Catch\+::Exception\+Translator\+Registrar\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{d7/dc6/class_catch_1_1_exception_translator_registrar__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{class_catch_1_1_exception_translator_registrar_aa73229de911f26b1df6c6c87c4d9e04e}{Exception\+Translator\+Registrar}} (std\+::string(\texorpdfstring{$\ast$}{*}translate\+Function)(T \&))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02578}{2578}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_catch_1_1_exception_translator_registrar_aa73229de911f26b1df6c6c87c4d9e04e}\label{class_catch_1_1_exception_translator_registrar_aa73229de911f26b1df6c6c87c4d9e04e} 
+\index{Catch::ExceptionTranslatorRegistrar@{Catch::ExceptionTranslatorRegistrar}!ExceptionTranslatorRegistrar@{ExceptionTranslatorRegistrar}}
+\index{ExceptionTranslatorRegistrar@{ExceptionTranslatorRegistrar}!Catch::ExceptionTranslatorRegistrar@{Catch::ExceptionTranslatorRegistrar}}
+\doxysubsubsection{\texorpdfstring{ExceptionTranslatorRegistrar()}{ExceptionTranslatorRegistrar()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+Catch\+::\+Exception\+Translator\+Registrar\+::\+Exception\+Translator\+Registrar (\begin{DoxyParamCaption}\item[{std\+::string(\texorpdfstring{$\ast$}{*})(T \&)}]{translate\+Function }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02605}{2605}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02605\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02606\ \ \ \ \ \ \ \ \ \ \ \ \ getMutableRegistryHub().registerTranslator}
+\DoxyCodeLine{02607\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ \textcolor{keyword}{new}\ ExceptionTranslator<T>(\ translateFunction\ )\ );}
+\DoxyCodeLine{02608\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/catch/catch.\+hpp\end{DoxyCompactItemize}

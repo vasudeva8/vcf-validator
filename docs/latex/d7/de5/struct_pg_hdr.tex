@@ -1,0 +1,162 @@
+\doxysection{Pg\+Hdr Struct Reference}
+\hypertarget{struct_pg_hdr}{}\label{struct_pg_hdr}\index{PgHdr@{PgHdr}}
+
+
+Collaboration diagram for Pg\+Hdr\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{dd/d30/struct_pg_hdr__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structsqlite3__pcache__page}{sqlite3\+\_\+pcache\+\_\+page}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_pg_hdr_aa5645976ba0634993a7304dce8856c8b}{p\+Page}}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_pg_hdr_a0f9f2ac8492c0cdad5898036db20b798}{p\+Data}}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_pg_hdr_a8ff7430ed04077f1ae20d10801968164}{p\+Extra}}
+\item 
+\mbox{\hyperlink{struct_pg_hdr}{Pg\+Hdr}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_pg_hdr_a7732b1c0f19d9555ac93d4879fc95bbd}{p\+Dirty}}
+\item 
+\mbox{\hyperlink{struct_pager}{Pager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_pg_hdr_aaa4879a9510c8a819a1e10a8ee21495b}{p\+Pager}}
+\item 
+Pgno \mbox{\hyperlink{struct_pg_hdr_ab6e2223e410acf9bae7f12f1b1293589}{pgno}}
+\item 
+u16 \mbox{\hyperlink{struct_pg_hdr_a8ef58380f7e04f1e3c76fa208e227f95}{flags}}
+\item 
+i16 \mbox{\hyperlink{struct_pg_hdr_ac68c685d117788c18849e8853dd419d5}{n\+Ref}}
+\item 
+\mbox{\hyperlink{struct_p_cache}{PCache}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_pg_hdr_a557aeaddd1b0805815ce06f1bfd27782}{p\+Cache}}
+\item 
+\mbox{\hyperlink{struct_pg_hdr}{Pg\+Hdr}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_pg_hdr_a61b56eb694ce445799963f7eb912e367}{p\+Dirty\+Next}}
+\item 
+\mbox{\hyperlink{struct_pg_hdr}{Pg\+Hdr}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_pg_hdr_a8392b45bb05d88c734020beb912304dc}{p\+Dirty\+Prev}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l12955}{12955}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_pg_hdr_a8ef58380f7e04f1e3c76fa208e227f95}\label{struct_pg_hdr_a8ef58380f7e04f1e3c76fa208e227f95} 
+\index{PgHdr@{PgHdr}!flags@{flags}}
+\index{flags@{flags}!PgHdr@{PgHdr}}
+\doxysubsubsection{\texorpdfstring{flags}{flags}}
+{\footnotesize\ttfamily u16 Pg\+Hdr\+::flags}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l12965}{12965}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pg_hdr_ac68c685d117788c18849e8853dd419d5}\label{struct_pg_hdr_ac68c685d117788c18849e8853dd419d5} 
+\index{PgHdr@{PgHdr}!nRef@{nRef}}
+\index{nRef@{nRef}!PgHdr@{PgHdr}}
+\doxysubsubsection{\texorpdfstring{nRef}{nRef}}
+{\footnotesize\ttfamily i16 Pg\+Hdr\+::n\+Ref}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l12971}{12971}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pg_hdr_a557aeaddd1b0805815ce06f1bfd27782}\label{struct_pg_hdr_a557aeaddd1b0805815ce06f1bfd27782} 
+\index{PgHdr@{PgHdr}!pCache@{pCache}}
+\index{pCache@{pCache}!PgHdr@{PgHdr}}
+\doxysubsubsection{\texorpdfstring{pCache}{pCache}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_p_cache}{PCache}}\texorpdfstring{$\ast$}{*} Pg\+Hdr\+::p\+Cache}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l12972}{12972}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pg_hdr_a0f9f2ac8492c0cdad5898036db20b798}\label{struct_pg_hdr_a0f9f2ac8492c0cdad5898036db20b798} 
+\index{PgHdr@{PgHdr}!pData@{pData}}
+\index{pData@{pData}!PgHdr@{PgHdr}}
+\doxysubsubsection{\texorpdfstring{pData}{pData}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} Pg\+Hdr\+::p\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l12957}{12957}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pg_hdr_a7732b1c0f19d9555ac93d4879fc95bbd}\label{struct_pg_hdr_a7732b1c0f19d9555ac93d4879fc95bbd} 
+\index{PgHdr@{PgHdr}!pDirty@{pDirty}}
+\index{pDirty@{pDirty}!PgHdr@{PgHdr}}
+\doxysubsubsection{\texorpdfstring{pDirty}{pDirty}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_pg_hdr}{Pg\+Hdr}}\texorpdfstring{$\ast$}{*} Pg\+Hdr\+::p\+Dirty}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l12959}{12959}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pg_hdr_a61b56eb694ce445799963f7eb912e367}\label{struct_pg_hdr_a61b56eb694ce445799963f7eb912e367} 
+\index{PgHdr@{PgHdr}!pDirtyNext@{pDirtyNext}}
+\index{pDirtyNext@{pDirtyNext}!PgHdr@{PgHdr}}
+\doxysubsubsection{\texorpdfstring{pDirtyNext}{pDirtyNext}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_pg_hdr}{Pg\+Hdr}}\texorpdfstring{$\ast$}{*} Pg\+Hdr\+::p\+Dirty\+Next}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l12974}{12974}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pg_hdr_a8392b45bb05d88c734020beb912304dc}\label{struct_pg_hdr_a8392b45bb05d88c734020beb912304dc} 
+\index{PgHdr@{PgHdr}!pDirtyPrev@{pDirtyPrev}}
+\index{pDirtyPrev@{pDirtyPrev}!PgHdr@{PgHdr}}
+\doxysubsubsection{\texorpdfstring{pDirtyPrev}{pDirtyPrev}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_pg_hdr}{Pg\+Hdr}}\texorpdfstring{$\ast$}{*} Pg\+Hdr\+::p\+Dirty\+Prev}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l12975}{12975}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pg_hdr_a8ff7430ed04077f1ae20d10801968164}\label{struct_pg_hdr_a8ff7430ed04077f1ae20d10801968164} 
+\index{PgHdr@{PgHdr}!pExtra@{pExtra}}
+\index{pExtra@{pExtra}!PgHdr@{PgHdr}}
+\doxysubsubsection{\texorpdfstring{pExtra}{pExtra}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} Pg\+Hdr\+::p\+Extra}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l12958}{12958}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pg_hdr_ab6e2223e410acf9bae7f12f1b1293589}\label{struct_pg_hdr_ab6e2223e410acf9bae7f12f1b1293589} 
+\index{PgHdr@{PgHdr}!pgno@{pgno}}
+\index{pgno@{pgno}!PgHdr@{PgHdr}}
+\doxysubsubsection{\texorpdfstring{pgno}{pgno}}
+{\footnotesize\ttfamily Pgno Pg\+Hdr\+::pgno}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l12961}{12961}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pg_hdr_aa5645976ba0634993a7304dce8856c8b}\label{struct_pg_hdr_aa5645976ba0634993a7304dce8856c8b} 
+\index{PgHdr@{PgHdr}!pPage@{pPage}}
+\index{pPage@{pPage}!PgHdr@{PgHdr}}
+\doxysubsubsection{\texorpdfstring{pPage}{pPage}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsqlite3__pcache__page}{sqlite3\+\_\+pcache\+\_\+page}}\texorpdfstring{$\ast$}{*} Pg\+Hdr\+::p\+Page}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l12956}{12956}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pg_hdr_aaa4879a9510c8a819a1e10a8ee21495b}\label{struct_pg_hdr_aaa4879a9510c8a819a1e10a8ee21495b} 
+\index{PgHdr@{PgHdr}!pPager@{pPager}}
+\index{pPager@{pPager}!PgHdr@{PgHdr}}
+\doxysubsubsection{\texorpdfstring{pPager}{pPager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_pager}{Pager}}\texorpdfstring{$\ast$}{*} Pg\+Hdr\+::p\+Pager}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l12960}{12960}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

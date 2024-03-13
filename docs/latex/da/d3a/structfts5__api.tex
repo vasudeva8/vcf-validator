@@ -1,0 +1,79 @@
+\doxysection{fts5\+\_\+api Struct Reference}
+\hypertarget{structfts5__api}{}\label{structfts5__api}\index{fts5\_api@{fts5\_api}}
+
+
+Collaboration diagram for fts5\+\_\+api\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{d6/ddd/structfts5__api__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structfts5__api_a3c338289abb33e1805da870172956a7c}{i\+Version}}
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structfts5__api_a6cb9929558ff13c7b5a30292eb5aea7c}{x\+Create\+Tokenizer}} )(\mbox{\hyperlink{structfts5__api}{fts5\+\_\+api}} \texorpdfstring{$\ast$}{*}p\+Api, const char \texorpdfstring{$\ast$}{*}z\+Name, void \texorpdfstring{$\ast$}{*}p\+Context, \mbox{\hyperlink{structfts5__tokenizer}{fts5\+\_\+tokenizer}} \texorpdfstring{$\ast$}{*}p\+Tokenizer, void(\texorpdfstring{$\ast$}{*}x\+Destroy)(void \texorpdfstring{$\ast$}{*}))
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structfts5__api_aa232f72a0d7c7205fbd0dc6818e24aee}{x\+Find\+Tokenizer}} )(\mbox{\hyperlink{structfts5__api}{fts5\+\_\+api}} \texorpdfstring{$\ast$}{*}p\+Api, const char \texorpdfstring{$\ast$}{*}z\+Name, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Context, \mbox{\hyperlink{structfts5__tokenizer}{fts5\+\_\+tokenizer}} \texorpdfstring{$\ast$}{*}p\+Tokenizer)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structfts5__api_aa932ba45865c10b49592920b9610db93}{x\+Create\+Function}} )(\mbox{\hyperlink{structfts5__api}{fts5\+\_\+api}} \texorpdfstring{$\ast$}{*}p\+Api, const char \texorpdfstring{$\ast$}{*}z\+Name, void \texorpdfstring{$\ast$}{*}p\+Context, fts5\+\_\+extension\+\_\+function x\+Function, void(\texorpdfstring{$\ast$}{*}x\+Destroy)(void \texorpdfstring{$\ast$}{*}))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10399}{10399}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structfts5__api_a3c338289abb33e1805da870172956a7c}\label{structfts5__api_a3c338289abb33e1805da870172956a7c} 
+\index{fts5\_api@{fts5\_api}!iVersion@{iVersion}}
+\index{iVersion@{iVersion}!fts5\_api@{fts5\_api}}
+\doxysubsubsection{\texorpdfstring{iVersion}{iVersion}}
+{\footnotesize\ttfamily int fts5\+\_\+api\+::i\+Version}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10400}{10400}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structfts5__api_aa932ba45865c10b49592920b9610db93}\label{structfts5__api_aa932ba45865c10b49592920b9610db93} 
+\index{fts5\_api@{fts5\_api}!xCreateFunction@{xCreateFunction}}
+\index{xCreateFunction@{xCreateFunction}!fts5\_api@{fts5\_api}}
+\doxysubsubsection{\texorpdfstring{xCreateFunction}{xCreateFunction}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} fts5\+\_\+api\+::x\+Create\+Function)(\mbox{\hyperlink{structfts5__api}{fts5\+\_\+api}} \texorpdfstring{$\ast$}{*}p\+Api, const char \texorpdfstring{$\ast$}{*}z\+Name, void \texorpdfstring{$\ast$}{*}p\+Context, fts5\+\_\+extension\+\_\+function x\+Function, void(\texorpdfstring{$\ast$}{*}x\+Destroy)(void \texorpdfstring{$\ast$}{*}))}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10420}{10420}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structfts5__api_a6cb9929558ff13c7b5a30292eb5aea7c}\label{structfts5__api_a6cb9929558ff13c7b5a30292eb5aea7c} 
+\index{fts5\_api@{fts5\_api}!xCreateTokenizer@{xCreateTokenizer}}
+\index{xCreateTokenizer@{xCreateTokenizer}!fts5\_api@{fts5\_api}}
+\doxysubsubsection{\texorpdfstring{xCreateTokenizer}{xCreateTokenizer}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} fts5\+\_\+api\+::x\+Create\+Tokenizer)(\mbox{\hyperlink{structfts5__api}{fts5\+\_\+api}} \texorpdfstring{$\ast$}{*}p\+Api, const char \texorpdfstring{$\ast$}{*}z\+Name, void \texorpdfstring{$\ast$}{*}p\+Context, \mbox{\hyperlink{structfts5__tokenizer}{fts5\+\_\+tokenizer}} \texorpdfstring{$\ast$}{*}p\+Tokenizer, void(\texorpdfstring{$\ast$}{*}x\+Destroy)(void \texorpdfstring{$\ast$}{*}))}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10403}{10403}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structfts5__api_aa232f72a0d7c7205fbd0dc6818e24aee}\label{structfts5__api_aa232f72a0d7c7205fbd0dc6818e24aee} 
+\index{fts5\_api@{fts5\_api}!xFindTokenizer@{xFindTokenizer}}
+\index{xFindTokenizer@{xFindTokenizer}!fts5\_api@{fts5\_api}}
+\doxysubsubsection{\texorpdfstring{xFindTokenizer}{xFindTokenizer}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} fts5\+\_\+api\+::x\+Find\+Tokenizer)(\mbox{\hyperlink{structfts5__api}{fts5\+\_\+api}} \texorpdfstring{$\ast$}{*}p\+Api, const char \texorpdfstring{$\ast$}{*}z\+Name, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Context, \mbox{\hyperlink{structfts5__tokenizer}{fts5\+\_\+tokenizer}} \texorpdfstring{$\ast$}{*}p\+Tokenizer)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10412}{10412}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\item 
+lib/sqlite/sqlite3.\+h\end{DoxyCompactItemize}

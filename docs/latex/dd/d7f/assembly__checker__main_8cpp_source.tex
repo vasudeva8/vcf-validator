@@ -1,0 +1,178 @@
+\doxysection{assembly\+\_\+checker\+\_\+main.\+cpp}
+\hypertarget{assembly__checker__main_8cpp_source}{}\label{assembly__checker__main_8cpp_source}\index{src/assembly\_checker\_main.cpp@{src/assembly\_checker\_main.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <boost/filesystem/operations.hpp>}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <boost/program\_options.hpp>}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}cmake\_config.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}util/cli\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}util/file\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}util/logger.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}vcf/assembly\_checker.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}vcf/assembly\_check\_report\_writer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}vcf/compression.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}vcf/string\_constants.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00029}00029\ \textcolor{keyword}{namespace}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00030}00030\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{keyword}{namespace\ }po\ =\ boost::program\_options;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ version\_info\ =\ \textcolor{stringliteral}{"{}vcf-\/assembly-\/checker\ version\ "{}}\ +\ std::to\_string(VERSION\_MAJOR)\ +\ \textcolor{stringliteral}{"{}."{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ std::to\_string(VERSION\_MINOR)\ +\ \textcolor{stringliteral}{"{}."{}}\ +\ std::to\_string(VERSION\_PATCH);}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00036}00036\ \ \ \ \ po::options\_description\ build\_command\_line\_options()}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00037}00037\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ po::options\_description\ description(version\_info\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)nUsage:\ vcf-\/assembly-\/checker\ [OPTIONS]\ [<\ input\_file]\(\backslash\)nAllowed\ options"{}});}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ description.add\_options()}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::HELP\_OPTION,\ \textcolor{stringliteral}{"{}Display\ this\ help"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::VERSION\_OPTION,\ \textcolor{stringliteral}{"{}Display\ version\ of\ the\ assembly\ checker"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::INPUT\_OPTION,\ po::value<std::string>()-\/>default\_value(ebi::vcf::STDIN),\ \textcolor{stringliteral}{"{}Path\ to\ the\ input\ VCF\ file,\ or\ stdin"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::FASTA\_OPTION,\ po::value<std::string>()-\/>default\_value(\textcolor{stringliteral}{"{}"{}}),\ \textcolor{stringliteral}{"{}Path\ to\ the\ input\ FASTA\ file;\ please\ note\ that\ the\ index\ file\ (from\ samtools\ faidx)\ must\ have\ the\ same\ name\ as\ the\ FASTA\ file\ and\ saved\ with\ a\ .fai\ extension"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::ASSEMBLY\_REPORT\_OPTION,\ po::value<std::string>()-\/>default\_value(ebi::vcf::NO\_MAPPING),\ \textcolor{stringliteral}{"{}Path\ to\ the\ input\ assembly\ report\ used\ for\ contig\ synonym\ mapping"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::REPORT\_OPTION,\ po::value<std::string>()-\/>default\_value(ebi::vcf::SUMMARY),\ \textcolor{stringliteral}{"{}Comma\ separated\ values\ for\ types\ of\ reports\ (summary,\ text,\ valid)"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::OUTDIR\_OPTION,\ po::value<std::string>()-\/>default\_value(\textcolor{stringliteral}{"{}"{}}),\ \textcolor{stringliteral}{"{}Output\ directory"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ (ebi::vcf::REQUIRE\_GENBANK,\ \textcolor{stringliteral}{"{}Flag\ to\ indicate\ that\ VCF\ should\ be\ checked\ for\ Genbank\ accessions"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ description;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00052}00052\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{keywordtype}{bool}\ check\_compressed\_file(\textcolor{keyword}{const}\ std::string\ filePath)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ std::string\ fileExtension\ =\ ebi::vcf::get\_compression\_from\_extension(filePath);}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fileExtension\ !=\ ebi::vcf::NO\_EXT;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{keywordtype}{int}\ check\_command\_line\_options(po::variables\_map\ \textcolor{keyword}{const}\ \&\ vm,\ po::options\_description\ \textcolor{keyword}{const}\ \&\ desc)}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00060}00060\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vm.count(ebi::vcf::HELP))\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ desc\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vm.count(ebi::vcf::VERSION))\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ version\_info\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!vm.count(ebi::vcf::INPUT))\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ desc\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(error)\ <<\ \textcolor{stringliteral}{"{}Please\ specify\ the\ path\ to\ the\ VCF\ file\ (-\/-\/vcf)"{}};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vm.count(ebi::vcf::FASTA)\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ fastaFileName\ =\ vm[ebi::vcf::FASTA].as<std::string>();}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (check\_compressed\_file(fastaFileName))\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Only\ uncompressed\ FASTA\ files\ are\ supported!\ Cannot\ use\ FASTA\ file:\ "{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ fastaFileName);}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vm.count(ebi::vcf::ASSEMBLY\_REPORT)\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ assemblyReportFileName\ =\ vm[ebi::vcf::ASSEMBLY\_REPORT].as<std::string>();}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (check\_compressed\_file(assemblyReportFileName))\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Only\ uncompressed\ assembly\ report\ files\ are\ supported!\ "{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Cannot\ use\ assembly\ report\ file:\ "{}}\ +\ assemblyReportFileName);}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00096}00096\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00098}00098\ \ \ \ \ std::vector<std::unique\_ptr<ebi::vcf::AssemblyCheckReportWriter>>\ get\_outputs(std::string\ \textcolor{keyword}{const}\ \&output\_str,}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&input)}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00100}00100\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ std::vector<std::string>\ outs;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ ebi::util::string\_split(output\_str,\ \textcolor{stringliteral}{"{},"{}},\ outs);}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ initial\_size\ =\ outs.size();}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ std::sort(outs.begin(),\ outs.end());}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ std::unique(outs.begin(),\ outs.end());}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (initial\_size\ !=\ outs.size())\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(warning)\ <<\ \textcolor{stringliteral}{"{}Duplicated\ outputs!\ Will\ write\ just\ once\ to\ each\ output\ specified\ by\ -\/r/-\/-\/report"{}};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ std::vector<std::unique\_ptr<ebi::vcf::AssemblyCheckReportWriter>>\ outputs;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ out\ :\ outs)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ epoch\ =\ std::chrono::system\_clock::now().time\_since\_epoch();}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ timestamp\ =\ std::chrono::duration\_cast<std::chrono::milliseconds>(epoch).count();}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ filetype\ =\ \textcolor{stringliteral}{"{}.txt"{}};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (out\ ==\ ebi::vcf::VALID)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ filename\ =\ input\ +\ \textcolor{stringliteral}{"{}.valid\_assembly\_report."{}}\ +\ std::to\_string(timestamp)\ +\ filetype;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ boost::filesystem::path\ file\{filename\};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (boost::filesystem::exists(file))\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error\{\textcolor{stringliteral}{"{}Report\ file\ already\ exists\ on\ "{}}\ +\ filename\ +\ \textcolor{stringliteral}{"{},\ please\ delete\ it\ or\ rename\ it"{}}\};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outputs.emplace\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_valid_assembly_check_report_writer}{ebi::vcf::ValidAssemblyCheckReportWriter}}(filename));}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (out\ ==\ ebi::vcf::TEXT)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ filename\ =\ input\ +\ \textcolor{stringliteral}{"{}.text\_assembly\_report."{}}\ +\ std::to\_string(timestamp)\ +\ filetype;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ boost::filesystem::path\ file\{filename\};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (boost::filesystem::exists(file))\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error\{\textcolor{stringliteral}{"{}Report\ file\ already\ exists\ on\ "{}}\ +\ filename\ +\ \textcolor{stringliteral}{"{},\ please\ delete\ it\ or\ rename\ it"{}}\};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outputs.emplace\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_text_assembly_check_report_writer}{ebi::vcf::TextAssemblyCheckReportWriter}}(filename));}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (out\ ==\ ebi::vcf::SUMMARY)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outputs.emplace\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_summary_assembly_check_report_writer}{ebi::vcf::SummaryAssemblyCheckReportWriter}}());}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument\{\textcolor{stringliteral}{"{}Please\ use\ only\ valid\ report\ types"{}}\};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ outputs;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00140}00140\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00141}00141\ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00143}00143\ \textcolor{keywordtype}{int}\ main(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv)}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00144}00144\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00145}00145\ \ \ \ \ ebi::util::init\_boost\_loggers();}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00147}00147\ \ \ \ \ po::options\_description\ desc\ =\ build\_command\_line\_options();}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00148}00148\ \ \ \ \ po::variables\_map\ vm\ =\ ebi::util::build\_variables\_map(argc,\ argv,\ desc);}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00150}00150\ \ \ \ \ \textcolor{keywordtype}{int}\ check\_options\ =\ check\_command\_line\_options(vm,\ desc);}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00151}00151\ \ \ \ \ \textcolor{keywordflow}{if}\ (check\_options\ <\ 0)\ \{\ \textcolor{keywordflow}{return}\ 0;\ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00152}00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (check\_options\ >\ 0)\ \{\ \textcolor{keywordflow}{return}\ check\_options;\ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00154}00154\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ vcf\_path\ =\ vm[ebi::vcf::INPUT].as<std::string>();}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ fasta\_path\ =\ vm[ebi::vcf::FASTA].as<std::string>();}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ assembly\_report\ =\ vm[ebi::vcf::ASSEMBLY\_REPORT].as<std::string>();}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ outdir\ =\ ebi::util::get\_output\_path(vm[ebi::vcf::OUTDIR].as<std::string>(),\ vcf\_path);}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ outputs\ =\ get\_outputs(vm[ebi::vcf::REPORT].as<std::string>(),\ outdir);}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ requireGenbank\ =\ vm.count(ebi::vcf::REQUIRE\_GENBANK)\ >=\ 1;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_valid;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vcf\_path\ ==\ ebi::vcf::STDIN)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Reading\ from\ standard\ input..."{}};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ is\_valid\ =\ ebi::vcf::assembly\_checker::check\_vcf\_ref(std::cin,\ vcf\_path,\ fasta\_path,\ assembly\_report,}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outputs,\ requireGenbank);}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Reading\ from\ input\ VCF\ file..."{}};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ vcf\_input;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ ebi::util::open\_file(vcf\_input,\ vcf\_path);}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ is\_valid\ =\ ebi::vcf::assembly\_checker::check\_vcf\_ref(vcf\_input,\ vcf\_path,\ fasta\_path,\ assembly\_report,}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outputs,\ requireGenbank);}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !is\_valid;\ \textcolor{comment}{//\ A\ valid\ file\ returns\ an\ exit\ code\ 0}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00176}00176\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::invalid\_argument\ \textcolor{keyword}{const}\ \&\ ex)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(error)\ <<\ ex.what();}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00179}00179\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::runtime\_error\ \textcolor{keyword}{const}\ \&\ ex)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(error)\ <<\ \textcolor{stringliteral}{"{}The\ assembly\ checking\ could\ not\ be\ completed:\ "{}}\ <<\ ex.what();}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00182}00182\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::exception\ \textcolor{keyword}{const}\ \&ex)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(error)\ <<\ ex.what();}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00185}00185\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__main_8cpp_source_l00187}00187\ \}}
+
+\end{DoxyCode}

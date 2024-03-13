@@ -1,0 +1,150 @@
+\doxysection{sqlite3\+\_\+context Struct Reference}
+\hypertarget{structsqlite3__context}{}\label{structsqlite3__context}\index{sqlite3\_context@{sqlite3\_context}}
+
+
+Collaboration diagram for sqlite3\+\_\+context\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d1/d1b/structsqlite3__context__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_mem}{Mem}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__context_ae22b1db2ea357b70dda4a86b6df01f34}{p\+Out}}
+\item 
+\mbox{\hyperlink{struct_func_def}{Func\+Def}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__context_af4215c87be2c0cb10868f623a552a2aa}{p\+Func}}
+\item 
+\mbox{\hyperlink{struct_mem}{Mem}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__context_a7b84aa5920329cb0eb943832175b48b5}{p\+Mem}}
+\item 
+\mbox{\hyperlink{struct_vdbe}{Vdbe}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__context_ab35b02abe9a81e0c8cbdaeb0aa1a5874}{p\+Vdbe}}
+\item 
+int \mbox{\hyperlink{structsqlite3__context_a6f5930106488b9ead6f8efefe9125b6c}{i\+Op}}
+\item 
+int \mbox{\hyperlink{structsqlite3__context_ae4351b8da8c6d2676074612c1b8d4af5}{is\+Error}}
+\item 
+u8 \mbox{\hyperlink{structsqlite3__context_a29c404b8744ed5967960c576f3e59bd3}{skip\+Flag}}
+\item 
+u8 \mbox{\hyperlink{structsqlite3__context_a342986cd1a7c165151c53af83fe24b1d}{f\+Error\+Or\+Aux}}
+\item 
+u8 \mbox{\hyperlink{structsqlite3__context_a3246bd9287c845864193f0519804aede}{argc}}
+\item 
+\mbox{\hyperlink{struct_mem}{sqlite3\+\_\+value}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__context_a416e22362626c80a9dd4c7909871d90c}{argv}} \mbox{[}1\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17711}{17711}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structsqlite3__context_a3246bd9287c845864193f0519804aede}\label{structsqlite3__context_a3246bd9287c845864193f0519804aede} 
+\index{sqlite3\_context@{sqlite3\_context}!argc@{argc}}
+\index{argc@{argc}!sqlite3\_context@{sqlite3\_context}}
+\doxysubsubsection{\texorpdfstring{argc}{argc}}
+{\footnotesize\ttfamily u8 sqlite3\+\_\+context\+::argc}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17720}{17720}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__context_a416e22362626c80a9dd4c7909871d90c}\label{structsqlite3__context_a416e22362626c80a9dd4c7909871d90c} 
+\index{sqlite3\_context@{sqlite3\_context}!argv@{argv}}
+\index{argv@{argv}!sqlite3\_context@{sqlite3\_context}}
+\doxysubsubsection{\texorpdfstring{argv}{argv}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_mem}{sqlite3\+\_\+value}}\texorpdfstring{$\ast$}{*} sqlite3\+\_\+context\+::argv\mbox{[}1\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17721}{17721}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__context_a342986cd1a7c165151c53af83fe24b1d}\label{structsqlite3__context_a342986cd1a7c165151c53af83fe24b1d} 
+\index{sqlite3\_context@{sqlite3\_context}!fErrorOrAux@{fErrorOrAux}}
+\index{fErrorOrAux@{fErrorOrAux}!sqlite3\_context@{sqlite3\_context}}
+\doxysubsubsection{\texorpdfstring{fErrorOrAux}{fErrorOrAux}}
+{\footnotesize\ttfamily u8 sqlite3\+\_\+context\+::f\+Error\+Or\+Aux}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17719}{17719}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__context_a6f5930106488b9ead6f8efefe9125b6c}\label{structsqlite3__context_a6f5930106488b9ead6f8efefe9125b6c} 
+\index{sqlite3\_context@{sqlite3\_context}!iOp@{iOp}}
+\index{iOp@{iOp}!sqlite3\_context@{sqlite3\_context}}
+\doxysubsubsection{\texorpdfstring{iOp}{iOp}}
+{\footnotesize\ttfamily int sqlite3\+\_\+context\+::i\+Op}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17716}{17716}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__context_ae4351b8da8c6d2676074612c1b8d4af5}\label{structsqlite3__context_ae4351b8da8c6d2676074612c1b8d4af5} 
+\index{sqlite3\_context@{sqlite3\_context}!isError@{isError}}
+\index{isError@{isError}!sqlite3\_context@{sqlite3\_context}}
+\doxysubsubsection{\texorpdfstring{isError}{isError}}
+{\footnotesize\ttfamily int sqlite3\+\_\+context\+::is\+Error}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17717}{17717}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__context_af4215c87be2c0cb10868f623a552a2aa}\label{structsqlite3__context_af4215c87be2c0cb10868f623a552a2aa} 
+\index{sqlite3\_context@{sqlite3\_context}!pFunc@{pFunc}}
+\index{pFunc@{pFunc}!sqlite3\_context@{sqlite3\_context}}
+\doxysubsubsection{\texorpdfstring{pFunc}{pFunc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_func_def}{Func\+Def}}\texorpdfstring{$\ast$}{*} sqlite3\+\_\+context\+::p\+Func}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17713}{17713}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__context_a7b84aa5920329cb0eb943832175b48b5}\label{structsqlite3__context_a7b84aa5920329cb0eb943832175b48b5} 
+\index{sqlite3\_context@{sqlite3\_context}!pMem@{pMem}}
+\index{pMem@{pMem}!sqlite3\_context@{sqlite3\_context}}
+\doxysubsubsection{\texorpdfstring{pMem}{pMem}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_mem}{Mem}}\texorpdfstring{$\ast$}{*} sqlite3\+\_\+context\+::p\+Mem}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17714}{17714}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__context_ae22b1db2ea357b70dda4a86b6df01f34}\label{structsqlite3__context_ae22b1db2ea357b70dda4a86b6df01f34} 
+\index{sqlite3\_context@{sqlite3\_context}!pOut@{pOut}}
+\index{pOut@{pOut}!sqlite3\_context@{sqlite3\_context}}
+\doxysubsubsection{\texorpdfstring{pOut}{pOut}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_mem}{Mem}}\texorpdfstring{$\ast$}{*} sqlite3\+\_\+context\+::p\+Out}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17712}{17712}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__context_ab35b02abe9a81e0c8cbdaeb0aa1a5874}\label{structsqlite3__context_ab35b02abe9a81e0c8cbdaeb0aa1a5874} 
+\index{sqlite3\_context@{sqlite3\_context}!pVdbe@{pVdbe}}
+\index{pVdbe@{pVdbe}!sqlite3\_context@{sqlite3\_context}}
+\doxysubsubsection{\texorpdfstring{pVdbe}{pVdbe}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vdbe}{Vdbe}}\texorpdfstring{$\ast$}{*} sqlite3\+\_\+context\+::p\+Vdbe}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17715}{17715}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__context_a29c404b8744ed5967960c576f3e59bd3}\label{structsqlite3__context_a29c404b8744ed5967960c576f3e59bd3} 
+\index{sqlite3\_context@{sqlite3\_context}!skipFlag@{skipFlag}}
+\index{skipFlag@{skipFlag}!sqlite3\_context@{sqlite3\_context}}
+\doxysubsubsection{\texorpdfstring{skipFlag}{skipFlag}}
+{\footnotesize\ttfamily u8 sqlite3\+\_\+context\+::skip\+Flag}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17718}{17718}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

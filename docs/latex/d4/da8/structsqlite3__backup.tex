@@ -1,0 +1,174 @@
+\doxysection{sqlite3\+\_\+backup Struct Reference}
+\hypertarget{structsqlite3__backup}{}\label{structsqlite3__backup}\index{sqlite3\_backup@{sqlite3\_backup}}
+
+
+Collaboration diagram for sqlite3\+\_\+backup\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{da/d40/structsqlite3__backup__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structsqlite3}{sqlite3}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__backup_ad9b5074a860e01b31bbf9cb27f3808d9}{p\+Dest\+Db}}
+\item 
+\mbox{\hyperlink{struct_btree}{Btree}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__backup_a9e011336a89274f0ebfefdcede198f71}{p\+Dest}}
+\item 
+u32 \mbox{\hyperlink{structsqlite3__backup_a3f294f50b4ef206452dddd14f2a7cf6a}{i\+Dest\+Schema}}
+\item 
+int \mbox{\hyperlink{structsqlite3__backup_aa0d385678bc5c3fd4da4201ff03a5856}{b\+Dest\+Locked}}
+\item 
+Pgno \mbox{\hyperlink{structsqlite3__backup_a92454bf354f928aade2b2f92e6cfd088}{i\+Next}}
+\item 
+\mbox{\hyperlink{structsqlite3}{sqlite3}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__backup_a0bcc0528bb3f5ec52eb40c3e7a4f7adc}{p\+Src\+Db}}
+\item 
+\mbox{\hyperlink{struct_btree}{Btree}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__backup_aa48f873d1de446638ff71fdae606e672}{p\+Src}}
+\item 
+int \mbox{\hyperlink{structsqlite3__backup_aab860dbed6181702b4c6b80d43cde411}{rc}}
+\item 
+Pgno \mbox{\hyperlink{structsqlite3__backup_a4287faa23d4534e8a33915740604d1e1}{n\+Remaining}}
+\item 
+Pgno \mbox{\hyperlink{structsqlite3__backup_a98599d5a3a13173a6a126242d1fbbaa8}{n\+Pagecount}}
+\item 
+int \mbox{\hyperlink{structsqlite3__backup_af515f0d9265847d820cbaad41cef78ae}{is\+Attached}}
+\item 
+\mbox{\hyperlink{structsqlite3__backup}{sqlite3\+\_\+backup}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__backup_a3a87332e045fe4a477fe262409c6011a}{p\+Next}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l67454}{67454}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structsqlite3__backup_aa0d385678bc5c3fd4da4201ff03a5856}\label{structsqlite3__backup_aa0d385678bc5c3fd4da4201ff03a5856} 
+\index{sqlite3\_backup@{sqlite3\_backup}!bDestLocked@{bDestLocked}}
+\index{bDestLocked@{bDestLocked}!sqlite3\_backup@{sqlite3\_backup}}
+\doxysubsubsection{\texorpdfstring{bDestLocked}{bDestLocked}}
+{\footnotesize\ttfamily int sqlite3\+\_\+backup\+::b\+Dest\+Locked}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l67458}{67458}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__backup_a3f294f50b4ef206452dddd14f2a7cf6a}\label{structsqlite3__backup_a3f294f50b4ef206452dddd14f2a7cf6a} 
+\index{sqlite3\_backup@{sqlite3\_backup}!iDestSchema@{iDestSchema}}
+\index{iDestSchema@{iDestSchema}!sqlite3\_backup@{sqlite3\_backup}}
+\doxysubsubsection{\texorpdfstring{iDestSchema}{iDestSchema}}
+{\footnotesize\ttfamily u32 sqlite3\+\_\+backup\+::i\+Dest\+Schema}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l67457}{67457}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__backup_a92454bf354f928aade2b2f92e6cfd088}\label{structsqlite3__backup_a92454bf354f928aade2b2f92e6cfd088} 
+\index{sqlite3\_backup@{sqlite3\_backup}!iNext@{iNext}}
+\index{iNext@{iNext}!sqlite3\_backup@{sqlite3\_backup}}
+\doxysubsubsection{\texorpdfstring{iNext}{iNext}}
+{\footnotesize\ttfamily Pgno sqlite3\+\_\+backup\+::i\+Next}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l67460}{67460}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__backup_af515f0d9265847d820cbaad41cef78ae}\label{structsqlite3__backup_af515f0d9265847d820cbaad41cef78ae} 
+\index{sqlite3\_backup@{sqlite3\_backup}!isAttached@{isAttached}}
+\index{isAttached@{isAttached}!sqlite3\_backup@{sqlite3\_backup}}
+\doxysubsubsection{\texorpdfstring{isAttached}{isAttached}}
+{\footnotesize\ttfamily int sqlite3\+\_\+backup\+::is\+Attached}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l67472}{67472}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__backup_a98599d5a3a13173a6a126242d1fbbaa8}\label{structsqlite3__backup_a98599d5a3a13173a6a126242d1fbbaa8} 
+\index{sqlite3\_backup@{sqlite3\_backup}!nPagecount@{nPagecount}}
+\index{nPagecount@{nPagecount}!sqlite3\_backup@{sqlite3\_backup}}
+\doxysubsubsection{\texorpdfstring{nPagecount}{nPagecount}}
+{\footnotesize\ttfamily Pgno sqlite3\+\_\+backup\+::n\+Pagecount}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l67470}{67470}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__backup_a4287faa23d4534e8a33915740604d1e1}\label{structsqlite3__backup_a4287faa23d4534e8a33915740604d1e1} 
+\index{sqlite3\_backup@{sqlite3\_backup}!nRemaining@{nRemaining}}
+\index{nRemaining@{nRemaining}!sqlite3\_backup@{sqlite3\_backup}}
+\doxysubsubsection{\texorpdfstring{nRemaining}{nRemaining}}
+{\footnotesize\ttfamily Pgno sqlite3\+\_\+backup\+::n\+Remaining}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l67469}{67469}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__backup_a9e011336a89274f0ebfefdcede198f71}\label{structsqlite3__backup_a9e011336a89274f0ebfefdcede198f71} 
+\index{sqlite3\_backup@{sqlite3\_backup}!pDest@{pDest}}
+\index{pDest@{pDest}!sqlite3\_backup@{sqlite3\_backup}}
+\doxysubsubsection{\texorpdfstring{pDest}{pDest}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_btree}{Btree}}\texorpdfstring{$\ast$}{*} sqlite3\+\_\+backup\+::p\+Dest}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l67456}{67456}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__backup_ad9b5074a860e01b31bbf9cb27f3808d9}\label{structsqlite3__backup_ad9b5074a860e01b31bbf9cb27f3808d9} 
+\index{sqlite3\_backup@{sqlite3\_backup}!pDestDb@{pDestDb}}
+\index{pDestDb@{pDestDb}!sqlite3\_backup@{sqlite3\_backup}}
+\doxysubsubsection{\texorpdfstring{pDestDb}{pDestDb}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsqlite3}{sqlite3}}\texorpdfstring{$\ast$}{*} sqlite3\+\_\+backup\+::p\+Dest\+Db}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l67455}{67455}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__backup_a3a87332e045fe4a477fe262409c6011a}\label{structsqlite3__backup_a3a87332e045fe4a477fe262409c6011a} 
+\index{sqlite3\_backup@{sqlite3\_backup}!pNext@{pNext}}
+\index{pNext@{pNext}!sqlite3\_backup@{sqlite3\_backup}}
+\doxysubsubsection{\texorpdfstring{pNext}{pNext}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsqlite3__backup}{sqlite3\+\_\+backup}}\texorpdfstring{$\ast$}{*} sqlite3\+\_\+backup\+::p\+Next}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l67473}{67473}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__backup_aa48f873d1de446638ff71fdae606e672}\label{structsqlite3__backup_aa48f873d1de446638ff71fdae606e672} 
+\index{sqlite3\_backup@{sqlite3\_backup}!pSrc@{pSrc}}
+\index{pSrc@{pSrc}!sqlite3\_backup@{sqlite3\_backup}}
+\doxysubsubsection{\texorpdfstring{pSrc}{pSrc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_btree}{Btree}}\texorpdfstring{$\ast$}{*} sqlite3\+\_\+backup\+::p\+Src}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l67462}{67462}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__backup_a0bcc0528bb3f5ec52eb40c3e7a4f7adc}\label{structsqlite3__backup_a0bcc0528bb3f5ec52eb40c3e7a4f7adc} 
+\index{sqlite3\_backup@{sqlite3\_backup}!pSrcDb@{pSrcDb}}
+\index{pSrcDb@{pSrcDb}!sqlite3\_backup@{sqlite3\_backup}}
+\doxysubsubsection{\texorpdfstring{pSrcDb}{pSrcDb}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsqlite3}{sqlite3}}\texorpdfstring{$\ast$}{*} sqlite3\+\_\+backup\+::p\+Src\+Db}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l67461}{67461}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__backup_aab860dbed6181702b4c6b80d43cde411}\label{structsqlite3__backup_aab860dbed6181702b4c6b80d43cde411} 
+\index{sqlite3\_backup@{sqlite3\_backup}!rc@{rc}}
+\index{rc@{rc}!sqlite3\_backup@{sqlite3\_backup}}
+\doxysubsubsection{\texorpdfstring{rc}{rc}}
+{\footnotesize\ttfamily int sqlite3\+\_\+backup\+::rc}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l67464}{67464}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

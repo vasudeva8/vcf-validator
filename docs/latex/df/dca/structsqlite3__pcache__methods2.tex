@@ -1,0 +1,187 @@
+\doxysection{sqlite3\+\_\+pcache\+\_\+methods2 Struct Reference}
+\hypertarget{structsqlite3__pcache__methods2}{}\label{structsqlite3__pcache__methods2}\index{sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}}
+
+
+Collaboration diagram for sqlite3\+\_\+pcache\+\_\+methods2\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{db/d71/structsqlite3__pcache__methods2__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structsqlite3__pcache__methods2_a03b27be6c7cb8f1d2662c454cbe58483}{i\+Version}}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__pcache__methods2_a4bea91c33987eef02122bbf8a49745de}{p\+Arg}}
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__pcache__methods2_a8f77114458576c9d75cd53822fcd3462}{x\+Init}} )(void \texorpdfstring{$\ast$}{*})
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__pcache__methods2_a00a780e295b89976940cd3cba2cfeaee}{x\+Shutdown}} )(void \texorpdfstring{$\ast$}{*})
+\item 
+sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__pcache__methods2_a91e7752b826e19e7c51c1fa0ce530f0f}{x\+Create}} )(int sz\+Page, int sz\+Extra, int b\+Purgeable)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__pcache__methods2_a4889ab0903938f485aa0fa4fc6925d26}{x\+Cachesize}} )(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*}, int n\+Cachesize)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__pcache__methods2_a5d51aba3927db1da9acf31fbdf7d57b5}{x\+Pagecount}} )(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*})
+\item 
+\mbox{\hyperlink{structsqlite3__pcache__page}{sqlite3\+\_\+pcache\+\_\+page}} \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__pcache__methods2_ac74dd2b35193a4309494311995da2d25}{x\+Fetch}} )(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*}, unsigned key, int create\+Flag)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__pcache__methods2_ac94294551eda282f17b1ed2a110e1850}{x\+Unpin}} )(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{structsqlite3__pcache__page}{sqlite3\+\_\+pcache\+\_\+page}} \texorpdfstring{$\ast$}{*}, int discard)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__pcache__methods2_a28a22927b108182e22025bbe6ba1f68e}{x\+Rekey}} )(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{structsqlite3__pcache__page}{sqlite3\+\_\+pcache\+\_\+page}} \texorpdfstring{$\ast$}{*}, unsigned old\+Key, unsigned new\+Key)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__pcache__methods2_a7c565709ab91dbe7feb5b82c684ba604}{x\+Truncate}} )(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*}, unsigned i\+Limit)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__pcache__methods2_a144d6e899889e80e00f93fb6c83359e2}{x\+Destroy}} )(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*})
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__pcache__methods2_af00c121e9c39b1df292711013c226ba5}{x\+Shrink}} )(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l07336}{7336}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structsqlite3__pcache__methods2_a03b27be6c7cb8f1d2662c454cbe58483}\label{structsqlite3__pcache__methods2_a03b27be6c7cb8f1d2662c454cbe58483} 
+\index{sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}!iVersion@{iVersion}}
+\index{iVersion@{iVersion}!sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}}
+\doxysubsubsection{\texorpdfstring{iVersion}{iVersion}}
+{\footnotesize\ttfamily int sqlite3\+\_\+pcache\+\_\+methods2\+::i\+Version}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l07337}{7337}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__pcache__methods2_a4bea91c33987eef02122bbf8a49745de}\label{structsqlite3__pcache__methods2_a4bea91c33987eef02122bbf8a49745de} 
+\index{sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}!pArg@{pArg}}
+\index{pArg@{pArg}!sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}}
+\doxysubsubsection{\texorpdfstring{pArg}{pArg}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} sqlite3\+\_\+pcache\+\_\+methods2\+::p\+Arg}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l07338}{7338}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__pcache__methods2_a4889ab0903938f485aa0fa4fc6925d26}\label{structsqlite3__pcache__methods2_a4889ab0903938f485aa0fa4fc6925d26} 
+\index{sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}!xCachesize@{xCachesize}}
+\index{xCachesize@{xCachesize}!sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}}
+\doxysubsubsection{\texorpdfstring{xCachesize}{xCachesize}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+pcache\+\_\+methods2\+::x\+Cachesize)(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*}, int n\+Cachesize)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l07342}{7342}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__pcache__methods2_a91e7752b826e19e7c51c1fa0ce530f0f}\label{structsqlite3__pcache__methods2_a91e7752b826e19e7c51c1fa0ce530f0f} 
+\index{sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}!xCreate@{xCreate}}
+\index{xCreate@{xCreate}!sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}}
+\doxysubsubsection{\texorpdfstring{xCreate}{xCreate}}
+{\footnotesize\ttfamily sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+pcache\+\_\+methods2\+::x\+Create)(int sz\+Page, int sz\+Extra, int b\+Purgeable)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l07341}{7341}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__pcache__methods2_a144d6e899889e80e00f93fb6c83359e2}\label{structsqlite3__pcache__methods2_a144d6e899889e80e00f93fb6c83359e2} 
+\index{sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}!xDestroy@{xDestroy}}
+\index{xDestroy@{xDestroy}!sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}}
+\doxysubsubsection{\texorpdfstring{xDestroy}{xDestroy}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+pcache\+\_\+methods2\+::x\+Destroy)(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l07349}{7349}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__pcache__methods2_ac74dd2b35193a4309494311995da2d25}\label{structsqlite3__pcache__methods2_ac74dd2b35193a4309494311995da2d25} 
+\index{sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}!xFetch@{xFetch}}
+\index{xFetch@{xFetch}!sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}}
+\doxysubsubsection{\texorpdfstring{xFetch}{xFetch}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsqlite3__pcache__page}{sqlite3\+\_\+pcache\+\_\+page}} \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+pcache\+\_\+methods2\+::x\+Fetch)(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*}, unsigned key, int create\+Flag)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l07344}{7344}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__pcache__methods2_a8f77114458576c9d75cd53822fcd3462}\label{structsqlite3__pcache__methods2_a8f77114458576c9d75cd53822fcd3462} 
+\index{sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}!xInit@{xInit}}
+\index{xInit@{xInit}!sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}}
+\doxysubsubsection{\texorpdfstring{xInit}{xInit}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+pcache\+\_\+methods2\+::x\+Init)(void \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l07339}{7339}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__pcache__methods2_a5d51aba3927db1da9acf31fbdf7d57b5}\label{structsqlite3__pcache__methods2_a5d51aba3927db1da9acf31fbdf7d57b5} 
+\index{sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}!xPagecount@{xPagecount}}
+\index{xPagecount@{xPagecount}!sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}}
+\doxysubsubsection{\texorpdfstring{xPagecount}{xPagecount}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+pcache\+\_\+methods2\+::x\+Pagecount)(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l07343}{7343}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__pcache__methods2_a28a22927b108182e22025bbe6ba1f68e}\label{structsqlite3__pcache__methods2_a28a22927b108182e22025bbe6ba1f68e} 
+\index{sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}!xRekey@{xRekey}}
+\index{xRekey@{xRekey}!sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}}
+\doxysubsubsection{\texorpdfstring{xRekey}{xRekey}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+pcache\+\_\+methods2\+::x\+Rekey)(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{structsqlite3__pcache__page}{sqlite3\+\_\+pcache\+\_\+page}} \texorpdfstring{$\ast$}{*}, unsigned old\+Key, unsigned new\+Key)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l07346}{7346}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__pcache__methods2_af00c121e9c39b1df292711013c226ba5}\label{structsqlite3__pcache__methods2_af00c121e9c39b1df292711013c226ba5} 
+\index{sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}!xShrink@{xShrink}}
+\index{xShrink@{xShrink}!sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}}
+\doxysubsubsection{\texorpdfstring{xShrink}{xShrink}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+pcache\+\_\+methods2\+::x\+Shrink)(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l07350}{7350}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__pcache__methods2_a00a780e295b89976940cd3cba2cfeaee}\label{structsqlite3__pcache__methods2_a00a780e295b89976940cd3cba2cfeaee} 
+\index{sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}!xShutdown@{xShutdown}}
+\index{xShutdown@{xShutdown}!sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}}
+\doxysubsubsection{\texorpdfstring{xShutdown}{xShutdown}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+pcache\+\_\+methods2\+::x\+Shutdown)(void \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l07340}{7340}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__pcache__methods2_a7c565709ab91dbe7feb5b82c684ba604}\label{structsqlite3__pcache__methods2_a7c565709ab91dbe7feb5b82c684ba604} 
+\index{sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}!xTruncate@{xTruncate}}
+\index{xTruncate@{xTruncate}!sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}}
+\doxysubsubsection{\texorpdfstring{xTruncate}{xTruncate}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+pcache\+\_\+methods2\+::x\+Truncate)(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*}, unsigned i\+Limit)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l07348}{7348}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__pcache__methods2_ac94294551eda282f17b1ed2a110e1850}\label{structsqlite3__pcache__methods2_ac94294551eda282f17b1ed2a110e1850} 
+\index{sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}!xUnpin@{xUnpin}}
+\index{xUnpin@{xUnpin}!sqlite3\_pcache\_methods2@{sqlite3\_pcache\_methods2}}
+\doxysubsubsection{\texorpdfstring{xUnpin}{xUnpin}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} sqlite3\+\_\+pcache\+\_\+methods2\+::x\+Unpin)(sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{structsqlite3__pcache__page}{sqlite3\+\_\+pcache\+\_\+page}} \texorpdfstring{$\ast$}{*}, int discard)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l07345}{7345}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\item 
+lib/sqlite/sqlite3.\+h\end{DoxyCompactItemize}

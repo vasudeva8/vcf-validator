@@ -1,0 +1,111 @@
+\doxysection{Catch\+::Between\+Generator\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_catch_1_1_between_generator}{}\label{class_catch_1_1_between_generator}\index{Catch::BetweenGenerator$<$ T $>$@{Catch::BetweenGenerator$<$ T $>$}}
+
+
+Inheritance diagram for Catch\+::Between\+Generator\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{df/dc6/class_catch_1_1_between_generator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Catch\+::Between\+Generator\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{d3/d62/class_catch_1_1_between_generator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_catch_1_1_between_generator_a835a057d691ae37caef660624099b51c}{Between\+Generator}} (T from, T to)
+\item 
+virtual T \mbox{\hyperlink{class_catch_1_1_between_generator_a913f74bb0c23b3bc0127abfffdabbd94}{get\+Value}} (std\+::size\+\_\+t index) const
+\item 
+virtual std\+::size\+\_\+t \mbox{\hyperlink{class_catch_1_1_between_generator_af65a1fe51f9b1106fc676e3dd189adb6}{size}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Catch\+::\+Between\+Generator$<$ T $>$}
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02355}{2355}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_catch_1_1_between_generator_a835a057d691ae37caef660624099b51c}\label{class_catch_1_1_between_generator_a835a057d691ae37caef660624099b51c} 
+\index{Catch::BetweenGenerator$<$ T $>$@{Catch::BetweenGenerator$<$ T $>$}!BetweenGenerator@{BetweenGenerator}}
+\index{BetweenGenerator@{BetweenGenerator}!Catch::BetweenGenerator$<$ T $>$@{Catch::BetweenGenerator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{BetweenGenerator()}{BetweenGenerator()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_catch_1_1_between_generator}{Catch\+::\+Between\+Generator}}$<$ T $>$\+::\+Between\+Generator (\begin{DoxyParamCaption}\item[{T}]{from,  }\item[{T}]{to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02357}{2357}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02357\ :\ m\_from(\ from\ ),\ m\_to(\ to\ )\{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_catch_1_1_between_generator_a913f74bb0c23b3bc0127abfffdabbd94}\label{class_catch_1_1_between_generator_a913f74bb0c23b3bc0127abfffdabbd94} 
+\index{Catch::BetweenGenerator$<$ T $>$@{Catch::BetweenGenerator$<$ T $>$}!getValue@{getValue}}
+\index{getValue@{getValue}!Catch::BetweenGenerator$<$ T $>$@{Catch::BetweenGenerator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual T \mbox{\hyperlink{class_catch_1_1_between_generator}{Catch\+::\+Between\+Generator}}$<$ T $>$\+::get\+Value (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{struct_catch_1_1_i_generator}{Catch\+::\+IGenerator$<$ T $>$}}.
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02359}{2359}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02360\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_from+\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\ index\ );}
+\DoxyCodeLine{02361\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_between_generator_af65a1fe51f9b1106fc676e3dd189adb6}\label{class_catch_1_1_between_generator_af65a1fe51f9b1106fc676e3dd189adb6} 
+\index{Catch::BetweenGenerator$<$ T $>$@{Catch::BetweenGenerator$<$ T $>$}!size@{size}}
+\index{size@{size}!Catch::BetweenGenerator$<$ T $>$@{Catch::BetweenGenerator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual std\+::size\+\_\+t \mbox{\hyperlink{class_catch_1_1_between_generator}{Catch\+::\+Between\+Generator}}$<$ T $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{struct_catch_1_1_i_generator}{Catch\+::\+IGenerator$<$ T $>$}}.
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02363}{2363}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02364\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(\ 1+m\_to-\/m\_from\ );}
+\DoxyCodeLine{02365\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/catch/catch.\+hpp\end{DoxyCompactItemize}

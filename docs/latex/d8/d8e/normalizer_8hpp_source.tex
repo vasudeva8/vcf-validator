@@ -1,0 +1,56 @@
+\doxysection{normalizer.\+hpp}
+\hypertarget{normalizer_8hpp_source}{}\label{normalizer_8hpp_source}\index{inc/vcf/normalizer.hpp@{inc/vcf/normalizer.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00016}00016\ \textcolor{preprocessor}{\#ifndef\ VCF\_NORMALIZER\_HPP}}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#define\ VCF\_NORMALIZER\_HPP}}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}file\_structure.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00021}00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00022}00022\ \{}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00023}00023\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00024}00024\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00028}\mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{00028}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{RecordCore}}}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00029}00029\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00030}00030\ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ line\_num;}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00032}00032\ \ \ \ \ \ \ \ \ std::string\ chromosome;}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ position;}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00034}00034\ \ \ \ \ \ \ \ \ std::string\ reference\_allele;}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00035}00035\ \ \ \ \ \ \ \ \ std::string\ alternate\_allele;}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00036}00036\ \ \ \ \ \ \ \ \ RecordType\ alternate\_allele\_type;}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{RecordCore}}(\textcolor{keywordtype}{size\_t}\ line\_num,}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\ chromosome,}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ position,}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\ reference\_allele,}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\ alternate\_allele,}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RecordType\ alternate\_allele\_type}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ :\ line\_num(line\_num),}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chromosome(chromosome),}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position(position),}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reference\_allele(reference\_allele),}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alternate\_allele(alternate\_allele),}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alternate\_allele\_type(alternate\_allele\_type)}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core_acdab140b0a56a00cf005ca12fec429c9}{operator<}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{RecordCore}}\ \&other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core_a48813350af34cc628eed60de4d768b2d}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{RecordCore}}\ \&other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00066}00066\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00068}00068\ \ \ \ \ std::ostream\ \&operator<<(std::ostream\ \&os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{RecordCore}}\ \&record);}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00083}00083\ \ \ \ \ std::vector<RecordCore>\ normalize(\textcolor{keyword}{const}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}}\ \&record\textcolor{comment}{/*\ ,\ ParsingState?*/});}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00099}00099\ \ \ \ \ std::vector<RecordCore>\ normalize\_right\_alignment(\textcolor{keyword}{const}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}}\ \&record\textcolor{comment}{/*\ ,\ ParsingState?*/});}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00100}00100\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00101}00101\ \}}
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{normalizer_8hpp_source_l00103}00103\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VCF\_NORMALIZER\_HPP}}
+
+\end{DoxyCode}

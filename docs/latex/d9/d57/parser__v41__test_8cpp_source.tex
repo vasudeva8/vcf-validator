@@ -1,0 +1,44 @@
+\doxysection{parser\+\_\+v41\+\_\+test.\+cpp}
+\hypertarget{parser__v41__test_8cpp_source}{}\label{parser__v41__test_8cpp_source}\index{test/vcf/parser\_v41\_test.cpp@{test/vcf/parser\_v41\_test.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}parser\_test\_aux.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00019}00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00020}00020\ \{}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00022}00022\ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Files\ that\ fail\ the\ validation\ under\ specification\ v4.1"{}},\ \textcolor{stringliteral}{"{}[failed]"{}})}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00023}00023\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00024}00024\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ folder\ =\ boost::filesystem::path(\textcolor{stringliteral}{"{}test/input\_files/v4.1/failed"{}});}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00025}00025\ \ \ \ \ \ \ std::vector<boost::filesystem::path>\ v;}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00026}00026\ \ \ \ \ \ \ copy(boost::filesystem::directory\_iterator(folder),\ boost::filesystem::directory\_iterator(),\ back\_inserter(v));}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00028}00028\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ path\ :\ v)}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00029}00029\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ SECTION(path.string())}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CHECK\_FALSE(is\_valid(path.string()));}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00034}00034\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00035}00035\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00037}00037\ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Files\ that\ pass\ the\ validation\ under\ specification\ v4.1"{}},\ \textcolor{stringliteral}{"{}[passed]"{}})}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00038}00038\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00039}00039\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ folder\ =\ boost::filesystem::path(\textcolor{stringliteral}{"{}test/input\_files/v4.1/passed"{}});}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00040}00040\ \ \ \ \ \ \ std::vector<boost::filesystem::path>\ v;}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00041}00041\ \ \ \ \ \ \ copy(boost::filesystem::directory\_iterator(folder),\ boost::filesystem::directory\_iterator(),\ back\_inserter(v));}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00043}00043\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ path\ :\ v)}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00044}00044\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ SECTION(path.string())}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(is\_valid(path.string()));}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00049}00049\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00050}00050\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00052}00052\ \}}
+\DoxyCodeLine{\Hypertarget{parser__v41__test_8cpp_source_l00053}00053\ }
+
+\end{DoxyCode}

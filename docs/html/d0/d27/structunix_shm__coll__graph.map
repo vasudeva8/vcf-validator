@@ -1,0 +1,18 @@
+<map id="unixShm" name="unixShm">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,100,131"/>
+<area shape="poly" id="edge10_Node000001_Node000001" title=" " alt="" coords="101,48,119,53,127,68,124,77,119,83,115,79,120,74,121,68,115,57,99,53"/>
+<area shape="rect" id="Node000002" href="$d4/db1/structunix_shm_node.html" title=" " alt="" coords="81,194,176,379"/>
+<area shape="poly" id="edge9_Node000002_Node000001" title=" " alt="" coords="47,130,52,169,74,216,69,218,46,170,41,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,195,97,156,93,147,98,145,102,154,114,193"/>
+<area shape="rect" id="Node000003" href="$d0/d86/structunix_inode_info.html" title=" " alt="" coords="182,442,289,587"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="97,379,99,398,105,417,117,436,132,452,169,480,166,484,129,456,113,439,100,419,93,399,92,379"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="199,443,177,395,181,393,204,441"/>
+<area shape="poly" id="edge7_Node000003_Node000003" title=" " alt="" coords="289,493,307,499,315,514,313,524,307,531,303,527,308,522,310,515,304,503,288,498"/>
+<area shape="rect" id="Node000004" href="$d2/d56/structunix_file_id.html" title=" " alt="" coords="242,244,311,329"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="272,329,254,426,249,425,267,328"/>
+<area shape="rect" id="Node000005" href="$dd/d77/struct_unix_unused_fd.html" title=" " alt="" coords="336,244,436,329"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="361,330,302,419,295,429,291,426,297,417,357,327"/>
+<area shape="poly" id="edge6_Node000005_Node000005" title=" " alt="" coords="437,261,455,268,461,276,463,286,460,298,454,306,450,302,455,295,457,286,456,278,451,272,435,266"/>
+<area shape="rect" id="Node000006" href="$d5/d3c/structsqlite3__mutex.html" title=" " alt="" coords="195,35,289,101"/>
+<area shape="poly" id="edge8_Node000002_Node000006" title=" " alt="" coords="228,101,186,181,182,179,223,99"/>
+</map>

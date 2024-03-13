@@ -1,0 +1,777 @@
+\doxysection{ebi\+::vcf\+::Fixer Class Reference}
+\hypertarget{classebi_1_1vcf_1_1_fixer}{}\label{classebi_1_1vcf_1_1_fixer}\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+
+
+Inheritance diagram for ebi\+::vcf\+::Fixer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{df/dc7/classebi_1_1vcf_1_1_fixer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ebi\+::vcf\+::Fixer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{de/d92/classebi_1_1vcf_1_1_fixer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a7b16f19fb315f6447055f1e1921a07e5}{Fixer}} (std\+::ostream \&output)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a649f5f604b1d300c8d08f20f36c29715}{fix}} (size\+\_\+t line\+\_\+number, std\+::vector$<$ char $>$ \&line, \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \&error)
+\item 
+size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a3d8733a77851f56351a4c181d41badce}{get\+\_\+ignored\+\_\+errors}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_ae29aae3d1157c90cdc7651729a401e3a}{remove\+\_\+duplicate\+\_\+strings}} (const std\+::string \&column, const std\+::string \&separator)
+\item 
+size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a95d5635d53f6647f7038534656b3a5e5}{remove\+\_\+duplicate\+\_\+key\+\_\+value\+\_\+pairs}} (const std\+::string \&column, const std\+::string \&separator, const std\+::string \&key\+\_\+value\+\_\+separator, const std\+::string \&empty\+\_\+value)
+\item 
+size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_ac675356ba5dd8eb606778a12663dc843}{remove\+\_\+duplicate\+\_\+format\+\_\+sample\+\_\+pairs}} (const std\+::string \&string\+\_\+line)
+\item 
+std\+::set$<$ std\+::string $>$ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a5cd8d13f3ea8fb88074a62eb50beb054}{get\+\_\+format\+\_\+fields\+\_\+to\+\_\+remove}} (std\+::map$<$ std\+::string, std\+::vector$<$ size\+\_\+t $>$ $>$ \&format\+\_\+fields\+\_\+indexes, std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \&samples)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a24efbc29a328d0dee0d0e817546e35a3}{fix\+\_\+format\+\_\+gt}} (std\+::vector$<$ std\+::string $>$\+::iterator first, std\+::vector$<$ std\+::string $>$\+::iterator last, \mbox{\hyperlink{structebi_1_1vcf_1_1_samples_field_body_error}{Samples\+Field\+Body\+Error}} \&error)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a19c537657d4d9822a20f6d6ab4b0f530}{remove\+\_\+format}} (std\+::vector$<$ std\+::string $>$\+::iterator first, std\+::vector$<$ std\+::string $>$\+::iterator last, \mbox{\hyperlink{structebi_1_1vcf_1_1_samples_field_body_error}{Samples\+Field\+Body\+Error}} \&error)
+\item 
+size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_adb970c46a116a0f336b62c09f54fd410}{remove\+\_\+fields}} (const std\+::string \&line, const std\+::string \&separators, std\+::function$<$ bool(const std\+::string \&column, size\+\_\+t index)$>$ condition\+\_\+to\+\_\+remove)
+\item 
+size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a0f57251ab8080438317c039a3107a344}{remove\+\_\+fields}} (const std\+::string \&line, const std\+::string \&separators, const std\+::string \&empty\+\_\+column, std\+::function$<$ bool(const std\+::string \&column, size\+\_\+t index)$>$ condition\+\_\+to\+\_\+remove)
+\item 
+size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a8f8db9d8bb5edb58273c6f62ae0d6cfd}{replace\+\_\+fields}} (const std\+::string \&line, const std\+::string \&separators, const std\+::string \&expected\+\_\+field, std\+::function$<$ bool(const std\+::string \&column, size\+\_\+t index)$>$ condition\+\_\+to\+\_\+replace)
+\item 
+size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_aefebae3ab0964f8ee54ffe483bb3c4e1}{split\+\_\+and\+\_\+find}} (const std\+::string \&line, const std\+::string \&separator, const std\+::string \&value)
+\item 
+size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a7daf3e6a2e5ee7dedaa52f7da3e253db}{fix\+\_\+column}} (size\+\_\+t column\+\_\+index, const std\+::string \&line, const std\+::string \&separator, std\+::function$<$ void(std\+::string \&column)$>$ fix\+\_\+function)
+\item 
+size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a9c1a1a0b710659b8dbbe12906ffae94f}{fix\+\_\+foreach\+\_\+column}} (size\+\_\+t column\+\_\+index, long column\+\_\+index\+\_\+last, const std\+::string \&line, const std\+::string \&separator, std\+::function$<$ void(std\+::string \&column)$>$ fix\+\_\+function)
+\item 
+size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a90cc71db4f055ead1d0edefea75a8394}{fix\+\_\+columns}} (size\+\_\+t column\+\_\+index, long column\+\_\+index\+\_\+last, const std\+::string \&line, const std\+::string \&separator, std\+::function$<$ void(std\+::vector$<$ std\+::string $>$\+::iterator begin, std\+::vector$<$ std\+::string $>$\+::iterator end)$>$ fix\+\_\+function)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{fixer_8hpp_source_l00033}{33}} of file \mbox{\hyperlink{fixer_8hpp_source}{fixer.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_a7b16f19fb315f6447055f1e1921a07e5}\label{classebi_1_1vcf_1_1_fixer_a7b16f19fb315f6447055f1e1921a07e5} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!Fixer@{Fixer}}
+\index{Fixer@{Fixer}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{Fixer()}{Fixer()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Fixer\+::\+Fixer (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{output }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{fixer_8hpp_source_l00035}{35}} of file \mbox{\hyperlink{fixer_8hpp_source}{fixer.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ line\_number\{0\},\ line\{\textcolor{keyword}{nullptr}\},\ output(output),\ ignored\_errors\{0\}\ \{\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_af39865431a575f5a7545953594296b15}\label{classebi_1_1vcf_1_1_fixer_af39865431a575f5a7545953594296b15} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!````~Fixer@{\texorpdfstring{$\sim$}{\string~}Fixer}}
+\index{````~Fixer@{\texorpdfstring{$\sim$}{\string~}Fixer}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Fixer()}{\string~Fixer()}}
+{\footnotesize\ttfamily virtual ebi\+::vcf\+::\+Fixer\+::\texorpdfstring{$\sim$}{\string~}\+Fixer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{fixer_8hpp_source_l00038}{38}} of file \mbox{\hyperlink{fixer_8hpp_source}{fixer.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038\ \{\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_a649f5f604b1d300c8d08f20f36c29715}\label{classebi_1_1vcf_1_1_fixer_a649f5f604b1d300c8d08f20f36c29715} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!fix@{fix}}
+\index{fix@{fix}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{fix()}{fix()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Fixer\+::fix (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{line\+\_\+number,  }\item[{std\+::vector$<$ char $>$ \&}]{line,  }\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ this-\/>line\_number\ =\ line\_number;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ this-\/>line\ =\ \&line;\ \textcolor{comment}{//\ this\ will\ be\ valid\ until\ this\ function\ returns}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ error.apply\_visitor(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ this-\/>line\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_a7daf3e6a2e5ee7dedaa52f7da3e253db}\label{classebi_1_1vcf_1_1_fixer_a7daf3e6a2e5ee7dedaa52f7da3e253db} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!fix\_column@{fix\_column}}
+\index{fix\_column@{fix\_column}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{fix\_column()}{fix\_column()}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Fixer\+::fix\+\_\+column (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{column\+\_\+index,  }\item[{const std\+::string \&}]{line,  }\item[{const std\+::string \&}]{separator,  }\item[{std\+::function$<$ void(std\+::string \&column)$>$}]{fix\+\_\+function }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Splits a line and allows to rewrite one of the columns, copying the other columns into "{}output"{}. 
+\begin{DoxyParams}{Parameters}
+{\em column\+\_\+index} & index to the column to modify \\
+\hline
+{\em line} & whole line that will be split \\
+\hline
+{\em separator} & will be used to split the line \\
+\hline
+{\em fix\+\_\+function} & takes a string, which is the column to fix. {\ttfamily fix\+\_\+function} must write to the member "{}output"{}. {\ttfamily fix\+\_\+function} will be called once \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of times {\ttfamily fix\+\_\+function} was called, that should be 1 if ranges were valid 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00528}{528}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00532\ \ \ \ \ \{}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }iter\ =\ std::vector<std::string>::iterator;}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a90cc71db4f055ead1d0edefea75a8394}{fix\_columns}}(column\_index,\ column\_index\ +\ 1,\ line,\ separator,\ [fix\_function](iter\ first,\ iter\ last)\ \{}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ first;\ it\ !=\ last;\ ++it)\ \{}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fix\_function(*it);}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00539\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_a90cc71db4f055ead1d0edefea75a8394}\label{classebi_1_1vcf_1_1_fixer_a90cc71db4f055ead1d0edefea75a8394} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!fix\_columns@{fix\_columns}}
+\index{fix\_columns@{fix\_columns}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{fix\_columns()}{fix\_columns()}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Fixer\+::fix\+\_\+columns (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{column\+\_\+index,  }\item[{long}]{column\+\_\+index\+\_\+last,  }\item[{const std\+::string \&}]{line,  }\item[{const std\+::string \&}]{separator,  }\item[{std\+::function$<$ void(std\+::vector$<$ std\+::string $>$\+::iterator begin, std\+::vector$<$ std\+::string $>$\+::iterator end)$>$}]{fix\+\_\+function }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Splits a line and allows to rewrite one of the columns, copying the other columns into "{}output"{}. If column\+\_\+index\texorpdfstring{$\ast$}{*} specify an empty range or a past-\/the-\/end range, a std\+::out\+\_\+of\+\_\+range is thrown without writing anything. 
+\begin{DoxyParams}{Parameters}
+{\em column\+\_\+index} & index to the column to modify \\
+\hline
+{\em column\+\_\+index\+\_\+last} & NON-\/\+INCLUSIVE index. points to the column after the last column to modify. to write all the remaining columns, pass -\/1 \\
+\hline
+{\em line} & whole line that will be split \\
+\hline
+{\em separator} & will be used to split the line \\
+\hline
+{\em fix\+\_\+function} & takes a range \mbox{[}first, last) of strings, which is the column to fix. {\ttfamily fix\+\_\+function} must write to the member "{}output"{}. {\ttfamily fix\+\_\+function} will be called once \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of columns passed to {\ttfamily fix\+\_\+function}, that should be (column\+\_\+index\+\_\+last -\/ column\+\_\+index) if ranges were valid 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00553}{553}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00559\ \ \ \ \ \{}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ std::vector<std::string>\ columns;}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ util::string\_split(line,\ separator.c\_str(),\ columns);}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \textcolor{comment}{//remove\ (and\ add\ it\ later)\ the\ newline\ so\ that\ the\ \`{}fix\_function`\ doesn't\ have\ to\ deal\ with\ it.}}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ std::string\ eol\ =\ util::remove\_end\_of\_line(columns.back());}
+\DoxyCodeLine{00565\ }
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ ranges.\ don't\ allow\ an\ empty\ range,\ the\ fix\_function\ should\ be\ called\ at\ least\ once}}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ column\_index\_last\_unsigned;}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (column\_index\_last\ <\ 0)\ \{}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ column\_index\_last\_unsigned\ =\ columns.size();}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ column\_index\_last\_unsigned\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(column\_index\_last);}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00573\ }
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (column\_index\ >=\ columns.size())\ \{}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ message\{\textcolor{stringliteral}{"{}fix\_columns\ requires\ a\ non-\/empty\ range:\ asked\ to\ fix\ columns["{}}\};}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ message\ +=\ std::to\_string(column\_index)\ +\ \textcolor{stringliteral}{"{}]\ (0-\/based\ index)\ but\ there\ are\ only\ "{}}}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ std::to\_string(columns.size())\ +\ \textcolor{stringliteral}{"{}\ columns:\ \(\backslash\)"{}"{}}\ +\ line\ +\ \textcolor{stringliteral}{"{}\(\backslash\)"{}"{}};}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range\{message\};}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (column\_index\_last\_unsigned\ >\ columns.size())\ \{}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ message\{\textcolor{stringliteral}{"{}fix\_columns:\ asked\ to\ fix\ until\ past-\/the\ end,\ until\ (non-\/including)\ columns["{}}\};}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \ \ \ \ message\ +=\ std::to\_string(column\_index\_last\_unsigned)\ +\ \textcolor{stringliteral}{"{}]\ (0-\/based\ index)\ but\ there\ are\ only\ "{}}}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ std::to\_string(columns.size())\ +\ \textcolor{stringliteral}{"{}\ columns:\ \(\backslash\)"{}"{}}\ +\ line\ +\ \textcolor{stringliteral}{"{}\(\backslash\)"{}"{}};}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range\{message\};}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ write\ before,\ call\ fix\_function,\ write\ after}}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ column\_index;\ ++i)\ \{}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ columns[i]\ <<\ separator;}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ fix\_function(columns.begin()\ +\ column\_index,\ columns.begin()\ +\ column\_index\_last\_unsigned);}
+\DoxyCodeLine{00593\ }
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ column\_index\_last\_unsigned;\ i\ <\ columns.size();\ ++i)\ \{}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ separator\ <<\ columns[i];}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00597\ }
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ output\ <<\ eol;}
+\DoxyCodeLine{00599\ }
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ column\_index\_last\_unsigned\ -\/\ column\_index;}
+\DoxyCodeLine{00601\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_a9c1a1a0b710659b8dbbe12906ffae94f}\label{classebi_1_1vcf_1_1_fixer_a9c1a1a0b710659b8dbbe12906ffae94f} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!fix\_foreach\_column@{fix\_foreach\_column}}
+\index{fix\_foreach\_column@{fix\_foreach\_column}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{fix\_foreach\_column()}{fix\_foreach\_column()}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Fixer\+::fix\+\_\+foreach\+\_\+column (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{column\+\_\+index,  }\item[{long}]{column\+\_\+index\+\_\+last,  }\item[{const std\+::string \&}]{line,  }\item[{const std\+::string \&}]{separator,  }\item[{std\+::function$<$ void(std\+::string \&column)$>$}]{fix\+\_\+function }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Splits a line and allows to rewrite one of the columns, copying the other columns into "{}output"{}. 
+\begin{DoxyParams}{Parameters}
+{\em column\+\_\+index} & index to the column to modify \\
+\hline
+{\em column\+\_\+index\+\_\+last} & NON-\/\+INCLUSIVE index. points to the column after the last column to modify. To write all the remaining columns, pass -\/1. \\
+\hline
+{\em line} & whole line that will be split \\
+\hline
+{\em separator} & will be used to split the line \\
+\hline
+{\em fix\+\_\+function} & takes a string, which is the column to fix. {\ttfamily fix\+\_\+function} must write to the member "{}output"{}. {\ttfamily fix\+\_\+function} will be called (column\+\_\+index\+\_\+last -\/ column\+\_\+index) times (or less if the range is invalid) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of times {\ttfamily fix\+\_\+function} was called, that should be (column\+\_\+index\+\_\+last -\/ column\+\_\+index) if ranges were valid 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00541}{541}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00546\ \ \ \ \ \{}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }iter\ =\ std::vector<std::string>::iterator;}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a90cc71db4f055ead1d0edefea75a8394}{fix\_columns}}(column\_index,\ column\_index\_last,\ line,\ separator,\ [fix\_function](iter\ first,\ iter\ last)\ \{}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ fix\_function(*first);}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00551\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_a24efbc29a328d0dee0d0e817546e35a3}\label{classebi_1_1vcf_1_1_fixer_a24efbc29a328d0dee0d0e817546e35a3} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!fix\_format\_gt@{fix\_format\_gt}}
+\index{fix\_format\_gt@{fix\_format\_gt}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{fix\_format\_gt()}{fix\_format\_gt()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Fixer\+::fix\+\_\+format\+\_\+gt (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$\+::iterator}]{first,  }\item[{std\+::vector$<$ std\+::string $>$\+::iterator}]{last,  }\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_samples_field_body_error}{Samples\+Field\+Body\+Error}} \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Puts the genotype as missing. If the error.\+cardinality is known, it uses the proper ploidy. 
+\begin{DoxyParams}{Parameters}
+{\em first} & iterator to the FORMAT column string \\
+\hline
+{\em last} & iterator past the last sample column \\
+\hline
+{\em error} & needed for the field (that must be "{}\+GT"{}) the cardinality, and the line number \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00382}{382}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00385\ \ \ \ \ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ field\_separator\ =\ \textcolor{stringliteral}{"{}:"{}};}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ gt\_column\_index\ =\ 0;}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ the\ field\ is\ GT,\ the\ values\ must\ use\ "{}/"{},\ as\ in\ "{}./."{}}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ subfield\_separator\ =\ \textcolor{stringliteral}{"{}/"{}};}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ empty\_subfield\ =\ \textcolor{charliteral}{'.'};}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ that\ GT\ is\ present\ and\ is\ the\ first\ field}}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ subfield\_index\ =\ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_aefebae3ab0964f8ee54ffe483bb3c4e1}{split\_and\_find}}(*first,\ field\_separator,\ error.field);}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (subfield\_index\ !=\ gt\_column\_index)\ \{}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(warning)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ error.line\ <<\ \textcolor{stringliteral}{"{}:\ Tried\ to\ fix\ field\ \(\backslash\)"{}"{}}\ <<\ error.field}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}\ but\ it\ was\ not\ present\ in\ the\ FORMAT\ column\ \(\backslash\)"{}"{}}\ <<\ *first\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}"{}};}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ ignored\_errors++;}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ util::print\_container(output,\ std::vector<std::string>\{first,\ last\},\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ write\ the\ FORMAT\ column}}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ output\ <<\ *first;}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}cardinality`\ should\ be\ -\/1\ if\ the\ cardinality\ is\ unknown,\ and\ any\ positive\ number\ otherwise}}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ so,\ if\ unknown,\ put\ 1,\ so\ that\ a\ single\ "{}."{}\ is\ written}}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ repeat\ =\ error.field\_cardinality\ <=\ -\/1\ ?\ 1\ :\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(error.field\_cardinality);}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ now\ \`{}it`\ will\ point\ to\ each\ SAMPLE\ column}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ ++first;\ it\ !=\ last;\ ++it)\ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}};}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a7daf3e6a2e5ee7dedaa52f7da3e253db}{fix\_column}}(gt\_column\_index,\ *it,\ field\_separator,\ [\&](std::string\ wrong\_subfield)\ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ util::print\_container(output,\ std::string(repeat,\ empty\_subfield),\ \textcolor{stringliteral}{"{}"{}},\ subfield\_separator,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00416\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_a5cd8d13f3ea8fb88074a62eb50beb054}\label{classebi_1_1vcf_1_1_fixer_a5cd8d13f3ea8fb88074a62eb50beb054} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!get\_format\_fields\_to\_remove@{get\_format\_fields\_to\_remove}}
+\index{get\_format\_fields\_to\_remove@{get\_format\_fields\_to\_remove}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{get\_format\_fields\_to\_remove()}{get\_format\_fields\_to\_remove()}}
+{\footnotesize\ttfamily std\+::set$<$ std\+::string $>$ ebi\+::vcf\+::\+Fixer\+::get\+\_\+format\+\_\+fields\+\_\+to\+\_\+remove (\begin{DoxyParamCaption}\item[{std\+::map$<$ std\+::string, std\+::vector$<$ size\+\_\+t $>$ $>$ \&}]{format\+\_\+fields\+\_\+indexes,  }\item[{std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \&}]{samples }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00360}{360}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00362\ \ \ \ \ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ std::set<std::string>\ fields\_to\_remove;}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ sample\_it\ =\ samples.begin();\ sample\_it\ !=\ samples.end();\ sample\_it++)\ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ format\_field\ :\ format\_fields\_indexes)\ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (format\_field.second.size()\ >\ 1)\ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ format\_field\_index\ :\ format\_field.second)\ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((*sample\_it).size()\ >\ format\_field\_index\ \&\&\ (*sample\_it)[format\_field\_index]\ !=\ (*sample\_it)[format\_field.second[0]])\ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fields\_to\_remove.insert(format\_field.first);}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sample\_it\ =\ samples.end()\ -\/\ 1;}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fields\_to\_remove;}
+\DoxyCodeLine{00380\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_a3d8733a77851f56351a4c181d41badce}\label{classebi_1_1vcf_1_1_fixer_a3d8733a77851f56351a4c181d41badce} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!get\_ignored\_errors@{get\_ignored\_errors}}
+\index{get\_ignored\_errors@{get\_ignored\_errors}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{get\_ignored\_errors()}{get\_ignored\_errors()}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Fixer\+::get\+\_\+ignored\+\_\+errors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ignored\_errors;}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_ac675356ba5dd8eb606778a12663dc843}\label{classebi_1_1vcf_1_1_fixer_ac675356ba5dd8eb606778a12663dc843} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!remove\_duplicate\_format\_sample\_pairs@{remove\_duplicate\_format\_sample\_pairs}}
+\index{remove\_duplicate\_format\_sample\_pairs@{remove\_duplicate\_format\_sample\_pairs}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{remove\_duplicate\_format\_sample\_pairs()}{remove\_duplicate\_format\_sample\_pairs()}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Fixer\+::remove\+\_\+duplicate\+\_\+format\+\_\+sample\+\_\+pairs (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{string\+\_\+line }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Removes duplicate FORMAT and samples. Explanation of the fix\+:
+\begin{DoxyItemize}
+\item Remove all FORMAT fields for which one or more of the samples contain duplicate values (within the sample field itself)
+\item Else if all the values match in a sample, and this happens for all the samples, keep the first occurrence in each sample and discard the rest 
+\begin{DoxyParams}{Parameters}
+{\em the} & complete error string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of duplicate format fields (with corresponding samples if present) removed 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00296}{296}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ format\_column\_index\ =\ 8;}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ num\_removed\_duplicates\ =\ 0;}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }iter\ =\ std::vector<std::string>::iterator;}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a90cc71db4f055ead1d0edefea75a8394}{fix\_columns}}(format\_column\_index,\ -\/1,\ string\_line,\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ [\&](iter\ first,\ iter\ last)\ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::vector<size\_t>>\ format\_fields\_indexes;}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ ordered\_fields;}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ format\_keys;}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ util::string\_split(*first,\ \textcolor{stringliteral}{"{}:"{}},\ format\_keys);}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ format\_keys.size();\ i++)\ \{}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ format\_fields\_indexes[format\_keys[i]].push\_back(i);}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (format\_fields\_indexes[format\_keys[i]].size()\ ==\ 1)\ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ordered\_fields.push\_back(format\_keys[i]);}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::vector<std::string>>\ samples;}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ first\ +\ 1;\ it\ !=\ last;\ it++)\ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ sample\_fields;}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ util::string\_split(*it,\ \textcolor{stringliteral}{"{}:"{}},\ sample\_fields);}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ samples.push\_back(sample\_fields);}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ std::set<std::string>\ fields\_to\_remove\ =\ get\_format\_fields\_to\_remove(format\_fields\_indexes,\ samples);}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ fixed\_format;}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ ordered\_field\ :\ ordered\_fields)\ \{}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fields\_to\_remove.find(ordered\_field)\ ==\ fields\_to\_remove.end())\ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ keep\ first\ occurrence,\ discard\ the\ rest\ if\ present}}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fixed\_format.push\_back(ordered\_field);}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ num\_removed\_duplicates++;}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fixed\_format.empty())\ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Could\ not\ fix\ FORMAT\ duplicate\ fields:\ All\ fields\ had\ to\ be\ removed,\ but\ missing\ value\ is\ not\ permitted"{}});}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ util::print\_container(output,\ fixed\_format,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{}:"{}},\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ sample\ :\ samples)\ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ fixed\_sample;}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ ordered\_field\ :\ ordered\_fields)\ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fields\_to\_remove.find(ordered\_field)\ ==\ fields\_to\_remove.end())\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ keep\ first\ occurrence,\ discard\ the\ rest\ if\ present}}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sample.size()\ >\ format\_fields\_indexes[ordered\_field][0])\ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fixed\_sample.push\_back(sample[format\_fields\_indexes[ordered\_field][0]]);}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}};}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fixed\_sample.empty())\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ MISSING\_VALUE;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ all\ the\ sample\ fields\ were\ removed,\ so\ write\ missing\ value\ to\ output}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ util::print\_container(output,\ fixed\_sample,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{}:"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ num\_removed\_duplicates;}
+\DoxyCodeLine{00358\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_a95d5635d53f6647f7038534656b3a5e5}\label{classebi_1_1vcf_1_1_fixer_a95d5635d53f6647f7038534656b3a5e5} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!remove\_duplicate\_key\_value\_pairs@{remove\_duplicate\_key\_value\_pairs}}
+\index{remove\_duplicate\_key\_value\_pairs@{remove\_duplicate\_key\_value\_pairs}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{remove\_duplicate\_key\_value\_pairs()}{remove\_duplicate\_key\_value\_pairs()}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Fixer\+::remove\+\_\+duplicate\+\_\+key\+\_\+value\+\_\+pairs (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{column,  }\item[{const std\+::string \&}]{separator,  }\item[{const std\+::string \&}]{key\+\_\+value\+\_\+separator,  }\item[{const std\+::string \&}]{empty\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Removes any duplicate key value pairs from a column. Explanation of the fix\+:
+\begin{DoxyItemize}
+\item Remove all fields for a duplicate key if the corresponding values differ
+\item Else if all the values are the same for that key, keep one pair \& remove the rest 
+\begin{DoxyParams}{Parameters}
+{\em the} & column string \\
+\hline
+{\em the} & separator used for splitting the column \\
+\hline
+{\em the} & separator used to split the key value pair \\
+\hline
+{\em the} & empty value to be used if we end up removing all pairs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of duplicate fields removed 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00252}{252}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00256\ \ \ \ \ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ std::map<std::string,\ std::string>\ first\_key\_occurrence;}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ std::vector<std::string>\ ordered\_keys;}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ std::set<std::string>\ fields\_to\_remove;}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ std::vector<std::string>\ fields;}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ util::string\_split(column,\ separator.c\_str(),\ fields);}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ field\ :\ fields)\ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ subfields;}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ util::string\_split(field,\ key\_value\_separator.c\_str(),\ subfields);}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ first\_key\_iterator\ =\ first\_key\_occurrence.find(subfields[0]);}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (first\_key\_iterator\ ==\ first\_key\_occurrence.end())\ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ordered\_keys.push\_back(subfields[0]);}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ first\_key\_occurrence[subfields[0]]\ =\ subfields[1];}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (first\_key\_occurrence[subfields[0]]\ !=\ subfields[1])\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fields\_to\_remove.insert(subfields[0]);}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ std::vector<std::string>\ fixed\_column;}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ num\_removed\_duplicates\ =\ 0;}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ ordered\_key\ :\ ordered\_keys)\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fields\_to\_remove.find(ordered\_key)\ ==\ fields\_to\_remove.end())\ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fixed\_column.push\_back(ordered\_key\ +\ key\_value\_separator\ +\ first\_key\_occurrence[ordered\_key]);}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ num\_removed\_duplicates++;}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fixed\_column.size()\ ==\ 0)\ \{\ \ \ \ \ \ \ \textcolor{comment}{//\ all\ the\ fields\ were\ removed}}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ empty\_value;}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ util::print\_container(output,\ fixed\_column,\ \textcolor{stringliteral}{"{}"{}},\ separator,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ num\_removed\_duplicates;}
+\DoxyCodeLine{00294\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_ae29aae3d1157c90cdc7651729a401e3a}\label{classebi_1_1vcf_1_1_fixer_ae29aae3d1157c90cdc7651729a401e3a} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!remove\_duplicate\_strings@{remove\_duplicate\_strings}}
+\index{remove\_duplicate\_strings@{remove\_duplicate\_strings}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{remove\_duplicate\_strings()}{remove\_duplicate\_strings()}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Fixer\+::remove\+\_\+duplicate\+\_\+strings (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{column,  }\item[{const std\+::string \&}]{separator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Removes any duplicate fields in a column. 
+\begin{DoxyParams}{Parameters}
+{\em the} & column string \\
+\hline
+{\em the} & separator used for splitting the column \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of duplicate fields removed 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00241}{241}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00243\ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ std::set<std::string>\ already\_present;}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ is\_value\_duplicated\ =\ [\&](\textcolor{keyword}{const}\ std::string\ \&value,\ \textcolor{keywordtype}{size\_t}\ index)\ -\/>\ \textcolor{keywordtype}{bool}\ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ first\_appearance\ =\ already\_present.insert(value).second;}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !first\_appearance;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ remove\_fields(column,\ separator,\ is\_value\_duplicated);}
+\DoxyCodeLine{00250\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_a0f57251ab8080438317c039a3107a344}\label{classebi_1_1vcf_1_1_fixer_a0f57251ab8080438317c039a3107a344} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!remove\_fields@{remove\_fields}}
+\index{remove\_fields@{remove\_fields}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{remove\_fields()}{remove\_fields()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Fixer\+::remove\+\_\+fields (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{line,  }\item[{const std\+::string \&}]{separators,  }\item[{const std\+::string \&}]{empty\+\_\+column,  }\item[{std\+::function$<$ bool(const std\+::string \&column, size\+\_\+t index)$>$}]{condition\+\_\+to\+\_\+remove }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Don\textquotesingle{}t write to output the columns in {\ttfamily line} that satisfy the {\ttfamily condition\+\_\+to\+\_\+remove}. 
+\begin{DoxyParams}{Parameters}
+{\em line} & some of its columns will not be written into output \\
+\hline
+{\em separators} & to be used to split {\ttfamily line} \\
+\hline
+{\em empty\+\_\+column} & in case all the columns were remove, write an especial empty column \\
+\hline
+{\em condition\+\_\+to\+\_\+remove} & return true if the column has to be removed. can decide using the column and its index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+amount of columns removed 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00465}{465}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00469\ \ \ \ \ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ std::vector<std::string>\ columns;}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ util::string\_split(line,\ separators.c\_str(),\ columns);}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ written\ =\ 0;}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (columns.size()\ >\ 0)\ \{}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ j\ =\ 0;}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!condition\_to\_remove(columns[j],\ j))\ \{}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ written++;}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ columns[j];}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (j\ =\ 1;\ j\ <\ columns.size();\ ++j)\ \{}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!condition\_to\_remove(columns[j],\ j))\ \{}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (written\ >\ 0)\ \{}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ separators;}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ written++;}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ columns[j];}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (written\ ==\ 0)\ \{}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ empty\_column;}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ columns.size()\ -\/\ written;}
+\DoxyCodeLine{00494\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_adb970c46a116a0f336b62c09f54fd410}\label{classebi_1_1vcf_1_1_fixer_adb970c46a116a0f336b62c09f54fd410} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!remove\_fields@{remove\_fields}}
+\index{remove\_fields@{remove\_fields}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{remove\_fields()}{remove\_fields()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Fixer\+::remove\+\_\+fields (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{line,  }\item[{const std\+::string \&}]{separators,  }\item[{std\+::function$<$ bool(const std\+::string \&column, size\+\_\+t index)$>$}]{condition\+\_\+to\+\_\+remove }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00458}{458}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00461\ \ \ \ \ \{}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ remove\_fields(line,\ separators,\ \textcolor{stringliteral}{"{}"{}},\ condition\_to\_remove);}
+\DoxyCodeLine{00463\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_a19c537657d4d9822a20f6d6ab4b0f530}\label{classebi_1_1vcf_1_1_fixer_a19c537657d4d9822a20f6d6ab4b0f530} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!remove\_format@{remove\_format}}
+\index{remove\_format@{remove\_format}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{remove\_format()}{remove\_format()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Fixer\+::remove\+\_\+format (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$\+::iterator}]{first,  }\item[{std\+::vector$<$ std\+::string $>$\+::iterator}]{last,  }\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_samples_field_body_error}{Samples\+Field\+Body\+Error}} \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Remove a field from the FORMAT column and the samples columns. 
+\begin{DoxyParams}{Parameters}
+{\em first} & iterator to the FORMAT column string \\
+\hline
+{\em last} & iterator past the last sample column \\
+\hline
+{\em error} & needed for the field the cardinality, and the line number \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00418}{418}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00421\ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ remove\ from\ FORMAT\ column}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ field\_separator\ =\ \textcolor{stringliteral}{"{}:"{}};}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ field\_index;}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ removed\ =\ remove\_fields(*first,\ field\_separator,\ [\&](\textcolor{keyword}{const}\ std::string\ \&field,\ \textcolor{keywordtype}{size\_t}\ index)\ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (field\ ==\ error.field)\ \{}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ field\_index\ =\ index;}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ field\ ==\ error.field;}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ false;}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (removed\ ==\ 0)\ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(warning)\ <<\ \textcolor{stringliteral}{"{}Line\ "{}}\ <<\ error.line\ <<\ \textcolor{stringliteral}{"{}:\ Tried\ to\ fix\ field\ \(\backslash\)"{}"{}}\ <<\ error.field}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}\ but\ it\ was\ not\ present\ in\ the\ FORMAT\ column\ \(\backslash\)"{}"{}}\ <<\ *first\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}"{}};}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ ignored\_errors++;}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ util::print\_container(output,\ std::vector<std::string>\{++first,\ last\},\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ remove\ from\ the\ samples\ columns}}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (++first;\ first\ !=\ last;\ ++first)\ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}};}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ removed\ =\ remove\_fields(*first,\ field\_separator,\ [\&](\textcolor{keyword}{const}\ std::string\ \&field,\ \textcolor{keywordtype}{size\_t}\ index)\ \{}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ index\ ==\ field\_index;}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (removed\ ==\ 0)\ \{}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(warning)\ <<\ \textcolor{stringliteral}{"{}Tried\ to\ remove\ field\ with\ index\ "{}}\ <<\ field\_index\ <<\ \textcolor{stringliteral}{"{}\ in\ \(\backslash\)"{}"{}}\ <<\ *first}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}\ but\ couldn't\ do\ it,\ this\ is\ likely\ to\ happen\ in\ all\ samples"{}};}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ignored\_errors++;}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ copy\ the\ rest\ of\ samples,\ as\ we\ already\ copied\ one\ and\ don't\ want\ to\ repeat\ the\ log\ for\ everyone}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ util::print\_container(output,\ std::vector<std::string>\{++first,\ last\},\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00456\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_a8f8db9d8bb5edb58273c6f62ae0d6cfd}\label{classebi_1_1vcf_1_1_fixer_a8f8db9d8bb5edb58273c6f62ae0d6cfd} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!replace\_fields@{replace\_fields}}
+\index{replace\_fields@{replace\_fields}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{replace\_fields()}{replace\_fields()}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Fixer\+::replace\+\_\+fields (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{line,  }\item[{const std\+::string \&}]{separators,  }\item[{const std\+::string \&}]{expected\+\_\+field,  }\item[{std\+::function$<$ bool(const std\+::string \&column, size\+\_\+t index)$>$}]{condition\+\_\+to\+\_\+replace }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Write to output the {\ttfamily expected\+\_\+field} in place of the erroneous one. 
+\begin{DoxyParams}{Parameters}
+{\em line} & its incorrect column will be replaced by the correct one \\
+\hline
+{\em separators} & to be used to split {\ttfamily line} \\
+\hline
+{\em expected\+\_\+field} & to replace the incorrect one \\
+\hline
+{\em condition\+\_\+to\+\_\+replace} & return true if the column is to be replaced with the {\ttfamily expected\+\_\+field} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00496}{496}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00500\ \ \ \ \ \{}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ std::vector<std::string>\ columns;}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ util::string\_split(line,\ separators.c\_str(),\ columns);}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ num\_replaced\_columns\ =\ 0;}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ columns.size();\ ++j)\ \{}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (condition\_to\_replace(columns[j],\ j))\ \{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ num\_replaced\_columns++;}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ expected\_field;}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ columns[j];}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (j\ <\ columns.size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ separators;}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00516\ }
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ num\_replaced\_columns;}
+\DoxyCodeLine{00518\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_fixer_aefebae3ab0964f8ee54ffe483bb3c4e1}\label{classebi_1_1vcf_1_1_fixer_aefebae3ab0964f8ee54ffe483bb3c4e1} 
+\index{ebi::vcf::Fixer@{ebi::vcf::Fixer}!split\_and\_find@{split\_and\_find}}
+\index{split\_and\_find@{split\_and\_find}!ebi::vcf::Fixer@{ebi::vcf::Fixer}}
+\doxysubsubsection{\texorpdfstring{split\_and\_find()}{split\_and\_find()}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Fixer\+::split\+\_\+and\+\_\+find (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{line,  }\item[{const std\+::string \&}]{separator,  }\item[{const std\+::string \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Returns an index (NOT an iterator) to the column in {\ttfamily line} (split by {\ttfamily separator}) where {\ttfamily value} is found. Or {\ttfamily line.\+npos} if value is not found. 
+\begin{DoxyParams}{Parameters}
+{\em line} & to be split \\
+\hline
+{\em separator} & to use when splitting the line \\
+\hline
+{\em value} & to search \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an index (not an iterator) if found, or {\ttfamily line.\+npos} if not found. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{fixer_8cpp_source_l00520}{520}} of file \mbox{\hyperlink{fixer_8cpp_source}{fixer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00521\ \ \ \ \ \{}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ std::vector<std::string>\ columns;}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ util::string\_split(line,\ separator.c\_str(),\ columns);}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ found\ =\ std::find(columns.begin(),\ columns.end(),\ value);}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ found\ ==\ columns.end()?\ line.npos\ :\ found\ -\/\ columns.begin();}
+\DoxyCodeLine{00526\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/fixer.\+hpp\item 
+src/vcf/fixer.\+cpp\end{DoxyCompactItemize}

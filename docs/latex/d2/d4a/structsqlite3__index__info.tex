@@ -1,0 +1,169 @@
+\doxysection{sqlite3\+\_\+index\+\_\+info Struct Reference}
+\hypertarget{structsqlite3__index__info}{}\label{structsqlite3__index__info}\index{sqlite3\_index\_info@{sqlite3\_index\_info}}
+
+
+Collaboration diagram for sqlite3\+\_\+index\+\_\+info\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dc/d92/structsqlite3__index__info__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsqlite3__index__info_1_1sqlite3__index__constraint}{sqlite3\+\_\+index\+\_\+constraint}}
+\item 
+struct \mbox{\hyperlink{structsqlite3__index__info_1_1sqlite3__index__constraint__usage}{sqlite3\+\_\+index\+\_\+constraint\+\_\+usage}}
+\item 
+struct \mbox{\hyperlink{structsqlite3__index__info_1_1sqlite3__index__orderby}{sqlite3\+\_\+index\+\_\+orderby}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structsqlite3__index__info_ae861993a30ce914a5214eab2579d935a}{n\+Constraint}}
+\item 
+\Hypertarget{structsqlite3__index__info_a634aa93834e2b47acf34454746c0f248}\label{structsqlite3__index__info_a634aa93834e2b47acf34454746c0f248} 
+struct \mbox{\hyperlink{structsqlite3__index__info_1_1sqlite3__index__constraint}{sqlite3\+\_\+index\+\_\+info\+::sqlite3\+\_\+index\+\_\+constraint}} \texorpdfstring{$\ast$}{*} {\bfseries a\+Constraint}
+\item 
+int \mbox{\hyperlink{structsqlite3__index__info_a3ef850fdc57eddbc8189fe84d0a9044e}{n\+Order\+By}}
+\item 
+\Hypertarget{structsqlite3__index__info_a6823a68979e19d8e332389361e920ef9}\label{structsqlite3__index__info_a6823a68979e19d8e332389361e920ef9} 
+struct \mbox{\hyperlink{structsqlite3__index__info_1_1sqlite3__index__orderby}{sqlite3\+\_\+index\+\_\+info\+::sqlite3\+\_\+index\+\_\+orderby}} \texorpdfstring{$\ast$}{*} {\bfseries a\+Order\+By}
+\item 
+\Hypertarget{structsqlite3__index__info_a79b8a969dd7d582fc2ea3c0fbc5adb56}\label{structsqlite3__index__info_a79b8a969dd7d582fc2ea3c0fbc5adb56} 
+struct \mbox{\hyperlink{structsqlite3__index__info_1_1sqlite3__index__constraint__usage}{sqlite3\+\_\+index\+\_\+info\+::sqlite3\+\_\+index\+\_\+constraint\+\_\+usage}} \texorpdfstring{$\ast$}{*} {\bfseries a\+Constraint\+Usage}
+\item 
+int \mbox{\hyperlink{structsqlite3__index__info_afcee17707a1c147fbd55c23c807fdae3}{idx\+Num}}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsqlite3__index__info_ac63f4ebfe8d9331b040fa9e0e47c9d70}{idx\+Str}}
+\item 
+int \mbox{\hyperlink{structsqlite3__index__info_a5410066c067c3891cdf165c70cc4d6b1}{need\+To\+Free\+Idx\+Str}}
+\item 
+int \mbox{\hyperlink{structsqlite3__index__info_a5515d9de0f37f68d7e0930c20a668b29}{order\+By\+Consumed}}
+\item 
+double \mbox{\hyperlink{structsqlite3__index__info_aa8b4fe1d2ee38aab57ba5e1da00d7830}{estimated\+Cost}}
+\item 
+sqlite3\+\_\+int64 \mbox{\hyperlink{structsqlite3__index__info_adcdf25dcf9848a6fedf539bb9c921b7f}{estimated\+Rows}}
+\item 
+int \mbox{\hyperlink{structsqlite3__index__info_a8acf2a7efbc3e193cf01d2afbd44fdbb}{idx\+Flags}}
+\item 
+sqlite3\+\_\+uint64 \mbox{\hyperlink{structsqlite3__index__info_a99787169e2f78c0728bdb339c4107a2e}{col\+Used}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l06015}{6015}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structsqlite3__index__info_a99787169e2f78c0728bdb339c4107a2e}\label{structsqlite3__index__info_a99787169e2f78c0728bdb339c4107a2e} 
+\index{sqlite3\_index\_info@{sqlite3\_index\_info}!colUsed@{colUsed}}
+\index{colUsed@{colUsed}!sqlite3\_index\_info@{sqlite3\_index\_info}}
+\doxysubsubsection{\texorpdfstring{colUsed}{colUsed}}
+{\footnotesize\ttfamily sqlite3\+\_\+uint64 sqlite3\+\_\+index\+\_\+info\+::col\+Used}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l06044}{6044}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__index__info_aa8b4fe1d2ee38aab57ba5e1da00d7830}\label{structsqlite3__index__info_aa8b4fe1d2ee38aab57ba5e1da00d7830} 
+\index{sqlite3\_index\_info@{sqlite3\_index\_info}!estimatedCost@{estimatedCost}}
+\index{estimatedCost@{estimatedCost}!sqlite3\_index\_info@{sqlite3\_index\_info}}
+\doxysubsubsection{\texorpdfstring{estimatedCost}{estimatedCost}}
+{\footnotesize\ttfamily double sqlite3\+\_\+index\+\_\+info\+::estimated\+Cost}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l06038}{6038}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__index__info_adcdf25dcf9848a6fedf539bb9c921b7f}\label{structsqlite3__index__info_adcdf25dcf9848a6fedf539bb9c921b7f} 
+\index{sqlite3\_index\_info@{sqlite3\_index\_info}!estimatedRows@{estimatedRows}}
+\index{estimatedRows@{estimatedRows}!sqlite3\_index\_info@{sqlite3\_index\_info}}
+\doxysubsubsection{\texorpdfstring{estimatedRows}{estimatedRows}}
+{\footnotesize\ttfamily sqlite3\+\_\+int64 sqlite3\+\_\+index\+\_\+info\+::estimated\+Rows}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l06040}{6040}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__index__info_a8acf2a7efbc3e193cf01d2afbd44fdbb}\label{structsqlite3__index__info_a8acf2a7efbc3e193cf01d2afbd44fdbb} 
+\index{sqlite3\_index\_info@{sqlite3\_index\_info}!idxFlags@{idxFlags}}
+\index{idxFlags@{idxFlags}!sqlite3\_index\_info@{sqlite3\_index\_info}}
+\doxysubsubsection{\texorpdfstring{idxFlags}{idxFlags}}
+{\footnotesize\ttfamily int sqlite3\+\_\+index\+\_\+info\+::idx\+Flags}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l06042}{6042}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__index__info_afcee17707a1c147fbd55c23c807fdae3}\label{structsqlite3__index__info_afcee17707a1c147fbd55c23c807fdae3} 
+\index{sqlite3\_index\_info@{sqlite3\_index\_info}!idxNum@{idxNum}}
+\index{idxNum@{idxNum}!sqlite3\_index\_info@{sqlite3\_index\_info}}
+\doxysubsubsection{\texorpdfstring{idxNum}{idxNum}}
+{\footnotesize\ttfamily int sqlite3\+\_\+index\+\_\+info\+::idx\+Num}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l06034}{6034}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__index__info_ac63f4ebfe8d9331b040fa9e0e47c9d70}\label{structsqlite3__index__info_ac63f4ebfe8d9331b040fa9e0e47c9d70} 
+\index{sqlite3\_index\_info@{sqlite3\_index\_info}!idxStr@{idxStr}}
+\index{idxStr@{idxStr}!sqlite3\_index\_info@{sqlite3\_index\_info}}
+\doxysubsubsection{\texorpdfstring{idxStr}{idxStr}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} sqlite3\+\_\+index\+\_\+info\+::idx\+Str}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l06035}{6035}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__index__info_ae861993a30ce914a5214eab2579d935a}\label{structsqlite3__index__info_ae861993a30ce914a5214eab2579d935a} 
+\index{sqlite3\_index\_info@{sqlite3\_index\_info}!nConstraint@{nConstraint}}
+\index{nConstraint@{nConstraint}!sqlite3\_index\_info@{sqlite3\_index\_info}}
+\doxysubsubsection{\texorpdfstring{nConstraint}{nConstraint}}
+{\footnotesize\ttfamily int sqlite3\+\_\+index\+\_\+info\+::n\+Constraint}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l06017}{6017}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__index__info_a5410066c067c3891cdf165c70cc4d6b1}\label{structsqlite3__index__info_a5410066c067c3891cdf165c70cc4d6b1} 
+\index{sqlite3\_index\_info@{sqlite3\_index\_info}!needToFreeIdxStr@{needToFreeIdxStr}}
+\index{needToFreeIdxStr@{needToFreeIdxStr}!sqlite3\_index\_info@{sqlite3\_index\_info}}
+\doxysubsubsection{\texorpdfstring{needToFreeIdxStr}{needToFreeIdxStr}}
+{\footnotesize\ttfamily int sqlite3\+\_\+index\+\_\+info\+::need\+To\+Free\+Idx\+Str}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l06036}{6036}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__index__info_a3ef850fdc57eddbc8189fe84d0a9044e}\label{structsqlite3__index__info_a3ef850fdc57eddbc8189fe84d0a9044e} 
+\index{sqlite3\_index\_info@{sqlite3\_index\_info}!nOrderBy@{nOrderBy}}
+\index{nOrderBy@{nOrderBy}!sqlite3\_index\_info@{sqlite3\_index\_info}}
+\doxysubsubsection{\texorpdfstring{nOrderBy}{nOrderBy}}
+{\footnotesize\ttfamily int sqlite3\+\_\+index\+\_\+info\+::n\+Order\+By}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l06024}{6024}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{structsqlite3__index__info_a5515d9de0f37f68d7e0930c20a668b29}\label{structsqlite3__index__info_a5515d9de0f37f68d7e0930c20a668b29} 
+\index{sqlite3\_index\_info@{sqlite3\_index\_info}!orderByConsumed@{orderByConsumed}}
+\index{orderByConsumed@{orderByConsumed}!sqlite3\_index\_info@{sqlite3\_index\_info}}
+\doxysubsubsection{\texorpdfstring{orderByConsumed}{orderByConsumed}}
+{\footnotesize\ttfamily int sqlite3\+\_\+index\+\_\+info\+::order\+By\+Consumed}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l06037}{6037}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\item 
+lib/sqlite/sqlite3.\+h\end{DoxyCompactItemize}

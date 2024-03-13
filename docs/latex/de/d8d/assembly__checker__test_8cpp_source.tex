@@ -1,0 +1,55 @@
+\doxysection{assembly\+\_\+checker\+\_\+test.\+cpp}
+\hypertarget{assembly__checker__test_8cpp_source}{}\label{assembly__checker__test_8cpp_source}\index{test/vcf/assembly\_checker\_test.cpp@{test/vcf/assembly\_checker\_test.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}catch/catch.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}vcf/assembly\_checker.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}vcf/error.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}vcf/file\_structure.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}vcf/normalizer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00027}00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00028}00028\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00029}00029\ \ \ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Sequence\ comparison"{}},\ \textcolor{stringliteral}{"{}[assembly\_checker]"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00030}00030\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Check\ sequence\ matches"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ line\{\textcolor{stringliteral}{"{}1\(\backslash\)t10177\(\backslash\)trs367896724\(\backslash\)tA\(\backslash\)tAC"{}}\};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ chromosome\{\textcolor{stringliteral}{"{}1"{}}\};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ line\_num\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ position\ =\ 10177;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ reference\_allele\{\textcolor{stringliteral}{"{}A"{}}\};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ alternate\_allele\{\textcolor{stringliteral}{"{}AC"{}}\};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ vcf::RecordCore\ record\_core\{line\_num,\ chromosome,\ position,\ reference\_allele,\ alternate\_allele,\ vcf::RecordType::NO\_VARIATION\};}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(ebi::util::is\_matching\_sequence(record\_core.reference\_allele,\ \textcolor{stringliteral}{"{}A"{}}));}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK\_FALSE(ebi::util::is\_matching\_sequence(record\_core.reference\_allele,\ \textcolor{stringliteral}{"{}G"{}}));}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00046}00046\ \ \ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Match\ statistics"{}},\ \textcolor{stringliteral}{"{}[assembly\_checker]"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00047}00047\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}All\ matches"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_match_stats}{ebi::vcf::MatchStats}}\ match\_stats;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ match\_stats.add\_match\_result(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ match\_stats.add\_match\_result(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK(match\_stats.is\_assembly\_match());}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ SECTION(\textcolor{stringliteral}{"{}Mismatches"{}})}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_match_stats}{ebi::vcf::MatchStats}}\ match\_stats;}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ match\_stats.add\_match\_result(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ match\_stats.add\_match\_result(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ CHECK\_FALSE(match\_stats.is\_assembly\_match());}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00063}00063\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker__test_8cpp_source_l00064}00064\ \}}
+
+\end{DoxyCode}

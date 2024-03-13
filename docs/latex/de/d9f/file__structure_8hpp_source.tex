@@ -1,0 +1,483 @@
+\doxysection{file\+\_\+structure.\+hpp}
+\hypertarget{file__structure_8hpp_source}{}\label{file__structure_8hpp_source}\index{inc/vcf/file\_structure.hpp@{inc/vcf/file\_structure.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ VCF\_FILE\_STRUCTURE\_HPP}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ VCF\_FILE\_STRUCTURE\_HPP}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00028}00028\ \textcolor{preprocessor}{\#include\ <boost/variant.hpp>}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00029}00029\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00031}00031\ \textcolor{preprocessor}{\#include\ "{}util/stream\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}vcf/error.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00033}00033\ \textcolor{preprocessor}{\#include\ "{}vcf/string\_constants.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00035}00035\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00036}00036\ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00037}00037\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00038}00038\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00039}00039\ \ \ \ \ \textcolor{keyword}{struct\ }Source;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00040}00040\ \ \ \ \ \textcolor{keyword}{struct\ }MetaEntry;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00041}00041\ \ \ \ \ \textcolor{keyword}{struct\ }Record;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00043}00043\ \ \ \ \ \textcolor{keyword}{typedef}\ std::multimap<std::string,\ MetaEntry>::iterator\ meta\_iterator;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00045}00045\ \ \ \ \ \textcolor{keyword}{enum}\ InputFormat}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00046}00046\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ VCF\_FILE\_VCF\ \ \ \ =\ 0x01,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ VCF\_FILE\_GVCF\ \ \ =\ 0x02,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ VCF\_FILE\_GZIP\ \ \ =\ 0x04,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ VCF\_FILE\_BGZIP\ \ =\ 0x08,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ VCF\_FILE\_BCF\ \ \ \ =\ 0x10,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00052}00052\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00054}00054\ \ \ \ \ \textcolor{keyword}{enum\ class}\ Version}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00055}00055\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ v41,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ v42,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ v43,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ v44}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00060}00060\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00062}00062\ \ \ \ \ \textcolor{keyword}{enum\ class}\ RecordType}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00063}00063\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00064}00064\ \ \ \ \ \ \ \ \ SNV,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ MNV,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00066}00066\ \ \ \ \ \ \ \ \ INDEL,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00067}00067\ \ \ \ \ \ \ \ \ STRUCTURAL,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00068}00068\ \ \ \ \ \ \ \ \ STRUCTURAL\_BREAKEND,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00069}00069\ \ \ \ \ \ \ \ \ NO\_VARIATION}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00070}00070\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00072}00072\ \ \ \ \ \textcolor{keyword}{const}\ std::map<std::string,\ std::pair<std::string,\ std::string>>\ info\_v41\_v42\ =\ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AA,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AC,\ \{\ INTEGER,\ A\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AF,\ \{\ FLOAT,\ A\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ BKPTID,\ \{\ STRING,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ BQ,\ \{\ FLOAT,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CICN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CICNADJ,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CIEND,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CIGAR,\ \{\ STRING,\ A\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CILEN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CIPOS,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CNADJ,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DB,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DBRIPID,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DBVARID,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DGVID,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DP,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DPADJ,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ END,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ EVENT,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ HOMLEN,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ HOMSEQ,\ \{\ STRING,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ H2,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ H3,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ IMPRECISE,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MATEID,\ \{\ STRING,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MEINFO,\ \{\ STRING,\ \textcolor{stringliteral}{"{}4"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ METRANS,\ \{\ STRING,\ \textcolor{stringliteral}{"{}4"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MQ,\ \{\ MISSING\_VALUE,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MQ0,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ NOVEL,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ NS,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ PARID,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO\ :\ SB\ metadata\ Type\ and\ Number\ is\ "{}."{}}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ SOMATIC,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ SVLEN,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ SVTYPE,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ VALIDATED,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ THOUSAND\_G,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00114}00114\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00116}00116\ \ \ \ \ \textcolor{keyword}{const}\ std::map<std::string,\ std::pair<std::string,\ std::string>>\ info\_v43\ =\ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AA,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AC,\ \{\ INTEGER,\ A\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AD,\ \{\ INTEGER,\ R\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ ADF,\ \{\ INTEGER,\ R\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ ADR,\ \{\ INTEGER,\ R\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AF,\ \{\ FLOAT,\ A\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ BKPTID,\ \{\ STRING,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ BQ,\ \{\ FLOAT,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CICN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CICNADJ,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CIEND,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CIGAR,\ \{\ STRING,\ A\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CILEN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CIPOS,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CNADJ,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DB,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DBRIPID,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DBVARID,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DGVID,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DP,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DPADJ,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ END,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ EVENT,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ HOMLEN,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ HOMSEQ,\ \{\ STRING,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ H2,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ H3,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ IMPRECISE,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MATEID,\ \{\ STRING,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MEINFO,\ \{\ STRING,\ \textcolor{stringliteral}{"{}4"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ METRANS,\ \{\ STRING,\ \textcolor{stringliteral}{"{}4"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MQ,\ \{\ MISSING\_VALUE,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MQ0,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ NOVEL,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ NS,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ PARID,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO\ :\ SB\ metadata\ Type\ and\ Number\ is\ "{}."{}}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ SOMATIC,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ SVLEN,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ SVTYPE,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ VALIDATED,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ THOUSAND\_G,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00161}00161\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00163}00163\ \ \ \ \ \textcolor{keyword}{const}\ std::map<std::string,\ std::pair<std::string,\ std::string>>\ info\_v44\ =\ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AA,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AC,\ \{\ INTEGER,\ A\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AD,\ \{\ INTEGER,\ R\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ ADF,\ \{\ INTEGER,\ R\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ ADR,\ \{\ INTEGER,\ R\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AF,\ \{\ FLOAT,\ A\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ BKPTID,\ \{\ STRING,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ BQ,\ \{\ FLOAT,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CICN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CICNADJ,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CIEND,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CIGAR,\ \{\ STRING,\ A\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CILEN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CIPOS,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CNADJ,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DB,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DBRIPID,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DBVARID,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DGVID,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DP,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DPADJ,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ END,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ EVENT,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ HOMLEN,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ HOMSEQ,\ \{\ STRING,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ H2,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ H3,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ IMPRECISE,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MATEID,\ \{\ STRING,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MEINFO,\ \{\ STRING,\ \textcolor{stringliteral}{"{}4"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ METRANS,\ \{\ STRING,\ \textcolor{stringliteral}{"{}4"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MQ,\ \{\ MISSING\_VALUE,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MQ0,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ NOVEL,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ NS,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ PARID,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO\ :\ SB\ metadata\ Type\ and\ Number\ is\ "{}."{}}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ SOMATIC,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ SVLEN,\ \{\ INTEGER,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ SVTYPE,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ VALIDATED,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ THOUSAND\_G,\ \{\ FLAG,\ \textcolor{stringliteral}{"{}0"{}}\ \}\ \}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00208}00208\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00210}00210\ \ \ \ \ \textcolor{keyword}{const}\ std::map<std::string,\ std::pair<std::string,\ std::string>>\ format\_v41\_v42\ =\ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AHAP,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CNL,\ \{\ FLOAT,\ UNKNOWN\_CARDINALITY\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CNQ,\ \{\ FLOAT,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DP,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ EC,\ \{\ INTEGER,\ A\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ FT,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ GL,\ \{\ FLOAT,\ G\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ GLE,\ \{\ STRING,\ G\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ GP,\ \{\ FLOAT,\ G\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ GQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ GT,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ HAP,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ HQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ NQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ PL,\ \{\ INTEGER,\ G\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ PQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ PS,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00230}00230\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00232}00232\ \ \ \ \ \textcolor{keyword}{const}\ std::map<std::string,\ std::pair<std::string,\ std::string>>\ format\_v43\ =\ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AD,\ \{\ INTEGER,\ R\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ ADF,\ \{\ INTEGER,\ R\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ ADR,\ \{\ INTEGER,\ R\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AHAP,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CNL,\ \{\ FLOAT,\ G\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CNP,\ \{\ FLOAT,\ G\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CNQ,\ \{\ FLOAT,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DP,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ EC,\ \{\ INTEGER,\ A\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ FT,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ GL,\ \{\ FLOAT,\ G\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ GP,\ \{\ FLOAT,\ G\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ GQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ GT,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ HAP,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ HQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ NQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ PL,\ \{\ INTEGER,\ G\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ PQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ PS,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00255}00255\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00257}00257\ \ \ \ \ \textcolor{keyword}{const}\ std::map<std::string,\ std::pair<std::string,\ std::string>>\ format\_v44\ =\ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AD,\ \{\ INTEGER,\ R\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ ADF,\ \{\ INTEGER,\ R\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ ADR,\ \{\ INTEGER,\ R\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ AHAP,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CN,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CNL,\ \{\ FLOAT,\ G\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CNP,\ \{\ FLOAT,\ G\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ CNQ,\ \{\ FLOAT,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ DP,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ EC,\ \{\ INTEGER,\ A\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ FT,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ GL,\ \{\ FLOAT,\ G\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ GP,\ \{\ FLOAT,\ G\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ GQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ GT,\ \{\ STRING,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ HAP,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ HQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}2"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ MQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ NQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ PL,\ \{\ INTEGER,\ G\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ PQ,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ PS,\ \{\ INTEGER,\ \textcolor{stringliteral}{"{}1"{}}\ \}\ \}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00280}00280\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00281}00281\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00282}00282\ \ \ \ \ \textcolor{keyword}{const}\ std::set<std::string>\ PREDEFINED\_INFO\_SVTYPES\{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ DEL,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ INS,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ DUP,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ INV,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ CNV,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ BND,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00289}00289\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00291}00291\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \textcolor{keyword}{const}\ \&get\_predefined\_type(}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::pair<std::string,\ std::string>>::const\_iterator\ \textcolor{keyword}{const}\ \&predefined\_tag)}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00293}00293\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00294}00294\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ predefined\_tag-\/>second.first;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00295}00295\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00297}00297\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \textcolor{keyword}{const}\ \&get\_predefined\_number(}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::pair<std::string,\ std::string>>::const\_iterator\ \textcolor{keyword}{const}\ \&predefined\_tag)}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00299}00299\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00300}00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ predefined\_tag-\/>second.second;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00301}00301\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00302}00302\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00303}\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{00303}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{MetaEntry}}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00304}00304\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00305}00305\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ Structure\ \{\ NoValue,\ PlainValue,\ KeyValue\ \};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00306}00306\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00307}00307\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ line;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00308}00308\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00309}00309\ \ \ \ \ \ \ \ \ std::string\ id;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00310}00310\ \ \ \ \ \ \ \ \ Structure\ structure;\ \textcolor{comment}{//\ Union\ discriminant}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00312}00312\ \ \ \ \ \ \ \ \ boost::variant<\ std::string,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::string>\ >\ value;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00314}00314\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00315}00315\ \ \ \ \ \ \ \ \ std::shared\_ptr<Source>\ source;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00316}00316\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00317}00317\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{MetaEntry}}(\textcolor{keywordtype}{size\_t}\ line,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&\ \textcolor{keywordtype}{id},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<Source>\ source);}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00320}00320\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00321}00321\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{MetaEntry}}(\textcolor{keywordtype}{size\_t}\ line,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&\ \textcolor{keywordtype}{id},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&\ plain\_value,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<Source>\ source);}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00325}00325\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00326}00326\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{MetaEntry}}(\textcolor{keywordtype}{size\_t}\ line,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&\ \textcolor{keywordtype}{id},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::string>\ \textcolor{keyword}{const}\ \&\ key\_values,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<Source>\ source);}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00330}00330\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00331}00331\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator==(\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{MetaEntry}}\ \textcolor{keyword}{const}\ \&)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00333}00333\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{MetaEntry}}\ \textcolor{keyword}{const}\ \&)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00334}00334\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00335}00335\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_defined\_in\_header()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00336}00336\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00337}00337\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00343}00343\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_value();}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00344}00344\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00345}00345\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00346}\mbox{\hyperlink{structebi_1_1vcf_1_1_source}{00346}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00347}00347\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00348}\mbox{\hyperlink{structebi_1_1vcf_1_1_source_a1880ad1a4c9e1254bfeaa4087f1aae14}{00348}}\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structebi_1_1vcf_1_1_source_a1880ad1a4c9e1254bfeaa4087f1aae14}{name}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00349}\mbox{\hyperlink{structebi_1_1vcf_1_1_source_aab4e3977aef0cc695c39f2183d3702ff}{00349}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_source_aab4e3977aef0cc695c39f2183d3702ff}{input\_format}};\ \ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00350}\mbox{\hyperlink{structebi_1_1vcf_1_1_source_ab1dc9469b7af6b521e9fa84cacdcfdd2}{00350}}\ \ \ \ \ \ \ \ \ Version\ \mbox{\hyperlink{structebi_1_1vcf_1_1_source_ab1dc9469b7af6b521e9fa84cacdcfdd2}{version}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00352}\mbox{\hyperlink{structebi_1_1vcf_1_1_source_af743b27eebf8d5c816ffc375cd6bca72}{00352}}\ \ \ \ \ \ \ \ \ std::multimap<std::string,\ MetaEntry>\ \mbox{\hyperlink{structebi_1_1vcf_1_1_source_af743b27eebf8d5c816ffc375cd6bca72}{meta\_entries}};\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00353}\mbox{\hyperlink{structebi_1_1vcf_1_1_source_ac9f4132de9fcb67a89b4e3319dc9d01d}{00353}}\ \ \ \ \ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{structebi_1_1vcf_1_1_source_ac9f4132de9fcb67a89b4e3319dc9d01d}{samples\_names}};\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00355}00355\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}}(std::string\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{structebi_1_1vcf_1_1_source_a1880ad1a4c9e1254bfeaa4087f1aae14}{name}},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_source_aab4e3977aef0cc695c39f2183d3702ff}{input\_format}},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Version\ \mbox{\hyperlink{structebi_1_1vcf_1_1_source_ab1dc9469b7af6b521e9fa84cacdcfdd2}{version}},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::multimap<std::string,\ MetaEntry>\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{structebi_1_1vcf_1_1_source_af743b27eebf8d5c816ffc375cd6bca72}{meta\_entries}}\ =\ \{\},}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{structebi_1_1vcf_1_1_source_ac9f4132de9fcb67a89b4e3319dc9d01d}{samples\_names}}\ =\ \{\});}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00360}00360\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00361}00361\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00362}00362\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00363}\mbox{\hyperlink{structebi_1_1vcf_1_1_record}{00363}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00364}00364\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00365}00365\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ line;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00366}00366\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00367}00367\ \ \ \ \ \ \ \ \ std::string\ chromosome;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00368}00368\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ position;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00369}00369\ \ \ \ \ \ \ \ \ std::vector<std::string>\ ids;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00370}00370\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00371}00371\ \ \ \ \ \ \ \ \ std::string\ reference\_allele;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00372}00372\ \ \ \ \ \ \ \ \ std::vector<std::string>\ alternate\_alleles;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00373}00373\ \ \ \ \ \ \ \ \ std::vector<RecordType>\ types;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00374}00374\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00375}00375\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ quality;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00376}00376\ \ \ \ \ \ \ \ \ std::vector<std::string>\ filters;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00377}00377\ \ \ \ \ \ \ \ \ std::multimap<std::string,\ std::string>\ info;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00378}00378\ \ \ \ \ \ \ \ \ std::vector<std::string>\ format;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00379}00379\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00380}00380\ \ \ \ \ \ \ \ \ std::vector<std::string>\ samples;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00381}00381\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00382}00382\ \ \ \ \ \ \ \ \ std::shared\_ptr<Source>\ source;}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00383}00383\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00384}00384\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}}(\textcolor{keywordtype}{size\_t}\ line,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&\ chromosome,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ position,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ ids,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&\ reference\_allele,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ alternate\_alleles,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ quality,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ filters,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::multimap<std::string,\ std::string>\ \textcolor{keyword}{const}\ \&\ info,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ format,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ samples,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<Source>\ source);}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00396}00396\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00397}00397\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator==(\mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}}\ \textcolor{keyword}{const}\ \&)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00398}00398\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00399}00399\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}}\ \textcolor{keyword}{const}\ \&)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00400}00400\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00401}00401\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00402}00402\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00403}00403\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_types();}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00404}00404\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00410}00410\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_chromosome()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00411}00411\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00417}00417\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_chromosome\_no\_colons()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00418}00418\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00424}00424\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_chromosome\_no\_whitespaces()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00425}00425\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00431}00431\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_ids()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00432}00432\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00438}00438\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_ids\_no\_semicolons\_whitespaces()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00439}00439\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00445}00445\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_ids\_no\_duplicates()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00446}00446\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00452}00452\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_alternate\_alleles()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00453}00453\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00462}00462\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_alternate\_allele\_structure(std::string\ \textcolor{keyword}{const}\ \&\ alternate,\ RecordType\ type)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00463}00463\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00469}00469\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_alternate\_allele\_symbolic\_prefix(std::string\ \textcolor{keyword}{const}\ \&\ alternate)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00470}00470\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00476}00476\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_quality()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00477}00477\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00483}00483\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_filter()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00484}00484\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00490}00490\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_filter\_no\_duplicates()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00491}00491\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00497}00497\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_filter\_not\_zero()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00498}00498\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00505}00505\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_info()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00506}00506\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00512}00512\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_info\_no\_duplicates()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00513}00513\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00519}00519\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_format()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00520}00520\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00526}00526\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_format\_GT()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00527}00527\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00533}00533\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_format\_no\_duplicates()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00534}00534\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00538}00538\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_predefined\_tag\_info(std::string\ \textcolor{keyword}{const}\ \&field\_key,\ std::vector<std::string>\ \textcolor{keyword}{const}\ \&values,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00539}00539\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::pair<std::string,\ std::string>>\ \textcolor{keyword}{const}\ \&tags)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00540}00540\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00544}00544\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_predefined\_tag\_format(std::string\ \textcolor{keyword}{const}\ \&field\_key,\ std::vector<std::string>\ \textcolor{keyword}{const}\ \&values,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00545}00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::pair<std::string,\ std::string>>\ \textcolor{keyword}{const}\ \&tags,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00546}00546\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ploidy)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00552}00552\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ strict\_validation\_info\_predefined\_tags(std::string\ \textcolor{keyword}{const}\ \&\ field\_key,\ std::string\ \textcolor{keyword}{const}\ \&\ field\_value,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00553}00553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ values)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00554}00554\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00558}00558\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ check\_alt\_not\_symbolic(\textcolor{keywordtype}{size\_t}\ allele\_index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00559}00559\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00568}00568\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_samples()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00569}00569\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00575}00575\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_samples\_count()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00576}00576\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00580}00580\ \ \ \ \ \ \ \ \ std::vector<MetaEntry>\ get\_meta\_entry\_objects()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00581}00581\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00585}00585\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ get\_ploidy\_from\_GT(std::string\ \textcolor{keyword}{const}\ \&\ sample)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00586}00586\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00593}00593\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_sample(\textcolor{keywordtype}{size\_t}\ i,\ std::vector<MetaEntry>\ \textcolor{keyword}{const}\ \&\ format\_meta)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00594}00594\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00600}00600\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_sample\_subfields\_count(\textcolor{keywordtype}{size\_t}\ i,\ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ subfields)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00601}00601\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00607}00607\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_sample\_subfields\_cardinality\_type(\textcolor{keywordtype}{size\_t}\ i,\ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ subfields,\ std::vector<MetaEntry>\ \textcolor{keyword}{const}\ \&\ format\_meta)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00608}00608\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00614}00614\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ strict\_validation\_format\_predefined\_tags(\textcolor{keywordtype}{size\_t}\ i,\ std::string\ \textcolor{keyword}{const}\ \&\ field\_key,\ std::string\ \textcolor{keyword}{const}\ \&\ field\_value,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00615}00615\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ values)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00616}00616\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00622}00622\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_sample\_alleles(std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ subfields)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00623}00623\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00629}00629\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_sample\_alleles\_is\_integer(std::string\ \textcolor{keyword}{const}\ \&\ allele,\ \textcolor{keywordtype}{long}\ ploidy)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00630}00630\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00636}00636\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_sample\_alleles\_range(std::string\ \textcolor{keyword}{const}\ \&\ allele,\ \textcolor{keywordtype}{long}\ ploidy)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00637}00637\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00643}00643\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_no\_duplicates(std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ values)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00644}00644\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00661}00661\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_valid\_cardinality(std::string\ \textcolor{keyword}{const}\ \&number,\ \textcolor{keywordtype}{size\_t}\ alternate\_allele\_number,\ \textcolor{keywordtype}{size\_t}\ ploidy,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00662}00662\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ \&expected\_cardinality)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00663}00663\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00667}00667\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_value\_type(std::string\ \textcolor{keyword}{const}\ \&\ type,\ std::string\ \textcolor{keyword}{const}\ \&\ value,\ std::string\ \&\ message)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00668}00668\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00675}00675\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_info\_field\_cardinality(std::vector<std::string>\ \textcolor{keyword}{const}\ \&values,\ std::string\ \textcolor{keyword}{const}\ \&number)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00676}00676\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00683}00683\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_sample\_field\_cardinality(std::vector<std::string>\ \textcolor{keyword}{const}\ \&values,\ std::string\ \textcolor{keyword}{const}\ \&number,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00684}00684\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ploidy,\ \textcolor{keywordtype}{long}\ \&expected\_cardinality)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00685}00685\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00692}00692\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_field\_type(std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ values,}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00693}00693\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&\ type)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00694}00694\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00700}00700\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ check\_field\_integer\_range(std::string\ \textcolor{keyword}{const}\ \&\ field,\ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00701}00701\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00702}00702\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00703}00703\ \ \ \ \ std::ostream\ \&operator<<(std::ostream\ \&os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}}\ \&record);}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00704}00704\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00705}00705\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00706}00706\ \}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00707}00707\ }
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00708}00708\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VCF\_FILE\_STRUCTURE\_HPP}}
+\DoxyCodeLine{\Hypertarget{file__structure_8hpp_source_l00709}00709\ }
+
+\end{DoxyCode}

@@ -1,0 +1,7 @@
+<map id="ContigIndex" name="ContigIndex">
+<area shape="rect" id="Node000001" title=" " alt="" coords="21,263,107,388"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="29,135,99,200"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,200,67,246,61,246,61,200"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,5,123,85"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="67,100,67,135,61,135,61,100"/>
+</map>

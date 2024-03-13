@@ -1,0 +1,146 @@
+\doxysection{ebi\+::vcf\+::Match\+Stats Class Reference}
+\hypertarget{classebi_1_1vcf_1_1_match_stats}{}\label{classebi_1_1vcf_1_1_match_stats}\index{ebi::vcf::MatchStats@{ebi::vcf::MatchStats}}
+
+
+Collaboration diagram for ebi\+::vcf\+::Match\+Stats\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=191pt]{d6/d20/classebi_1_1vcf_1_1_match_stats__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_match_stats_a2a71983310cdc4fe24d7c8ea5e6da46a}{add\+\_\+match\+\_\+result}} (bool result)
+\item 
+bool \mbox{\hyperlink{classebi_1_1vcf_1_1_match_stats_ae3ece26be9b42e76989e305ecf76f3b6}{is\+\_\+assembly\+\_\+match}} ()
+\item 
+int \mbox{\hyperlink{classebi_1_1vcf_1_1_match_stats_a0a08c67a06fff8fb34af1706b758ee75}{get\+\_\+num\+\_\+matches}} ()
+\item 
+int \mbox{\hyperlink{classebi_1_1vcf_1_1_match_stats_a4e84ec851f5199a829b259158991a122}{get\+\_\+num\+\_\+variants}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classebi_1_1vcf_1_1_match_stats_acb4d953abf85ae525f1d06a0c3a86a55}{odb\+::access}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00384}{384}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_match_stats_acdf70e78f8ee97818788335013c1433b}\label{classebi_1_1vcf_1_1_match_stats_acdf70e78f8ee97818788335013c1433b} 
+\index{ebi::vcf::MatchStats@{ebi::vcf::MatchStats}!MatchStats@{MatchStats}}
+\index{MatchStats@{MatchStats}!ebi::vcf::MatchStats@{ebi::vcf::MatchStats}}
+\doxysubsubsection{\texorpdfstring{MatchStats()}{MatchStats()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Match\+Stats\+::\+Match\+Stats (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00387}{387}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ num\_matches\ =\ 0;}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ num\_variants\ =\ 0;}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_match_stats_a2a71983310cdc4fe24d7c8ea5e6da46a}\label{classebi_1_1vcf_1_1_match_stats_a2a71983310cdc4fe24d7c8ea5e6da46a} 
+\index{ebi::vcf::MatchStats@{ebi::vcf::MatchStats}!add\_match\_result@{add\_match\_result}}
+\index{add\_match\_result@{add\_match\_result}!ebi::vcf::MatchStats@{ebi::vcf::MatchStats}}
+\doxysubsubsection{\texorpdfstring{add\_match\_result()}{add\_match\_result()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Match\+Stats\+::add\+\_\+match\+\_\+result (\begin{DoxyParamCaption}\item[{bool}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00393}{393}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ num\_variants++;}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ num\_matches\ +=\ result\ ?\ 1\ :\ 0;}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_match_stats_a0a08c67a06fff8fb34af1706b758ee75}\label{classebi_1_1vcf_1_1_match_stats_a0a08c67a06fff8fb34af1706b758ee75} 
+\index{ebi::vcf::MatchStats@{ebi::vcf::MatchStats}!get\_num\_matches@{get\_num\_matches}}
+\index{get\_num\_matches@{get\_num\_matches}!ebi::vcf::MatchStats@{ebi::vcf::MatchStats}}
+\doxysubsubsection{\texorpdfstring{get\_num\_matches()}{get\_num\_matches()}}
+{\footnotesize\ttfamily int ebi\+::vcf\+::\+Match\+Stats\+::get\+\_\+num\+\_\+matches (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00404}{404}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ num\_matches;}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_match_stats_a4e84ec851f5199a829b259158991a122}\label{classebi_1_1vcf_1_1_match_stats_a4e84ec851f5199a829b259158991a122} 
+\index{ebi::vcf::MatchStats@{ebi::vcf::MatchStats}!get\_num\_variants@{get\_num\_variants}}
+\index{get\_num\_variants@{get\_num\_variants}!ebi::vcf::MatchStats@{ebi::vcf::MatchStats}}
+\doxysubsubsection{\texorpdfstring{get\_num\_variants()}{get\_num\_variants()}}
+{\footnotesize\ttfamily int ebi\+::vcf\+::\+Match\+Stats\+::get\+\_\+num\+\_\+variants (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00409}{409}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ num\_variants;}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_match_stats_ae3ece26be9b42e76989e305ecf76f3b6}\label{classebi_1_1vcf_1_1_match_stats_ae3ece26be9b42e76989e305ecf76f3b6} 
+\index{ebi::vcf::MatchStats@{ebi::vcf::MatchStats}!is\_assembly\_match@{is\_assembly\_match}}
+\index{is\_assembly\_match@{is\_assembly\_match}!ebi::vcf::MatchStats@{ebi::vcf::MatchStats}}
+\doxysubsubsection{\texorpdfstring{is\_assembly\_match()}{is\_assembly\_match()}}
+{\footnotesize\ttfamily bool ebi\+::vcf\+::\+Match\+Stats\+::is\+\_\+assembly\+\_\+match (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00399}{399}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ num\_matches\ ==\ num\_variants;}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_match_stats_acb4d953abf85ae525f1d06a0c3a86a55}\label{classebi_1_1vcf_1_1_match_stats_acb4d953abf85ae525f1d06a0c3a86a55} 
+\index{ebi::vcf::MatchStats@{ebi::vcf::MatchStats}!odb::access@{odb::access}}
+\index{odb::access@{odb::access}!ebi::vcf::MatchStats@{ebi::vcf::MatchStats}}
+\doxysubsubsection{\texorpdfstring{odb::access}{odb::access}}
+{\footnotesize\ttfamily friend class odb\+::access\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00417}{417}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/error.\+hpp\end{DoxyCompactItemize}

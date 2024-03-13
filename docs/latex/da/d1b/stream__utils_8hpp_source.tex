@@ -1,0 +1,115 @@
+\doxysection{stream\+\_\+utils.\+hpp}
+\hypertarget{stream__utils_8hpp_source}{}\label{stream__utils_8hpp_source}\index{inc/util/stream\_utils.hpp@{inc/util/stream\_utils.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ UTIL\_STREAM\_UTILS\_HPP}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ UTIL\_STREAM\_UTILS\_HPP}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00026}00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00027}00027\ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00028}00028\ \ \ \textcolor{keyword}{namespace\ }util}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00029}00029\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00048}00048\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Container>}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00049}00049\ \ \ \ \ Container\ \&readline(std::istream\ \&\ stream,\ Container\ \&\ container)}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00050}00050\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ c;}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ container.clear();}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ using\ operator\ bool:\ http://www.cplusplus.com/reference/ios/ios/fail/}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}stream.get()`\ sets\ failbit\ as\ well\ on\ eof}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (stream\ \&\&\ stream.get(c))\ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ container.push\_back(c);}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})\ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ container;}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00078}00078\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Container>}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00079}00079\ \ \ \ \ Container\ \&read\_n(std::istream\ \&\ stream,\ Container\ \&\ container,\ \textcolor{keyword}{const}\ std::streamsize\ n,}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::streamoff\ off\ =\ 0,\ std::ios\_base::seekdir\ way\ =\ std::ios::beg)}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00081}00081\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ c;}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00083}00083\ \ \ \ \ \ \ \ \ container.clear();}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00085}00085\ \ \ \ \ \ \ \ \ stream.seekg(off,\ way);}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00086}00086\ \ \ \ \ \ \ \ \ std::streamsize\ count\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ using\ operator\ bool:\ http://www.cplusplus.com/reference/ios/ios/fail/}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}stream.get()`\ sets\ failbit\ as\ well\ on\ eof}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (count\ <\ n\ \&\&\ stream\ \&\&\ stream.get(c))\ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ container.push\_back(c);}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ ++count;}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ container;}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00096}00096\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00098}00098\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Container>}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00099}00099\ \ \ \ \ std::ostream\ \&\ writeline(std::ostream\ \&\ stream,\ \textcolor{keyword}{const}\ Container\ \&\ container)}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00100}00100\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ c\ :\ container)\ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ stream\ <<\ c;}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ stream;}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00105}00105\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00107}00107\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ F,\ \textcolor{keyword}{typename}\ S>}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00108}00108\ \ \ \ \ std::ostream\ \&operator<<(std::ostream\ \&os,\ \textcolor{keyword}{const}\ std::pair<F,\ S>\ \&container)}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00109}00109\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ os\ <<\ \textcolor{stringliteral}{"{}\{"{}}\ <<\ container.first\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ container.second\ <<\ \textcolor{stringliteral}{"{}\}"{}};}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00111}00111\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00124}00124\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00125}00125\ \ \ \ \ std::ostream\ \&print\_container(std::ostream\ \&os,\ \textcolor{keyword}{const}\ T\ \&container,}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ open\_tag,\ std::string\ separator\_tag,\ std::string\ close\_tag)\ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00127}00127\ \ \ \ \ \ \ \ \ os\ <<\ open\_tag;}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ container.begin();}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\ =\ container.end();}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ !=\ end)\ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ *it;}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (++it;\ it\ !=\ container.end();\ ++it)\ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ separator\_tag\ <<\ *it;}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00136}00136\ \ \ \ \ \ \ \ \ os\ <<\ close\_tag;}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00138}00138\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00146}00146\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00147}00147\ \ \ \ \ std::ostream\ \&print\_container(std::ostream\ \&os,\ \textcolor{keyword}{const}\ T\ \&container)\ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ print\_container(os,\ container,\ \textcolor{stringliteral}{"{}["{}},\ \textcolor{stringliteral}{"{},\ "{}},\ \textcolor{stringliteral}{"{}]"{}});}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00149}00149\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00151}00151\ \ \ \ \ \textcolor{comment}{//\ the\ next\ functions\ allow\ using\ the\ previous\ print\_container\ in\ a\ easier\ syntax}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00152}00152\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00153}00153\ \ \ \ \ std::ostream\ \&operator<<(std::ostream\ \&os,\ \textcolor{keyword}{const}\ std::vector<T>\ \&container)}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00154}00154\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ print\_container<std::vector<T>>(os,\ container);}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00156}00156\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00157}00157\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ K,\ \textcolor{keyword}{typename}\ V>}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00158}00158\ \ \ \ \ std::ostream\ \&operator<<(std::ostream\ \&os,\ \textcolor{keyword}{const}\ std::map<K,\ V>\ \&container)}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00159}00159\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ print\_container<std::map<K,\ V>>(os,\ container);}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00161}00161\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00162}00162\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ K,\ \textcolor{keyword}{typename}\ V>}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00163}00163\ \ \ \ \ std::ostream\ \&operator<<(std::ostream\ \&os,\ \textcolor{keyword}{const}\ std::multimap<K,\ V>\ \&container)}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00164}00164\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ print\_container<std::multimap<K,\ V>>(os,\ container);}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00166}00166\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00167}00167\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00168}00168\ \}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00170}00170\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ UTIL\_STREAM\_UTILS\_HPP}}
+\DoxyCodeLine{\Hypertarget{stream__utils_8hpp_source_l00171}00171\ }
+
+\end{DoxyCode}

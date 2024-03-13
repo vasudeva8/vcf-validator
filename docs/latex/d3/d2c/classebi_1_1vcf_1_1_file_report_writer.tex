@@ -1,0 +1,175 @@
+\doxysection{ebi\+::vcf\+::File\+Report\+Writer Class Reference}
+\hypertarget{classebi_1_1vcf_1_1_file_report_writer}{}\label{classebi_1_1vcf_1_1_file_report_writer}\index{ebi::vcf::FileReportWriter@{ebi::vcf::FileReportWriter}}
+
+
+Inheritance diagram for ebi\+::vcf\+::File\+Report\+Writer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{d1/d9f/classebi_1_1vcf_1_1_file_report_writer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ebi\+::vcf\+::File\+Report\+Writer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{dc/d7a/classebi_1_1vcf_1_1_file_report_writer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classebi_1_1vcf_1_1_file_report_writer_a466b7390716f91ec11b102c56be67277}{File\+Report\+Writer}} (std\+::string filename)
+\item 
+virtual void \mbox{\hyperlink{classebi_1_1vcf_1_1_file_report_writer_a190517793bf42599490dc02cdd9ca7c2}{write\+\_\+error}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \&error) override
+\item 
+virtual void \mbox{\hyperlink{classebi_1_1vcf_1_1_file_report_writer_adff4ee94278b837a2471f1dec4ca62b8}{write\+\_\+warning}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \&error) override
+\item 
+virtual void \mbox{\hyperlink{classebi_1_1vcf_1_1_file_report_writer_abc3dd355e2dbfed6db23f06c03a7f542}{write\+\_\+message}} (const std\+::string \&report\+\_\+result) override
+\item 
+virtual std\+::string \mbox{\hyperlink{classebi_1_1vcf_1_1_file_report_writer_a5b0bc39d31a3b1a17d80e4e1a369361f}{get\+\_\+report\+\_\+message}} () override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{report__writer_8hpp_source_l00041}{41}} of file \mbox{\hyperlink{report__writer_8hpp_source}{report\+\_\+writer.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_file_report_writer_a466b7390716f91ec11b102c56be67277}\label{classebi_1_1vcf_1_1_file_report_writer_a466b7390716f91ec11b102c56be67277} 
+\index{ebi::vcf::FileReportWriter@{ebi::vcf::FileReportWriter}!FileReportWriter@{FileReportWriter}}
+\index{FileReportWriter@{FileReportWriter}!ebi::vcf::FileReportWriter@{ebi::vcf::FileReportWriter}}
+\doxysubsubsection{\texorpdfstring{FileReportWriter()}{FileReportWriter()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+File\+Report\+Writer\+::\+File\+Report\+Writer (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{report__writer_8hpp_source_l00044}{44}} of file \mbox{\hyperlink{report__writer_8hpp_source}{report\+\_\+writer.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ file\_name(filename)}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file.open(filename,\ std::ios::out);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!file)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error\{\textcolor{stringliteral}{"{}Unable\ to\ write\ output\ file\ "{}}\ +\ file\_name\};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_file_report_writer_af17b84cd97d1e659afec2a348adf23ee}\label{classebi_1_1vcf_1_1_file_report_writer_af17b84cd97d1e659afec2a348adf23ee} 
+\index{ebi::vcf::FileReportWriter@{ebi::vcf::FileReportWriter}!````~FileReportWriter@{\texorpdfstring{$\sim$}{\string~}FileReportWriter}}
+\index{````~FileReportWriter@{\texorpdfstring{$\sim$}{\string~}FileReportWriter}!ebi::vcf::FileReportWriter@{ebi::vcf::FileReportWriter}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}FileReportWriter()}{\string~FileReportWriter()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+File\+Report\+Writer\+::\texorpdfstring{$\sim$}{\string~}\+File\+Report\+Writer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{report__writer_8hpp_source_l00052}{52}} of file \mbox{\hyperlink{report__writer_8hpp_source}{report\+\_\+writer.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_file_report_writer_a5b0bc39d31a3b1a17d80e4e1a369361f}\label{classebi_1_1vcf_1_1_file_report_writer_a5b0bc39d31a3b1a17d80e4e1a369361f} 
+\index{ebi::vcf::FileReportWriter@{ebi::vcf::FileReportWriter}!get\_report\_message@{get\_report\_message}}
+\index{get\_report\_message@{get\_report\_message}!ebi::vcf::FileReportWriter@{ebi::vcf::FileReportWriter}}
+\doxysubsubsection{\texorpdfstring{get\_report\_message()}{get\_report\_message()}}
+{\footnotesize\ttfamily virtual std\+::string ebi\+::vcf\+::\+File\+Report\+Writer\+::get\+\_\+report\+\_\+message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1_report_writer}{ebi\+::vcf\+::\+Report\+Writer}}.
+
+
+
+Definition at line \mbox{\hyperlink{report__writer_8hpp_source_l00072}{72}} of file \mbox{\hyperlink{report__writer_8hpp_source}{report\+\_\+writer.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Text\ report\ written\ to\ :\ "{}}\ +\ file\_name;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_file_report_writer_a190517793bf42599490dc02cdd9ca7c2}\label{classebi_1_1vcf_1_1_file_report_writer_a190517793bf42599490dc02cdd9ca7c2} 
+\index{ebi::vcf::FileReportWriter@{ebi::vcf::FileReportWriter}!write\_error@{write\_error}}
+\index{write\_error@{write\_error}!ebi::vcf::FileReportWriter@{ebi::vcf::FileReportWriter}}
+\doxysubsubsection{\texorpdfstring{write\_error()}{write\_error()}}
+{\footnotesize\ttfamily virtual void ebi\+::vcf\+::\+File\+Report\+Writer\+::write\+\_\+error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1_report_writer}{ebi\+::vcf\+::\+Report\+Writer}}.
+
+
+
+Definition at line \mbox{\hyperlink{report__writer_8hpp_source_l00057}{57}} of file \mbox{\hyperlink{report__writer_8hpp_source}{report\+\_\+writer.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ error.what()\ <<\ std::endl;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_file_report_writer_abc3dd355e2dbfed6db23f06c03a7f542}\label{classebi_1_1vcf_1_1_file_report_writer_abc3dd355e2dbfed6db23f06c03a7f542} 
+\index{ebi::vcf::FileReportWriter@{ebi::vcf::FileReportWriter}!write\_message@{write\_message}}
+\index{write\_message@{write\_message}!ebi::vcf::FileReportWriter@{ebi::vcf::FileReportWriter}}
+\doxysubsubsection{\texorpdfstring{write\_message()}{write\_message()}}
+{\footnotesize\ttfamily virtual void ebi\+::vcf\+::\+File\+Report\+Writer\+::write\+\_\+message (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{report\+\_\+result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1_report_writer}{ebi\+::vcf\+::\+Report\+Writer}}.
+
+
+
+Definition at line \mbox{\hyperlink{report__writer_8hpp_source_l00067}{67}} of file \mbox{\hyperlink{report__writer_8hpp_source}{report\+\_\+writer.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ report\_result\ <<\ std::endl;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_file_report_writer_adff4ee94278b837a2471f1dec4ca62b8}\label{classebi_1_1vcf_1_1_file_report_writer_adff4ee94278b837a2471f1dec4ca62b8} 
+\index{ebi::vcf::FileReportWriter@{ebi::vcf::FileReportWriter}!write\_warning@{write\_warning}}
+\index{write\_warning@{write\_warning}!ebi::vcf::FileReportWriter@{ebi::vcf::FileReportWriter}}
+\doxysubsubsection{\texorpdfstring{write\_warning()}{write\_warning()}}
+{\footnotesize\ttfamily virtual void ebi\+::vcf\+::\+File\+Report\+Writer\+::write\+\_\+warning (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1_report_writer}{ebi\+::vcf\+::\+Report\+Writer}}.
+
+
+
+Definition at line \mbox{\hyperlink{report__writer_8hpp_source_l00062}{62}} of file \mbox{\hyperlink{report__writer_8hpp_source}{report\+\_\+writer.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ error.what()\ <<\ \textcolor{stringliteral}{"{}\ (warning)"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/report\+\_\+writer.\+hpp\end{DoxyCompactItemize}

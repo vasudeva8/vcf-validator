@@ -1,0 +1,81 @@
+\doxysection{ebi\+::util\+::curl\+::URLRetrieval\+Exception Class Reference}
+\hypertarget{classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception}{}\label{classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception}\index{ebi::util::curl::URLRetrievalException@{ebi::util::curl::URLRetrievalException}}
+
+
+Inheritance diagram for ebi\+::util\+::curl\+::URLRetrieval\+Exception\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{d8/dad/classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ebi\+::util\+::curl\+::URLRetrieval\+Exception\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{d5/d3a/classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception_a51a0247b384558fea73bdf5e14ac39fd}{URLRetrieval\+Exception}} (const std\+::string \&url, long \&http\+Return\+Code)
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception_aa2b0647afc4448a5b90a309086010e57}{what}} () const noexcept override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{curl__easy_8hpp_source_l00047}{47}} of file \mbox{\hyperlink{curl__easy_8hpp_source}{curl\+\_\+easy.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception_a51a0247b384558fea73bdf5e14ac39fd}\label{classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception_a51a0247b384558fea73bdf5e14ac39fd} 
+\index{ebi::util::curl::URLRetrievalException@{ebi::util::curl::URLRetrievalException}!URLRetrievalException@{URLRetrievalException}}
+\index{URLRetrievalException@{URLRetrievalException}!ebi::util::curl::URLRetrievalException@{ebi::util::curl::URLRetrievalException}}
+\doxysubsubsection{\texorpdfstring{URLRetrievalException()}{URLRetrievalException()}}
+{\footnotesize\ttfamily ebi\+::util\+::curl\+::\+URLRetrieval\+Exception\+::\+URLRetrieval\+Exception (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{url,  }\item[{long \&}]{http\+Return\+Code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{curl__easy_8hpp_source_l00051}{51}} of file \mbox{\hyperlink{curl__easy_8hpp_source}{curl\+\_\+easy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}HTTP\ "{}}\ +\ std::to\_string(httpReturnCode)\ +\ \textcolor{stringliteral}{"{}\ returned\ when\ downloading:\ "{}}\ +\ url;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception_aa2b0647afc4448a5b90a309086010e57}\label{classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception_aa2b0647afc4448a5b90a309086010e57} 
+\index{ebi::util::curl::URLRetrievalException@{ebi::util::curl::URLRetrievalException}!what@{what}}
+\index{what@{what}!ebi::util::curl::URLRetrievalException@{ebi::util::curl::URLRetrievalException}}
+\doxysubsubsection{\texorpdfstring{what()}{what()}}
+{\footnotesize\ttfamily const char \texorpdfstring{$\ast$}{*} ebi\+::util\+::curl\+::\+URLRetrieval\+Exception\+::what (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [noexcept]}}
+
+
+
+Definition at line \mbox{\hyperlink{curl__easy_8hpp_source_l00055}{55}} of file \mbox{\hyperlink{curl__easy_8hpp_source}{curl\+\_\+easy.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ message.c\_str();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+inc/util/curl\+\_\+easy.\+hpp\end{DoxyCompactItemize}

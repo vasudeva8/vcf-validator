@@ -1,0 +1,56 @@
+\doxysection{file\+\_\+utils.\+hpp}
+\hypertarget{file__utils_8hpp_source}{}\label{file__utils_8hpp_source}\index{inc/util/file\_utils.hpp@{inc/util/file\_utils.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ UTIL\_FILE\_UTILS\_HPP}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ UTIL\_FILE\_UTILS\_HPP}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <boost/algorithm/string/predicate.hpp>}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}util/curl\_easy.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}util/string\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00028}00028\ \textcolor{preprocessor}{\#include\ "{}vcf/string\_constants.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00030}00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00031}00031\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00032}00032\ \ \ \textcolor{keyword}{namespace\ }util}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00033}00033\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00034}00034\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ open\_file(std::ifstream\ \&\ input,}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ path,}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ios\_base::openmode\ mode\ =\ std::ios\_base::in)}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00037}00037\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00038}00038\ \ \ \ \ \ \ \ \ input.open(path,mode);}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!input)\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ file\_error\_msg\ =\ \textcolor{stringliteral}{"{}Couldn't\ open\ file\ "{}}\ +\ path;}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error\{file\_error\_msg\};}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00045}00045\ \ \ \ \ \textcolor{keyword}{inline}\ std::ostream\ \&\ open\_remote(std::ostream\ \&\ stream,\ \textcolor{keyword}{const}\ std::string\ \&\ url)}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00046}00046\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_remote\_url(url))\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ msg\ =\ \textcolor{stringliteral}{"{}The\ URL\ is\ incorrect\ or\ the\ protocol\ is\ not\ supported:\ "{}};}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ msg\ +=\ url;}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument\{msg\};}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_easy}{ebi::util::curl::Easy}}\ curl;}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ httpReturnCode;}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ curl.request(stream,\ url,\ httpReturnCode);}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (httpReturnCode\ !=\ 200)\ \{}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception}{ebi::util::curl::URLRetrievalException}}(url,\ httpReturnCode);}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ stream;}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00062}00062\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00063}00063\ \}}
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{file__utils_8hpp_source_l00065}00065\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ UTIL\_FILE\_UTILS\_HPP}}
+
+\end{DoxyCode}

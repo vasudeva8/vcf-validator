@@ -1,0 +1,38 @@
+\doxysection{algo\+\_\+utils.\+hpp}
+\hypertarget{algo__utils_8hpp_source}{}\label{algo__utils_8hpp_source}\index{inc/util/algo\_utils.hpp@{inc/util/algo\_utils.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ UTIL\_ALGO\_UTILS\_HPP}}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ UTIL\_ALGO\_UTILS\_HPP}}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00022}00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00023}00023\ \{}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00024}00024\ \ \ \textcolor{keyword}{namespace\ }util}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00025}00025\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00033}00033\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Container,\ \textcolor{keyword}{typename}\ Element>}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ contains(Container\ \textcolor{keyword}{const}\ \&\ container,\ Element\ \textcolor{keyword}{const}\ \&\ element)}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00035}00035\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::find(container.begin(),\ container.end(),\ element)\ !=\ container.end();}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00048}00048\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Container,\ \textcolor{keyword}{typename}\ Predicate>}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00049}00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ contains\_if(Container\ \textcolor{keyword}{const}\ \&\ container,\ Predicate\ \textcolor{keyword}{const}\ \&\ predicate)}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00050}00050\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::find\_if(container.begin(),\ container.end(),\ predicate)\ !=\ container.end();}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00052}00052\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00063}00063\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Container,\ \textcolor{keyword}{typename}\ Predicate>}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00064}00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ contains\_if\_not(Container\ \textcolor{keyword}{const}\ \&\ container,\ Predicate\ \textcolor{keyword}{const}\ \&\ predicate)}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00065}00065\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00066}00066\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::find\_if\_not(container.begin(),\ container.end(),\ predicate)\ !=\ container.end();}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00067}00067\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00068}00068\ \ }
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00069}00069\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00070}00070\ \}}
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{algo__utils_8hpp_source_l00072}00072\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ UTIL\_ALGO\_UTILS\_HPP}}
+
+\end{DoxyCode}

@@ -1,0 +1,15 @@
+<map id="ebi::vcf::SamplesBodyError" name="ebi::vcf::SamplesBodyError">
+<area shape="rect" id="Node000001" title=" " alt="" coords="33,747,207,913"/>
+<area shape="rect" id="Node000002" href="$d4/d35/structebi_1_1vcf_1_1_body_section_error.html" title=" " alt="" coords="37,513,203,698"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,713,123,747,117,747,117,713"/>
+<area shape="rect" id="Node000003" href="$d6/d99/structebi_1_1vcf_1_1_error.html" title=" " alt="" coords="68,278,172,463"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="123,478,123,513,117,513,117,478"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,135,120,200"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="78,213,96,277,91,279,73,215"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="11,13,106,78"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="63,93,64,135,59,135,58,93"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="151,135,222,200"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="179,200,158,263,153,261,174,199"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="131,5,248,85"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="191,100,190,135,185,135,185,100"/>
+</map>

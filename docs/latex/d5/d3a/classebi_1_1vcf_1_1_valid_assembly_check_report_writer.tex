@@ -1,0 +1,137 @@
+\doxysection{ebi\+::vcf\+::Valid\+Assembly\+Check\+Report\+Writer Class Reference}
+\hypertarget{classebi_1_1vcf_1_1_valid_assembly_check_report_writer}{}\label{classebi_1_1vcf_1_1_valid_assembly_check_report_writer}\index{ebi::vcf::ValidAssemblyCheckReportWriter@{ebi::vcf::ValidAssemblyCheckReportWriter}}
+
+
+Inheritance diagram for ebi\+::vcf\+::Valid\+Assembly\+Check\+Report\+Writer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{d9/d2c/classebi_1_1vcf_1_1_valid_assembly_check_report_writer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ebi\+::vcf\+::Valid\+Assembly\+Check\+Report\+Writer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{de/d5c/classebi_1_1vcf_1_1_valid_assembly_check_report_writer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classebi_1_1vcf_1_1_valid_assembly_check_report_writer_aa70fd0c0cecb279c0c3226d915860fb3}{Valid\+Assembly\+Check\+Report\+Writer}} (std\+::string filename)
+\item 
+virtual void \mbox{\hyperlink{classebi_1_1vcf_1_1_valid_assembly_check_report_writer_a705f3f9a62d2450409f2a1c8bedcd301}{match}} (std\+::string \&vcf\+\_\+line) override
+\item 
+virtual void \mbox{\hyperlink{classebi_1_1vcf_1_1_valid_assembly_check_report_writer_a3c41bde319011afb4fedd902265dede2}{write\+\_\+meta\+\_\+info}} (std\+::string \&meta\+\_\+info\+\_\+line) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classebi_1_1vcf_1_1_assembly_check_report_writer}{ebi\+::vcf\+::\+Assembly\+Check\+Report\+Writer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classebi_1_1vcf_1_1_assembly_check_report_writer_ad4de0e70680a2b2e309e0552b9a6d29c}{mismatch}} (const \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{vcf\+::\+Record\+Core}} \&record\+\_\+core, std\+::string \&vcf\+\_\+line, size\+\_\+t line\+\_\+num, std\+::string \&fasta\+\_\+sequence)
+\item 
+virtual void \mbox{\hyperlink{classebi_1_1vcf_1_1_assembly_check_report_writer_a8bd85f58c4c2b6232c728407a7f4c38d}{write\+\_\+warning}} (std\+::string \&warning)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{assembly__check__report__writer_8hpp_source_l00115}{115}} of file \mbox{\hyperlink{assembly__check__report__writer_8hpp_source}{assembly\+\_\+check\+\_\+report\+\_\+writer.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_valid_assembly_check_report_writer_aa70fd0c0cecb279c0c3226d915860fb3}\label{classebi_1_1vcf_1_1_valid_assembly_check_report_writer_aa70fd0c0cecb279c0c3226d915860fb3} 
+\index{ebi::vcf::ValidAssemblyCheckReportWriter@{ebi::vcf::ValidAssemblyCheckReportWriter}!ValidAssemblyCheckReportWriter@{ValidAssemblyCheckReportWriter}}
+\index{ValidAssemblyCheckReportWriter@{ValidAssemblyCheckReportWriter}!ebi::vcf::ValidAssemblyCheckReportWriter@{ebi::vcf::ValidAssemblyCheckReportWriter}}
+\doxysubsubsection{\texorpdfstring{ValidAssemblyCheckReportWriter()}{ValidAssemblyCheckReportWriter()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Valid\+Assembly\+Check\+Report\+Writer\+::\+Valid\+Assembly\+Check\+Report\+Writer (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{assembly__check__report__writer_8hpp_source_l00118}{118}} of file \mbox{\hyperlink{assembly__check__report__writer_8hpp_source}{assembly\+\_\+check\+\_\+report\+\_\+writer.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ file\_name(filename)}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ file.open(filename,\ std::ios::out);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!file)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error\{\textcolor{stringliteral}{"{}Unable\ to\ write\ output\ file\ "{}}\ +\ file\_name\};}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_valid_assembly_check_report_writer_aa95b5310488a8aabec48581855869fd6}\label{classebi_1_1vcf_1_1_valid_assembly_check_report_writer_aa95b5310488a8aabec48581855869fd6} 
+\index{ebi::vcf::ValidAssemblyCheckReportWriter@{ebi::vcf::ValidAssemblyCheckReportWriter}!````~ValidAssemblyCheckReportWriter@{\texorpdfstring{$\sim$}{\string~}ValidAssemblyCheckReportWriter}}
+\index{````~ValidAssemblyCheckReportWriter@{\texorpdfstring{$\sim$}{\string~}ValidAssemblyCheckReportWriter}!ebi::vcf::ValidAssemblyCheckReportWriter@{ebi::vcf::ValidAssemblyCheckReportWriter}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ValidAssemblyCheckReportWriter()}{\string~ValidAssemblyCheckReportWriter()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Valid\+Assembly\+Check\+Report\+Writer\+::\texorpdfstring{$\sim$}{\string~}\+Valid\+Assembly\+Check\+Report\+Writer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{assembly__check__report__writer_8hpp_source_l00126}{126}} of file \mbox{\hyperlink{assembly__check__report__writer_8hpp_source}{assembly\+\_\+check\+\_\+report\+\_\+writer.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Valid\ report\ written\ to\ :\ "{}}\ +\ file\_name;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_valid_assembly_check_report_writer_a705f3f9a62d2450409f2a1c8bedcd301}\label{classebi_1_1vcf_1_1_valid_assembly_check_report_writer_a705f3f9a62d2450409f2a1c8bedcd301} 
+\index{ebi::vcf::ValidAssemblyCheckReportWriter@{ebi::vcf::ValidAssemblyCheckReportWriter}!match@{match}}
+\index{match@{match}!ebi::vcf::ValidAssemblyCheckReportWriter@{ebi::vcf::ValidAssemblyCheckReportWriter}}
+\doxysubsubsection{\texorpdfstring{match()}{match()}}
+{\footnotesize\ttfamily virtual void ebi\+::vcf\+::\+Valid\+Assembly\+Check\+Report\+Writer\+::match (\begin{DoxyParamCaption}\item[{std\+::string \&}]{vcf\+\_\+line }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classebi_1_1vcf_1_1_assembly_check_report_writer}{ebi\+::vcf\+::\+Assembly\+Check\+Report\+Writer}}.
+
+
+
+Definition at line \mbox{\hyperlink{assembly__check__report__writer_8hpp_source_l00132}{132}} of file \mbox{\hyperlink{assembly__check__report__writer_8hpp_source}{assembly\+\_\+check\+\_\+report\+\_\+writer.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ vcf\_line;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_valid_assembly_check_report_writer_a3c41bde319011afb4fedd902265dede2}\label{classebi_1_1vcf_1_1_valid_assembly_check_report_writer_a3c41bde319011afb4fedd902265dede2} 
+\index{ebi::vcf::ValidAssemblyCheckReportWriter@{ebi::vcf::ValidAssemblyCheckReportWriter}!write\_meta\_info@{write\_meta\_info}}
+\index{write\_meta\_info@{write\_meta\_info}!ebi::vcf::ValidAssemblyCheckReportWriter@{ebi::vcf::ValidAssemblyCheckReportWriter}}
+\doxysubsubsection{\texorpdfstring{write\_meta\_info()}{write\_meta\_info()}}
+{\footnotesize\ttfamily virtual void ebi\+::vcf\+::\+Valid\+Assembly\+Check\+Report\+Writer\+::write\+\_\+meta\+\_\+info (\begin{DoxyParamCaption}\item[{std\+::string \&}]{meta\+\_\+info\+\_\+line }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classebi_1_1vcf_1_1_assembly_check_report_writer}{ebi\+::vcf\+::\+Assembly\+Check\+Report\+Writer}}.
+
+
+
+Definition at line \mbox{\hyperlink{assembly__check__report__writer_8hpp_source_l00137}{137}} of file \mbox{\hyperlink{assembly__check__report__writer_8hpp_source}{assembly\+\_\+check\+\_\+report\+\_\+writer.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ meta\_info\_line;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/assembly\+\_\+check\+\_\+report\+\_\+writer.\+hpp\end{DoxyCompactItemize}

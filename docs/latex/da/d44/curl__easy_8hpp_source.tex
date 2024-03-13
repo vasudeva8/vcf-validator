@@ -1,0 +1,54 @@
+\doxysection{curl\+\_\+easy.\+hpp}
+\hypertarget{curl__easy_8hpp_source}{}\label{curl__easy_8hpp_source}\index{inc/util/curl\_easy.hpp@{inc/util/curl\_easy.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ VCF\_VALIDATOR\_CURL\_EASY\_HPP}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ VCF\_VALIDATOR\_CURL\_EASY\_HPP}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <curl/curl.h>}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00025}00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00026}00026\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00027}00027\ \ \ \textcolor{keyword}{namespace\ }util}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00028}00028\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00029}00029\ \ \ \ \ \textcolor{keyword}{namespace\ }curl}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00030}00030\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00031}\mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_easy}{00031}}\ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_easy}{Easy}}\ final}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00032}00032\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00033}00033\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_easy}{Easy}}();}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_easy}{Easy}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_easy}{Easy}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_easy}{Easy}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_easy}{Easy}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_easy}{\string~Easy}}();}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00039}00039\ \ \ \ \ \ \ \ \ std::string\ request(\textcolor{keyword}{const}\ std::string\&\ url,\ \textcolor{keywordtype}{long}\&\ httpReturnCode);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ std::ostream\&\ request(std::ostream\&\ stream,\ \textcolor{keyword}{const}\ std::string\&\ url,\ \textcolor{keywordtype}{long}\&\ httpReturnCode);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00042}00042\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ CURL*\ curlHandle;}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ processCurlRequest(\textcolor{keyword}{const}\ std::string\ \&basicString,\ \textcolor{keywordtype}{long}\ \&code);}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00045}00045\ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00047}\mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception}{00047}}\ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception}{URLRetrievalException}}\ :\ \textcolor{keyword}{public}\ std::exception\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00048}00048\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ std::string\ message\ =\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00050}00050\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_u_r_l_retrieval_exception}{URLRetrievalException}}(\textcolor{keyword}{const}\ std::string\ \&url,\ \textcolor{keywordtype}{long}\ \&httpReturnCode)\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}HTTP\ "{}}\ +\ std::to\_string(httpReturnCode)\ +\ \textcolor{stringliteral}{"{}\ returned\ when\ downloading:\ "{}}\ +\ url;}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *what()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \textcolor{keyword}{override}\ \{}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ message.c\_str();}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00058}00058\ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00059}00059\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00060}00060\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00061}00061\ \}}
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{curl__easy_8hpp_source_l00063}00063\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//VCF\_VALIDATOR\_CURL\_EASY\_HPP}}
+
+\end{DoxyCode}

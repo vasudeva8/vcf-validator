@@ -1,0 +1,119 @@
+\doxysection{record\+\_\+cache.\+hpp}
+\hypertarget{record__cache_8hpp_source}{}\label{record__cache_8hpp_source}\index{inc/vcf/record\_cache.hpp@{inc/vcf/record\_cache.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ VCF\_RECORD\_CACHE\_HPP}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ VCF\_RECORD\_CACHE\_HPP}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}normalizer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}file\_structure.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00026}00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00027}00027\ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00028}00028\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00029}00029\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00037}\mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache}{00037}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache}{RecordCache}}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00038}00038\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00039}00039\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00044}\mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a53eea880b71319b86af56d52ba4fd53a}{00044}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a53eea880b71319b86af56d52ba4fd53a}{RecordCache}}()\ :\ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache}{RecordCache}}\{1000\}\ \{\ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00050}\mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a800635bf5cc345602bf3af398fa0a80f}{00050}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a800635bf5cc345602bf3af398fa0a80f}{RecordCache}}(\textcolor{keywordtype}{size\_t}\ capacity)\ :\ capacity\{capacity\},\ unlimited\{capacity\ ==\ 0\}\ \{\ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00064}\mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a2fbd1e312bc2b4cfa4cb96043c407e26}{00064}}\ \ \ \ \ \ \ \ \ std::vector<std::unique\_ptr<Error>>\ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a2fbd1e312bc2b4cfa4cb96043c407e26}{get\_duplicates}}()}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(list\_duplicates);}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00081}\mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a6b93b3f82a2783b482df98798e2dd15d}{00081}}\ \ \ \ \ \ \ \ \ std::vector<std::unique\_ptr<Error>>\ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a6b93b3f82a2783b482df98798e2dd15d}{get\_symbolic\_duplicates}}()}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(list\_symbolic\_duplicates);}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00102}\mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a6d0433ccab7c4be810b02cba0c9d4209}{00102}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_a6d0433ccab7c4be810b02cba0c9d4209}{check\_duplicates}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}}\ \&record)}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ record\_cores\ =\ normalize(record);}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ list\_duplicates.clear();}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ list\_symbolic\_duplicates.clear();}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_ada660e967cec3d3f00882d09ba42367c}{clear\_cache\_if\_we\_moved\_to\_the\_next\_chromosome}}(record.chromosome);}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{RecordCore}}\ \&record\_core:\ record\_cores)\ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ create\ references\ to\ the\ appropriate\ data\ structures\ for\ th\ alternate\ allele\ type}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&\ cache\ =\ (record\_core.alternate\_allele\_type\ ==\ RecordType::STRUCTURAL)\ ?\ cache\_symbolic\_duplicates\ :\ cache\_duplicates;}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&\ duplicates\ =\ (record\_core.alternate\_allele\_type\ ==\ RecordType::STRUCTURAL)\ ?\ list\_symbolic\_duplicates\ :\ list\_duplicates;}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ range\ =\ cache.equal\_range(record\_core);}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (range.first\ ==\ range.second)\ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ no\ matches\ found}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ one\ or\ more\ matches\ found}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ ss;}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ss\ <<\ \textcolor{stringliteral}{"{}Duplicated\ variant\ "{}}\ <<\ record\_core.chromosome\ <<\ \textcolor{stringliteral}{"{}:"{}}\ <<\ record\_core.position\ <<\ \textcolor{stringliteral}{"{}:"{}}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ record\_core.reference\_allele\ <<\ \textcolor{stringliteral}{"{}>"{}}\ <<\ record\_core.alternate\_allele\ <<\ \textcolor{stringliteral}{"{}\ found"{}};}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ duplicate\_variant\_lines\ =\ \textcolor{stringliteral}{"{}It\ occurs\ in\ lines\ "{}}\ +\ std::to\_string(range.first-\/>line\_num)}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}\ and\ "{}}\ +\ std::to\_string(record\_core.line\_num);}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ first\_occurence\_line\{range.first-\/>line\_num\};}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (++range.first\ ==\ range.second)\ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ only\ one\ match,\ return\ an\ extra\ error\ for\ the\ first\ occurrence}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ duplicates.emplace\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_duplication_error}{DuplicationError}}\{first\_occurence\_line,\ ss.str()\});}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ duplicates.emplace\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_duplication_error}{DuplicationError}}\{record\_core.line\_num,\ ss.str(),\ duplicate\_variant\_lines\});}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cache.insert(range.second,\ record\_core);}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_ac09532f8fe43d736e4f3751a79d1a365}{shrink\_to\_fit}}(cache\_symbolic\_duplicates);}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_ac09532f8fe43d736e4f3751a79d1a365}{shrink\_to\_fit}}(cache\_duplicates);}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00164}\mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_ada660e967cec3d3f00882d09ba42367c}{00164}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_ada660e967cec3d3f00882d09ba42367c}{clear\_cache\_if\_we\_moved\_to\_the\_next\_chromosome}}(\textcolor{keyword}{const}\ std::string\ \&chromosome)\ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current\_chromosome\ !=\ chromosome)\ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cache\_duplicates.clear();}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cache\_symbolic\_duplicates.clear();}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_chromosome\ =\ chromosome;}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00175}\mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_ac09532f8fe43d736e4f3751a79d1a365}{00175}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_record_cache_ac09532f8fe43d736e4f3751a79d1a365}{shrink\_to\_fit}}(std::multiset<RecordCore>\ \&cache)}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!unlimited)\ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\ =\ cache.size();}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ >\ capacity)\ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ erase\_until\ =\ cache.begin();}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ count\ -\/\ capacity;\ ++j)\ \{}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ erase\_until++;}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cache.erase(cache.begin(),\ erase\_until);}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00189}00189\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00190}00190\ \ \ \ \ \ \ \ \ std::multiset<RecordCore>\ cache\_duplicates;}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00191}00191\ \ \ \ \ \ \ \ \ std::multiset<RecordCore>\ cache\_symbolic\_duplicates;}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00192}00192\ \ \ \ \ \ \ \ \ std::vector<std::unique\_ptr<Error>>\ list\_duplicates;}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00193}00193\ \ \ \ \ \ \ \ \ std::vector<std::unique\_ptr<Error>>\ list\_symbolic\_duplicates;}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00194}00194\ \ \ \ \ \ \ \ \ std::string\ current\_chromosome;}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ capacity;\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ unlimited;\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00197}00197\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00198}00198\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00199}00199\ \}}
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{record__cache_8hpp_source_l00201}00201\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VCF\_RECORD\_CACHE\_HPP}}
+
+\end{DoxyCode}

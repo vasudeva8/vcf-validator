@@ -1,0 +1,63 @@
+\doxysection{cli\+\_\+utils.\+hpp}
+\hypertarget{cli__utils_8hpp_source}{}\label{cli__utils_8hpp_source}\index{inc/util/cli\_utils.hpp@{inc/util/cli\_utils.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ UTIL\_CLI\_UTILS\_HPP}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ UTIL\_CLI\_UTILS\_HPP}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <boost/program\_options.hpp>}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <boost/filesystem/operations.hpp>}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}util/logger.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00028}00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00029}00029\ \{}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00030}00030\ \ \ \textcolor{keyword}{namespace\ }util}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00031}00031\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00032}00032\ \ \ \ \ \textcolor{keyword}{namespace\ }po\ =\ boost::program\_options;}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00034}00034\ \ \ \ \ po::variables\_map\ build\_variables\_map(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv,\ \textcolor{keyword}{const}\ po::options\_description\ \&\ desc)}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00035}00035\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00036}00036\ \ \ \ \ \ \ \ \ po::variables\_map\ vm;}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00037}00037\ \ \ \ \ \ \ \ \ po::parsed\_options\ parsed\ =\ po::command\_line\_parser(argc,\ argv).options(desc).allow\_unregistered().run();}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00038}00038\ \ \ \ \ \ \ \ \ po::store(parsed,vm);}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00039}00039\ \ \ \ \ \ \ \ \ std::vector<std::string>\ unrecognised\_parameters\ =\ collect\_unrecognized(parsed.options,\ po::include\_positional);}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ parameter:\ unrecognised\_parameters)\ \{}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(warning)\ <<\ \textcolor{stringliteral}{"{}unused\ parameter:\ "{}}\ <<\ parameter;}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ po::notify(vm);}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vm;}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00049}00049\ \ \ \ \ std::string\ get\_output\_path(\textcolor{keyword}{const}\ std::string\ \&outdir,\ \textcolor{keyword}{const}\ std::string\ \&file\_path)}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00050}00050\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (outdir\ ==\ \textcolor{stringliteral}{"{}"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ file\_path;}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ boost::filesystem::path\ file\_boost\_path\{file\_path\};}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ boost::filesystem::path\ outdir\_boost\_path\{outdir\};}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!boost::filesystem::exists(outdir\_boost\_path))\ \{}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument\{\textcolor{stringliteral}{"{}Directory\ not\ found:\ "{}}\ +\ outdir\_boost\_path.string()\};}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!boost::filesystem::is\_directory(outdir\_boost\_path))\ \{}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument\{\textcolor{stringliteral}{"{}outdir\ should\ be\ a\ directory,\ not\ a\ file:\ "{}}\ +\ outdir\_boost\_path.string()\};}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00064}00064\ \ \ \ \ \ \ \ \ outdir\_boost\_path\ /=\ file\_boost\_path.filename();}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ outdir\_boost\_path.string();}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00067}00067\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00069}00069\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00070}00070\ \}}
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{cli__utils_8hpp_source_l00072}00072\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ UTIL\_CLI\_UTILS\_HPP}}
+
+\end{DoxyCode}

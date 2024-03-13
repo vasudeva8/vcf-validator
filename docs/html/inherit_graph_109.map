@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$db/d6c/classebi_1_1vcf_1_1_assembly_check_report_writer.html" title=" " alt="" coords="5,71,213,111"/>
+<area shape="rect" id="Node000001" href="$d5/da5/classebi_1_1vcf_1_1_summary_assembly_check_report_writer.html" title=" " alt="" coords="266,5,452,46"/>
+<area shape="poly" id="edge49_Node000000_Node000001" title=" " alt="" coords="203,64,278,44,279,49,205,69"/>
+<area shape="rect" id="Node000002" href="$d6/dfe/classebi_1_1vcf_1_1_text_assembly_check_report_writer.html" title=" " alt="" coords="262,71,456,111"/>
+<area shape="poly" id="edge50_Node000000_Node000002" title=" " alt="" coords="228,88,262,88,262,94,228,94"/>
+<area shape="rect" id="Node000003" href="$d5/d3a/classebi_1_1vcf_1_1_valid_assembly_check_report_writer.html" title=" " alt="" coords="261,136,457,177"/>
+<area shape="poly" id="edge51_Node000000_Node000003" title=" " alt="" coords="205,113,279,133,278,138,203,118"/>
+</map>

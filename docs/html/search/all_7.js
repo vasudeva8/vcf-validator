@@ -1,0 +1,8 @@
+var searchData=
+[
+  ['generate_20code_20from_20descriptors_0',['Generate code from descriptors',['../d3/dcc/md__r_e_a_d_m_e.html#autotoc_md50',1,'']]],
+  ['get_5fduplicates_1',['get_duplicates',['../d1/d3d/classebi_1_1vcf_1_1_record_cache.html#a2fbd1e312bc2b4cfa4cb96043c407e26',1,'ebi::vcf::RecordCache']]],
+  ['get_5fsymbolic_5fduplicates_2',['get_symbolic_duplicates',['../d1/d3d/classebi_1_1vcf_1_1_record_cache.html#a6b93b3f82a2783b482df98798e2dd15d',1,'ebi::vcf::RecordCache']]],
+  ['github_20com_20ebivariation_20vcf_20validator_20actions_20workflows_20build_20yml_20badge_20svg_20branch_20master_20img_20src_20https_3a_20github_20com_20ebivariation_20vcf_20validator_20actions_20workflows_20build_20yml_20badge_20svg_20branch_20master_20alt_20build_20status_20a_20a_20href_20https_3a_20ci_20appveyor_20com_20project_20ebivariation_20bot_20vcf_20validator_20branch_20master_20img_20src_20https_3a_20ci_20appveyor_20com_20api_20projects_20status_20vt4ldlwhm91e3n49_20branch_20master_20svg_20true_20alt_20build_20status_20a_3',['vcf-validator | &lt;a href=&quot;https://github.com/EBIvariation/vcf-validator/actions/workflows/build.yml/badge.svg?branch=master&quot; &gt;&lt;img src=&quot;https://github.com/EBIvariation/vcf-validator/actions/workflows/build.yml/badge.svg?branch=master&quot; alt=&quot;Build Status&quot;/&gt;&lt;/a&gt; &lt;a href=&quot;https://ci.appveyor.com/project/ebivariation-bot/vcf-validator/branch/master&quot; &gt;&lt;img src=&quot;https://ci.appveyor.com/api/projects/status/vt4ldlwhm91e3n49/branch/master?svg=true&quot; alt=&quot;Build status&quot;/&gt;&lt;/a&gt;',['../d3/dcc/md__r_e_a_d_m_e.html',1,'']]],
+  ['guide_4',['Developer guide',['../db/dec/md_docs_2developer-guide.html',1,'']]]
+];

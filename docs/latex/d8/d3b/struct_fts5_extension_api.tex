@@ -1,0 +1,271 @@
+\doxysection{Fts5\+Extension\+Api Struct Reference}
+\hypertarget{struct_fts5_extension_api}{}\label{struct_fts5_extension_api}\index{Fts5ExtensionApi@{Fts5ExtensionApi}}
+
+
+Collaboration diagram for Fts5\+Extension\+Api\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=177pt]{d4/d38/struct_fts5_extension_api__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_fts5_extension_api_af9c8f09c2e6f1373e6bce57ec9861682}{i\+Version}}
+\item 
+void \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_a1f71f2622761df6f157e7201879bf5df}{x\+User\+Data}} )(Fts5\+Context \texorpdfstring{$\ast$}{*})
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_a33c1e050aa9e9b746205c192935f4a1d}{x\+Column\+Count}} )(Fts5\+Context \texorpdfstring{$\ast$}{*})
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_a7f82e336e97540cb7efb66bd27042e4f}{x\+Row\+Count}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, sqlite3\+\_\+int64 \texorpdfstring{$\ast$}{*}pn\+Row)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_acfc4e9d9879578a4b9347d7876d28963}{x\+Column\+Total\+Size}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Col, sqlite3\+\_\+int64 \texorpdfstring{$\ast$}{*}pn\+Token)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_ae10d6563d3adc047eaba8db50eea1762}{x\+Tokenize}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, const char \texorpdfstring{$\ast$}{*}p\+Text, int n\+Text, void \texorpdfstring{$\ast$}{*}p\+Ctx, int(\texorpdfstring{$\ast$}{*}x\+Token)(void \texorpdfstring{$\ast$}{*}, int, const char \texorpdfstring{$\ast$}{*}, int, int, int))
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_a79916567d32f1933bb98d5939b8e0885}{x\+Phrase\+Count}} )(Fts5\+Context \texorpdfstring{$\ast$}{*})
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_a35442bdd54fd59f3a0d0eab74df50571}{x\+Phrase\+Size}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Phrase)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_a4095d1d4a90ee27fe3586b4dcca16151}{x\+Inst\+Count}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, int \texorpdfstring{$\ast$}{*}pn\+Inst)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_af2f1796923ab2d48be770e860e7494cb}{x\+Inst}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Idx, int \texorpdfstring{$\ast$}{*}pi\+Phrase, int \texorpdfstring{$\ast$}{*}pi\+Col, int \texorpdfstring{$\ast$}{*}pi\+Off)
+\item 
+sqlite3\+\_\+int64(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_aab4c236653ae8b3d1f306fc7af5c7ed1}{x\+Rowid}} )(Fts5\+Context \texorpdfstring{$\ast$}{*})
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_af1aedeaa82104e3e0495ed22610ad4bc}{x\+Column\+Text}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Col, const char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pz, int \texorpdfstring{$\ast$}{*}pn)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_ad1e249d1ce89ac0b05b77ea32a4da0cd}{x\+Column\+Size}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Col, int \texorpdfstring{$\ast$}{*}pn\+Token)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_a66af7d07783c18b2c59025f982b2bd92}{x\+Query\+Phrase}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Phrase, void \texorpdfstring{$\ast$}{*}p\+User\+Data, int(\texorpdfstring{$\ast$}{*})(const \mbox{\hyperlink{struct_fts5_extension_api}{Fts5\+Extension\+Api}} \texorpdfstring{$\ast$}{*}, Fts5\+Context \texorpdfstring{$\ast$}{*}, void \texorpdfstring{$\ast$}{*}))
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_a466af4264428f467ee94408b64f408cb}{x\+Set\+Auxdata}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, void \texorpdfstring{$\ast$}{*}p\+Aux, void(\texorpdfstring{$\ast$}{*}x\+Delete)(void \texorpdfstring{$\ast$}{*}))
+\item 
+void \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_ab18b1cb62e84590f50c0e007366165fb}{x\+Get\+Auxdata}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, int b\+Clear)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_a0e7fb192d7ca28a5cc4f9ef025586761}{x\+Phrase\+First}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Phrase, \mbox{\hyperlink{struct_fts5_phrase_iter}{Fts5\+Phrase\+Iter}} \texorpdfstring{$\ast$}{*}, int \texorpdfstring{$\ast$}{*}, int \texorpdfstring{$\ast$}{*})
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_a049c7163a39f20c675cf261fa181a9a1}{x\+Phrase\+Next}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_fts5_phrase_iter}{Fts5\+Phrase\+Iter}} \texorpdfstring{$\ast$}{*}, int \texorpdfstring{$\ast$}{*}pi\+Col, int \texorpdfstring{$\ast$}{*}pi\+Off)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_ac1936193fd724dd4cac4772add9a724b}{x\+Phrase\+First\+Column}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Phrase, \mbox{\hyperlink{struct_fts5_phrase_iter}{Fts5\+Phrase\+Iter}} \texorpdfstring{$\ast$}{*}, int \texorpdfstring{$\ast$}{*})
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_fts5_extension_api_aab6694c0e06fc2a5ecca0041a492f2b1}{x\+Phrase\+Next\+Column}} )(Fts5\+Context \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_fts5_phrase_iter}{Fts5\+Phrase\+Iter}} \texorpdfstring{$\ast$}{*}, int \texorpdfstring{$\ast$}{*}pi\+Col)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10127}{10127}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_fts5_extension_api_af9c8f09c2e6f1373e6bce57ec9861682}\label{struct_fts5_extension_api_af9c8f09c2e6f1373e6bce57ec9861682} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!iVersion@{iVersion}}
+\index{iVersion@{iVersion}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{iVersion}{iVersion}}
+{\footnotesize\ttfamily int Fts5\+Extension\+Api\+::i\+Version}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10128}{10128}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_a33c1e050aa9e9b746205c192935f4a1d}\label{struct_fts5_extension_api_a33c1e050aa9e9b746205c192935f4a1d} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xColumnCount@{xColumnCount}}
+\index{xColumnCount@{xColumnCount}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xColumnCount}{xColumnCount}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Column\+Count)(Fts5\+Context \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10132}{10132}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_ad1e249d1ce89ac0b05b77ea32a4da0cd}\label{struct_fts5_extension_api_ad1e249d1ce89ac0b05b77ea32a4da0cd} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xColumnSize@{xColumnSize}}
+\index{xColumnSize@{xColumnSize}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xColumnSize}{xColumnSize}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Column\+Size)(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Col, int \texorpdfstring{$\ast$}{*}pn\+Token)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10150}{10150}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_af1aedeaa82104e3e0495ed22610ad4bc}\label{struct_fts5_extension_api_af1aedeaa82104e3e0495ed22610ad4bc} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xColumnText@{xColumnText}}
+\index{xColumnText@{xColumnText}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xColumnText}{xColumnText}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Column\+Text)(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Col, const char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pz, int \texorpdfstring{$\ast$}{*}pn)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10149}{10149}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_acfc4e9d9879578a4b9347d7876d28963}\label{struct_fts5_extension_api_acfc4e9d9879578a4b9347d7876d28963} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xColumnTotalSize@{xColumnTotalSize}}
+\index{xColumnTotalSize@{xColumnTotalSize}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xColumnTotalSize}{xColumnTotalSize}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Column\+Total\+Size)(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Col, sqlite3\+\_\+int64 \texorpdfstring{$\ast$}{*}pn\+Token)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10134}{10134}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_ab18b1cb62e84590f50c0e007366165fb}\label{struct_fts5_extension_api_ab18b1cb62e84590f50c0e007366165fb} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xGetAuxdata@{xGetAuxdata}}
+\index{xGetAuxdata@{xGetAuxdata}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xGetAuxdata}{xGetAuxdata}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Get\+Auxdata)(Fts5\+Context \texorpdfstring{$\ast$}{*}, int b\+Clear)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10156}{10156}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_af2f1796923ab2d48be770e860e7494cb}\label{struct_fts5_extension_api_af2f1796923ab2d48be770e860e7494cb} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xInst@{xInst}}
+\index{xInst@{xInst}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xInst}{xInst}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Inst)(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Idx, int \texorpdfstring{$\ast$}{*}pi\+Phrase, int \texorpdfstring{$\ast$}{*}pi\+Col, int \texorpdfstring{$\ast$}{*}pi\+Off)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10146}{10146}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_a4095d1d4a90ee27fe3586b4dcca16151}\label{struct_fts5_extension_api_a4095d1d4a90ee27fe3586b4dcca16151} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xInstCount@{xInstCount}}
+\index{xInstCount@{xInstCount}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xInstCount}{xInstCount}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Inst\+Count)(Fts5\+Context \texorpdfstring{$\ast$}{*}, int \texorpdfstring{$\ast$}{*}pn\+Inst)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10145}{10145}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_a79916567d32f1933bb98d5939b8e0885}\label{struct_fts5_extension_api_a79916567d32f1933bb98d5939b8e0885} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xPhraseCount@{xPhraseCount}}
+\index{xPhraseCount@{xPhraseCount}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xPhraseCount}{xPhraseCount}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Phrase\+Count)(Fts5\+Context \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10142}{10142}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_a0e7fb192d7ca28a5cc4f9ef025586761}\label{struct_fts5_extension_api_a0e7fb192d7ca28a5cc4f9ef025586761} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xPhraseFirst@{xPhraseFirst}}
+\index{xPhraseFirst@{xPhraseFirst}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xPhraseFirst}{xPhraseFirst}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Phrase\+First)(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Phrase, \mbox{\hyperlink{struct_fts5_phrase_iter}{Fts5\+Phrase\+Iter}} \texorpdfstring{$\ast$}{*}, int \texorpdfstring{$\ast$}{*}, int \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10158}{10158}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_ac1936193fd724dd4cac4772add9a724b}\label{struct_fts5_extension_api_ac1936193fd724dd4cac4772add9a724b} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xPhraseFirstColumn@{xPhraseFirstColumn}}
+\index{xPhraseFirstColumn@{xPhraseFirstColumn}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xPhraseFirstColumn}{xPhraseFirstColumn}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Phrase\+First\+Column)(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Phrase, \mbox{\hyperlink{struct_fts5_phrase_iter}{Fts5\+Phrase\+Iter}} \texorpdfstring{$\ast$}{*}, int \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10161}{10161}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_a049c7163a39f20c675cf261fa181a9a1}\label{struct_fts5_extension_api_a049c7163a39f20c675cf261fa181a9a1} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xPhraseNext@{xPhraseNext}}
+\index{xPhraseNext@{xPhraseNext}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xPhraseNext}{xPhraseNext}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Phrase\+Next)(Fts5\+Context \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_fts5_phrase_iter}{Fts5\+Phrase\+Iter}} \texorpdfstring{$\ast$}{*}, int \texorpdfstring{$\ast$}{*}pi\+Col, int \texorpdfstring{$\ast$}{*}pi\+Off)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10159}{10159}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_aab6694c0e06fc2a5ecca0041a492f2b1}\label{struct_fts5_extension_api_aab6694c0e06fc2a5ecca0041a492f2b1} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xPhraseNextColumn@{xPhraseNextColumn}}
+\index{xPhraseNextColumn@{xPhraseNextColumn}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xPhraseNextColumn}{xPhraseNextColumn}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Phrase\+Next\+Column)(Fts5\+Context \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_fts5_phrase_iter}{Fts5\+Phrase\+Iter}} \texorpdfstring{$\ast$}{*}, int \texorpdfstring{$\ast$}{*}pi\+Col)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10162}{10162}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_a35442bdd54fd59f3a0d0eab74df50571}\label{struct_fts5_extension_api_a35442bdd54fd59f3a0d0eab74df50571} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xPhraseSize@{xPhraseSize}}
+\index{xPhraseSize@{xPhraseSize}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xPhraseSize}{xPhraseSize}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Phrase\+Size)(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Phrase)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10143}{10143}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_a66af7d07783c18b2c59025f982b2bd92}\label{struct_fts5_extension_api_a66af7d07783c18b2c59025f982b2bd92} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xQueryPhrase@{xQueryPhrase}}
+\index{xQueryPhrase@{xQueryPhrase}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xQueryPhrase}{xQueryPhrase}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Query\+Phrase)(Fts5\+Context \texorpdfstring{$\ast$}{*}, int i\+Phrase, void \texorpdfstring{$\ast$}{*}p\+User\+Data, int(\texorpdfstring{$\ast$}{*})(const \mbox{\hyperlink{struct_fts5_extension_api}{Fts5\+Extension\+Api}} \texorpdfstring{$\ast$}{*}, Fts5\+Context \texorpdfstring{$\ast$}{*}, void \texorpdfstring{$\ast$}{*}))}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10152}{10152}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_a7f82e336e97540cb7efb66bd27042e4f}\label{struct_fts5_extension_api_a7f82e336e97540cb7efb66bd27042e4f} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xRowCount@{xRowCount}}
+\index{xRowCount@{xRowCount}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xRowCount}{xRowCount}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Row\+Count)(Fts5\+Context \texorpdfstring{$\ast$}{*}, sqlite3\+\_\+int64 \texorpdfstring{$\ast$}{*}pn\+Row)}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10133}{10133}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_aab4c236653ae8b3d1f306fc7af5c7ed1}\label{struct_fts5_extension_api_aab4c236653ae8b3d1f306fc7af5c7ed1} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xRowid@{xRowid}}
+\index{xRowid@{xRowid}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xRowid}{xRowid}}
+{\footnotesize\ttfamily sqlite3\+\_\+int64(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Rowid)(Fts5\+Context \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10148}{10148}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_a466af4264428f467ee94408b64f408cb}\label{struct_fts5_extension_api_a466af4264428f467ee94408b64f408cb} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xSetAuxdata@{xSetAuxdata}}
+\index{xSetAuxdata@{xSetAuxdata}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xSetAuxdata}{xSetAuxdata}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Set\+Auxdata)(Fts5\+Context \texorpdfstring{$\ast$}{*}, void \texorpdfstring{$\ast$}{*}p\+Aux, void(\texorpdfstring{$\ast$}{*}x\+Delete)(void \texorpdfstring{$\ast$}{*}))}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10155}{10155}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_ae10d6563d3adc047eaba8db50eea1762}\label{struct_fts5_extension_api_ae10d6563d3adc047eaba8db50eea1762} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xTokenize@{xTokenize}}
+\index{xTokenize@{xTokenize}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xTokenize}{xTokenize}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+Tokenize)(Fts5\+Context \texorpdfstring{$\ast$}{*}, const char \texorpdfstring{$\ast$}{*}p\+Text, int n\+Text, void \texorpdfstring{$\ast$}{*}p\+Ctx, int(\texorpdfstring{$\ast$}{*}x\+Token)(void \texorpdfstring{$\ast$}{*}, int, const char \texorpdfstring{$\ast$}{*}, int, int, int))}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10136}{10136}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_fts5_extension_api_a1f71f2622761df6f157e7201879bf5df}\label{struct_fts5_extension_api_a1f71f2622761df6f157e7201879bf5df} 
+\index{Fts5ExtensionApi@{Fts5ExtensionApi}!xUserData@{xUserData}}
+\index{xUserData@{xUserData}!Fts5ExtensionApi@{Fts5ExtensionApi}}
+\doxysubsubsection{\texorpdfstring{xUserData}{xUserData}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} Fts5\+Extension\+Api\+::x\+User\+Data)(Fts5\+Context \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l10130}{10130}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\item 
+lib/sqlite/sqlite3.\+h\end{DoxyCompactItemize}

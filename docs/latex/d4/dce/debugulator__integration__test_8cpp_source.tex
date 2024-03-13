@@ -1,0 +1,200 @@
+\doxysection{debugulator\+\_\+integration\+\_\+test.\+cpp}
+\hypertarget{debugulator__integration__test_8cpp_source}{}\label{debugulator__integration__test_8cpp_source}\index{test/vcf/debugulator\_integration\_test.cpp@{test/vcf/debugulator\_integration\_test.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <boost/filesystem.hpp>}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}catch/catch.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}vcf/validator.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}vcf/odb\_report.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}vcf/debugulator.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}test\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00026}00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00027}00027\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00028}00028\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::string\ BEFORE\_TAG\ =\ \textcolor{stringliteral}{"{}before"{}};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00029}00029\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::string\ AFTER\_TAG\ =\ \textcolor{stringliteral}{"{}after"{}};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00031}00031\ \ \ \textcolor{keywordtype}{bool}\ validate(std::istream\ \&file,\ \textcolor{keyword}{const}\ boost::filesystem::path\ \&path,\ std::string\ report\_tag)}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00032}00032\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00033}00033\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ db\_path\ =\ boost::filesystem::temp\_directory\_path()\ /\ path.filename();}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00034}00034\ \ \ \ \ \ \ db\_path\ +=\ \textcolor{stringliteral}{"{}.debugulator\_test."{}}\ +\ report\_tag\ +\ \textcolor{stringliteral}{"{}.db"{}};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00035}00035\ \ \ \ \ \ \ boost::filesystem::remove(db\_path);\ \ \ \textcolor{comment}{//\ make\ sure\ the\ db\ doesn't\ exist\ from\ previous\ runs}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00037}00037\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ report\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w}{ebi::vcf::OdbReportRW}}\{db\_path.string()\};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00038}00038\ \ \ \ \ \ \ std::vector<std::unique\_ptr<ebi::vcf::ReportWriter>>\ reports;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00039}00039\ \ \ \ \ \ \ reports.emplace\_back(report);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00041}00041\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vcf::is\_valid\_vcf\_file(file,\ path.string(),\ vcf::ValidationLevel::warning,\ reports,\ vcf::AdditionalChecks());}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00042}00042\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00044}00044\ \ \ std::tuple<std::unique\_ptr<std::stringstream>,\ \textcolor{keywordtype}{long}>\ fix(\textcolor{keyword}{const}\ boost::filesystem::path\ \&path,\ std::string\ report\_tag)}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00045}00045\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00046}00046\ \ \ \ \ \ \ std::ifstream\ file\{path.c\_str()\};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00048}00048\ \ \ \ \ \ \ \textcolor{comment}{//\ report:\ SqliteReportRW\ to\ read\ the\ errors.\ the\ DB\ must\ be\ flushed\ before\ this}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00049}00049\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ db\_path\ =\ boost::filesystem::temp\_directory\_path()\ /\ path.filename();}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00050}00050\ \ \ \ \ \ \ db\_path\ +=\ \textcolor{stringliteral}{"{}.debugulator\_test."{}}\ +\ report\_tag\ +\ \textcolor{stringliteral}{"{}.db"{}};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00051}00051\ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w}{ebi::vcf::OdbReportRW}}\ report\{db\_path.string()\};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00053}00053\ \ \ \ \ \ \ std::unique\_ptr<std::stringstream>\ fixed\_vcf\{\textcolor{keyword}{new}\ std::stringstream\{\}\};\ \textcolor{comment}{//\ writing\ result\ vcf\ to\ a\ stringstream\ in\ memory}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00055}00055\ \ \ \ \ \ \ vcf::debugulator::fix\_vcf\_file(file,\ report,\ *fixed\_vcf);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00056}00056\ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00057}00057\ \ \ \ \ \ \ fixed\_vcf-\/>seekg(0);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00058}00058\ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ fixed\_vcf\_lines\ =\ \mbox{\hyperlink{namespaceebi_a9b9d0dcb441bb9f9cafa425af87c193a}{count\_lines}}(*fixed\_vcf);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00059}00059\ \ \ \ \ \ \ fixed\_vcf-\/>seekg(0);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00061}00061\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::tuple<std::unique\_ptr<std::stringstream>,\ \textcolor{keywordtype}{long}>(std::move(fixed\_vcf),\ fixed\_vcf\_lines);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00062}00062\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00064}00064\ \ \ std::string\ handle\_test\_results(\textcolor{keyword}{const}\ boost::filesystem::path\ \&path,}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ successfully\_fixed,\ \textcolor{keyword}{const}\ std::stringstream\ \&fixed\_vcf)}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00066}00066\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00067}00067\ \ \ \ \ \ \ std::stringstream\ debug\_message;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00068}00068\ \ \ \ \ \ \ boost::filesystem::path\ fixed\_vcf\_path,\ db\_path,\ db\_path\_after;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00069}00069\ \ \ \ \ \ \ boost::filesystem::path\ base\_path\ =\ boost::filesystem::temp\_directory\_path()\ /\ path.filename();}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00070}00070\ \ \ \ \ \ \ fixed\_vcf\_path\ =\ db\_path\ =\ db\_path\_after\ =\ base\_path;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00071}00071\ \ \ \ \ \ \ fixed\_vcf\_path\ +=\ \textcolor{stringliteral}{"{}.debugulator\_test.fixed.vcf"{}};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00072}00072\ \ \ \ \ \ \ db\_path\ +=\ \textcolor{stringliteral}{"{}.debugulator\_test."{}}\ +\ BEFORE\_TAG\ +\ \textcolor{stringliteral}{"{}.db"{}};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00073}00073\ \ \ \ \ \ \ db\_path\_after\ +=\ \textcolor{stringliteral}{"{}.debugulator\_test."{}}\ +\ AFTER\_TAG\ +\ \textcolor{stringliteral}{"{}.db"{}};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00075}00075\ \ \ \ \ \ \ boost::filesystem::remove(fixed\_vcf\_path);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00077}00077\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!successfully\_fixed)\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dump\ fixed\ file\ to\ manually\ inspect}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ std::ofstream\ fixed\_file\{fixed\_vcf\_path.string()\};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ fixed\_file\ <<\ fixed\_vcf.str();}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ fixed\_file.close();}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ debug\_message\ <<\ \textcolor{stringliteral}{"{}This\ test\ failed,\ you\ can\ see\ the\ related\ data\ at:\ \(\backslash\)n"{}}\ <<\ db\_path.string()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ debug\_message\ <<\ db\_path\_after.string()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ <<\ fixed\_vcf\_path.string()\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00084}00084\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ clean\ report\ dbs}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ boost::filesystem::remove(db\_path);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ boost::filesystem::remove(db\_path\_after);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00088}00088\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00090}00090\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ debug\_message.str();}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00091}00091\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00093}00093\ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Fixing\ a\ VCF\ with\ duplicates"{}},\ \textcolor{stringliteral}{"{}[debugulator]"{}})}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00094}00094\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00095}00095\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ first\_validation,\ second\_validation;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00096}00096\ \ \ \ \ \ \ std::string\ debug\_message;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00097}00097\ \ \ \ \ \ \ std::unique\_ptr<std::stringstream>\ fixed\_vcf;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00098}00098\ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ lines;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00100}00100\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <=\ 4;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ path\ =\ boost::filesystem::path(\textcolor{stringliteral}{"{}test/input\_files/v4."{}}\ +\ std::to\_string(i)\ +\ \textcolor{stringliteral}{"{}/failed/failed\_body\_duplicated\_001.vcf"{}});}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ SECTION(path.string())\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ file\{path.c\_str()\};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ first\_validation\ =\ validate(file,\ path,\ BEFORE\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE\_FALSE(first\_validation);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::tie(fixed\_vcf,\ lines)\ =\ fix(path,\ BEFORE\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\_validation\ =\ validate(*fixed\_vcf,\ path,\ AFTER\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ debug\_message\ =\ handle\_test\_results(path,\ second\_validation,\ *fixed\_vcf);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INFO(debug\_message);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE(second\_validation);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE(lines\ ==\ 6);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00113}00113\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00114}00114\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00116}00116\ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Fixing\ a\ VCF\ with\ wrong\ INFO\ fields"{}},\ \textcolor{stringliteral}{"{}[debugulator]"{}})}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00117}00117\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00118}00118\ \ \ \ \ \ \ boost::filesystem::path\ path;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00119}00119\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ first\_validation,\ second\_validation;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00120}00120\ \ \ \ \ \ \ std::string\ debug\_message;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00121}00121\ \ \ \ \ \ \ std::unique\_ptr<std::stringstream>\ fixed\_vcf;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00122}00122\ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ lines;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00124}00124\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <=\ 4;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ syntax\ error,\ AC\ must\ be\ a\ positive\ integer}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ path\ =\ boost::filesystem::path(}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}test/input\_files/v4."{}}\ +\ std::to\_string(i)\ +\ \textcolor{stringliteral}{"{}/failed/failed\_body\_info\_036.vcf"{}});}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ SECTION(path.string())\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ file\{path.c\_str()\};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ first\_validation\ =\ validate(file,\ path,\ BEFORE\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE\_FALSE(first\_validation);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::tie(fixed\_vcf,\ lines)\ =\ fix(path,\ BEFORE\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\_validation\ =\ validate(*fixed\_vcf,\ path,\ AFTER\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ debug\_message\ =\ handle\_test\_results(path,\ second\_validation,\ *fixed\_vcf);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INFO(debug\_message);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE(second\_validation);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE(lines\ ==\ 11);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ semantic\ error,\ the\ number\ of\ values\ doesn't\ match\ the\ description\ in\ the\ meta\ section}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ path\ =\ boost::filesystem::path(}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}test/input\_files/v4."{}}\ +\ std::to\_string(i)\ +\ \textcolor{stringliteral}{"{}/failed/failed\_body\_info\_031.vcf"{}});}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ SECTION(path.string())\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ file\{path.c\_str()\};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ first\_validation\ =\ validate(file,\ path,\ BEFORE\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE\_FALSE(first\_validation);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::tie(fixed\_vcf,\ lines)\ =\ fix(path,\ BEFORE\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\_validation\ =\ validate(*fixed\_vcf,\ path,\ AFTER\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ debug\_message\ =\ handle\_test\_results(path,\ second\_validation,\ *fixed\_vcf);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INFO(debug\_message);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE(second\_validation);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE(lines\ ==\ 5);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00154}00154\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00155}00155\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00157}00157\ \ \ TEST\_CASE(\textcolor{stringliteral}{"{}Fixing\ a\ VCF\ with\ wrong\ SAMPLE\ fields"{}},\ \textcolor{stringliteral}{"{}[debugulator]"{}})}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00158}00158\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00159}00159\ \ \ \ \ \ \ boost::filesystem::path\ path;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00160}00160\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ first\_validation,\ second\_validation;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00161}00161\ \ \ \ \ \ \ std::string\ debug\_message;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00162}00162\ \ \ \ \ \ \ std::unique\_ptr<std::stringstream>\ fixed\_vcf;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00163}00163\ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ lines;}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00165}00165\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <=\ 4;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ syntax\ error,\ alleles\ are\ not\ digits}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ path\ =\ boost::filesystem::path(\textcolor{stringliteral}{"{}test/input\_files/v4."{}}\ +\ std::to\_string(i)\ +\ \textcolor{stringliteral}{"{}/failed/failed\_body\_sample\_000.vcf"{}});}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ SECTION(path.string())\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ file\{path.c\_str()\};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ first\_validation\ =\ validate(file,\ path,\ BEFORE\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE\_FALSE(first\_validation);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::tie(fixed\_vcf,\ lines)\ =\ fix(path,\ BEFORE\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\_validation\ =\ validate(*fixed\_vcf,\ path,\ AFTER\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ debug\_message\ =\ handle\_test\_results(path,\ second\_validation,\ *fixed\_vcf);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INFO(debug\_message);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE(second\_validation);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE(lines\ ==\ 4);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ semantic\ error,\ the\ number\ of\ values\ doesn't\ match\ the\ description\ in\ the\ meta\ section}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ path\ =\ boost::filesystem::path(\textcolor{stringliteral}{"{}test/input\_files/v4."{}}\ +\ std::to\_string(i)\ +\ \textcolor{stringliteral}{"{}/failed/failed\_body\_sample\_005.vcf"{}});}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ SECTION(path.string())\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ file\{path.c\_str()\};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ first\_validation\ =\ validate(file,\ path,\ BEFORE\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE\_FALSE(first\_validation);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::tie(fixed\_vcf,\ lines)\ =\ fix(path,\ BEFORE\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\_validation\ =\ validate(*fixed\_vcf,\ path,\ AFTER\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ debug\_message\ =\ handle\_test\_results(path,\ second\_validation,\ *fixed\_vcf);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INFO(debug\_message);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE(second\_validation);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE(lines\ ==\ 5);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ semantic\ error,\ the\ number\ of\ values\ doesn't\ match\ the\ description\ in\ the\ meta\ section}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ path\ =\ boost::filesystem::path(\textcolor{stringliteral}{"{}test/input\_files/v4."{}}\ +\ std::to\_string(i)\ +\ \textcolor{stringliteral}{"{}/failed/failed\_body\_sample\_006.vcf"{}});}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ SECTION(path.string())\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ file\{path.c\_str()\};}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ first\_validation\ =\ validate(file,\ path,\ BEFORE\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE\_FALSE(first\_validation);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::tie(fixed\_vcf,\ lines)\ =\ fix(path,\ BEFORE\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\_validation\ =\ validate(*fixed\_vcf,\ path,\ AFTER\_TAG);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ debug\_message\ =\ handle\_test\_results(path,\ second\_validation,\ *fixed\_vcf);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INFO(debug\_message);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE(second\_validation);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRE(lines\ ==\ 5);}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00207}00207\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00208}00208\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator__integration__test_8cpp_source_l00209}00209\ \}}
+
+\end{DoxyCode}

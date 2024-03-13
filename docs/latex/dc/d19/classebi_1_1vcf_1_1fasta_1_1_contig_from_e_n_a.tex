@@ -1,0 +1,135 @@
+\doxysection{ebi\+::vcf\+::fasta\+::Contig\+From\+ENA Class Reference}
+\hypertarget{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a}{}\label{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a}\index{ebi::vcf::fasta::ContigFromENA@{ebi::vcf::fasta::ContigFromENA}}
+
+
+Collaboration diagram for ebi\+::vcf\+::fasta\+::Contig\+From\+ENA\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{d1/d25/classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a_a063b7f008abe28276ea83e39ac7c4fc4}{Contig\+From\+ENA}} (const std\+::string \&contig\+Name)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a_aafcc1f1abadf49fc57c8f3984f968896}{write}} (const char \texorpdfstring{$\ast$}{*}buffer, const size\+\_\+t length)
+\item 
+std\+::string \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a_a24d79611eb50cb10a8bbd23f61d1a60c}{read}} (const size\+\_\+t pos, const size\+\_\+t length)
+\item 
+size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a_af214cdad08f424d7561b79b29223de3c}{length}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{fasta_8cpp_source_l00080}{80}} of file \mbox{\hyperlink{fasta_8cpp_source}{fasta.\+cpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a_a063b7f008abe28276ea83e39ac7c4fc4}\label{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a_a063b7f008abe28276ea83e39ac7c4fc4} 
+\index{ebi::vcf::fasta::ContigFromENA@{ebi::vcf::fasta::ContigFromENA}!ContigFromENA@{ContigFromENA}}
+\index{ContigFromENA@{ContigFromENA}!ebi::vcf::fasta::ContigFromENA@{ebi::vcf::fasta::ContigFromENA}}
+\doxysubsubsection{\texorpdfstring{ContigFromENA()}{ContigFromENA()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::fasta\+::\+Contig\+From\+ENA\+::\+Contig\+From\+ENA (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{contig\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{fasta_8cpp_source_l00082}{82}} of file \mbox{\hyperlink{fasta_8cpp_source}{fasta.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00083\ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ contig\_length\ =\ 0;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ contig\_name\ =\ contigName;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ fasta\_file.open(contig\_name.c\_str(),\ std::fstream::binary\ |\ std::fstream::in\ |\ std::fstream::out\ |\ std::fstream::trunc);}
+\DoxyCodeLine{00087\ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a_abb9fa97f55fde8e833eebdd4ef858c73}\label{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a_abb9fa97f55fde8e833eebdd4ef858c73} 
+\index{ebi::vcf::fasta::ContigFromENA@{ebi::vcf::fasta::ContigFromENA}!````~ContigFromENA@{\texorpdfstring{$\sim$}{\string~}ContigFromENA}}
+\index{````~ContigFromENA@{\texorpdfstring{$\sim$}{\string~}ContigFromENA}!ebi::vcf::fasta::ContigFromENA@{ebi::vcf::fasta::ContigFromENA}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ContigFromENA()}{\string~ContigFromENA()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::fasta\+::\+Contig\+From\+ENA\+::\texorpdfstring{$\sim$}{\string~}\+Contig\+From\+ENA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{fasta_8cpp_source_l00089}{89}} of file \mbox{\hyperlink{fasta_8cpp_source}{fasta.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00090\ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ fasta\_file.close();}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ boost::filesystem::remove(contig\_name);}
+\DoxyCodeLine{00093\ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a_af214cdad08f424d7561b79b29223de3c}\label{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a_af214cdad08f424d7561b79b29223de3c} 
+\index{ebi::vcf::fasta::ContigFromENA@{ebi::vcf::fasta::ContigFromENA}!length@{length}}
+\index{length@{length}!ebi::vcf::fasta::ContigFromENA@{ebi::vcf::fasta::ContigFromENA}}
+\doxysubsubsection{\texorpdfstring{length()}{length()}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::fasta\+::\+Contig\+From\+ENA\+::length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{fasta_8cpp_source_l00111}{111}} of file \mbox{\hyperlink{fasta_8cpp_source}{fasta.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ contig\_length;}
+\DoxyCodeLine{00113\ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a_a24d79611eb50cb10a8bbd23f61d1a60c}\label{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a_a24d79611eb50cb10a8bbd23f61d1a60c} 
+\index{ebi::vcf::fasta::ContigFromENA@{ebi::vcf::fasta::ContigFromENA}!read@{read}}
+\index{read@{read}!ebi::vcf::fasta::ContigFromENA@{ebi::vcf::fasta::ContigFromENA}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily std\+::string ebi\+::vcf\+::fasta\+::\+Contig\+From\+ENA\+::read (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{pos,  }\item[{const size\+\_\+t}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{fasta_8cpp_source_l00101}{101}} of file \mbox{\hyperlink{fasta_8cpp_source}{fasta.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00102\ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ >=\ contig\_length)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ std::string\ result;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ebi::util::read\_n(fasta\_file,\ result,\ length,\ pos);}
+\DoxyCodeLine{00109\ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a_aafcc1f1abadf49fc57c8f3984f968896}\label{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a_aafcc1f1abadf49fc57c8f3984f968896} 
+\index{ebi::vcf::fasta::ContigFromENA@{ebi::vcf::fasta::ContigFromENA}!write@{write}}
+\index{write@{write}!ebi::vcf::fasta::ContigFromENA@{ebi::vcf::fasta::ContigFromENA}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::fasta\+::\+Contig\+From\+ENA\+::write (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{const size\+\_\+t}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{fasta_8cpp_source_l00095}{95}} of file \mbox{\hyperlink{fasta_8cpp_source}{fasta.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00096\ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ fasta\_file.write(buffer,\ length);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ contig\_length\ +=\ length;}
+\DoxyCodeLine{00099\ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/fasta/fasta.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,18 @@
+<map id="unixInodeInfo" name="unixInodeInfo">
+<area shape="rect" id="Node000001" title=" " alt="" coords="140,154,247,299"/>
+<area shape="poly" id="edge10_Node000001_Node000001" title=" " alt="" coords="247,204,265,211,273,226,271,236,265,242,261,239,266,233,268,227,262,215,246,210"/>
+<area shape="rect" id="Node000003" href="$d4/db1/structunix_shm_node.html" title=" " alt="" coords="83,362,178,547"/>
+<area shape="poly" id="edge3_Node000003_Node000001" title=" " alt="" coords="143,294,129,324,124,346,119,345,124,322,138,292"/>
+<area shape="rect" id="Node000002" href="$d2/d56/structunix_file_id.html" title=" " alt="" coords="115,5,184,91"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,90,172,129,174,136,169,138,167,130,157,91"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="172,362,180,337,185,315,190,316,185,339,177,363"/>
+<area shape="rect" id="Node000005" href="$d6/d7e/structunix_shm.html" title=" " alt="" coords="83,610,178,736"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="86,519,75,552,74,569,76,586,79,594,74,596,71,587,68,569,70,551,81,518"/>
+<area shape="rect" id="Node000004" href="$d5/d3c/structsqlite3__mutex.html" title=" " alt="" coords="5,194,99,259"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="57,258,63,297,73,337,79,354,74,356,68,339,58,298,52,259"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="148,610,153,586,155,564,160,565,159,587,154,611"/>
+<area shape="poly" id="edge7_Node000005_Node000005" title=" " alt="" coords="179,653,197,658,205,673,202,682,197,688,193,684,198,679,199,673,193,662,177,658"/>
+<area shape="rect" id="Node000006" href="$dd/d77/struct_unix_unused_fd.html" title=" " alt="" coords="209,5,309,91"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="246,91,228,139,223,137,241,90"/>
+<area shape="poly" id="edge9_Node000006_Node000006" title=" " alt="" coords="309,32,327,36,335,48,327,60,323,57,330,48,324,40,308,37"/>
+</map>

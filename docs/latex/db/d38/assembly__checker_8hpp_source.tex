@@ -1,0 +1,56 @@
+\doxysection{assembly\+\_\+checker.\+hpp}
+\hypertarget{assembly__checker_8hpp_source}{}\label{assembly__checker_8hpp_source}\index{inc/vcf/assembly\_checker.hpp@{inc/vcf/assembly\_checker.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ VCF\_ASSEMBLY\_CHECKER\_HPP}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ VCF\_ASSEMBLY\_CHECKER\_HPP}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ <boost/filesystem.hpp>}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ <boost/iostreams/filtering\_stream.hpp>}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00028}00028\ \textcolor{preprocessor}{\#include\ <boost/log/trivial.hpp>}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00030}00030\ \textcolor{preprocessor}{\#include\ "{}assembly\_report/assembly\_report.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}bioio/bioio.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00034}00034\ \textcolor{preprocessor}{\#include\ "{}fasta/fasta.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00035}00035\ \textcolor{preprocessor}{\#include\ "{}util/file\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00036}00036\ \textcolor{preprocessor}{\#include\ "{}util/logger.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00037}00037\ \textcolor{preprocessor}{\#include\ "{}util/stream\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00038}00038\ \textcolor{preprocessor}{\#include\ "{}util/string\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00040}00040\ \textcolor{preprocessor}{\#include\ "{}vcf/assembly\_check\_report\_writer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00041}00041\ \textcolor{preprocessor}{\#include\ "{}vcf/compression.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00042}00042\ \textcolor{preprocessor}{\#include\ "{}vcf/file\_structure.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00043}00043\ \textcolor{preprocessor}{\#include\ "{}vcf/normalizer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00044}00044\ \textcolor{preprocessor}{\#include\ "{}vcf/validator.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00047}00047\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00048}00048\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00049}00049\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00050}00050\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00051}00051\ \ \ \ \ \textcolor{keyword}{namespace\ }assembly\_checker}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00052}00052\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00054}00054\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ check\_vcf\_ref(std::istream\ \&\ vcf\_input,}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\ sourceName,}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\ fasta,}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\ assembly\_report,}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::unique\_ptr<ebi::vcf::AssemblyCheckReportWriter>>\ \&\ outputs,}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ requireGenbank\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00062}00062\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00063}00063\ \}}
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{assembly__checker_8hpp_source_l00065}00065\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VCF\_ASSEMBLY\_CHECKER\_HPP}}
+
+\end{DoxyCode}

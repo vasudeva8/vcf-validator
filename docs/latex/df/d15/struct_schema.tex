@@ -1,0 +1,162 @@
+\doxysection{Schema Struct Reference}
+\hypertarget{struct_schema}{}\label{struct_schema}\index{Schema@{Schema}}
+
+
+Collaboration diagram for Schema\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d5/dbf/struct_schema__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_schema_a3eef54a64f4f962d64577646bd34a47c}{schema\+\_\+cookie}}
+\item 
+int \mbox{\hyperlink{struct_schema_a879b1597656c7cbcbb98cdb88e876874}{i\+Generation}}
+\item 
+\mbox{\hyperlink{struct_hash}{Hash}} \mbox{\hyperlink{struct_schema_af841eadc93b289944b95f72b784bfaae}{tbl\+Hash}}
+\item 
+\mbox{\hyperlink{struct_hash}{Hash}} \mbox{\hyperlink{struct_schema_ac0dd242f486d17ddadca1e47af76c6c5}{idx\+Hash}}
+\item 
+\mbox{\hyperlink{struct_hash}{Hash}} \mbox{\hyperlink{struct_schema_ab521f4545d200329d8e1a46bbb67e7c5}{trig\+Hash}}
+\item 
+\mbox{\hyperlink{struct_hash}{Hash}} \mbox{\hyperlink{struct_schema_ad51ed96351701cfe8d9e871722827c11}{fkey\+Hash}}
+\item 
+\mbox{\hyperlink{struct_table}{Table}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_schema_ad580e4e662724bee95571d297f94da37}{p\+Seq\+Tab}}
+\item 
+u8 \mbox{\hyperlink{struct_schema_ab9f0371436e41b3080772995407a4cca}{file\+\_\+format}}
+\item 
+u8 \mbox{\hyperlink{struct_schema_a1338d09fe9cbb5a8162929202cb73cae}{enc}}
+\item 
+u16 \mbox{\hyperlink{struct_schema_a19310cba7982138909683b1801258c18}{schema\+Flags}}
+\item 
+int \mbox{\hyperlink{struct_schema_a0a66691be95a30c099ca4840da7110dd}{cache\+\_\+size}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l13532}{13532}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_schema_a0a66691be95a30c099ca4840da7110dd}\label{struct_schema_a0a66691be95a30c099ca4840da7110dd} 
+\index{Schema@{Schema}!cache\_size@{cache\_size}}
+\index{cache\_size@{cache\_size}!Schema@{Schema}}
+\doxysubsubsection{\texorpdfstring{cache\_size}{cache\_size}}
+{\footnotesize\ttfamily int Schema\+::cache\+\_\+size}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l13543}{13543}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_schema_a1338d09fe9cbb5a8162929202cb73cae}\label{struct_schema_a1338d09fe9cbb5a8162929202cb73cae} 
+\index{Schema@{Schema}!enc@{enc}}
+\index{enc@{enc}!Schema@{Schema}}
+\doxysubsubsection{\texorpdfstring{enc}{enc}}
+{\footnotesize\ttfamily u8 Schema\+::enc}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l13541}{13541}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_schema_ab9f0371436e41b3080772995407a4cca}\label{struct_schema_ab9f0371436e41b3080772995407a4cca} 
+\index{Schema@{Schema}!file\_format@{file\_format}}
+\index{file\_format@{file\_format}!Schema@{Schema}}
+\doxysubsubsection{\texorpdfstring{file\_format}{file\_format}}
+{\footnotesize\ttfamily u8 Schema\+::file\+\_\+format}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l13540}{13540}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_schema_ad51ed96351701cfe8d9e871722827c11}\label{struct_schema_ad51ed96351701cfe8d9e871722827c11} 
+\index{Schema@{Schema}!fkeyHash@{fkeyHash}}
+\index{fkeyHash@{fkeyHash}!Schema@{Schema}}
+\doxysubsubsection{\texorpdfstring{fkeyHash}{fkeyHash}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_hash}{Hash}} Schema\+::fkey\+Hash}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l13538}{13538}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_schema_ac0dd242f486d17ddadca1e47af76c6c5}\label{struct_schema_ac0dd242f486d17ddadca1e47af76c6c5} 
+\index{Schema@{Schema}!idxHash@{idxHash}}
+\index{idxHash@{idxHash}!Schema@{Schema}}
+\doxysubsubsection{\texorpdfstring{idxHash}{idxHash}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_hash}{Hash}} Schema\+::idx\+Hash}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l13536}{13536}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_schema_a879b1597656c7cbcbb98cdb88e876874}\label{struct_schema_a879b1597656c7cbcbb98cdb88e876874} 
+\index{Schema@{Schema}!iGeneration@{iGeneration}}
+\index{iGeneration@{iGeneration}!Schema@{Schema}}
+\doxysubsubsection{\texorpdfstring{iGeneration}{iGeneration}}
+{\footnotesize\ttfamily int Schema\+::i\+Generation}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l13534}{13534}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_schema_ad580e4e662724bee95571d297f94da37}\label{struct_schema_ad580e4e662724bee95571d297f94da37} 
+\index{Schema@{Schema}!pSeqTab@{pSeqTab}}
+\index{pSeqTab@{pSeqTab}!Schema@{Schema}}
+\doxysubsubsection{\texorpdfstring{pSeqTab}{pSeqTab}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_table}{Table}}\texorpdfstring{$\ast$}{*} Schema\+::p\+Seq\+Tab}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l13539}{13539}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_schema_a3eef54a64f4f962d64577646bd34a47c}\label{struct_schema_a3eef54a64f4f962d64577646bd34a47c} 
+\index{Schema@{Schema}!schema\_cookie@{schema\_cookie}}
+\index{schema\_cookie@{schema\_cookie}!Schema@{Schema}}
+\doxysubsubsection{\texorpdfstring{schema\_cookie}{schema\_cookie}}
+{\footnotesize\ttfamily int Schema\+::schema\+\_\+cookie}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l13533}{13533}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_schema_a19310cba7982138909683b1801258c18}\label{struct_schema_a19310cba7982138909683b1801258c18} 
+\index{Schema@{Schema}!schemaFlags@{schemaFlags}}
+\index{schemaFlags@{schemaFlags}!Schema@{Schema}}
+\doxysubsubsection{\texorpdfstring{schemaFlags}{schemaFlags}}
+{\footnotesize\ttfamily u16 Schema\+::schema\+Flags}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l13542}{13542}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_schema_af841eadc93b289944b95f72b784bfaae}\label{struct_schema_af841eadc93b289944b95f72b784bfaae} 
+\index{Schema@{Schema}!tblHash@{tblHash}}
+\index{tblHash@{tblHash}!Schema@{Schema}}
+\doxysubsubsection{\texorpdfstring{tblHash}{tblHash}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_hash}{Hash}} Schema\+::tbl\+Hash}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l13535}{13535}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_schema_ab521f4545d200329d8e1a46bbb67e7c5}\label{struct_schema_ab521f4545d200329d8e1a46bbb67e7c5} 
+\index{Schema@{Schema}!trigHash@{trigHash}}
+\index{trigHash@{trigHash}!Schema@{Schema}}
+\doxysubsubsection{\texorpdfstring{trigHash}{trigHash}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_hash}{Hash}} Schema\+::trig\+Hash}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l13537}{13537}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

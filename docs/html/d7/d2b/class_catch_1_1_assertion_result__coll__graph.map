@@ -1,0 +1,15 @@
+<map id="Catch::AssertionResult" name="Catch::AssertionResult">
+<area shape="rect" id="Node000001" title=" " alt="" coords="189,705,365,1050"/>
+<area shape="rect" id="Node000002" href="$d4/d90/struct_catch_1_1_assertion_info.html" title=" " alt="" coords="136,557,269,642"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,641,229,688,224,689,211,643"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="207,135,278,200"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="208,178,165,190,117,209,70,239,50,258,34,279,14,322,9,359,16,397,34,442,51,473,73,500,124,546,120,550,69,504,46,475,29,444,11,399,3,359,8,320,29,277,46,254,67,235,114,205,164,185,207,173"/>
+<area shape="rect" id="Node000005" href="$df/dc5/struct_catch_1_1_source_line_info.html" title=" " alt="" coords="171,278,314,443"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="245,200,245,261,240,261,240,200"/>
+<area shape="rect" id="Node000006" href="$df/d51/struct_catch_1_1_assertion_result_data.html" title=" " alt="" coords="263,467,440,533"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="276,198,305,234,329,277,343,322,351,368,356,450,351,451,346,368,338,323,324,279,300,237,272,201"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="184,5,301,85"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="245,100,245,135,240,135,240,100"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="206,444,199,468,195,504,196,540,191,540,190,504,194,467,200,442"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="348,533,317,689,312,688,343,532"/>
+</map>

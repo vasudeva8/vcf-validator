@@ -1,0 +1,210 @@
+\doxysection{ebi\+::vcf\+::Record\+Core Struct Reference}
+\hypertarget{structebi_1_1vcf_1_1_record_core}{}\label{structebi_1_1vcf_1_1_record_core}\index{ebi::vcf::RecordCore@{ebi::vcf::RecordCore}}
+
+
+Collaboration diagram for ebi\+::vcf\+::Record\+Core\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{d8/d11/structebi_1_1vcf_1_1_record_core__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_record_core_af8eee465ef69ab6923915bc62a829968}{Record\+Core}} (size\+\_\+t line\+\_\+num, const std\+::string \&chromosome, size\+\_\+t position, const std\+::string \&reference\+\_\+allele, const std\+::string \&alternate\+\_\+allele, Record\+Type alternate\+\_\+allele\+\_\+type)
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core_acdab140b0a56a00cf005ca12fec429c9}{operator$<$}} (const \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{Record\+Core}} \&other) const
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core_a48813350af34cc628eed60de4d768b2d}{operator==}} (const \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{Record\+Core}} \&other) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core_ac6eaf8a186a486b555bcbaabfa61cc28}{line}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core_a8a8c16738dc4aa10ea28702f83e45e4a}{line\+\_\+num}}
+\item 
+std\+::string \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core_a7423803c930e60c45e98f6d7af4db914}{chromosome}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core_a1bf4e425a96d84a81971babc4a4fc331}{position}}
+\item 
+std\+::string \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core_a5af962d0022bf3a1022f53ea947495f9}{reference\+\_\+allele}}
+\item 
+std\+::string \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core_a7538e4d22643e107b4658a278e6b2df3}{alternate\+\_\+allele}}
+\item 
+Record\+Type \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core_a02374315b7e2b41051c3bb848a887b34}{alternate\+\_\+allele\+\_\+type}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Subset of a \doxylink{structebi_1_1vcf_1_1_record}{Record}, used to detect duplicates. 
+
+Definition at line \mbox{\hyperlink{normalizer_8hpp_source_l00028}{28}} of file \mbox{\hyperlink{normalizer_8hpp_source}{normalizer.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_record_core_af8eee465ef69ab6923915bc62a829968}\label{structebi_1_1vcf_1_1_record_core_af8eee465ef69ab6923915bc62a829968} 
+\index{ebi::vcf::RecordCore@{ebi::vcf::RecordCore}!RecordCore@{RecordCore}}
+\index{RecordCore@{RecordCore}!ebi::vcf::RecordCore@{ebi::vcf::RecordCore}}
+\doxysubsubsection{\texorpdfstring{RecordCore()}{RecordCore()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Record\+Core\+::\+Record\+Core (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{line\+\_\+num,  }\item[{const std\+::string \&}]{chromosome,  }\item[{size\+\_\+t}]{position,  }\item[{const std\+::string \&}]{reference\+\_\+allele,  }\item[{const std\+::string \&}]{alternate\+\_\+allele,  }\item[{Record\+Type}]{alternate\+\_\+allele\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{normalizer_8hpp_source_l00038}{38}} of file \mbox{\hyperlink{normalizer_8hpp_source}{normalizer.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ line\_num(line\_num),}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chromosome(chromosome),}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position(position),}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reference\_allele(reference\_allele),}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alternate\_allele(alternate\_allele),}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alternate\_allele\_type(alternate\_allele\_type)}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_record_core_acdab140b0a56a00cf005ca12fec429c9}\label{structebi_1_1vcf_1_1_record_core_acdab140b0a56a00cf005ca12fec429c9} 
+\index{ebi::vcf::RecordCore@{ebi::vcf::RecordCore}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!ebi::vcf::RecordCore@{ebi::vcf::RecordCore}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool ebi\+::vcf\+::\+Record\+Core\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{Record\+Core}} \&}]{other }\end{DoxyParamCaption}) const}
+
+A record "{}a"{} is less than another "{}b"{} iff\+:
+\begin{DoxyItemize}
+\item the chromosome string from "{}a"{} is lexicographically less than the chromosome string from "{}b"{}, or if they equal\+:
+\item the position from "{}a"{} is numerically less than the position from "{}b"{}, or if they equal\+:
+\item the reference\+\_\+allele string from "{}a"{} is lexicographically less than the reference\+\_\+allele string from "{}b"{}, or if they equal\+:
+\item the alternate\+\_\+allele string from "{}a"{} is lexicographically less than the alternate\+\_\+allele string from "{}b"{}. 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{normalizer_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{normalizer_8cpp_source}{normalizer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ compare\ =\ chromosome.compare(other.chromosome);\ \textcolor{comment}{//\ <0:\ a<b;\ 0:\ a==b;\ >0:\ a>b}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (compare\ !=\ 0)\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ compare\ <\ 0;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ else:\ chromosome\ is\ the\ same}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (position\ !=\ other.position)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ position\ <\ other.position;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ compare\ =\ reference\_allele.compare(other.reference\_allele);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (compare\ !=\ 0)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ compare\ <\ 0;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ compare\ =\ alternate\_allele.compare(other.alternate\_allele);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ compare\ <\ 0;}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_record_core_a48813350af34cc628eed60de4d768b2d}\label{structebi_1_1vcf_1_1_record_core_a48813350af34cc628eed60de4d768b2d} 
+\index{ebi::vcf::RecordCore@{ebi::vcf::RecordCore}!operator==@{operator==}}
+\index{operator==@{operator==}!ebi::vcf::RecordCore@{ebi::vcf::RecordCore}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool ebi\+::vcf\+::\+Record\+Core\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{Record\+Core}} \&}]{other }\end{DoxyParamCaption}) const}
+
+Equality test without taking into account the line number; only chromosome, position, reference and alternate. 
+
+Definition at line \mbox{\hyperlink{normalizer_8cpp_source_l00045}{45}} of file \mbox{\hyperlink{normalizer_8cpp_source}{normalizer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ chromosome\ ==\ other.chromosome}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ position\ ==\ other.position}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ reference\_allele\ ==\ other.reference\_allele}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ alternate\_allele\ ==\ other.alternate\_allele;}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_record_core_a7538e4d22643e107b4658a278e6b2df3}\label{structebi_1_1vcf_1_1_record_core_a7538e4d22643e107b4658a278e6b2df3} 
+\index{ebi::vcf::RecordCore@{ebi::vcf::RecordCore}!alternate\_allele@{alternate\_allele}}
+\index{alternate\_allele@{alternate\_allele}!ebi::vcf::RecordCore@{ebi::vcf::RecordCore}}
+\doxysubsubsection{\texorpdfstring{alternate\_allele}{alternate\_allele}}
+{\footnotesize\ttfamily std\+::string ebi\+::vcf\+::\+Record\+Core\+::alternate\+\_\+allele}
+
+
+
+Definition at line \mbox{\hyperlink{normalizer_8hpp_source_l00035}{35}} of file \mbox{\hyperlink{normalizer_8hpp_source}{normalizer.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_core_a02374315b7e2b41051c3bb848a887b34}\label{structebi_1_1vcf_1_1_record_core_a02374315b7e2b41051c3bb848a887b34} 
+\index{ebi::vcf::RecordCore@{ebi::vcf::RecordCore}!alternate\_allele\_type@{alternate\_allele\_type}}
+\index{alternate\_allele\_type@{alternate\_allele\_type}!ebi::vcf::RecordCore@{ebi::vcf::RecordCore}}
+\doxysubsubsection{\texorpdfstring{alternate\_allele\_type}{alternate\_allele\_type}}
+{\footnotesize\ttfamily Record\+Type ebi\+::vcf\+::\+Record\+Core\+::alternate\+\_\+allele\+\_\+type}
+
+
+
+Definition at line \mbox{\hyperlink{normalizer_8hpp_source_l00036}{36}} of file \mbox{\hyperlink{normalizer_8hpp_source}{normalizer.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_core_a7423803c930e60c45e98f6d7af4db914}\label{structebi_1_1vcf_1_1_record_core_a7423803c930e60c45e98f6d7af4db914} 
+\index{ebi::vcf::RecordCore@{ebi::vcf::RecordCore}!chromosome@{chromosome}}
+\index{chromosome@{chromosome}!ebi::vcf::RecordCore@{ebi::vcf::RecordCore}}
+\doxysubsubsection{\texorpdfstring{chromosome}{chromosome}}
+{\footnotesize\ttfamily std\+::string ebi\+::vcf\+::\+Record\+Core\+::chromosome}
+
+
+
+Definition at line \mbox{\hyperlink{normalizer_8hpp_source_l00032}{32}} of file \mbox{\hyperlink{normalizer_8hpp_source}{normalizer.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_core_ac6eaf8a186a486b555bcbaabfa61cc28}\label{structebi_1_1vcf_1_1_record_core_ac6eaf8a186a486b555bcbaabfa61cc28} 
+\index{ebi::vcf::RecordCore@{ebi::vcf::RecordCore}!line@{line}}
+\index{line@{line}!ebi::vcf::RecordCore@{ebi::vcf::RecordCore}}
+\doxysubsubsection{\texorpdfstring{line}{line}}
+{\footnotesize\ttfamily std\+::string ebi\+::vcf\+::\+Record\+Core\+::line}
+
+
+
+Definition at line \mbox{\hyperlink{normalizer_8hpp_source_l00030}{30}} of file \mbox{\hyperlink{normalizer_8hpp_source}{normalizer.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_core_a8a8c16738dc4aa10ea28702f83e45e4a}\label{structebi_1_1vcf_1_1_record_core_a8a8c16738dc4aa10ea28702f83e45e4a} 
+\index{ebi::vcf::RecordCore@{ebi::vcf::RecordCore}!line\_num@{line\_num}}
+\index{line\_num@{line\_num}!ebi::vcf::RecordCore@{ebi::vcf::RecordCore}}
+\doxysubsubsection{\texorpdfstring{line\_num}{line\_num}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Record\+Core\+::line\+\_\+num}
+
+
+
+Definition at line \mbox{\hyperlink{normalizer_8hpp_source_l00031}{31}} of file \mbox{\hyperlink{normalizer_8hpp_source}{normalizer.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_core_a1bf4e425a96d84a81971babc4a4fc331}\label{structebi_1_1vcf_1_1_record_core_a1bf4e425a96d84a81971babc4a4fc331} 
+\index{ebi::vcf::RecordCore@{ebi::vcf::RecordCore}!position@{position}}
+\index{position@{position}!ebi::vcf::RecordCore@{ebi::vcf::RecordCore}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Record\+Core\+::position}
+
+
+
+Definition at line \mbox{\hyperlink{normalizer_8hpp_source_l00033}{33}} of file \mbox{\hyperlink{normalizer_8hpp_source}{normalizer.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_record_core_a5af962d0022bf3a1022f53ea947495f9}\label{structebi_1_1vcf_1_1_record_core_a5af962d0022bf3a1022f53ea947495f9} 
+\index{ebi::vcf::RecordCore@{ebi::vcf::RecordCore}!reference\_allele@{reference\_allele}}
+\index{reference\_allele@{reference\_allele}!ebi::vcf::RecordCore@{ebi::vcf::RecordCore}}
+\doxysubsubsection{\texorpdfstring{reference\_allele}{reference\_allele}}
+{\footnotesize\ttfamily std\+::string ebi\+::vcf\+::\+Record\+Core\+::reference\+\_\+allele}
+
+
+
+Definition at line \mbox{\hyperlink{normalizer_8hpp_source_l00034}{34}} of file \mbox{\hyperlink{normalizer_8hpp_source}{normalizer.\+hpp}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/normalizer.\+hpp\item 
+src/vcf/normalizer.\+cpp\end{DoxyCompactItemize}

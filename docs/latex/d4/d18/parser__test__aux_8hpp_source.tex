@@ -1,0 +1,38 @@
+\doxysection{parser\+\_\+test\+\_\+aux.\+hpp}
+\hypertarget{parser__test__aux_8hpp_source}{}\label{parser__test__aux_8hpp_source}\index{test/vcf/parser\_test\_aux.hpp@{test/vcf/parser\_test\_aux.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ EBI\_PARSER\_TEST\_AUX\_HPP}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ EBI\_PARSER\_TEST\_AUX\_HPP}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <boost/filesystem.hpp>}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}catch/catch.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00028}00028\ \textcolor{preprocessor}{\#include\ "{}util/stream\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00029}00029\ \textcolor{preprocessor}{\#include\ "{}vcf/file\_structure.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00030}00030\ \textcolor{preprocessor}{\#include\ "{}vcf/validator.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00032}00032\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00033}00033\ \{}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00034}00034\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ is\_valid(std::string\ path,\ vcf::AdditionalChecks\ additionalChecks)\ \{}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00035}00035\ \ \ \ \ \ \ std::ifstream\ input\{path\};}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00036}00036\ \ \ \ \ \ \ std::vector<std::unique\_ptr<ebi::vcf::ReportWriter>>\ outputs;}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00038}00038\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vcf::is\_valid\_vcf\_file(input,\ path,\ vcf::ValidationLevel::warning,\ outputs,\ additionalChecks);}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00039}00039\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00041}00041\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ is\_valid(std::string\ path)\ \{}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00042}00042\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ is\_valid(path,\ \{\textcolor{keyword}{false}\});}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00043}00043\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00044}00044\ \}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00046}00046\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EBI\_PARSER\_TEST\_AUX\_HPP}}
+\DoxyCodeLine{\Hypertarget{parser__test__aux_8hpp_source_l00047}00047\ }
+
+\end{DoxyCode}

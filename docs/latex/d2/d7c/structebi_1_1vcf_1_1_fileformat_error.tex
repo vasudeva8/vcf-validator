@@ -1,0 +1,189 @@
+\doxysection{ebi\+::vcf\+::Fileformat\+Error Struct Reference}
+\hypertarget{structebi_1_1vcf_1_1_fileformat_error}{}\label{structebi_1_1vcf_1_1_fileformat_error}\index{ebi::vcf::FileformatError@{ebi::vcf::FileformatError}}
+
+
+Inheritance diagram for ebi\+::vcf\+::Fileformat\+Error\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d3/dc0/structebi_1_1vcf_1_1_fileformat_error__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ebi\+::vcf\+::Fileformat\+Error\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d2/d0d/structebi_1_1vcf_1_1_fileformat_error__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_fileformat_error_aba49e37b2f46107e6f172206a06cce2d}{Fileformat\+Error}} (size\+\_\+t line)
+\item 
+virtual void \mbox{\hyperlink{structebi_1_1vcf_1_1_fileformat_error_ad515e409908421608c376835a17b55de}{apply\+\_\+visitor}} (\mbox{\hyperlink{classebi_1_1vcf_1_1_error_visitor}{Error\+Visitor}} \&visitor) override
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_fileformat_error_a77cc36bb85b8f9275234096f6296e221}{Meta\+Section\+Error}} (size\+\_\+t line=0, const std\+::string \&message="{}Error in meta-\/data section"{}, Error\+Fix error\+\_\+fix=Error\+Fix\+::\+IRRECOVERABLE\+\_\+\+VALUE, const std\+::string \&value="{}"{}, const std\+::string \&expected\+\_\+value="{}"{})
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_fileformat_error_acfc678e6f4069df4772edaddf80ebd0a}{Meta\+Section\+Error}} (size\+\_\+t line, const std\+::string \&message, const std\+::string \&detailed\+\_\+message, Error\+Fix error\+\_\+fix=Error\+Fix\+::\+IRRECOVERABLE\+\_\+\+VALUE, const std\+::string \&value="{}"{}, const std\+::string \&expected\+\_\+value="{}"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_section_error}{ebi\+::vcf\+::\+Meta\+Section\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_section_error_a77cc36bb85b8f9275234096f6296e221}{Meta\+Section\+Error}} (size\+\_\+t line=0, const std\+::string \&message="{}Error in meta-\/data section"{}, Error\+Fix error\+\_\+fix=Error\+Fix\+::\+IRRECOVERABLE\+\_\+\+VALUE, const std\+::string \&value="{}"{}, const std\+::string \&expected\+\_\+value="{}"{})
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_section_error_acfc678e6f4069df4772edaddf80ebd0a}{Meta\+Section\+Error}} (size\+\_\+t line, const std\+::string \&message, const std\+::string \&detailed\+\_\+message, Error\+Fix error\+\_\+fix=Error\+Fix\+::\+IRRECOVERABLE\+\_\+\+VALUE, const std\+::string \&value="{}"{}, const std\+::string \&expected\+\_\+value="{}"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{ebi\+::vcf\+::\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_error_a638ea9058df9fe83d8f2995e6e432fd2}{Error}} (size\+\_\+t line)
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_error_ae766258a6577289d4c363fba360f228b}{Error}} (size\+\_\+t line, const std\+::string \&message, const std\+::string \&detailed\+\_\+message="{}"{})
+\item 
+unsigned long \mbox{\hyperlink{structebi_1_1vcf_1_1_error_a034aff9497965492feaad1cf92adf19e}{get\+\_\+id}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Data Fields inherited from \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_section_error}{ebi\+::vcf\+::\+Meta\+Section\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+Error\+Fix \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_section_error_af339e8872a0e8704282f16051002814a}{error\+\_\+fix}}
+\item 
+const std\+::string \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_section_error_a75b402c054c71323e46b93fd4a12a42e}{value}}
+\item 
+const std\+::string \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_section_error_a4b080b24564282455667e4c5d6ade4b7}{expected\+\_\+value}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Data Fields inherited from \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{ebi\+::vcf\+::\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+const size\+\_\+t \mbox{\hyperlink{structebi_1_1vcf_1_1_error_ad914f956d533b199cfb98d74432997fe}{line}}
+\item 
+const std\+::string \mbox{\hyperlink{structebi_1_1vcf_1_1_error_ae6f5df8a08570894824499e67d5ec24a}{message}}
+\item 
+const std\+::string \mbox{\hyperlink{structebi_1_1vcf_1_1_error_aa72e6a9ef93f739f2567074949124eff}{detailed\+\_\+message}}
+\item 
+Severity \mbox{\hyperlink{structebi_1_1vcf_1_1_error_ab184ec5f7c791d5630065e8ce8da6b73}{severity}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00213}{213}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_fileformat_error_a32806a387be9a74a6554a7b63d4e9d7c}\label{structebi_1_1vcf_1_1_fileformat_error_a32806a387be9a74a6554a7b63d4e9d7c} 
+\index{ebi::vcf::FileformatError@{ebi::vcf::FileformatError}!FileformatError@{FileformatError}}
+\index{FileformatError@{FileformatError}!ebi::vcf::FileformatError@{ebi::vcf::FileformatError}}
+\doxysubsubsection{\texorpdfstring{FileformatError()}{FileformatError()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Fileformat\+Error\+::\+Fileformat\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00216}{216}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00216\ :\ FileformatError\{0\}\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_fileformat_error_aba49e37b2f46107e6f172206a06cce2d}\label{structebi_1_1vcf_1_1_fileformat_error_aba49e37b2f46107e6f172206a06cce2d} 
+\index{ebi::vcf::FileformatError@{ebi::vcf::FileformatError}!FileformatError@{FileformatError}}
+\index{FileformatError@{FileformatError}!ebi::vcf::FileformatError@{ebi::vcf::FileformatError}}
+\doxysubsubsection{\texorpdfstring{FileformatError()}{FileformatError()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Fileformat\+Error\+::\+Fileformat\+Error (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{line }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00217}{217}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00217\ :\ FileformatError\{line,\ \textcolor{stringliteral}{"{}Error\ in\ file\ format\ section"{}}\}\ \{\ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_fileformat_error_a34fc7b4c556127155d9a279a6b0aeee3}\label{structebi_1_1vcf_1_1_fileformat_error_a34fc7b4c556127155d9a279a6b0aeee3} 
+\index{ebi::vcf::FileformatError@{ebi::vcf::FileformatError}!````~FileformatError@{\texorpdfstring{$\sim$}{\string~}FileformatError}}
+\index{````~FileformatError@{\texorpdfstring{$\sim$}{\string~}FileformatError}!ebi::vcf::FileformatError@{ebi::vcf::FileformatError}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}FileformatError()}{\string~FileformatError()}}
+{\footnotesize\ttfamily virtual ebi\+::vcf\+::\+Fileformat\+Error\+::\texorpdfstring{$\sim$}{\string~}\+Fileformat\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00218}{218}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00218\ \{\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_fileformat_error_ad515e409908421608c376835a17b55de}\label{structebi_1_1vcf_1_1_fileformat_error_ad515e409908421608c376835a17b55de} 
+\index{ebi::vcf::FileformatError@{ebi::vcf::FileformatError}!apply\_visitor@{apply\_visitor}}
+\index{apply\_visitor@{apply\_visitor}!ebi::vcf::FileformatError@{ebi::vcf::FileformatError}}
+\doxysubsubsection{\texorpdfstring{apply\_visitor()}{apply\_visitor()}}
+{\footnotesize\ttfamily virtual void ebi\+::vcf\+::\+Fileformat\+Error\+::apply\+\_\+visitor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classebi_1_1vcf_1_1_error_visitor}{Error\+Visitor}} \&}]{visitor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{structebi_1_1vcf_1_1_meta_section_error}{ebi\+::vcf\+::\+Meta\+Section\+Error}}.
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00219}{219}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00219\ \{\ visitor.visit(*\textcolor{keyword}{this});\ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_fileformat_error_acfc678e6f4069df4772edaddf80ebd0a}\label{structebi_1_1vcf_1_1_fileformat_error_acfc678e6f4069df4772edaddf80ebd0a} 
+\index{ebi::vcf::FileformatError@{ebi::vcf::FileformatError}!MetaSectionError@{MetaSectionError}}
+\index{MetaSectionError@{MetaSectionError}!ebi::vcf::FileformatError@{ebi::vcf::FileformatError}}
+\doxysubsubsection{\texorpdfstring{MetaSectionError()}{MetaSectionError()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Meta\+Section\+Error\+::\+Meta\+Section\+Error (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{line,  }\item[{const std\+::string \&}]{message,  }\item[{const std\+::string \&}]{detailed\+\_\+message,  }\item[{Error\+Fix}]{error\+\_\+fix = {\ttfamily ErrorFix\+:\+:IRRECOVERABLE\+\_\+VALUE},  }\item[{const std\+::string \&}]{value = {\ttfamily "{}"{}},  }\item[{const std\+::string \&}]{expected\+\_\+value = {\ttfamily "{}"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00155}{155}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ Error\{line,\ message,\ detailed\_message\},}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\_fix\{error\_fix\},}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\{value\},}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expected\_value\{expected\_value\}\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (error\_fix\ ==\ ErrorFix::RECOVERABLE\_VALUE\ \&\&\ (value.empty()\ ||\ expected\_value.empty()))\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}An\ internal\ error\ occurred:\ Errors\ with\ recoverable\ meta\ definition\ must\ provide\ non-\/empty\ field\ and\ expected\ values"{}});}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_fileformat_error_a77cc36bb85b8f9275234096f6296e221}\label{structebi_1_1vcf_1_1_fileformat_error_a77cc36bb85b8f9275234096f6296e221} 
+\index{ebi::vcf::FileformatError@{ebi::vcf::FileformatError}!MetaSectionError@{MetaSectionError}}
+\index{MetaSectionError@{MetaSectionError}!ebi::vcf::FileformatError@{ebi::vcf::FileformatError}}
+\doxysubsubsection{\texorpdfstring{MetaSectionError()}{MetaSectionError()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Meta\+Section\+Error\+::\+Meta\+Section\+Error (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{line = {\ttfamily 0},  }\item[{const std\+::string \&}]{message = {\ttfamily "{}Error~in~meta-\/data~section"{}},  }\item[{Error\+Fix}]{error\+\_\+fix = {\ttfamily ErrorFix\+:\+:IRRECOVERABLE\+\_\+VALUE},  }\item[{const std\+::string \&}]{value = {\ttfamily "{}"{}},  }\item[{const std\+::string \&}]{expected\+\_\+value = {\ttfamily "{}"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00148}{148}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ MetaSectionError\{line,\ message,\ \textcolor{stringliteral}{"{}"{}},\ error\_fix,\ value,\ expected\_value\}\ \{\ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/error.\+hpp\end{DoxyCompactItemize}

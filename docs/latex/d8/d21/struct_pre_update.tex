@@ -1,0 +1,174 @@
+\doxysection{Pre\+Update Struct Reference}
+\hypertarget{struct_pre_update}{}\label{struct_pre_update}\index{PreUpdate@{PreUpdate}}
+
+
+Collaboration diagram for Pre\+Update\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{de/da5/struct_pre_update__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_vdbe}{Vdbe}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_pre_update_a6fccc7c418de1a789595f9814a4f5f81}{v}}
+\item 
+\mbox{\hyperlink{struct_vdbe_cursor}{Vdbe\+Cursor}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_pre_update_a4716275b8f780b4f63f1a379a846c620}{p\+Csr}}
+\item 
+int \mbox{\hyperlink{struct_pre_update_aaecf3af9f7b62a4fd140d0d1300201cf}{op}}
+\item 
+u8 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_pre_update_a148cb72a74c7943828e02a5ce88ef662}{a\+Record}}
+\item 
+\mbox{\hyperlink{struct_key_info}{Key\+Info}} \mbox{\hyperlink{struct_pre_update_a8bb920205df3c43820a81dcd3c1cf5bb}{keyinfo}}
+\item 
+\mbox{\hyperlink{struct_unpacked_record}{Unpacked\+Record}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_pre_update_ab43a1f36e6ab8c9aa8b1e52f1d80d07f}{p\+Unpacked}}
+\item 
+\mbox{\hyperlink{struct_unpacked_record}{Unpacked\+Record}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_pre_update_a70c572bb14af1dfdff8a1d6619548de0}{p\+New\+Unpacked}}
+\item 
+int \mbox{\hyperlink{struct_pre_update_aadbf462d0c2b3d64387f9ece92ad2ed1}{i\+New\+Reg}}
+\item 
+i64 \mbox{\hyperlink{struct_pre_update_a1d05fbd13495324e507658cd519cacbd}{i\+Key1}}
+\item 
+i64 \mbox{\hyperlink{struct_pre_update_adeecdda5c18124870ad08b70832f7387}{i\+Key2}}
+\item 
+int \mbox{\hyperlink{struct_pre_update_acf15d510f82176799ba3d8ee12bd670c}{i\+PKey}}
+\item 
+\mbox{\hyperlink{struct_mem}{Mem}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_pre_update_a3d8862bac16113aeb528b1aeafe4f118}{a\+New}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17836}{17836}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_pre_update_a3d8862bac16113aeb528b1aeafe4f118}\label{struct_pre_update_a3d8862bac16113aeb528b1aeafe4f118} 
+\index{PreUpdate@{PreUpdate}!aNew@{aNew}}
+\index{aNew@{aNew}!PreUpdate@{PreUpdate}}
+\doxysubsubsection{\texorpdfstring{aNew}{aNew}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_mem}{Mem}}\texorpdfstring{$\ast$}{*} Pre\+Update\+::a\+New}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17848}{17848}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pre_update_a148cb72a74c7943828e02a5ce88ef662}\label{struct_pre_update_a148cb72a74c7943828e02a5ce88ef662} 
+\index{PreUpdate@{PreUpdate}!aRecord@{aRecord}}
+\index{aRecord@{aRecord}!PreUpdate@{PreUpdate}}
+\doxysubsubsection{\texorpdfstring{aRecord}{aRecord}}
+{\footnotesize\ttfamily u8\texorpdfstring{$\ast$}{*} Pre\+Update\+::a\+Record}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17840}{17840}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pre_update_a1d05fbd13495324e507658cd519cacbd}\label{struct_pre_update_a1d05fbd13495324e507658cd519cacbd} 
+\index{PreUpdate@{PreUpdate}!iKey1@{iKey1}}
+\index{iKey1@{iKey1}!PreUpdate@{PreUpdate}}
+\doxysubsubsection{\texorpdfstring{iKey1}{iKey1}}
+{\footnotesize\ttfamily i64 Pre\+Update\+::i\+Key1}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17845}{17845}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pre_update_adeecdda5c18124870ad08b70832f7387}\label{struct_pre_update_adeecdda5c18124870ad08b70832f7387} 
+\index{PreUpdate@{PreUpdate}!iKey2@{iKey2}}
+\index{iKey2@{iKey2}!PreUpdate@{PreUpdate}}
+\doxysubsubsection{\texorpdfstring{iKey2}{iKey2}}
+{\footnotesize\ttfamily i64 Pre\+Update\+::i\+Key2}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17846}{17846}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pre_update_aadbf462d0c2b3d64387f9ece92ad2ed1}\label{struct_pre_update_aadbf462d0c2b3d64387f9ece92ad2ed1} 
+\index{PreUpdate@{PreUpdate}!iNewReg@{iNewReg}}
+\index{iNewReg@{iNewReg}!PreUpdate@{PreUpdate}}
+\doxysubsubsection{\texorpdfstring{iNewReg}{iNewReg}}
+{\footnotesize\ttfamily int Pre\+Update\+::i\+New\+Reg}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17844}{17844}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pre_update_acf15d510f82176799ba3d8ee12bd670c}\label{struct_pre_update_acf15d510f82176799ba3d8ee12bd670c} 
+\index{PreUpdate@{PreUpdate}!iPKey@{iPKey}}
+\index{iPKey@{iPKey}!PreUpdate@{PreUpdate}}
+\doxysubsubsection{\texorpdfstring{iPKey}{iPKey}}
+{\footnotesize\ttfamily int Pre\+Update\+::i\+PKey}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17847}{17847}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pre_update_a8bb920205df3c43820a81dcd3c1cf5bb}\label{struct_pre_update_a8bb920205df3c43820a81dcd3c1cf5bb} 
+\index{PreUpdate@{PreUpdate}!keyinfo@{keyinfo}}
+\index{keyinfo@{keyinfo}!PreUpdate@{PreUpdate}}
+\doxysubsubsection{\texorpdfstring{keyinfo}{keyinfo}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_key_info}{Key\+Info}} Pre\+Update\+::keyinfo}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17841}{17841}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pre_update_aaecf3af9f7b62a4fd140d0d1300201cf}\label{struct_pre_update_aaecf3af9f7b62a4fd140d0d1300201cf} 
+\index{PreUpdate@{PreUpdate}!op@{op}}
+\index{op@{op}!PreUpdate@{PreUpdate}}
+\doxysubsubsection{\texorpdfstring{op}{op}}
+{\footnotesize\ttfamily int Pre\+Update\+::op}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17839}{17839}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pre_update_a4716275b8f780b4f63f1a379a846c620}\label{struct_pre_update_a4716275b8f780b4f63f1a379a846c620} 
+\index{PreUpdate@{PreUpdate}!pCsr@{pCsr}}
+\index{pCsr@{pCsr}!PreUpdate@{PreUpdate}}
+\doxysubsubsection{\texorpdfstring{pCsr}{pCsr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vdbe_cursor}{Vdbe\+Cursor}}\texorpdfstring{$\ast$}{*} Pre\+Update\+::p\+Csr}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17838}{17838}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pre_update_a70c572bb14af1dfdff8a1d6619548de0}\label{struct_pre_update_a70c572bb14af1dfdff8a1d6619548de0} 
+\index{PreUpdate@{PreUpdate}!pNewUnpacked@{pNewUnpacked}}
+\index{pNewUnpacked@{pNewUnpacked}!PreUpdate@{PreUpdate}}
+\doxysubsubsection{\texorpdfstring{pNewUnpacked}{pNewUnpacked}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_unpacked_record}{Unpacked\+Record}}\texorpdfstring{$\ast$}{*} Pre\+Update\+::p\+New\+Unpacked}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17843}{17843}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pre_update_ab43a1f36e6ab8c9aa8b1e52f1d80d07f}\label{struct_pre_update_ab43a1f36e6ab8c9aa8b1e52f1d80d07f} 
+\index{PreUpdate@{PreUpdate}!pUnpacked@{pUnpacked}}
+\index{pUnpacked@{pUnpacked}!PreUpdate@{PreUpdate}}
+\doxysubsubsection{\texorpdfstring{pUnpacked}{pUnpacked}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_unpacked_record}{Unpacked\+Record}}\texorpdfstring{$\ast$}{*} Pre\+Update\+::p\+Unpacked}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17842}{17842}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_pre_update_a6fccc7c418de1a789595f9814a4f5f81}\label{struct_pre_update_a6fccc7c418de1a789595f9814a4f5f81} 
+\index{PreUpdate@{PreUpdate}!v@{v}}
+\index{v@{v}!PreUpdate@{PreUpdate}}
+\doxysubsubsection{\texorpdfstring{v}{v}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vdbe}{Vdbe}}\texorpdfstring{$\ast$}{*} Pre\+Update\+::v}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l17837}{17837}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

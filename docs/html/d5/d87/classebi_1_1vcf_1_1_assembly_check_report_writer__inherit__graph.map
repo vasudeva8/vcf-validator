@@ -1,0 +1,9 @@
+<map id="ebi::vcf::AssemblyCheckReportWriter" name="ebi::vcf::AssemblyCheckReportWriter">
+<area shape="rect" id="Node000001" title=" " alt="" coords="261,5,469,185"/>
+<area shape="rect" id="Node000002" href="$d5/da5/classebi_1_1vcf_1_1_summary_assembly_check_report_writer.html" title=" " alt="" coords="5,233,228,403"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="256,197,212,236,208,232,252,193"/>
+<area shape="rect" id="Node000003" href="$d6/dfe/classebi_1_1vcf_1_1_text_assembly_check_report_writer.html" title=" " alt="" coords="252,241,477,395"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="367,200,367,241,362,241,362,200"/>
+<area shape="rect" id="Node000004" href="$d5/d3a/classebi_1_1vcf_1_1_valid_assembly_check_report_writer.html" title=" " alt="" coords="502,233,697,403"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="472,193,513,232,509,236,468,197"/>
+</map>

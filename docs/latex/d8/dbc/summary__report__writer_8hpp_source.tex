@@ -1,0 +1,98 @@
+\doxysection{summary\+\_\+report\+\_\+writer.\+hpp}
+\hypertarget{summary__report__writer_8hpp_source}{}\label{summary__report__writer_8hpp_source}\index{inc/vcf/summary\_report\_writer.hpp@{inc/vcf/summary\_report\_writer.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ VCF\_SUMMARY\_REPORT\_WRITER\_HPP}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ VCF\_SUMMARY\_REPORT\_WRITER\_HPP}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}report\_writer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00023}00023\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00024}00024\ \{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00025}00025\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00026}00026\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00031}\mbox{\hyperlink{structebi_1_1vcf_1_1_error_summary}{00031}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structebi_1_1vcf_1_1_error_summary}{ErrorSummary}}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00032}00032\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00033}00033\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ occurrences;}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00034}00034\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ first\_occurrence\_line;}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00035}00035\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00047}\mbox{\hyperlink{classebi_1_1vcf_1_1_summary_tracker}{00047}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_summary_tracker}{SummaryTracker}}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00048}00048\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00049}00049\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ std::map<std::string,\ ErrorSummary>\ error\_summary\_report;}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ std::vector<std::string>\ error\_order;}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ add\_to\_summary(std::string\ \textcolor{keyword}{const}\ \&\ error\_message,\ \textcolor{keywordtype}{size\_t}\ error\_line)}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (error\_summary\_report.find(error\_message)\ ==\ error\_summary\_report.end())\ \{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\_order.push\_back(error\_message);}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\_summary\_report[error\_message]\ =\ \mbox{\hyperlink{structebi_1_1vcf_1_1_error_summary}{ErrorSummary}}\{1,\ error\_line\};}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\_summary\_report[error\_message].occurrences++;}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00062}00062\ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00067}\mbox{\hyperlink{classebi_1_1vcf_1_1_summary_report_writer}{00067}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_summary_report_writer}{SummaryReportWriter}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_report_writer}{ReportWriter}}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00068}00068\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00069}00069\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_summary_report_writer}{SummaryReportWriter}}(std::string\ filename)\ :\ file\_name(filename)}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ file.open(filename,\ std::ios::out);}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!file)\ \{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error\{\textcolor{stringliteral}{"{}Unable\ to\ write\ output\ file\ "{}}\ +\ file\_name\};}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_summary_report_writer}{\string~SummaryReportWriter}}()}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ write\_summary();}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ write\_error(\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}}\ \&error)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00085}00085\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ summary.add\_to\_summary(\textcolor{stringliteral}{"{}Error:\ "{}}\ +\ error.message,\ error.line);}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ write\_warning(\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}}\ \&error)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00090}00090\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ summary.add\_to\_summary(\textcolor{stringliteral}{"{}Warning:\ "{}}\ +\ error.message,\ error.line);}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ write\_message(\textcolor{keyword}{const}\ std::string\ \&report\_result)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00095}00095\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>report\_result\ =\ report\_result;}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ get\_report\_message()\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00100}00100\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Summary\ report\ written\ to\ :\ "{}}\ +\ file\_name;}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00104}00104\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_summary_tracker}{SummaryTracker}}\ summary;}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00106}00106\ \ \ \ \ \ \ \ \ std::string\ report\_result;}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00107}00107\ \ \ \ \ \ \ \ \ std::string\ file\_name;}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00108}00108\ \ \ \ \ \ \ \ \ std::ofstream\ file;}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ write\_summary()}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ report\_result\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ error\_message\ :\ summary.error\_order)\ \{}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ error\_message\ <<\ \textcolor{stringliteral}{"{}.\ This\ occurs\ "{}}\ <<\ summary.error\_summary\_report[error\_message].occurrences}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ time(s),\ first\ time\ in\ line\ "{}}\ <<\ summary.error\_summary\_report[error\_message].first\_occurrence\_line\ <<\ \textcolor{stringliteral}{"{}."{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00119}00119\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00120}00120\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00121}00121\ \}}
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{summary__report__writer_8hpp_source_l00123}00123\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VCF\_SUMMARY\_REPORT\_WRITER\_HPP}}
+
+\end{DoxyCode}

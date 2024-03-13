@@ -1,0 +1,132 @@
+\doxysection{fixer.\+hpp}
+\hypertarget{fixer_8hpp_source}{}\label{fixer_8hpp_source}\index{inc/vcf/fixer.hpp@{inc/vcf/fixer.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ VCF\_FIXER\_HPP}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ VCF\_FIXER\_HPP}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}util/stream\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}util/string\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}error.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00029}00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00030}00030\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00031}00031\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00032}00032\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00033}\mbox{\hyperlink{classebi_1_1vcf_1_1_fixer}{00033}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_fixer}{Fixer}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_error_visitor}{ErrorVisitor}}\ \{}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00034}00034\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer}{Fixer}}(std::ostream\ \&output)}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ line\_number\{0\},\ line\{\textcolor{keyword}{nullptr}\},\ output(output),\ ignored\_errors\{0\}\ \{\ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00037}00037\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer}{\string~Fixer}}()\ \{\ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ fix(\textcolor{keywordtype}{size\_t}\ line\_number,\ std::vector<char>\ \&line,\ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}}\ \&error);}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ get\_ignored\_errors();}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00044}00044\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ line\_number;}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ std::vector<char>\ *line;}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ std::ostream\ \&output;}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ignored\_errors;}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ ignore\_error();}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_section_error}{MetaSectionError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_header_section_error}{HeaderSectionError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_body_section_error}{BodySectionError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_no_meta_definition_error}{NoMetaDefinitionError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_fileformat_error}{FileformatError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_chromosome_body_error}{ChromosomeBodyError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_position_body_error}{PositionBodyError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_id_body_error}{IdBodyError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_reference_allele_body_error}{ReferenceAlleleBodyError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_alternate_alleles_body_error}{AlternateAllelesBodyError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_quality_body_error}{QualityBodyError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_filter_body_error}{FilterBodyError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_info_body_error}{InfoBodyError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_format_body_error}{FormatBodyError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_samples_body_error}{SamplesBodyError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_samples_field_body_error}{SamplesFieldBodyError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_normalization_error}{NormalizationError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ visit(\mbox{\hyperlink{structebi_1_1vcf_1_1_duplication_error}{DuplicationError}}\ \&error)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00112}00112\ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_ae29aae3d1157c90cdc7651729a401e3a}{remove\_duplicate\_strings}}(\textcolor{keyword}{const}\ std::string\ \&column,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separator);}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a95d5635d53f6647f7038534656b3a5e5}{remove\_duplicate\_key\_value\_pairs}}(\textcolor{keyword}{const}\ std::string\ \&column,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separator,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&key\_value\_separator,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&empty\_value);}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_ac675356ba5dd8eb606778a12663dc843}{remove\_duplicate\_format\_sample\_pairs}}(\textcolor{keyword}{const}\ std::string\ \&string\_line);}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00150}00150\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Returns\ all\ the\ fields\ to\ remove\ from\ the\ FORMAT\ column\ and\ corresponding\ ones\ in\ sample\ columns,\ for\ duplicate\ values\ error.}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00151}00151\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @param\ map\ containing\ unique\ FORMAT\ fields\ with\ their\ indices\ in\ the\ FORMAT\ column}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00152}00152\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @param\ a\ vector\ of\ sample\ columns,\ where\ each\ column\ is\ stored\ as\ a\ vector\ of\ split\ sample\ subfields}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00153}00153\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @return\ a\ set\ of\ fields\ to\ remove}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00154}00154\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00155}00155\ \ \ \ \ \ \ \ \ std::set<std::string>\ get\_format\_fields\_to\_remove(std::map<std::string,\ std::vector<size\_t>>\ \&format\_fields\_indexes,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::vector<std::string>>\ \&samples);}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a24efbc29a328d0dee0d0e817546e35a3}{fix\_format\_gt}}(std::vector<std::string>::iterator\ first,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>::iterator\ last,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_samples_field_body_error}{SamplesFieldBodyError}}\ \&error);}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a19c537657d4d9822a20f6d6ab4b0f530}{remove\_format}}(std::vector<std::string>::iterator\ first,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>::iterator\ last,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1vcf_1_1_samples_field_body_error}{SamplesFieldBodyError}}\ \&error);}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ remove\_fields(\textcolor{keyword}{const}\ std::string\ \&line,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separators,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{bool}(\textcolor{keyword}{const}\ std::string\ \&column,\ \textcolor{keywordtype}{size\_t}\ index)>\ condition\_to\_remove);}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ remove\_fields(\textcolor{keyword}{const}\ std::string\ \&line,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separators,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&empty\_column,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{bool}(\textcolor{keyword}{const}\ std::string\ \&column,\ \textcolor{keywordtype}{size\_t}\ index)>\ condition\_to\_remove);}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a8f8db9d8bb5edb58273c6f62ae0d6cfd}{replace\_fields}}(\textcolor{keyword}{const}\ std::string\ \&line,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separators,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&expected\_field,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{bool}(\textcolor{keyword}{const}\ std::string\ \&column,\ \textcolor{keywordtype}{size\_t}\ index)>\ condition\_to\_replace);}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00214}00214\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_aefebae3ab0964f8ee54ffe483bb3c4e1}{split\_and\_find}}(\textcolor{keyword}{const}\ std::string\ \&line,\ \textcolor{keyword}{const}\ std::string\ \&separator,\ \textcolor{keyword}{const}\ std::string\ \&value);}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a7daf3e6a2e5ee7dedaa52f7da3e253db}{fix\_column}}(\textcolor{keywordtype}{size\_t}\ column\_index,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&line,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separator,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{void}(std::string\ \&column)>\ fix\_function);}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00243}00243\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a9c1a1a0b710659b8dbbe12906ffae94f}{fix\_foreach\_column}}(\textcolor{keywordtype}{size\_t}\ column\_index,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ column\_index\_last,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&line,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separator,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{void}(std::string\ \&column)>\ fix\_function);}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00248}00248\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00263}00263\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer_a90cc71db4f055ead1d0edefea75a8394}{fix\_columns}}(\textcolor{keywordtype}{size\_t}\ column\_index,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ column\_index\_last,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&line,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&separator,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{void}(std::vector<std::string>::iterator\ begin,}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>::iterator\ end)>\ fix\_function);}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00269}00269\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00270}00270\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00271}00271\ \}}
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00272}00272\ }
+\DoxyCodeLine{\Hypertarget{fixer_8hpp_source_l00273}00273\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VCF\_FIXER\_HPP}}
+
+\end{DoxyCode}

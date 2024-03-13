@@ -1,0 +1,70 @@
+\doxysection{ebi\+::vcf\+::Report\+Error\+Policy Class Reference}
+\hypertarget{classebi_1_1vcf_1_1_report_error_policy}{}\label{classebi_1_1vcf_1_1_report_error_policy}\index{ebi::vcf::ReportErrorPolicy@{ebi::vcf::ReportErrorPolicy}}
+
+
+Collaboration diagram for ebi\+::vcf\+::Report\+Error\+Policy\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{de/d95/classebi_1_1vcf_1_1_report_error_policy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_report_error_policy_a68f4a40fc0f182231a441a5067113483}{handle\+\_\+error}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&state, \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \texorpdfstring{$\ast$}{*}error)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_report_error_policy_af3b0d4cbf70097a3cf7aca82ed86e234}{handle\+\_\+warning}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&state, \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \texorpdfstring{$\ast$}{*}error)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{structebi_1_1vcf_1_1_error}{Error} management policy that reports when an error is found but continues execution 
+
+Definition at line \mbox{\hyperlink{error__policy_8hpp_source_l00043}{43}} of file \mbox{\hyperlink{error__policy_8hpp_source}{error\+\_\+policy.\+hpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_report_error_policy_a68f4a40fc0f182231a441a5067113483}\label{classebi_1_1vcf_1_1_report_error_policy_a68f4a40fc0f182231a441a5067113483} 
+\index{ebi::vcf::ReportErrorPolicy@{ebi::vcf::ReportErrorPolicy}!handle\_error@{handle\_error}}
+\index{handle\_error@{handle\_error}!ebi::vcf::ReportErrorPolicy@{ebi::vcf::ReportErrorPolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_error()}{handle\_error()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Report\+Error\+Policy\+::handle\+\_\+error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&}]{state,  }\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \texorpdfstring{$\ast$}{*}}]{error }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{report__error__policy_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{report__error__policy_8cpp_source}{report\+\_\+error\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ state.m\_is\_valid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ state.add\_error(std::unique\_ptr<Error>(error));}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_report_error_policy_af3b0d4cbf70097a3cf7aca82ed86e234}\label{classebi_1_1vcf_1_1_report_error_policy_af3b0d4cbf70097a3cf7aca82ed86e234} 
+\index{ebi::vcf::ReportErrorPolicy@{ebi::vcf::ReportErrorPolicy}!handle\_warning@{handle\_warning}}
+\index{handle\_warning@{handle\_warning}!ebi::vcf::ReportErrorPolicy@{ebi::vcf::ReportErrorPolicy}}
+\doxysubsubsection{\texorpdfstring{handle\_warning()}{handle\_warning()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Report\+Error\+Policy\+::handle\+\_\+warning (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state}{Parsing\+State}} \&}]{state,  }\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \texorpdfstring{$\ast$}{*}}]{error }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{report__error__policy_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{report__error__policy_8cpp_source}{report\+\_\+error\+\_\+policy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ state.add\_warning(std::unique\_ptr<Error>(error));}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/error\+\_\+policy.\+hpp\item 
+src/vcf/report\+\_\+error\+\_\+policy.\+cpp\end{DoxyCompactItemize}

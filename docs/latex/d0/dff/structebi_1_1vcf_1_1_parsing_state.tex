@@ -1,0 +1,510 @@
+\doxysection{ebi\+::vcf\+::Parsing\+State Struct Reference}
+\hypertarget{structebi_1_1vcf_1_1_parsing_state}{}\label{structebi_1_1vcf_1_1_parsing_state}\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+
+
+Inheritance diagram for ebi\+::vcf\+::Parsing\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/dca/structebi_1_1vcf_1_1_parsing_state__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ebi\+::vcf\+::Parsing\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/dd2/structebi_1_1vcf_1_1_parsing_state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a02d49eead215378187ae39e0cc102227}{Parsing\+State}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$ source, \mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{Additional\+Checks}} additional\+Checks)
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a7cde2c1a2d5a042cae04abbaf22c678a}{set\+\_\+version}} (Version version)
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a5fb7b3403a015e09b2c0732167dbe0d5}{add\+\_\+meta}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{Meta\+Entry}} const \&meta)
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a01239a8ec69537ec5fb622b38c81bc4d}{set\+\_\+record}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}} $>$ record)
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_ad890f41b87db99ad4da37feebd1d9253}{add\+\_\+error}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$ error)
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_ac3df87dfeff08ced447c4fa1cac1db04}{add\+\_\+warning}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$ error)
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_acffc6499cce8616dea47a310c26b2034}{clear}} ()
+\item 
+std\+::vector$<$ std\+::string $>$ const \& \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_abab8d7a2b3cb45d31dc134f594bc696e}{samples}} () const
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a5075c52e3b745bfb3f57e31ce0cac2a8}{set\+\_\+samples}} (std\+::vector$<$ std\+::string $>$ \&samples)
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a428ab5ab73e47cfe189514e7b7e6a8f4}{is\+\_\+well\+\_\+defined\+\_\+meta}} (std\+::string const \&meta\+\_\+type, std\+::string const \&id) const
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a91e3aa8bd4132287af1b2026cf5b101d}{add\+\_\+well\+\_\+defined\+\_\+meta}} (std\+::string const \&meta\+\_\+type, std\+::string const \&id)
+\item 
+void \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a9ce577ab1136c00ac133b8a2ee72b511}{validate\+\_\+additional\+\_\+checks}} ()
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a3bccd202f2b111ecd95fb6378d8cd692}{genotypes\+\_\+present}} ()
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a1a10a73535b3cb45ee2a087e453facb5}{allele\+\_\+frequencies\+\_\+present}} ()
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a1c5e199e29f90bff8bc18f47b2831d5c}{allele\+\_\+count\+\_\+present}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a97f97891e407ce80453138912d0a3c50}{n\+\_\+lines}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_aca0d56dac9605408906357d8f22c2241}{n\+\_\+columns}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a93af3e730be05217733c11f8c36a3e29}{n\+\_\+batches}}
+\item 
+int \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_abf1aa2c5964db44fb61874d0476d1326}{cs}}
+\item 
+bool \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a57e6c6dd023b60669b44cfc4d826590c}{m\+\_\+is\+\_\+valid}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a11004058e4a30f43bf1d8d550b89d3af}{source}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}} $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a2fc9fe2a87bbcf4584fa89749bcb2baa}{record}}
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$ $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a84f5b788ba5f80259bfb1d7153c2f7d5}{errors}}
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$ $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_aa1fa9785a27f60c28cfe89e3585d81d1}{warnings}}
+\item 
+std\+::multimap$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_a22df99f66684093faf4fe500d9dd415f}{defined\+\_\+metadata}}
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{Additional\+Checks}} \mbox{\hyperlink{structebi_1_1vcf_1_1_parsing_state_ad6d84906d8b8e26f3ccb6929343c230a}{additional\+Checks}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8hpp_source_l00037}{37}} of file \mbox{\hyperlink{parsing__state_8hpp_source}{parsing\+\_\+state.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a02d49eead215378187ae39e0cc102227}\label{structebi_1_1vcf_1_1_parsing_state_a02d49eead215378187ae39e0cc102227} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!ParsingState@{ParsingState}}
+\index{ParsingState@{ParsingState}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{ParsingState()}{ParsingState()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Parsing\+State\+::\+Parsing\+State (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}} $>$}]{source,  }\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{Additional\+Checks}}}]{additional\+Checks }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00028\ \ \ \ \ :\ n\_lines\{1\},\ n\_columns\{1\},\ n\_batches\{0\},\ cs\{0\},\ m\_is\_valid\{\textcolor{keyword}{true}\},\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ source\{source\},\ record\{\},}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ errors\{\},\ warnings\{\},}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ defined\_metadata\{\},}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ additionalChecks\{additionalChecks\}}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_ad890f41b87db99ad4da37feebd1d9253}\label{structebi_1_1vcf_1_1_parsing_state_ad890f41b87db99ad4da37feebd1d9253} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!add\_error@{add\_error}}
+\index{add\_error@{add\_error}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{add\_error()}{add\_error()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Parsing\+State\+::add\+\_\+error (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$}]{error }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ errors.push\_back(std::move(error));}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a5fb7b3403a015e09b2c0732167dbe0d5}\label{structebi_1_1vcf_1_1_parsing_state_a5fb7b3403a015e09b2c0732167dbe0d5} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!add\_meta@{add\_meta}}
+\index{add\_meta@{add\_meta}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{add\_meta()}{add\_meta()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Parsing\+State\+::add\+\_\+meta (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{Meta\+Entry}} const \&}]{meta }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ source-\/>meta\_entries.emplace(meta.id,\ meta);}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_ac3df87dfeff08ced447c4fa1cac1db04}\label{structebi_1_1vcf_1_1_parsing_state_ac3df87dfeff08ced447c4fa1cac1db04} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!add\_warning@{add\_warning}}
+\index{add\_warning@{add\_warning}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{add\_warning()}{add\_warning()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Parsing\+State\+::add\+\_\+warning (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$}]{error }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ warnings.push\_back(std::move(error));}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a91e3aa8bd4132287af1b2026cf5b101d}\label{structebi_1_1vcf_1_1_parsing_state_a91e3aa8bd4132287af1b2026cf5b101d} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!add\_well\_defined\_meta@{add\_well\_defined\_meta}}
+\index{add\_well\_defined\_meta@{add\_well\_defined\_meta}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{add\_well\_defined\_meta()}{add\_well\_defined\_meta()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Parsing\+State\+::add\+\_\+well\+\_\+defined\+\_\+meta (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{meta\+\_\+type,  }\item[{std\+::string const \&}]{id }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00090}{90}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ defined\_metadata.emplace(meta\_type,\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a1c5e199e29f90bff8bc18f47b2831d5c}\label{structebi_1_1vcf_1_1_parsing_state_a1c5e199e29f90bff8bc18f47b2831d5c} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!allele\_count\_present@{allele\_count\_present}}
+\index{allele\_count\_present@{allele\_count\_present}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{allele\_count\_present()}{allele\_count\_present()}}
+{\footnotesize\ttfamily bool ebi\+::vcf\+::\+Parsing\+State\+::allele\+\_\+count\+\_\+present (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00124}{124}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ allele\_count\_present\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ allele\_total\_number\_present\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&info\_key\_value\ :\ record-\/>info)\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (info\_key\_value.first\ ==\ vcf::AC)\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (allele\_total\_number\_present)\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allele\_count\_present\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (info\_key\_value.first\ ==\ vcf::AN)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (allele\_count\_present)\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allele\_total\_number\_present\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a1a10a73535b3cb45ee2a087e453facb5}\label{structebi_1_1vcf_1_1_parsing_state_a1a10a73535b3cb45ee2a087e453facb5} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!allele\_frequencies\_present@{allele\_frequencies\_present}}
+\index{allele\_frequencies\_present@{allele\_frequencies\_present}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{allele\_frequencies\_present()}{allele\_frequencies\_present()}}
+{\footnotesize\ttfamily bool ebi\+::vcf\+::\+Parsing\+State\+::allele\+\_\+frequencies\+\_\+present (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00114}{114}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&info\_key\_value\ :\ record-\/>info)\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (info\_key\_value.first\ ==\ vcf::AF)\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_acffc6499cce8616dea47a310c26b2034}\label{structebi_1_1vcf_1_1_parsing_state_acffc6499cce8616dea47a310c26b2034} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!clear@{clear}}
+\index{clear@{clear}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Parsing\+State\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00061}{61}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ record.reset();}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ errors.clear();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ warnings.clear();}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a3bccd202f2b111ecd95fb6378d8cd692}\label{structebi_1_1vcf_1_1_parsing_state_a3bccd202f2b111ecd95fb6378d8cd692} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!genotypes\_present@{genotypes\_present}}
+\index{genotypes\_present@{genotypes\_present}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{genotypes\_present()}{genotypes\_present()}}
+{\footnotesize\ttfamily bool ebi\+::vcf\+::\+Parsing\+State\+::genotypes\+\_\+present (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00108}{108}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00109\ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ format\ =\ record-\/>format;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !format.empty()\ \&\&\ util::contains(format,\ GT);}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a428ab5ab73e47cfe189514e7b7e6a8f4}\label{structebi_1_1vcf_1_1_parsing_state_a428ab5ab73e47cfe189514e7b7e6a8f4} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!is\_well\_defined\_meta@{is\_well\_defined\_meta}}
+\index{is\_well\_defined\_meta@{is\_well\_defined\_meta}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{is\_well\_defined\_meta()}{is\_well\_defined\_meta()}}
+{\footnotesize\ttfamily bool ebi\+::vcf\+::\+Parsing\+State\+::is\+\_\+well\+\_\+defined\+\_\+meta (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{meta\+\_\+type,  }\item[{std\+::string const \&}]{id }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00078}{78}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ std::multimap<std::string,std::string>::const\_iterator\ iter;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ std::pair<iter,\ iter>\ range\ =\ defined\_metadata.equal\_range(meta\_type);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ current\ =\ range.first;\ current\ !=\ range.second;\ ++current)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>second\ ==\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_abab8d7a2b3cb45d31dc134f594bc696e}\label{structebi_1_1vcf_1_1_parsing_state_abab8d7a2b3cb45d31dc134f594bc696e} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!samples@{samples}}
+\index{samples@{samples}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{samples()}{samples()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ const  \& ebi\+::vcf\+::\+Parsing\+State\+::samples (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00068}{68}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ source-\/>samples\_names;}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a01239a8ec69537ec5fb622b38c81bc4d}\label{structebi_1_1vcf_1_1_parsing_state_a01239a8ec69537ec5fb622b38c81bc4d} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!set\_record@{set\_record}}
+\index{set\_record@{set\_record}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{set\_record()}{set\_record()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Parsing\+State\+::set\+\_\+record (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}} $>$}]{record }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00046}{46}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ this-\/>record\ =\ std::move(record);}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a5075c52e3b745bfb3f57e31ce0cac2a8}\label{structebi_1_1vcf_1_1_parsing_state_a5075c52e3b745bfb3f57e31ce0cac2a8} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!set\_samples@{set\_samples}}
+\index{set\_samples@{set\_samples}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{set\_samples()}{set\_samples()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Parsing\+State\+::set\+\_\+samples (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$ \&}]{samples }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00073}{73}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ source-\/>samples\_names\ =\ samples;}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a7cde2c1a2d5a042cae04abbaf22c678a}\label{structebi_1_1vcf_1_1_parsing_state_a7cde2c1a2d5a042cae04abbaf22c678a} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!set\_version@{set\_version}}
+\index{set\_version@{set\_version}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{set\_version()}{set\_version()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Parsing\+State\+::set\+\_\+version (\begin{DoxyParamCaption}\item[{Version}]{version }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ source-\/>version\ =\ version;}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a9ce577ab1136c00ac133b8a2ee72b511}\label{structebi_1_1vcf_1_1_parsing_state_a9ce577ab1136c00ac133b8a2ee72b511} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!validate\_additional\_checks@{validate\_additional\_checks}}
+\index{validate\_additional\_checks@{validate\_additional\_checks}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{validate\_additional\_checks()}{validate\_additional\_checks()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Parsing\+State\+::validate\+\_\+additional\+\_\+checks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8cpp_source_l00095}{95}} of file \mbox{\hyperlink{parsing__state_8cpp_source}{parsing\+\_\+state.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (additionalChecks.checkEvidence)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (genotypes\_present()\ ||\ allele\_frequencies\_present()\ ||\ allele\_count\_present())\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ BodySectionError\{record-\/>line,\ \textcolor{stringliteral}{"{}Requested\ evidence\ presence\ with\ -\/-\/require-\/evidence.\ "{}}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Please\ provide\ genotypes\ (GT\ field\ in\ FORMAT\ and\ samples),\ "{}}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}or\ allele\ frequencies\ (AF\ field\ in\ INFO),\ "{}}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}or\ allele\ counts\ (AC\ and\ AN\ fields\ in\ INFO)."{}}\};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_ad6d84906d8b8e26f3ccb6929343c230a}\label{structebi_1_1vcf_1_1_parsing_state_ad6d84906d8b8e26f3ccb6929343c230a} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!additionalChecks@{additionalChecks}}
+\index{additionalChecks@{additionalChecks}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{additionalChecks}{additionalChecks}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structebi_1_1vcf_1_1_additional_checks}{Additional\+Checks}} ebi\+::vcf\+::\+Parsing\+State\+::additional\+Checks}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8hpp_source_l00052}{52}} of file \mbox{\hyperlink{parsing__state_8hpp_source}{parsing\+\_\+state.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_abf1aa2c5964db44fb61874d0476d1326}\label{structebi_1_1vcf_1_1_parsing_state_abf1aa2c5964db44fb61874d0476d1326} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!cs@{cs}}
+\index{cs@{cs}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{cs}{cs}}
+{\footnotesize\ttfamily int ebi\+::vcf\+::\+Parsing\+State\+::cs}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8hpp_source_l00043}{43}} of file \mbox{\hyperlink{parsing__state_8hpp_source}{parsing\+\_\+state.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a22df99f66684093faf4fe500d9dd415f}\label{structebi_1_1vcf_1_1_parsing_state_a22df99f66684093faf4fe500d9dd415f} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!defined\_metadata@{defined\_metadata}}
+\index{defined\_metadata@{defined\_metadata}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{defined\_metadata}{defined\_metadata}}
+{\footnotesize\ttfamily std\+::multimap$<$std\+::string, std\+::string$>$ ebi\+::vcf\+::\+Parsing\+State\+::defined\+\_\+metadata}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8hpp_source_l00051}{51}} of file \mbox{\hyperlink{parsing__state_8hpp_source}{parsing\+\_\+state.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a84f5b788ba5f80259bfb1d7153c2f7d5}\label{structebi_1_1vcf_1_1_parsing_state_a84f5b788ba5f80259bfb1d7153c2f7d5} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!errors@{errors}}
+\index{errors@{errors}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{errors}{errors}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}}$>$ $>$ ebi\+::vcf\+::\+Parsing\+State\+::errors}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8hpp_source_l00048}{48}} of file \mbox{\hyperlink{parsing__state_8hpp_source}{parsing\+\_\+state.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a57e6c6dd023b60669b44cfc4d826590c}\label{structebi_1_1vcf_1_1_parsing_state_a57e6c6dd023b60669b44cfc4d826590c} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!m\_is\_valid@{m\_is\_valid}}
+\index{m\_is\_valid@{m\_is\_valid}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{m\_is\_valid}{m\_is\_valid}}
+{\footnotesize\ttfamily bool ebi\+::vcf\+::\+Parsing\+State\+::m\+\_\+is\+\_\+valid}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8hpp_source_l00044}{44}} of file \mbox{\hyperlink{parsing__state_8hpp_source}{parsing\+\_\+state.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a93af3e730be05217733c11f8c36a3e29}\label{structebi_1_1vcf_1_1_parsing_state_a93af3e730be05217733c11f8c36a3e29} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!n\_batches@{n\_batches}}
+\index{n\_batches@{n\_batches}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{n\_batches}{n\_batches}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Parsing\+State\+::n\+\_\+batches}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8hpp_source_l00041}{41}} of file \mbox{\hyperlink{parsing__state_8hpp_source}{parsing\+\_\+state.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_aca0d56dac9605408906357d8f22c2241}\label{structebi_1_1vcf_1_1_parsing_state_aca0d56dac9605408906357d8f22c2241} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!n\_columns@{n\_columns}}
+\index{n\_columns@{n\_columns}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{n\_columns}{n\_columns}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Parsing\+State\+::n\+\_\+columns}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8hpp_source_l00040}{40}} of file \mbox{\hyperlink{parsing__state_8hpp_source}{parsing\+\_\+state.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a97f97891e407ce80453138912d0a3c50}\label{structebi_1_1vcf_1_1_parsing_state_a97f97891e407ce80453138912d0a3c50} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!n\_lines@{n\_lines}}
+\index{n\_lines@{n\_lines}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{n\_lines}{n\_lines}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Parsing\+State\+::n\+\_\+lines}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8hpp_source_l00039}{39}} of file \mbox{\hyperlink{parsing__state_8hpp_source}{parsing\+\_\+state.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a2fc9fe2a87bbcf4584fa89749bcb2baa}\label{structebi_1_1vcf_1_1_parsing_state_a2fc9fe2a87bbcf4584fa89749bcb2baa} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!record@{record}}
+\index{record@{record}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{record}{record}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structebi_1_1vcf_1_1_record}{Record}}$>$ ebi\+::vcf\+::\+Parsing\+State\+::record}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8hpp_source_l00047}{47}} of file \mbox{\hyperlink{parsing__state_8hpp_source}{parsing\+\_\+state.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_a11004058e4a30f43bf1d8d550b89d3af}\label{structebi_1_1vcf_1_1_parsing_state_a11004058e4a30f43bf1d8d550b89d3af} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!source@{source}}
+\index{source@{source}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{source}{source}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{structebi_1_1vcf_1_1_source}{Source}}$>$ ebi\+::vcf\+::\+Parsing\+State\+::source}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8hpp_source_l00046}{46}} of file \mbox{\hyperlink{parsing__state_8hpp_source}{parsing\+\_\+state.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_parsing_state_aa1fa9785a27f60c28cfe89e3585d81d1}\label{structebi_1_1vcf_1_1_parsing_state_aa1fa9785a27f60c28cfe89e3585d81d1} 
+\index{ebi::vcf::ParsingState@{ebi::vcf::ParsingState}!warnings@{warnings}}
+\index{warnings@{warnings}!ebi::vcf::ParsingState@{ebi::vcf::ParsingState}}
+\doxysubsubsection{\texorpdfstring{warnings}{warnings}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}}$>$ $>$ ebi\+::vcf\+::\+Parsing\+State\+::warnings}
+
+
+
+Definition at line \mbox{\hyperlink{parsing__state_8hpp_source_l00049}{49}} of file \mbox{\hyperlink{parsing__state_8hpp_source}{parsing\+\_\+state.\+hpp}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/parsing\+\_\+state.\+hpp\item 
+src/vcf/parsing\+\_\+state.\+cpp\end{DoxyCompactItemize}

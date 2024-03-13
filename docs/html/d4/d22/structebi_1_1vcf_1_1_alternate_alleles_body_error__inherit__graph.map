@@ -1,0 +1,11 @@
+<map id="ebi::vcf::AlternateAllelesBodyError" name="ebi::vcf::AlternateAllelesBodyError">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,739,193,919"/>
+<area shape="rect" id="Node000002" href="$d4/d35/structebi_1_1vcf_1_1_body_section_error.html" title=" " alt="" coords="17,505,182,691"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,705,102,739,97,739,97,705"/>
+<area shape="rect" id="Node000003" href="$d6/d99/structebi_1_1vcf_1_1_error.html" title=" " alt="" coords="35,232,163,457"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="102,472,102,506,97,506,97,472"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="42,119,157,184"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="102,199,102,232,97,232,97,199"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="52,5,147,71"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="102,85,102,119,97,119,97,85"/>
+</map>

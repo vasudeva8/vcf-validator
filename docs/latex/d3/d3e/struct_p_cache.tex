@@ -1,0 +1,186 @@
+\doxysection{PCache Struct Reference}
+\hypertarget{struct_p_cache}{}\label{struct_p_cache}\index{PCache@{PCache}}
+
+
+Collaboration diagram for PCache\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/dc6/struct_p_cache__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_pg_hdr}{Pg\+Hdr}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_p_cache_a1c692ce92c7d3fc7c6c1324d5658b252}{p\+Dirty}}
+\item 
+\mbox{\hyperlink{struct_pg_hdr}{Pg\+Hdr}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_p_cache_a8eaca309bfb8fa49e7c5e77dd3398bb0}{p\+Dirty\+Tail}}
+\item 
+\mbox{\hyperlink{struct_pg_hdr}{Pg\+Hdr}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_p_cache_a607eabd6768dd8df47d8fa353542b106}{p\+Synced}}
+\item 
+int \mbox{\hyperlink{struct_p_cache_a9688476c9cab5a7af8d09860567759eb}{n\+Ref\+Sum}}
+\item 
+int \mbox{\hyperlink{struct_p_cache_a93ed4b9d731d883c3ed22a5adfd9c636}{sz\+Cache}}
+\item 
+int \mbox{\hyperlink{struct_p_cache_abd30c4610f4087dad64f75e6c4e1e332}{sz\+Spill}}
+\item 
+int \mbox{\hyperlink{struct_p_cache_abb0bd0a3292780dcc07cb59bc577990d}{sz\+Page}}
+\item 
+int \mbox{\hyperlink{struct_p_cache_abcb37fcd3ea098b98a196a3f69e3c135}{sz\+Extra}}
+\item 
+u8 \mbox{\hyperlink{struct_p_cache_a87ff1d0738734375524e544cefa33b01}{b\+Purgeable}}
+\item 
+u8 \mbox{\hyperlink{struct_p_cache_a28629953493154d29ab7b6485a0471bf}{e\+Create}}
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_p_cache_a51b67ce6c17cbd7124c50d8a2d0fed50}{x\+Stress}} )(void \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_pg_hdr}{Pg\+Hdr}} \texorpdfstring{$\ast$}{*})
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_p_cache_af04a2ea8a2c6d6b3eea7bb7051b8f447}{p\+Stress}}
+\item 
+sqlite3\+\_\+pcache \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_p_cache_ad0248655d30d327e0eeced6c3651b161}{p\+Cache}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l43145}{43145}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_p_cache_a87ff1d0738734375524e544cefa33b01}\label{struct_p_cache_a87ff1d0738734375524e544cefa33b01} 
+\index{PCache@{PCache}!bPurgeable@{bPurgeable}}
+\index{bPurgeable@{bPurgeable}!PCache@{PCache}}
+\doxysubsubsection{\texorpdfstring{bPurgeable}{bPurgeable}}
+{\footnotesize\ttfamily u8 PCache\+::b\+Purgeable}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l43153}{43153}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_a28629953493154d29ab7b6485a0471bf}\label{struct_p_cache_a28629953493154d29ab7b6485a0471bf} 
+\index{PCache@{PCache}!eCreate@{eCreate}}
+\index{eCreate@{eCreate}!PCache@{PCache}}
+\doxysubsubsection{\texorpdfstring{eCreate}{eCreate}}
+{\footnotesize\ttfamily u8 PCache\+::e\+Create}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l43154}{43154}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_a9688476c9cab5a7af8d09860567759eb}\label{struct_p_cache_a9688476c9cab5a7af8d09860567759eb} 
+\index{PCache@{PCache}!nRefSum@{nRefSum}}
+\index{nRefSum@{nRefSum}!PCache@{PCache}}
+\doxysubsubsection{\texorpdfstring{nRefSum}{nRefSum}}
+{\footnotesize\ttfamily int PCache\+::n\+Ref\+Sum}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l43148}{43148}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_ad0248655d30d327e0eeced6c3651b161}\label{struct_p_cache_ad0248655d30d327e0eeced6c3651b161} 
+\index{PCache@{PCache}!pCache@{pCache}}
+\index{pCache@{pCache}!PCache@{PCache}}
+\doxysubsubsection{\texorpdfstring{pCache}{pCache}}
+{\footnotesize\ttfamily sqlite3\+\_\+pcache\texorpdfstring{$\ast$}{*} PCache\+::p\+Cache}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l43157}{43157}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_a1c692ce92c7d3fc7c6c1324d5658b252}\label{struct_p_cache_a1c692ce92c7d3fc7c6c1324d5658b252} 
+\index{PCache@{PCache}!pDirty@{pDirty}}
+\index{pDirty@{pDirty}!PCache@{PCache}}
+\doxysubsubsection{\texorpdfstring{pDirty}{pDirty}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_pg_hdr}{Pg\+Hdr}}\texorpdfstring{$\ast$}{*} PCache\+::p\+Dirty}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l43146}{43146}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_a8eaca309bfb8fa49e7c5e77dd3398bb0}\label{struct_p_cache_a8eaca309bfb8fa49e7c5e77dd3398bb0} 
+\index{PCache@{PCache}!pDirtyTail@{pDirtyTail}}
+\index{pDirtyTail@{pDirtyTail}!PCache@{PCache}}
+\doxysubsubsection{\texorpdfstring{pDirtyTail}{pDirtyTail}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_pg_hdr}{Pg\+Hdr}} \texorpdfstring{$\ast$}{*} PCache\+::p\+Dirty\+Tail}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l43146}{43146}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_af04a2ea8a2c6d6b3eea7bb7051b8f447}\label{struct_p_cache_af04a2ea8a2c6d6b3eea7bb7051b8f447} 
+\index{PCache@{PCache}!pStress@{pStress}}
+\index{pStress@{pStress}!PCache@{PCache}}
+\doxysubsubsection{\texorpdfstring{pStress}{pStress}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} PCache\+::p\+Stress}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l43156}{43156}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_a607eabd6768dd8df47d8fa353542b106}\label{struct_p_cache_a607eabd6768dd8df47d8fa353542b106} 
+\index{PCache@{PCache}!pSynced@{pSynced}}
+\index{pSynced@{pSynced}!PCache@{PCache}}
+\doxysubsubsection{\texorpdfstring{pSynced}{pSynced}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_pg_hdr}{Pg\+Hdr}}\texorpdfstring{$\ast$}{*} PCache\+::p\+Synced}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l43147}{43147}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_a93ed4b9d731d883c3ed22a5adfd9c636}\label{struct_p_cache_a93ed4b9d731d883c3ed22a5adfd9c636} 
+\index{PCache@{PCache}!szCache@{szCache}}
+\index{szCache@{szCache}!PCache@{PCache}}
+\doxysubsubsection{\texorpdfstring{szCache}{szCache}}
+{\footnotesize\ttfamily int PCache\+::sz\+Cache}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l43149}{43149}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_abcb37fcd3ea098b98a196a3f69e3c135}\label{struct_p_cache_abcb37fcd3ea098b98a196a3f69e3c135} 
+\index{PCache@{PCache}!szExtra@{szExtra}}
+\index{szExtra@{szExtra}!PCache@{PCache}}
+\doxysubsubsection{\texorpdfstring{szExtra}{szExtra}}
+{\footnotesize\ttfamily int PCache\+::sz\+Extra}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l43152}{43152}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_abb0bd0a3292780dcc07cb59bc577990d}\label{struct_p_cache_abb0bd0a3292780dcc07cb59bc577990d} 
+\index{PCache@{PCache}!szPage@{szPage}}
+\index{szPage@{szPage}!PCache@{PCache}}
+\doxysubsubsection{\texorpdfstring{szPage}{szPage}}
+{\footnotesize\ttfamily int PCache\+::sz\+Page}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l43151}{43151}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_abd30c4610f4087dad64f75e6c4e1e332}\label{struct_p_cache_abd30c4610f4087dad64f75e6c4e1e332} 
+\index{PCache@{PCache}!szSpill@{szSpill}}
+\index{szSpill@{szSpill}!PCache@{PCache}}
+\doxysubsubsection{\texorpdfstring{szSpill}{szSpill}}
+{\footnotesize\ttfamily int PCache\+::sz\+Spill}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l43150}{43150}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_p_cache_a51b67ce6c17cbd7124c50d8a2d0fed50}\label{struct_p_cache_a51b67ce6c17cbd7124c50d8a2d0fed50} 
+\index{PCache@{PCache}!xStress@{xStress}}
+\index{xStress@{xStress}!PCache@{PCache}}
+\doxysubsubsection{\texorpdfstring{xStress}{xStress}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} PCache\+::x\+Stress) (void \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_pg_hdr}{Pg\+Hdr}} \texorpdfstring{$\ast$}{*})}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l43155}{43155}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

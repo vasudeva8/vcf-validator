@@ -1,0 +1,179 @@
+\doxysection{ebi\+::assembly\+\_\+report\+::Synonyms\+Map Class Reference}
+\hypertarget{classebi_1_1assembly__report_1_1_synonyms_map}{}\label{classebi_1_1assembly__report_1_1_synonyms_map}\index{ebi::assembly\_report::SynonymsMap@{ebi::assembly\_report::SynonymsMap}}
+
+
+Collaboration diagram for ebi\+::assembly\+\_\+report\+::Synonyms\+Map\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{db/db2/classebi_1_1assembly__report_1_1_synonyms_map__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map_a07ece06b3cc057c0761766e0d323a78f}{is\+\_\+contig\+\_\+available}} (std\+::string contig) const
+\item 
+const std\+::vector$<$ std\+::string $>$ \& \mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map_ac726bc7b7d7a18f1f29756a74e796f96}{get\+\_\+contig\+\_\+synonyms}} (std\+::string contig) const
+\item 
+void \mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map_aadf82fbef0c2864b7af137a1aeff3124}{parse\+\_\+assembly\+\_\+report}} (std\+::istream \&report)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{classebi_1_1assembly__report_1_1_synonyms_map_ad5125079068971c4d2d0c6f54b090fb3}{is\+\_\+a\+\_\+genbank\+\_\+accession}} (const std\+::basic\+\_\+string$<$ char $>$ \&synonym)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Mapping from every contig to all its synonyms, using an additional vector to efficiently search for repeated records in the assembly report. This vector contains the structs that associate a contig with all its synonyms. A map stores the correspondence between a name and the index its synonyms are located in the vector. 
+
+Definition at line \mbox{\hyperlink{assembly__report_8hpp_source_l00078}{78}} of file \mbox{\hyperlink{assembly__report_8hpp_source}{assembly\+\_\+report.\+hpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1assembly__report_1_1_synonyms_map_ac726bc7b7d7a18f1f29756a74e796f96}\label{classebi_1_1assembly__report_1_1_synonyms_map_ac726bc7b7d7a18f1f29756a74e796f96} 
+\index{ebi::assembly\_report::SynonymsMap@{ebi::assembly\_report::SynonymsMap}!get\_contig\_synonyms@{get\_contig\_synonyms}}
+\index{get\_contig\_synonyms@{get\_contig\_synonyms}!ebi::assembly\_report::SynonymsMap@{ebi::assembly\_report::SynonymsMap}}
+\doxysubsubsection{\texorpdfstring{get\_contig\_synonyms()}{get\_contig\_synonyms()}}
+{\footnotesize\ttfamily const std\+::vector$<$ std\+::string $>$ \& ebi\+::assembly\+\_\+report\+::\+Synonyms\+Map\+::get\+\_\+contig\+\_\+synonyms (\begin{DoxyParamCaption}\item[{std\+::string}]{contig }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{assembly__report_8hpp_source_l00099}{99}} of file \mbox{\hyperlink{assembly__report_8hpp_source}{assembly\+\_\+report.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_contig\_available(contig))\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ contigs[index\_map.at(contig)].get\_synonyms();}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Contig\ '"{}}\ +\ contig\ +\ \textcolor{stringliteral}{"{}'\ not\ found\ in\ synonyms\ map"{}});}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1assembly__report_1_1_synonyms_map_ad5125079068971c4d2d0c6f54b090fb3}\label{classebi_1_1assembly__report_1_1_synonyms_map_ad5125079068971c4d2d0c6f54b090fb3} 
+\index{ebi::assembly\_report::SynonymsMap@{ebi::assembly\_report::SynonymsMap}!is\_a\_genbank\_accession@{is\_a\_genbank\_accession}}
+\index{is\_a\_genbank\_accession@{is\_a\_genbank\_accession}!ebi::assembly\_report::SynonymsMap@{ebi::assembly\_report::SynonymsMap}}
+\doxysubsubsection{\texorpdfstring{is\_a\_genbank\_accession()}{is\_a\_genbank\_accession()}}
+{\footnotesize\ttfamily static bool ebi\+::assembly\+\_\+report\+::\+Synonyms\+Map\+::is\+\_\+a\+\_\+genbank\+\_\+accession (\begin{DoxyParamCaption}\item[{const std\+::basic\+\_\+string$<$ char $>$ \&}]{synonym }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Check if a contig synonym is in a genbank accession format \begin{DoxySeeAlso}{See also}
+\href{https://www.ncbi.nlm.nih.gov/Sequin/acc.html}{\texttt{ Genbank accession format}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{assembly__report_8hpp_source_l00085}{85}} of file \mbox{\hyperlink{assembly__report_8hpp_source}{assembly\+\_\+report.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ boost::regex\ genbank\_accession(\textcolor{stringliteral}{"{}[A-\/Z][0-\/9]\{5\}\(\backslash\).[0-\/9]+|"{}}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}[A-\/Z]\{2\}[0-\/9]\{6\}\(\backslash\).[0-\/9]+|"{}}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}[A-\/Z]\{2\}[0-\/9]\{8\}\(\backslash\).[0-\/9]+|"{}}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}[A-\/Z]\{4\}[0-\/9]\{8\}\(\backslash\).[0-\/9]+|[A-\/Z]\{6\}[0-\/9]\{9\}\(\backslash\).[0-\/9]+"{}}\ \textcolor{comment}{//WGS\ sequences}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ boost::regex\_match(synonym,\ genbank\_accession);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1assembly__report_1_1_synonyms_map_a07ece06b3cc057c0761766e0d323a78f}\label{classebi_1_1assembly__report_1_1_synonyms_map_a07ece06b3cc057c0761766e0d323a78f} 
+\index{ebi::assembly\_report::SynonymsMap@{ebi::assembly\_report::SynonymsMap}!is\_contig\_available@{is\_contig\_available}}
+\index{is\_contig\_available@{is\_contig\_available}!ebi::assembly\_report::SynonymsMap@{ebi::assembly\_report::SynonymsMap}}
+\doxysubsubsection{\texorpdfstring{is\_contig\_available()}{is\_contig\_available()}}
+{\footnotesize\ttfamily bool ebi\+::assembly\+\_\+report\+::\+Synonyms\+Map\+::is\+\_\+contig\+\_\+available (\begin{DoxyParamCaption}\item[{std\+::string}]{contig }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{assembly__report_8hpp_source_l00094}{94}} of file \mbox{\hyperlink{assembly__report_8hpp_source}{assembly\+\_\+report.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ index\_map.find(contig)\ !=\ index\_map.end();}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1assembly__report_1_1_synonyms_map_aadf82fbef0c2864b7af137a1aeff3124}\label{classebi_1_1assembly__report_1_1_synonyms_map_aadf82fbef0c2864b7af137a1aeff3124} 
+\index{ebi::assembly\_report::SynonymsMap@{ebi::assembly\_report::SynonymsMap}!parse\_assembly\_report@{parse\_assembly\_report}}
+\index{parse\_assembly\_report@{parse\_assembly\_report}!ebi::assembly\_report::SynonymsMap@{ebi::assembly\_report::SynonymsMap}}
+\doxysubsubsection{\texorpdfstring{parse\_assembly\_report()}{parse\_assembly\_report()}}
+{\footnotesize\ttfamily void ebi\+::assembly\+\_\+report\+::\+Synonyms\+Map\+::parse\+\_\+assembly\+\_\+report (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{report }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{assembly__report_8hpp_source_l00108}{108}} of file \mbox{\hyperlink{assembly__report_8hpp_source}{assembly\+\_\+report.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<char>\ report\_line;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \textcolor{keyword}{const}\ default\_line\_buffer\_size\ =\ 64\ *\ 1024;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \textcolor{keyword}{const}\ assembly\_report\_column\_count\ =\ 10;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ report\_line.reserve(default\_line\_buffer\_size);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ assembly\_report\_errors;\ \textcolor{comment}{//\ to\ contain\ errors\ while\ parsing}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,std::set<int>>\ multiple\_occurrence\_of\_contig\_errors;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ contig\_index\ =\ 0,\ line\_offset\ =\ 1;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (util::readline(report,\ report\_line).size()\ !=\ 0)\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (report\_line[0]\ ==\ \textcolor{charliteral}{'\#'})\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ line\_offset++;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ columns;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ line\{report\_line.begin(),\ report\_line.end()\};}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ boost::algorithm::trim(line);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ util::string\_split(line,\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ columns);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (columns.size()\ !=\ assembly\_report\_column\_count)\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ error\ =\ \textcolor{stringliteral}{"{}Line\ num\ "{}}\ +\ std::to\_string(line\_offset\ +\ contig\_index)}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}\ :\ Expected\ "{}}\ +\ std::to\_string(assembly\_report\_column\_count)}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}\ columns,\ found\ "{}}\ +\ std::to\_string(columns.size())\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assembly\_report\_errors.push\_back(error);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ contig\_synonyms\ =\ extract\_synonyms(columns);}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contigs.push\_back(contig\_synonyms);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ contig\ :\ contig\_synonyms.get\_synonyms())\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ignore\_contig.find(contig)\ !=\ ignore\_contig.end())\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\_map.find(contig)\ !=\ index\_map.end()\ \&\&\ index\_map[contig]\ !=\ contig\_index)\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ a\ contig\ is\ found\ in\ two\ different\ lines\ that\ would\ be\ treated\ as\ error}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ multiple\_occurrence\_of\_contig\_errors[contig].insert(contig\_index\ +\ line\_offset);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ multiple\_occurrence\_of\_contig\_errors[contig].insert(index\_map[contig]\ +\ line\_offset);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ index\_map[contig]\ =\ contig\_index;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contig\_index++;}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ contig\_error:\ multiple\_occurrence\_of\_contig\_errors)\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ error;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\ <<\ \textcolor{stringliteral}{"{}Contig\ '"{}}\ +\ contig\_error.first\ +\ \textcolor{stringliteral}{"{}'\ found\ in\ multiple\ lines\ :\ "{}};}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ebi::util::print\_container(error,\ contig\_error.second,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{},"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\ <<\ std::endl;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assembly\_report\_errors.push\_back(error.str());}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!assembly\_report\_errors.empty())\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ error\_report\ =\ \textcolor{stringliteral}{"{}Some\ errors\ occurred\ while\ parsing\ assembly\ report\ file\ \(\backslash\)n"{}};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ error\ :\ assembly\_report\_errors)\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\_report\ +=\ error;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(error\_report);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+inc/assembly\+\_\+report/assembly\+\_\+report.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,263 @@
+\doxysection{meta\+\_\+entry.\+cpp}
+\hypertarget{meta__entry_8cpp_source}{}\label{meta__entry_8cpp_source}\index{src/vcf/meta\_entry.cpp@{src/vcf/meta\_entry.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}util/algo\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}vcf/error.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}vcf/file\_structure.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}vcf/meta\_entry\_visitor.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00024}00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00025}00025\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00026}00026\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00027}00027\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00028}00028\ \ \ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00029}00029\ \ \ \ \ MetaEntry::MetaEntry(\textcolor{keywordtype}{size\_t}\ line,}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&\ \textcolor{keywordtype}{id},}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<Source>\ source)}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00032}00032\ \ \ \ \ :\ line\{line\},\ id\{id\},\ structure\{Structure::NoValue\},\ source\{source\}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00033}00033\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00036}00036\ \ \ \ \ MetaEntry::MetaEntry(\textcolor{keywordtype}{size\_t}\ line,}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&\ \textcolor{keywordtype}{id},}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&\ plain\_value,}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<Source>\ source)}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00040}00040\ \ \ \ \ :\ line\{line\},\ id\{id\},\ structure\{Structure::PlainValue\},\ value\{plain\_value\},\ source\{source\}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00041}00041\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ check\_value();}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00045}00045\ \ \ \ \ MetaEntry::MetaEntry(\textcolor{keywordtype}{size\_t}\ line,}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&\ \textcolor{keywordtype}{id},}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::string>\ \textcolor{keyword}{const}\ \&\ key\_values,}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<Source>\ source)}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00049}00049\ \ \ \ \ :\ line\{line\},\ id\{id\},\ structure\{Structure::KeyValue\},\ value\{key\_values\},\ source\{source\}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00050}00050\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ check\_value();}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00052}00052\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00053}00053\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{keywordtype}{bool}\ MetaEntry::operator==(MetaEntry\ \textcolor{keyword}{const}\ \&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00055}00055\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{id}\ ==\ other.id\ \&\&}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ ==\ other.value;}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{keywordtype}{bool}\ MetaEntry::operator!=(MetaEntry\ \textcolor{keyword}{const}\ \&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00061}00061\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ other);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00063}00063\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{keywordtype}{bool}\ MetaEntry::is\_defined\_in\_header()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00066}00066\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !this-\/>\textcolor{keywordtype}{id}.empty();}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00068}00068\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntry::check\_value()}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00071}00071\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ MetaEntryVisitor\ visitor\ =\ MetaEntryVisitor\ \{\ *\textcolor{keyword}{this}\ \};\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ boost::apply\_visitor(visitor,\ value);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00074}00074\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00075}00075\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00076}00076\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00077}00077\ \ \ \ \ MetaEntryVisitor::MetaEntryVisitor(MetaEntry\ \textcolor{keyword}{const}\ \&\ entry)}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00078}00078\ \ \ \ \ :\ entry\{entry\}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00079}00079\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00081}00081\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00083}00083\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntryVisitor::operator()(std::string\ \&\ value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00084}00084\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (util::contains\_if(value,\ [](\textcolor{keywordtype}{char}\ c)\ \{\ \textcolor{keywordflow}{return}\ c\ ==\ \textcolor{charliteral}{'\(\backslash\)n'};\ \}))\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ MetaSectionError\{entry.line,\ \textcolor{stringliteral}{"{}Metadata\ value\ contains\ a\ line\ break"{}}\};}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00088}00088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00089}00089\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntryVisitor::operator()(std::map<std::string,\ std::string>\ \&\ value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00091}00091\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&\ \textcolor{keywordtype}{id}\ =\ entry.id;}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ ALT)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ check\_alt(value);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ ASSEMBLY)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO\ May\ check\ URL\ correctness\ (regexp?)}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ CONTIG)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ check\_contig(value);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ FILTER)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ check\_filter(value);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ FORMAT)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ check\_format(value);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ INFO)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ check\_info(value);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ PEDIGREE)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nothing\ to\ check}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ PEDIGREEDB)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nothing\ to\ check}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ SAMPLE)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ check\_sample(value);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00112}00112\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ MetaEntryVisitor::check\_key\_is\_present(std::string\ \textcolor{keyword}{const}\ \&\ field,\ std::string\ \textcolor{keyword}{const}\ \&\ key,\ \textcolor{keywordtype}{int}\ key\_count)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00115}00115\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\_count\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ MetaSectionError\{entry.line,\ field\ +\ \textcolor{stringliteral}{"{}\ metadata\ does\ not\ contain\ a\ key\ called\ '"{}}\ +\ key\ +\ \textcolor{stringliteral}{"{}'"{}}\};}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00119}00119\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00120}00120\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00121}00121\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntryVisitor::check\_alt(std::map<std::string,\ std::string>\ \&\ value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00122}00122\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It\ must\ contain\ an\ ID\ and\ Description}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ check\_key\_is\_present(ALT,\ ID,\ value.count(ID));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ check\_key\_is\_present(ALT,\ DESCRIPTION,\ value.count(DESCRIPTION));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ check\_alt\_id(value[ID]);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00128}00128\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00130}00130\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntryVisitor::check\_alt\_id(std::string\ \textcolor{keyword}{const}\ \&\ id\_field)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00131}00131\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ ID\ main\ type\ (prefix\ before\ ':')\ is\ one\ of\ the\ predefined\ ones}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ main\_type\_position\_end\ =\ id\_field.find(\textcolor{charliteral}{':'});}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ colon\_present\ =\ main\_type\_position\_end\ !=\ std::string::npos;}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (colon\_present)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ main\_type\ =\ id\_field.substr(0,\ main\_type\_position\_end);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ebi::util::contains(PREDEFINED\_INFO\_SVTYPES,\ main\_type))\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ message;}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ <<\ \textcolor{stringliteral}{"{}In\ ALT\ metadata\ IDs\ containing\ colon-\/separated\ type\ and\ subtypes,\ the\ top\ level\ type\ "{}}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}must\ be\ one\ of:\ "{}};}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ebi::util::print\_container(message,\ PREDEFINED\_INFO\_SVTYPES,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{},\ "{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ MetaSectionError\{entry.line,\ message.str(),\ \textcolor{stringliteral}{"{}Found\ ID\ was\ '"{}}\ +\ id\_field\ +\ \textcolor{stringliteral}{"{}'"{}}\};}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00145}00145\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00147}00147\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntryVisitor::check\_contig(std::map<std::string,\ std::string>\ \&\ value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00148}00148\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It\ must\ contain\ an\ ID}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ check\_key\_is\_present(CONTIG,\ ID,\ value.count(ID));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00151}00151\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00152}00152\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00153}00153\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntryVisitor::check\_filter(std::map<std::string,\ std::string>\ \&\ value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00154}00154\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It\ must\ contain\ an\ ID\ and\ Description}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ check\_key\_is\_present(FILTER,\ ID,\ value.count(ID));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ check\_key\_is\_present(FILTER,\ DESCRIPTION,\ value.count(DESCRIPTION));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ check\_filter\_id(value[ID]);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00160}00160\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00162}00162\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntryVisitor::check\_filter\_id(std::string\ \textcolor{keyword}{const}\ \&\ id\_field)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00163}00163\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (id\_field\ ==\ \textcolor{stringliteral}{"{}0"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ MetaSectionError\{entry.line,\ \textcolor{stringliteral}{"{}FILTER\ metadata\ ID\ must\ not\ be\ 0"{}}\};}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00167}00167\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00169}00169\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntryVisitor::check\_format(std::map<std::string,\ std::string>\ \&\ value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00170}00170\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It\ must\ contain\ an\ ID,\ Number,\ Type\ and\ Description}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ check\_key\_is\_present(FORMAT,\ ID,\ value.count(ID));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ check\_key\_is\_present(FORMAT,\ NUMBER,\ value.count(NUMBER));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ check\_key\_is\_present(FORMAT,\ TYPE,\ value.count(TYPE));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ check\_key\_is\_present(FORMAT,\ DESCRIPTION,\ value.count(DESCRIPTION));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ check\_format\_or\_info\_number(value[NUMBER],\ FORMAT);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ check\_format\_type(value[TYPE]);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entry.source-\/>version\ ==\ Version::v41\ ||\ entry.source-\/>version\ ==\ Version::v42)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag(FORMAT,\ NUMBER,\ value,\ format\_v41\_v42);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag(FORMAT,\ TYPE,\ value,\ format\_v41\_v42);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (entry.source-\/>version\ ==\ Version::v43\ )\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag(FORMAT,\ NUMBER,\ value,\ format\_v43);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag(FORMAT,\ TYPE,\ value,\ format\_v43);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag(FORMAT,\ NUMBER,\ value,\ format\_v44);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag(FORMAT,\ TYPE,\ value,\ format\_v44);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00190}00190\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00192}00192\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntryVisitor::check\_format\_or\_info\_number(std::string\ \textcolor{keyword}{const}\ \&\ number\_field,\ std::string\ \textcolor{keyword}{const}\ \&\ field)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00193}00193\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (util::contains\_if(number\_field,\ [](\textcolor{keywordtype}{char}\ c)\ \{\ \textcolor{keywordflow}{return}\ !isdigit(c);\ \})\ \&\&}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ number\_field\ !=\ A\ \&\&}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ number\_field\ !=\ R\ \&\&}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ number\_field\ !=\ G\ \&\&}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ number\_field\ !=\ UNKNOWN\_CARDINALITY)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ MetaSectionError\{entry.line,\ field\ +\ \textcolor{stringliteral}{"{}\ metadata\ Number\ is\ not\ a\ number,\ A,\ R,\ G\ or\ dot"{}}\};}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00201}00201\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00203}00203\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntryVisitor::check\_format\_type(std::string\ \textcolor{keyword}{const}\ \&\ type\_field)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00204}00204\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (type\_field\ !=\ INTEGER\ \&\&}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ type\_field\ !=\ FLOAT\ \&\&}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ type\_field\ !=\ CHARACTER\ \&\&}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ type\_field\ !=\ STRING)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ MetaSectionError\{entry.line,\ \textcolor{stringliteral}{"{}FORMAT\ metadata\ Type\ is\ not\ a\ Integer,\ Float,\ Character\ or\ String"{}}\};}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00211}00211\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00213}00213\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntryVisitor::check\_info(std::map<std::string,\ std::string>\ \&\ value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00214}00214\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It\ must\ contain\ an\ ID,\ Number,\ Type\ and\ Description}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ check\_key\_is\_present(INFO,\ ID,\ value.count(ID));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ check\_key\_is\_present(INFO,\ NUMBER,\ value.count(NUMBER));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ check\_key\_is\_present(INFO,\ TYPE,\ value.count(TYPE));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ check\_key\_is\_present(INFO,\ DESCRIPTION,\ value.count(DESCRIPTION));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ check\_format\_or\_info\_number(value[NUMBER],\ INFO);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ check\_info\_type(value[TYPE]);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entry.source-\/>version\ ==\ Version::v41\ ||\ entry.source-\/>version\ ==\ Version::v42)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag(INFO,\ NUMBER,\ value,\ info\_v41\_v42);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag(INFO,\ TYPE,\ value,\ info\_v41\_v42);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (entry.source-\/>version\ ==\ Version::v43)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag(INFO,\ NUMBER,\ value,\ info\_v43);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag(INFO,\ TYPE,\ value,\ info\_v43);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag(INFO,\ NUMBER,\ value,\ info\_v44);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag(INFO,\ TYPE,\ value,\ info\_v44);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00233}00233\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00234}00234\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00236}00236\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntryVisitor::check\_info\_type(std::string\ \textcolor{keyword}{const}\ \&\ type\_field)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00237}00237\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (type\_field\ !=\ INTEGER\ \&\&}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ type\_field\ !=\ FLOAT\ \&\&}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ type\_field\ !=\ FLAG\ \&\&}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ type\_field\ !=\ CHARACTER\ \&\&}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ type\_field\ !=\ STRING)\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ MetaSectionError\{entry.line,\ \textcolor{stringliteral}{"{}INFO\ metadata\ Type\ is\ not\ a\ Integer,\ Float,\ Flag,\ Character\ or\ String"{}}\};}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00245}00245\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00247}00247\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntryVisitor::check\_predefined\_tag(std::string\ \textcolor{keyword}{const}\ \&\ tag\_field,\ std::string\ \textcolor{keyword}{const}\ \&\ meta\_entry\_property,}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::string>\ \&\ meta\_entry,}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::pair<std::string,\ std::string>>\ \textcolor{keyword}{const}\ \&\ predefined\_meta\_entries)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00250}00250\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00251}00251\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ iterator\ =\ predefined\_meta\_entries.find(meta\_entry[ID]);}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (iterator\ !=\ predefined\_meta\_entries.end())\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ required\ value\ of\ the\ key\ based\ on\ whether\ we\ are\ checking\ for\ Type\ or\ Number}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ predefined\_value\ =\ (meta\_entry\_property\ ==\ TYPE\ ?\ get\_predefined\_type(iterator)}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ get\_predefined\_number(iterator));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ required\ value\ is\ a\ "{}."{}\ (dot),\ do\ nothing}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Or\ if\ the\ required\ value\ does\ not\ match\ the\ value\ provided\ in\ the\ vcf\ file,\ throw\ an\ error}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (predefined\_value\ !=\ MISSING\_VALUE\ \&\&\ predefined\_value\ !=\ meta\_entry[meta\_entry\_property])\ \{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ message\ =\ tag\_field\ +\ \textcolor{stringliteral}{"{}\ "{}}\ +\ meta\_entry[ID]\ +\ \textcolor{stringliteral}{"{}\ metadata\ "{}}\ +\ meta\_entry\_property\ +\ \textcolor{stringliteral}{"{}\ is\ not\ "{}}\ +\ predefined\_value;}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ MetaSectionError\{entry.line,\ message,\ ErrorFix::RECOVERABLE\_VALUE,\ meta\_entry\_property,\ predefined\_value\};}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00262}00262\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00263}00263\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00265}00265\ \ \ \ \ \textcolor{keywordtype}{void}\ MetaEntryVisitor::check\_sample(std::map<std::string,\ std::string>\ \&\ value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00266}00266\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00267}00267\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It\ must\ contain\ an\ ID}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00268}00268\ \ \ \ \ \ \ \ \ check\_key\_is\_present(SAMPLE,\ ID,\ value.count(ID));}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00269}00269\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00270}00270\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00271}00271\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{meta__entry_8cpp_source_l00272}00272\ \}}
+
+\end{DoxyCode}

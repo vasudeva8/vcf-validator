@@ -1,0 +1,13 @@
+<map id="Catch::TestCaseInfo" name="Catch::TestCaseInfo">
+<area shape="rect" id="Node000001" title=" " alt="" coords="128,506,261,672"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="159,135,230,200"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,180,128,192,92,209,59,233,33,264,13,307,9,344,16,382,33,427,49,457,69,484,117,531,113,535,65,488,44,460,28,429,11,384,3,344,8,305,28,262,55,229,89,205,126,187,159,175"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="125,313,264,378"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="197,200,197,296,192,296,192,200"/>
+<area shape="rect" id="Node000005" href="$df/dc5/struct_catch_1_1_source_line_info.html" title=" " alt="" coords="289,263,431,428"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="226,198,279,254,275,258,222,201"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="136,5,253,85"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="197,100,197,135,192,135,192,100"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="197,378,197,490,192,490,192,378"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="309,430,273,484,266,494,261,491,269,481,305,427"/>
+</map>

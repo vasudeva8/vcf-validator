@@ -1,0 +1,841 @@
+\doxysection{record.\+cpp}
+\hypertarget{record_8cpp_source}{}\label{record_8cpp_source}\index{src/vcf/record.cpp@{src/vcf/record.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}util/algo\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}util/stream\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}util/logger.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}vcf/file\_structure.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}vcf/record.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00027}00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00028}00028\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00029}00029\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00030}00030\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00032}00032\ \ \ \ \ Record::Record(\textcolor{keywordtype}{size\_t}\ \textcolor{keyword}{const}\ line,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&\ chromosome,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \textcolor{keyword}{const}\ position,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ ids,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&\ reference\_allele,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ alternate\_alleles,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \textcolor{keyword}{const}\ quality,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ filters,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ std::multimap<std::string,\ std::string>\ \textcolor{keyword}{const}\ \&\ info,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ format,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ samples,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<Source>\ source)}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00044}00044\ \ \ \ \ :\ line(line),}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ chromosome\{chromosome\},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ position\{position\},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ ids\{ids\},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ reference\_allele\{reference\_allele\},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ alternate\_alleles\{alternate\_alleles\},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ types\{\},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ quality\{quality\},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ filters\{filters\},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ info\{info\},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ format\{format\},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ samples\{samples\},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ source\{source\}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00057}00057\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ set\_types();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ check\_chromosome();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ check\_ids();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ check\_alternate\_alleles();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ check\_quality();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ check\_filter();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ check\_info();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ check\_format();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ check\_samples();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00067}00067\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{keywordtype}{bool}\ Record::operator==(Record\ \textcolor{keyword}{const}\ \&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00070}00070\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ chromosome\ ==\ other.chromosome\ \&\&}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position\ ==\ other.position\ \&\&}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ids\ ==\ other.ids\ \&\&}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reference\_allele\ ==\ other.reference\_allele\ \&\&}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alternate\_alleles\ ==\ other.alternate\_alleles\ \&\&}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quality\ ==\ other.quality\ \&\&}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ filters\ ==\ other.filters\ \&\&}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ info\ ==\ other.info\ \&\&}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ format\ ==\ other.format\ \&\&}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ samples\ ==\ other.samples;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00081}00081\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00083}00083\ \ \ \ \ \textcolor{keywordtype}{bool}\ Record::operator!=(Record\ \textcolor{keyword}{const}\ \&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00084}00084\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ other);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00086}00086\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::set\_types()}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00089}00089\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ alternate\ :\ alternate\_alleles)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (alternate\ ==\ MISSING\_VALUE\ ||\ alternate\ ==\ GVCF\_NON\_VARIANT\_ALLELE)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ types.push\_back(RecordType::NO\_VARIATION);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (alternate[0]\ ==\ \textcolor{charliteral}{'<'})\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ types.push\_back(RecordType::STRUCTURAL);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (std::count(alternate.begin(),\ alternate.end(),\ \textcolor{charliteral}{'['})\ ==\ 2\ ||}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::count(alternate.begin(),\ alternate.end(),\ \textcolor{charliteral}{']'})\ ==\ 2)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ types.push\_back(RecordType::STRUCTURAL\_BREAKEND);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (alternate.size()\ !=\ reference\_allele.size())\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ types.push\_back(RecordType::INDEL);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ types.push\_back(alternate.size()\ ==\ 1\ ?\ RecordType::SNV\ :\ RecordType::MNV);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00104}00104\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_chromosome()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00107}00107\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ check\_chromosome\_no\_colons();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ check\_chromosome\_no\_whitespaces();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00110}00110\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00112}00112\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_chromosome\_no\_colons()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00113}00113\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (chromosome.find(\textcolor{charliteral}{':'})\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ChromosomeBodyError\{line,\ \textcolor{stringliteral}{"{}Chromosome\ must\ not\ contain\ colons"{}}\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00117}00117\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00119}00119\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_chromosome\_no\_whitespaces()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00120}00120\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (chromosome.find(\textcolor{charliteral}{'\ '})\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ChromosomeBodyError\{line,\ \textcolor{stringliteral}{"{}Chromosome\ must\ not\ contain\ white-\/spaces"{}}\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00124}00124\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00126}00126\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_ids()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00127}00127\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ids.size()\ ==\ 1\ \&\&\ ids[0]\ ==\ MISSING\_VALUE)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};\ \textcolor{comment}{//\ No\ need\ to\ check\ if\ no\ IDs\ are\ provided}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ check\_ids\_no\_semicolons\_whitespaces();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ check\_ids\_no\_duplicates();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00134}00134\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00136}00136\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_ids\_no\_semicolons\_whitespaces()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00137}00137\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ \textcolor{keywordtype}{id}\ :\ ids)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (util::contains\_if(\textcolor{keywordtype}{id},\ [](\textcolor{keywordtype}{char}\ c)\ \{\ \textcolor{keywordflow}{return}\ c\ ==\ \textcolor{charliteral}{'\ '}\ ||\ c\ ==\ \textcolor{charliteral}{';'};\ \}))\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ IdBodyError\{line,\ \textcolor{stringliteral}{"{}ID\ must\ not\ contain\ semicolons\ or\ whitespaces"{}}\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00143}00143\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00145}00145\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_ids\_no\_duplicates()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00146}00146\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source-\/>version\ ==\ Version::v43\ ||\ source-\/>version\ ==\ Version::v44)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_no\_duplicates(ids);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::invalid\_argument\ \&ex)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ IdBodyError\{line,\ \textcolor{stringliteral}{"{}ID\ must\ not\ have\ duplicate\ values"{}},\ ErrorFix::DUPLICATE\_VALUES\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00154}00154\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00156}00156\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_alternate\_alleles()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00157}00157\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0\ ;\ i\ <\ alternate\_alleles.size();\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&\ alternate\ =\ alternate\_alleles[i];}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&\ type\ =\ types[i];}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ check\_alternate\_allele\_structure(alternate,\ type);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ check\_alternate\_allele\_symbolic\_prefix(alternate);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00166}00166\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00168}00168\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_alternate\_allele\_structure(std::string\ \textcolor{keyword}{const}\ \&\ alternate,\ RecordType\ type)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00169}00169\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (type)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ RecordType::NO\_VARIATION:}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (alternate\ ==\ MISSING\_VALUE\ \&\&\ alternate\_alleles.size()\ >\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ AlternateAllelesBodyError\{line,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}The\ no-\/alternate\ alleles\ symbol\ (dot)\ can\ not\ be\ combined\ with\ others"{}}\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ RecordType::SNV:}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ RecordType::MNV:}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (alternate\ ==\ reference\_allele)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ AlternateAllelesBodyError\{line,\ \textcolor{stringliteral}{"{}Reference\ and\ alternate\ alleles\ must\ not\ be\ the\ same"{}}\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ RecordType::INDEL:}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nothing\ to\ check}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ RecordType::STRUCTURAL:}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ RecordType::STRUCTURAL\_BREAKEND:}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Custom\ ALTs\ (STRUCTURAL)\ and\ break-\/ends\ (STRUCTURAL\_BREAKEND)\ can't\ be\ checked\ against\ the\ reference}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00191}00191\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00193}00193\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_alternate\_allele\_symbolic\_prefix(std::string\ \textcolor{keyword}{const}\ \&\ alternate)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00194}00194\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ boost::regex\ angle\_brackets\_regex(\textcolor{stringliteral}{"{}<([\string^>]+)>"{}});}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ boost::cmatch\ pieces\_match;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (alternate[0]\ ==\ \textcolor{charliteral}{'<'}\ \&\&\ boost::regex\_match(alternate.c\_str(),\ pieces\_match,\ angle\_brackets\_regex))\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ alt\_id\ =\ pieces\_match[1];}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ ID\ prefix\ is\ "{}DEL"{}\ |\ "{}INS"{}\ |\ "{}DUP"{}\ |\ "{}INV"{}\ |\ "{}CNV"{}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ main\_type\_position\_end\ =\ alt\_id.find(\textcolor{charliteral}{':'});}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ colon\_present\ =\ main\_type\_position\_end\ !=\ std::string::npos;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (colon\_present)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ main\_type\ =\ alt\_id.substr(0,\ main\_type\_position\_end);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ebi::util::contains(PREDEFINED\_INFO\_SVTYPES,\ main\_type))\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ message;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ <<\ \textcolor{stringliteral}{"{}In\ ALT\ metadata\ IDs\ containing\ colon-\/separated\ type\ and\ subtypes,\ the\ top\ level\ type\ "{}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}must\ be\ one\ of:\ "{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ebi::util::print\_container(message,\ PREDEFINED\_INFO\_SVTYPES,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{},\ "{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ AlternateAllelesBodyError\{line,\ message.str(),\ \textcolor{stringliteral}{"{}Found\ ID\ was\ '"{}}\ +\ alt\_id\ +\ \textcolor{stringliteral}{"{}'"{}}\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00214}00214\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00215}00215\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_quality()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00216}00216\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (quality\ <\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ QualityBodyError\{line,\ \textcolor{stringliteral}{"{}Quality\ is\ not\ equal\ or\ greater\ than\ zero"{}}\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00220}00220\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00222}00222\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_filter()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00223}00223\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ check\_filter\_no\_duplicates();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ check\_filter\_not\_zero();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00226}00226\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00228}00228\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_filter\_no\_duplicates()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00229}00229\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source-\/>version\ ==\ Version::v43\ ||\ source-\/>version\ ==\ Version::v44)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_no\_duplicates(filters);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::invalid\_argument\ \&ex)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ FilterBodyError\{line,\ \textcolor{stringliteral}{"{}FILTER\ must\ not\ have\ duplicate\ filters"{}},\ ErrorFix::DUPLICATE\_VALUES\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00236}00236\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00237}00237\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00239}00239\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_filter\_not\_zero()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00240}00240\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ filter\ :\ filters)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (filter\ ==\ \textcolor{stringliteral}{"{}0"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ FilterBodyError\{line,\ \textcolor{stringliteral}{"{}FILTER\ string\ must\ not\ be\ 0\ (reserved\ value)"{}},\ ErrorFix::IRRECOVERABLE\_VALUE,\ filter\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00245}00245\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00246}00246\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00247}00247\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00248}00248\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_info()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00249}00249\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00250}00250\ \ \ \ \ \ \ \ \ check\_info\_no\_duplicates();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ std::multimap<std::string,\ MetaEntry>::iterator\ iter;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00253}00253\ \ \ \ \ \ \ \ \ std::pair<iter,\ iter>\ range\ =\ source-\/>meta\_entries.equal\_range(INFO);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00254}00254\ \ \ \ \ \ \ \ \ std::vector<std::string>\ values;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00256}00256\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ that\ INFO\ fields\ listed\ in\ the\ meta\ section}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00257}00257\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ match\ the\ Number\ and\ Type\ specified\ in\ there}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ field\ :\ info)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (field.first\ ==\ MISSING\_VALUE)\ \{\ \textcolor{keywordflow}{continue};\ \}\ \textcolor{comment}{//\ No\ need\ to\ check\ missing\ data}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00260}00260\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ util::string\_split(field.second,\ \textcolor{stringliteral}{"{},"{}},\ values);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ found\_in\_meta\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (iter\ current\ =\ range.first;\ current\ !=\ range.second;\ ++current)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&\ key\_values\ =\ boost::get<std::map\ <\ std::string,\ std::string\ >>\ ((current-\/>second).value);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\_values[ID]\ ==\ field.first)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ found\_in\_meta\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_info\_field\_cardinality(values,\ key\_values[NUMBER]);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_field\_type(values,\ key\_values[TYPE]);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::shared\_ptr<Error>\ ex)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ message\ =\ \textcolor{stringliteral}{"{}INFO\ "{}}\ +\ key\_values[ID]\ +\ \textcolor{stringliteral}{"{}\ does\ not\ match\ the\ meta"{}}\ +\ ex-\/>message;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InfoBodyError\{line,\ message,\ key\_values[ID]\ +\ \textcolor{stringliteral}{"{}="{}}\ +\ field.second,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ErrorFix::IRRECOVERABLE\_VALUE,\ key\_values[ID]\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!found\_in\_meta)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source-\/>version\ ==\ Version::v41\ ||\ source-\/>version\ ==\ Version::v42)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag\_info(field.first,\ values,\ info\_v41\_v42);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (source-\/>version\ ==\ Version::v43)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag\_info(field.first,\ values,\ info\_v43);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag\_info(field.first,\ values,\ info\_v44);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::shared\_ptr<Error>\ ex)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InfoBodyError\{line,\ \textcolor{stringliteral}{"{}INFO\ "{}}\ +\ ex-\/>message,\ field.first\ +\ \textcolor{stringliteral}{"{}="{}}\ +\ field.second,\ ErrorFix::IRRECOVERABLE\_VALUE,\ field.first\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ strict\_validation\_info\_predefined\_tags(field.first,\ field.second,\ values);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00295}00295\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00296}00296\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00297}00297\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00298}00298\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_info\_no\_duplicates()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00299}00299\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00300}00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((source-\/>version\ ==\ Version::v43\ ||\ source-\/>version\ ==\ Version::v44)\ \&\&\ info.size()\ >\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ in\ :\ info)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (info.count(in.first)\ >\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InfoBodyError\{line,\ \textcolor{stringliteral}{"{}INFO\ must\ not\ have\ duplicate\ keys"{}},\ \textcolor{stringliteral}{"{}"{}},\ ErrorFix::DUPLICATE\_VALUES\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00306}00306\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00307}00307\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00308}00308\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00309}00309\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_format()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00310}00310\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00311}00311\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (format.size()\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};\ \textcolor{comment}{//\ Nothing\ to\ check}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00313}00313\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00314}00314\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00315}00315\ \ \ \ \ \ \ \ \ check\_format\_GT();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00316}00316\ \ \ \ \ \ \ \ \ check\_format\_no\_duplicates();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00317}00317\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00319}00319\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_format\_GT()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00320}00320\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00321}00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (util::contains(format,\ GT)\ \&\&\ format[0]\ !=\ GT)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ FormatBodyError\{line,\ \textcolor{stringliteral}{"{}GT\ must\ be\ the\ first\ field\ in\ the\ FORMAT\ column"{}}\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00323}00323\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00324}00324\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00325}00325\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00326}00326\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_format\_no\_duplicates()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00327}00327\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00328}00328\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source-\/>version\ ==\ Version::v43\ ||\ source-\/>version\ ==\ Version::v44)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_no\_duplicates(format);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::invalid\_argument\ \&ex)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ FormatBodyError\{line,\ \textcolor{stringliteral}{"{}FORMAT\ must\ not\ have\ duplicate\ fields"{}},\ ErrorFix::DUPLICATE\_VALUES\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00334}00334\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00335}00335\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00336}00336\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00337}00337\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_predefined\_tag\_info(std::string\ \textcolor{keyword}{const}\ \&\ field\_key,\ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ values,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::pair<std::string,\ std::string>>\ \textcolor{keyword}{const}\ \&\ tags}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00340}00340\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00341}00341\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ iterator\ =\ tags.find(field\_key);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00342}00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (iterator\ !=\ tags.end())\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_info\_field\_cardinality(values,\ get\_predefined\_number(iterator));}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_field\_type(values,\ get\_predefined\_type(iterator));}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::shared\_ptr<Error>\ ex)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ raise(std::make\_shared<Error>(line,\ field\_key\ +\ \textcolor{stringliteral}{"{}\ does\ not\ match\ the"{}}\ +\ ex-\/>message));}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (get\_predefined\_type(iterator)\ ==\ INTEGER)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_field\_integer\_range(field\_key,\ values);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00352}00352\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00353}00353\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00354}00354\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00355}00355\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_predefined\_tag\_format(std::string\ \textcolor{keyword}{const}\ \&field\_key,\ std::vector<std::string>\ \textcolor{keyword}{const}\ \&values,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::pair<std::string,\ std::string>>\ \textcolor{keyword}{const}\ \&tags,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ploidy)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00358}00358\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00359}00359\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ iterator\ =\ tags.find(field\_key);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00360}00360\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (iterator\ !=\ tags.end())\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ cardinality;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_sample\_field\_cardinality(values,\ get\_predefined\_number(iterator),\ ploidy,\ cardinality);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_field\_type(values,\ get\_predefined\_type(iterator));}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::shared\_ptr<Error>\ ex)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ raise(std::make\_shared<Error>(line,\ field\_key\ +\ \textcolor{stringliteral}{"{}\ does\ not\ match\ the"{}}\ +\ ex-\/>message,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ex-\/>detailed\_message));}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (get\_predefined\_type(iterator)\ ==\ INTEGER)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_field\_integer\_range(field\_key,\ values);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00372}00372\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00373}00373\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00374}00374\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00375}00375\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::strict\_validation\_info\_predefined\_tags(std::string\ \textcolor{keyword}{const}\ \&\ field\_key,\ std::string\ \textcolor{keyword}{const}\ \&\ field\_value,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ values)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00377}00377\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00378}00378\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (field\_key\ ==\ AA)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ boost::regex\ aa\_regex(\textcolor{stringliteral}{"{}((?![,;=])[[:print:]])+"{}});}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!boost::regex\_match(field\_value,\ aa\_regex))\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InfoBodyError\{line,\ \textcolor{stringliteral}{"{}INFO\ AA\ value\ is\ not\ a\ single\ dot\ or\ a\ string\ of\ bases"{}},\ \textcolor{stringliteral}{"{}AA="{}}\ +\ field\_value,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ErrorFix::IRRECOVERABLE\_VALUE,\ field\_key\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00384}00384\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (field\_key\ ==\ AF)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ value\ :\ values)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::stold(value)\ <\ 0\ ||\ std::stold(value)\ >\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InfoBodyError\{line,\ \textcolor{stringliteral}{"{}INFO\ AF\ value\ does\ not\ lie\ in\ the\ interval\ [0,1]"{}},\ \textcolor{stringliteral}{"{}AA="{}}\ +\ field\_value,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ErrorFix::IRRECOVERABLE\_VALUE,\ field\_key\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00391}00391\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (field\_key\ ==\ CIGAR)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ boost::regex\ cigar\_string(\textcolor{stringliteral}{"{}([0-\/9]+[MIDNSHPX])+"{}});}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ value\ :\ values)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!boost::regex\_match(value,\ cigar\_string))\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InfoBodyError\{line,\ \textcolor{stringliteral}{"{}INFO\ CIGAR\ value\ is\ not\ an\ alphanumeric\ string\ compliant\ with\ the\ SAM\ specification"{}},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}CIGAR="{}}\ +\ field\_value,\ ErrorFix::IRRECOVERABLE\_VALUE,\ field\_key\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00399}00399\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (field\_key\ ==\ END)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ info.find(IMPRECISE);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ !=\ info.end()\ \&\&\ it-\/>second\ ==\ \textcolor{stringliteral}{"{}0"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ expected\ =\ std::to\_string(position\ +\ reference\_allele.length()\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (field\_value\ !=\ expected)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InfoBodyError\{line,\ \textcolor{stringliteral}{"{}INFO\ END\ value\ must\ be\ equal\ to\ \(\backslash\)"{}POS\ +\ length\ of\ REF\ -\/\ 1\(\backslash\)"{}\ for\ a\ "{}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}precise\ variant\ (where\ IMPRECISE\ is\ set\ to\ 0)"{}},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}END="{}}\ +\ field\_value\ +\ \textcolor{stringliteral}{"{},\ expected\ value="{}}\ +\ expected,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ErrorFix::RECOVERABLE\_VALUE,\ field\_key,\ expected\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00410}00410\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (field\_key\ ==\ SVLEN\ \&\&\ values.size()\ ==\ alternate\_alleles.size())\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ alternate\_alleles.size();\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (check\_alt\_not\_symbolic(i))\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ expected\ =\ std::to\_string(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\textcolor{keyword}{>}(alternate\_alleles[i].size())\ -\/\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\textcolor{keyword}{>}(reference\_allele.size()));}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (values[i]\ !=\ expected)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InfoBodyError\{line,\ \textcolor{stringliteral}{"{}INFO\ SVLEN\ must\ be\ equal\ to\ \(\backslash\)"{}length\ of\ ALT\ -\/\ length\ of\ REF\(\backslash\)"{}\ for\ "{}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}non-\/symbolic\ alternate\ alleles"{}},\ \textcolor{stringliteral}{"{}SVLEN="{}}\ +\ field\_value\ +\ \textcolor{stringliteral}{"{},\ expected\ value="{}}\ +\ expected,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ErrorFix::RECOVERABLE\_VALUE,\ field\_key,\ expected\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ first\_field\ =\ alternate\_alleles[i].substr(0,\ 4);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00421}00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (first\_field\ ==\ \textcolor{stringliteral}{"{}<"{}}\ +\ INS\ ||\ first\_field\ ==\ \textcolor{stringliteral}{"{}<"{}}\ +\ DUP)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ scanned\_value\_length;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ value\ =\ std::stoi(values[i],\ \&scanned\_value\_length);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ <\ 0\ ||\ scanned\_value\_length\ !=\ values[i].size())\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InfoBodyError\{line,\ \textcolor{stringliteral}{"{}INFO\ SVLEN\ must\ be\ a\ positive\ integer\ for\ longer\ ALT\ alleles"{}},\ \textcolor{stringliteral}{"{}SVLEN="{}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ field\_value\ +\ \textcolor{stringliteral}{"{},\ ALT\ allele="{}}\ +\ first\_field.substr(1,\ 3),}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00427}00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ErrorFix::IRRECOVERABLE\_VALUE,\ field\_key\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (first\_field\ ==\ \textcolor{stringliteral}{"{}<"{}}\ +\ DEL)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ scanned\_value\_length;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ value\ =\ std::stoi(values[i],\ \&scanned\_value\_length);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ >\ 0\ ||\ scanned\_value\_length\ !=\ values[i].size())\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InfoBodyError\{line,\ \textcolor{stringliteral}{"{}INFO\ SVLEN\ must\ be\ a\ negative\ integer\ for\ shorter\ ALT\ alleles"{}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ first\_field.substr(1,3),\ \textcolor{stringliteral}{"{}SVLEN="{}}\ +\ field\_value\ +\ \textcolor{stringliteral}{"{},\ ALT\ allele="{}}\ +\ first\_field.substr(1,\ 3),}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ErrorFix::IRRECOVERABLE\_VALUE,\ field\_key\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00440}00440\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (field\_key\ ==\ SVTYPE)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00441}00441\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ebi::util::contains(PREDEFINED\_INFO\_SVTYPES,\ field\_value))\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ message;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ <<\ \textcolor{stringliteral}{"{}INFO\ "{}}\ <<\ SVTYPE\ <<\ \textcolor{stringliteral}{"{}\ must\ be\ one\ of:\ "{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00444}00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ebi::util::print\_container(message,\ PREDEFINED\_INFO\_SVTYPES,\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{},\ "{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InfoBodyError\{line,\ message.str(),\ \textcolor{stringliteral}{"{}Found\ "{}}\ +\ SVTYPE\ +\ \textcolor{stringliteral}{"{}\ was\ '"{}}\ +\ field\_value\ +\ \textcolor{stringliteral}{"{}'"{}}\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00447}00447\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00448}00448\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00449}00449\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00450}00450\ \ \ \ \ \textcolor{keywordtype}{bool}\ Record::check\_alt\_not\_symbolic(\textcolor{keywordtype}{size\_t}\ allele\_index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00451}00451\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00452}00452\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ boost::regex\ non\_symbolic\_alt\_regex(\textcolor{stringliteral}{"{}[ACGTN]+"{}},\ boost::regex::icase);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00453}00453\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ boost::regex\_match(alternate\_alleles[allele\_index],\ non\_symbolic\_alt\_regex);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00454}00454\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00455}00455\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00456}00456\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_samples()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00457}00457\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00458}00458\ \ \ \ \ \ \ \ \ check\_samples\_count();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00459}00459\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00460}00460\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (samples.size()\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};\ \textcolor{comment}{//\ Nothing\ to\ check\ if\ no\ samples\ are\ listed\ in\ the\ file}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00462}00462\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00463}00463\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00464}00464\ \ \ \ \ \ \ \ \ std::vector<MetaEntry>\ format\_meta\ =\ get\_meta\_entry\_objects();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00465}00465\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00466}00466\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ samples.size();\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ check\_sample(i,\ format\_meta);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00468}00468\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00469}00469\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00470}00470\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00471}00471\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_samples\_count()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00472}00472\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00473}00473\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (samples.size()\ !=\ source-\/>samples\_names.size())\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ SamplesBodyError\{line,\ \textcolor{stringliteral}{"{}The\ number\ of\ samples\ must\ match\ those\ listed\ in\ the\ header\ line"{}}\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00475}00475\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00476}00476\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00477}00477\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00478}00478\ \ \ \ \ std::vector<MetaEntry>\ Record::get\_meta\_entry\_objects()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00479}00479\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00480}00480\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ std::multimap<std::string,\ MetaEntry>::iterator\ iter;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00481}00481\ \ \ \ \ \ \ \ \ std::pair<iter,\ iter>\ range\ =\ source-\/>meta\_entries.equal\_range(FORMAT);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00482}00482\ \ \ \ \ \ \ \ \ std::vector<MetaEntry>\ format\_meta;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00483}00483\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00484}00484\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ fm\ :\ format)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00485}00485\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ found\_in\_header\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00486}00486\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00487}00487\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (iter\ current\ =\ range.first;\ current\ !=\ range.second;\ ++current)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&\ key\_values\ =\ boost::get<std::map<std::string,\ std::string>>((current-\/>second).value);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00489}00489\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00490}00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\_values[ID]\ ==\ fm)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00491}00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ format\_meta.push\_back(current-\/>second);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00492}00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ found\_in\_header\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00493}00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00494}00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00495}00495\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00496}00496\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00497}00497\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!found\_in\_header)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00498}00498\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ not\ found\ in\ header,\ a\ null-\/value\ meta\ entry\ must\ be\ created\ to\ make\ sizes\ match}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00499}00499\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ format\_meta.push\_back(MetaEntry\{line,\ \textcolor{stringliteral}{"{}"{}},\ source\});}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00500}00500\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00501}00501\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00502}00502\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00503}00503\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ format\_meta;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00504}00504\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00505}00505\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00506}00506\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ Record::get\_ploidy\_from\_GT(std::string\ \textcolor{keyword}{const}\ \&\ sample)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00507}00507\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00508}00508\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (format[0]\ ==\ GT)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ std::string::size\_type\ pos\ =\ sample.find(\textcolor{charliteral}{':'});}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ GT\_subfield\ =\ sample;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00511}00511\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GT\_subfield\ =\ sample.substr(0,\ pos);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00514}00514\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1\ +\ count\_if(GT\_subfield.begin(),\ GT\_subfield.end(),\ [](\textcolor{keywordtype}{char}\ c)\ \{\ return\ c\ ==\ \textcolor{stringliteral}{'/'}\ ||\ c\ ==\ \textcolor{stringliteral}{'|'};\ \});}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00515}00515\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00516}00516\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(error)\ <<\ \textcolor{stringliteral}{"{}Cannot\ fetch\ ploidy\ from\ GT\ as\ GT\ is\ not\ present\ in\ the\ FORMAT"{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00517}00517\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00518}00518\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00519}00519\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00520}00520\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00521}00521\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_sample(\textcolor{keywordtype}{size\_t}\ i,\ std::vector<MetaEntry>\ \textcolor{keyword}{const}\ \&\ format\_meta)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00522}00522\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00523}00523\ \ \ \ \ \ \ \ \ std::vector<std::string>\ subfields;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00524}00524\ \ \ \ \ \ \ \ \ util::string\_split(samples[i],\ \textcolor{stringliteral}{"{}:"{}},\ subfields);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00525}00525\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00526}00526\ \ \ \ \ \ \ \ \ check\_sample\_subfields\_count(i,\ subfields);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00527}00527\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00528}00528\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ first\ format\ field\ is\ not\ a\ GT,\ then\ no\ alleles\ need\ to\ be\ checked}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00529}00529\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (format[0]\ ==\ GT)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00530}00530\ \ \ \ \ \ \ \ \ \ \ \ \ check\_sample\_alleles(subfields);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00531}00531\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00532}00532\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00533}00533\ \ \ \ \ \ \ \ \ check\_sample\_subfields\_cardinality\_type(i,\ subfields,\ format\_meta);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00534}00534\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00535}00535\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00536}00536\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_sample\_subfields\_count(\textcolor{keywordtype}{size\_t}\ i,\ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ subfields)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00537}00537\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00538}00538\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (subfields.size()\ >\ format.size())\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00539}00539\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ SamplesBodyError\{line,\ \textcolor{stringliteral}{"{}Sample\ \#"{}}\ +\ std::to\_string(i\ +\ 1)\ +}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00540}00540\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ has\ more\ fields\ than\ specified\ in\ the\ FORMAT\ column"{}}\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00541}00541\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00542}00542\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00543}00543\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00544}00544\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_sample\_subfields\_cardinality\_type(\textcolor{keywordtype}{size\_t}\ i,\ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ subfields,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00545}00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<MetaEntry>\ \textcolor{keyword}{const}\ \&\ format\_meta)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00546}00546\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00547}00547\ \ \ \ \ \ \ \ \ std::vector<std::string>\ values;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00548}00548\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ploidy\ =\ 2;\ \ \textcolor{comment}{//\ diploidy\ is\ assumed\ if\ no\ GT\ present.\ spec:\ v4.3\ at\ 1.6.2\ Genotype\ fields,\ GL,\ applies\ to\ FORMAT\ fields\ with\ Number=G}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00549}00549\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (format[0]\ ==\ GT)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00550}00550\ \ \ \ \ \ \ \ \ \ \ \ \ ploidy\ =\ get\_ploidy\_from\_GT(samples[i]);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00551}00551\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00552}00552\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00553}00553\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ subfields.size();\ ++j)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00554}00554\ \ \ \ \ \ \ \ \ \ \ \ \ MetaEntry\ meta\ =\ format\_meta[j];}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00555}00555\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\ subfield\ =\ subfields[j];}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \ \ util::string\_split(subfield,\ \textcolor{stringliteral}{"{},"{}},\ values);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00557}00557\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00558}00558\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (meta.is\_defined\_in\_header())\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00559}00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&meta\_entry\_properties\ =\ boost::get<std::map<std::string,\ std::string>>(meta.value);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00560}00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ expected\_cardinality;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00561}00561\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00563}00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_sample\_field\_cardinality(values,\ meta\_entry\_properties[NUMBER],\ ploidy,\ expected\_cardinality);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_field\_type(values,\ meta\_entry\_properties[TYPE]);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::shared\_ptr<Error>\ ex)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ message\ =\ \textcolor{stringliteral}{"{}Sample\ \#"{}}\ +\ std::to\_string(i\ +\ 1)\ +\ \textcolor{stringliteral}{"{},\ field\ "{}}\ +\ meta\_entry\_properties[ID]}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00567}00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}\ does\ not\ match\ the\ meta"{}}\ +\ ex-\/>message;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00568}00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ detailed\_message\ =\ meta\_entry\_properties[ID]\ +\ \textcolor{stringliteral}{"{}="{}}\ +\ subfield\ +\ ex-\/>detailed\_message;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00569}00569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ SamplesFieldBodyError\{line,\ message,\ detailed\_message,\ meta\_entry\_properties[ID],}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00570}00570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expected\_cardinality\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00571}00571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00573}00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source-\/>version\ ==\ Version::v41\ ||\ source-\/>version\ ==\ Version::v42)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag\_format(format[j],\ values,\ format\_v41\_v42,\ ploidy);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (source-\/>version\ ==\ Version::v43)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag\_format(format[j],\ values,\ format\_v43,\ ploidy);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00579}00579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_predefined\_tag\_format(format[j],\ values,\ format\_v44,\ ploidy);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00580}00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00581}00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::shared\_ptr<Error>\ ex)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00582}00582\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ SamplesFieldBodyError\{line,\ \textcolor{stringliteral}{"{}Sample\ \#"{}}\ +\ std::to\_string(i\ +\ 1)\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ ex-\/>message,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00583}00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ format[j]\ +\ \textcolor{stringliteral}{"{}="{}}\ +\ subfield,\ format[j]\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00584}00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00586}00586\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00587}00587\ \ \ \ \ \ \ \ \ \ \ \ \ strict\_validation\_format\_predefined\_tags(i,\ format[j],\ subfield,\ values);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00588}00588\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00589}00589\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00590}00590\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00591}00591\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::strict\_validation\_format\_predefined\_tags(\textcolor{keywordtype}{size\_t}\ i,\ std::string\ \textcolor{keyword}{const}\ \&\ field\_key,\ std::string\ \textcolor{keyword}{const}\ \&\ field\_value,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00592}00592\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ values)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00593}00593\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00594}00594\ \ \ \ \ \ \ \ \ std::string\ message\ =\ \textcolor{stringliteral}{"{}Sample\ \#"{}}\ +\ std::to\_string(i\ +\ 1)\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ field\_key\ +\ \textcolor{stringliteral}{"{}="{}}\ +\ field\_value\ +\ \textcolor{stringliteral}{"{}\ value"{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00595}00595\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (field\_key\ ==\ GP\ ||\ (field\_key\ ==\ CNP\ \&\&\ (source-\/>version\ ==\ Version::v43\ ||\ source-\/>version\ ==\ Version::v44)))\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00596}00596\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ value\ :\ values)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00597}00597\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::stold(value)\ <\ 0\ ||\ std::stold(value)\ >\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00598}00598\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ SamplesFieldBodyError\{line,\ message\ +\ \textcolor{stringliteral}{"{}\ does\ not\ lie\ in\ the\ interval\ [0,1]"{}},\ \textcolor{stringliteral}{"{}"{}},\ field\_key\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00599}00599\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00600}00600\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00601}00601\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00602}00602\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00603}00603\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00604}00604\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_sample\_alleles(std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ subfields)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00605}00605\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00606}00606\ \ \ \ \ \ \ \ \ std::vector<std::string>\ alleles;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00607}00607\ \ \ \ \ \ \ \ \ util::string\_split(subfields[0],\ \textcolor{stringliteral}{"{}|/"{}},\ alleles);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00608}00608\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ ploidy\ =\ alleles.size();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00609}00609\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ allele\ :\ alleles)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00610}00610\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (allele\ ==\ \textcolor{stringliteral}{"{}"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00611}00611\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ SamplesFieldBodyError\{line,\ \textcolor{stringliteral}{"{}Allele\ index\ must\ not\ be\ empty"{}},\ \textcolor{stringliteral}{"{}"{}},\ GT,\ ploidy\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00612}00612\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00613}00613\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00614}00614\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (allele\ ==\ MISSING\_VALUE)\ \{\ \textcolor{keywordflow}{continue};\ \}\ \textcolor{comment}{//\ No\ need\ to\ check\ missing\ alleles}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00615}00615\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00616}00616\ \ \ \ \ \ \ \ \ \ \ \ \ check\_sample\_alleles\_is\_integer(allele,\ ploidy);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00617}00617\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00618}00618\ \ \ \ \ \ \ \ \ \ \ \ \ check\_sample\_alleles\_range(allele,\ ploidy);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00619}00619\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00620}00620\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00621}00621\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00622}00622\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_sample\_alleles\_is\_integer(std::string\ \textcolor{keyword}{const}\ \&\ allele,\ \textcolor{keywordtype}{long}\ ploidy)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00623}00623\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00624}00624\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (util::contains\_if\_not(allele,\ isdigit))\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00625}00625\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ SamplesFieldBodyError\{line,\ \textcolor{stringliteral}{"{}Allele\ must\ be\ a\ non-\/negative\ integer\ number"{}},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00626}00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Index="{}}\ +\ allele,\ GT,\ ploidy\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00627}00627\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00628}00628\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00629}00629\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00630}00630\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_sample\_alleles\_range(std::string\ \textcolor{keyword}{const}\ \&\ allele,\ \textcolor{keywordtype}{long}\ ploidy)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00631}00631\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00632}00632\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ num\_allele\ =\ std::stoi(allele);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00633}00633\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (num\_allele\ >\ alternate\_alleles.size())\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00634}00634\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ SamplesFieldBodyError\{line,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00635}00635\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Allele\ is\ greater\ than\ the\ maximum\ allowed"{}},}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00636}00636\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Index="{}}\ +\ std::to\_string(num\_allele)\ +\ \textcolor{stringliteral}{"{},\ maximum\ allowed="{}}\ +\ std::to\_string(alternate\_alleles.size()),}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00637}00637\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GT,\ ploidy\};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00638}00638\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00639}00639\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00640}00640\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00641}00641\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_no\_duplicates(std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ values)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00642}00642\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00643}00643\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (values.size()\ >\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00644}00644\ \ \ \ \ \ \ \ \ \ \ \ \ std::set<std::string>\ counter(values.begin(),\ values.end());}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00645}00645\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (values.size()\ >\ counter.size())\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00646}00646\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Duplicate\ fields"{}});}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00647}00647\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00648}00648\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00649}00649\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00650}00650\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00651}00651\ \ \ \ \ \textcolor{keywordtype}{bool}\ Record::is\_valid\_cardinality(std::string\ \textcolor{keyword}{const}\ \&number,\ \textcolor{keywordtype}{size\_t}\ alternate\_allele\_number,\ \textcolor{keywordtype}{size\_t}\ ploidy,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00652}00652\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ \&expected\_cardinality)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00653}00653\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00654}00654\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ valid\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00655}00655\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00656}00656\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (number\ ==\ A)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00657}00657\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...the\ number\ of\ alternate\ alleles}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00658}00658\ \ \ \ \ \ \ \ \ \ \ \ \ expected\_cardinality\ =\ alternate\_allele\_number;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00659}00659\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (number\ ==\ R)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00660}00660\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...the\ number\ of\ alternate\ alleles\ +\ reference}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00661}00661\ \ \ \ \ \ \ \ \ \ \ \ \ expected\_cardinality\ =\ alternate\_allele\_number\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00662}00662\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (number\ ==\ G)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00663}00663\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...the\ number\ of\ possible\ genotypes}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00664}00664\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ binomial\ coefficient\ is\ calculated\ considering\ the\ ploidy\ of\ the\ sample}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00665}00665\ \ \ \ \ \ \ \ \ \ \ \ \ expected\_cardinality\ =\ boost::math::binomial\_coefficient<float>(alternate\_alleles.size()\ +\ ploidy,\ ploidy);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00666}00666\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (number\ ==\ UNKNOWN\_CARDINALITY)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00667}00667\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...it\ is\ unspecified}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00668}00668\ \ \ \ \ \ \ \ \ \ \ \ \ expected\_cardinality\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00669}00669\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00670}00670\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...specified\ as\ a\ number\ in\ range\ [0,\ +MAX\_LONG)}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00671}00671\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00672}00672\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ scanned\_number\_length;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00673}00673\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expected\_cardinality\ =\ stoi(number,\ \&scanned\_number\_length);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00674}00674\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (expected\_cardinality\ <\ 0\ ||\ number.size()\ !=\ scanned\_number\_length)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00675}00675\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expected\_cardinality\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00676}00676\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ valid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00677}00677\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00678}00678\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (...)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00679}00679\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expected\_cardinality\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00680}00680\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ valid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00681}00681\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00682}00682\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00683}00683\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ valid;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00684}00684\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00685}00685\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00686}00686\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_info\_field\_cardinality(std::vector<std::string>\ \textcolor{keyword}{const}\ \&values,\ std::string\ \textcolor{keyword}{const}\ \&number)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00687}00687\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00688}00688\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (number\ !=\ G)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00689}00689\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ cardinality;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00690}00690\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ploidy\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00691}00691\ \ \ \ \ \ \ \ \ \ \ \ \ check\_sample\_field\_cardinality(values,\ number,\ ploidy,\ cardinality);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00692}00692\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00693}00693\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ case\ is\ not\ well\ defined,\ we\ just\ skip\ this\ check\ and\ allow\ any\ cardinality}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00694}00694\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ further\ discussion\ see\ https://github.com/samtools/hts-\/specs/issues/272}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00695}00695\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00696}00696\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00697}00697\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00698}00698\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_sample\_field\_cardinality(std::vector<std::string>\ \textcolor{keyword}{const}\ \&values,\ std::string\ \textcolor{keyword}{const}\ \&number,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00699}00699\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ploidy,\ \textcolor{keywordtype}{long}\ \&expected\_cardinality)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00700}00700\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00701}00701\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_valid\_cardinality(number,\ alternate\_alleles.size(),\ ploidy,\ expected\_cardinality))\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00702}00702\ \ \ \ \ \ \ \ \ \ \ \ \ raise(std::make\_shared<Error>(line,\ \textcolor{stringliteral}{"{}\ meta\ specification\ Number="{}}\ +\ number}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00703}00703\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}\ is\ not\ one\ of\ [A,\ R,\ G,\ .,\ <non-\/negative\ number>]"{}}));}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00704}00704\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00705}00705\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!values.empty())\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00706}00706\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (values.front()\ ==\ MISSING\_VALUE)\ \{\ \textcolor{keywordflow}{return};\ \}\ \textcolor{comment}{//\ No\ need\ to\ check\ missing\ data}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00707}00707\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00708}00708\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00709}00709\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ number\_matches\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00710}00710\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (expected\_cardinality\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00711}00711\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ number\ of\ values\ must\ match\ the\ expected\ cardinality}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00712}00712\ \ \ \ \ \ \ \ \ \ \ \ \ number\_matches\ =\ (values.size()\ ==\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(expected\_cardinality));}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00713}00713\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (expected\_cardinality\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00714}00714\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ There\ will\ be\ one\ empty\ value\ that\ needs\ to\ be\ specifically\ checked}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00715}00715\ \ \ \ \ \ \ \ \ \ \ \ \ number\_matches\ =\ values.size()\ ==\ 0\ ||\ values.size()\ ==\ 1;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00716}00716\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00717}00717\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ number="{}."{},\ then\ \`{}expected\_cardinality`\ was\ set\ to\ -\/1,\ and\ it\ should\ always\ match,\ letting\ \`{}number\_matches`\ as\ true}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00718}00718\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00719}00719\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00720}00720\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!number\_matches)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00721}00721\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ message\ =\ \textcolor{stringliteral}{"{}\ specification\ Number="{}}\ +\ number\ +\ \textcolor{stringliteral}{"{}\ (expected\ "{}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00722}00722\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ std::to\_string(expected\_cardinality)\ +\ \textcolor{stringliteral}{"{}\ value(s))"{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00723}00723\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ detailed\_message;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00724}00724\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (number\ ==\ G)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00725}00725\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detailed\_message\ =\ \textcolor{stringliteral}{"{}.\ It\ must\ derive\ its\ number\ of\ values\ from\ the\ ploidy\ of\ GT\ (if\ present),\ or\ "{}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00726}00726\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}assume\ diploidy.\ Contains\ "{}}\ +\ std::to\_string(values.size())\ +\ \textcolor{stringliteral}{"{}\ value(s),\ expected\ "{}}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00727}00727\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ std::to\_string(expected\_cardinality)\ +\ \textcolor{stringliteral}{"{}\ (derived\ from\ ploidy\ "{}}\ +\ std::to\_string(ploidy)}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00728}00728\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00729}00729\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00730}00730\ \ \ \ \ \ \ \ \ \ \ \ \ raise(std::make\_shared<Error>(line,\ message,\ detailed\_message));}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00731}00731\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00732}00732\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00733}00733\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00734}00734\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_value\_type(std::string\ \textcolor{keyword}{const}\ \&\ type,\ std::string\ \textcolor{keyword}{const}\ \&\ value,\ std::string\ \&\ message)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00735}00735\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (type\ ==\ INTEGER)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00736}00736\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...try\ to\ cast\ to\ int}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00737}00737\ \ \ \ \ \ \ \ \ \ \ \ \ std::size\_t\ scanned\_value\_length;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00738}00738\ \ \ \ \ \ \ \ \ \ \ \ \ std::stoi(value,\ \&scanned\_value\_length);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00739}00739\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value.size()\ !=\ scanned\_value\_length)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00740}00740\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}\ (not\ in\ integer\ format)"{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00741}00741\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(message);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00742}00742\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00743}00743\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...and\ also\ check\ it's\ not\ a\ float}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00744}00744\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::fmod(std::stof(value),\ 1)\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00745}00745\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}\ (an\ integer\ must\ not\ contain\ a\ decimal\ point)"{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00746}00746\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(message);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00747}00747\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00748}00748\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (type\ ==\ FLOAT)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00749}00749\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...try\ to\ cast\ to\ float}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00750}00750\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00751}00751\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stof(value);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00752}00752\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::out\_of\_range)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00753}00753\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It\ maybe\ a\ subnormal\ number}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00754}00754\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stold(value);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00755}00755\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00756}00756\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (type\ ==\ FLAG)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00757}00757\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ scanned\_value\_length;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00758}00758\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ numeric\_value\ =\ std::stoi(value,\ \&scanned\_value\_length);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00759}00759\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value.size()\ !=\ scanned\_value\_length\ ||\ value.size()\ >\ 1\ ||\ (numeric\_value\ !=\ 0\ \&\&\ numeric\_value\ !=\ 1))\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00760}00760\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}\ (a\ flag\ value\ must\ be\ \(\backslash\)"{}0,\ 1\ or\ none\(\backslash\)"{})"{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00761}00761\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(message);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00762}00762\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00763}00763\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ no\ flag\ is\ provided\ then\ there\ is\ nothing\ to\ check}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00764}00764\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (type\ ==\ CHARACTER)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00765}00765\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...check\ the\ length\ is\ 1}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00766}00766\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value.size()\ >\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00767}00767\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}\ (there\ can\ be\ only\ one\ character)"{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00768}00768\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(message);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00769}00769\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00770}00770\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (type\ ==\ STRING)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00771}00771\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...do\ nothing,\ it\ is\ guaranteed\ it\ will\ be\ a\ string}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00772}00772\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00773}00773\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00774}00774\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00775}00775\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_field\_type(std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ values,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00776}00776\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \&\ type)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00777}00777\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00778}00778\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ To\ check\ the\ field\ type...}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00779}00779\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ value\ :\ values)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00780}00780\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ ==\ MISSING\_VALUE)\ \{\ \textcolor{keywordflow}{continue};\ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00781}00781\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00782}00782\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ message;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00783}00783\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00784}00784\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_value\_type(type,\ value,\ message);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00785}00785\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::exception\ \&typeError)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00786}00786\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ raise(std::make\_shared<Error>(line,\ \textcolor{stringliteral}{"{}\ specification\ Type="{}}\ +\ type\ +\ message));}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00787}00787\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00788}00788\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00789}00789\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00790}00790\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00791}00791\ \ \ \ \ \textcolor{keywordtype}{void}\ Record::check\_field\_integer\_range(std::string\ \textcolor{keyword}{const}\ \&\ field,\ std::vector<std::string>\ \textcolor{keyword}{const}\ \&\ values)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00792}00792\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (field\ ==\ SVLEN\ ||\ field\ ==\ CIPOS\ ||\ field\ ==\ CIEND\ ||\ field\ ==\ CILEN\ ||\ field\ ==\ CICN\ ||\ field\ ==\ CICNADJ)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00793}00793\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ to\ ignore\ predefined\ tag\ fields\ which\ permit\ negative\ integral\ values}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00794}00794\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00795}00795\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00796}00796\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\ value\ :\ values)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00797}00797\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ ==\ MISSING\_VALUE)\ \{\ \textcolor{keywordflow}{continue};\ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00798}00798\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ scanned\_value\_length;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00799}00799\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ numeric\_value\ =\ std::stoi(value,\ \&scanned\_value\_length);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00800}00800\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value.size()\ !=\ scanned\_value\_length\ ||\ numeric\_value\ <\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00801}00801\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ raise(std::make\_shared<Error>(line,\ field\ +\ \textcolor{stringliteral}{"{}\ value\ must\ be\ a\ non-\/negative\ integer\ number"{}}));}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00802}00802\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00803}00803\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00804}00804\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00805}00805\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00806}00806\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_record\_subfield\_in\_header(std::string\ \textcolor{keyword}{const}\ \&\ field\_value,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00807}00807\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::multimap<std::string,\ MetaEntry>::iterator\ begin,}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00808}00808\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::multimap<std::string,\ MetaEntry>::iterator\ end)}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00809}00809\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00810}00810\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (std::multimap<std::string,\ MetaEntry>::iterator\ current\ =\ begin;\ current\ !=\ end;\ ++current)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00811}00811\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&\ key\_values\ =\ boost::get<std::map\ <\ std::string,\ std::string\ >>\ ((current-\/>second).value);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00812}00812\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00813}00813\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\_values[ID]\ ==\ field\_value)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00814}00814\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00815}00815\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00816}00816\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00817}00817\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00818}00818\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00819}00819\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00820}00820\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00821}00821\ \ \ \ \ std::ostream\ \&operator<<(std::ostream\ \&os,\ \textcolor{keyword}{const}\ Record\ \&record)}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00822}00822\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00823}00823\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }util::operator<<;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00824}00824\ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}\{"{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00825}00825\ \ \ \ \ \ \ \ \ os\ <<\ record.line\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ record.chromosome\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ record.position\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00826}00826\ \ \ \ \ \ \ \ \ os\ <<\ record.ids\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ record.reference\_allele\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ record.alternate\_alleles;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00827}00827\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00828}00828\ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{},\ ["{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00829}00829\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (record.types.size()\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00830}00830\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ type\_it\ =\ record.types.begin();}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00831}00831\ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ static\_cast<int>(*type\_it);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00832}00832\ \ \ \ \ \ \ \ \ \ \ \ \ type\_it++;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00833}00833\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ type\_it\ !=\ record.types.end();\ ++type\_it)\ \{}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00834}00834\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(*type\_it);}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00835}00835\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00836}00836\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00837}00837\ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}]"{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00838}00838\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00839}00839\ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ record.quality;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00840}00840\ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ record.filters;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00841}00841\ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ record.info;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00842}00842\ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ record.format;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00843}00843\ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ record.samples;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00844}00844\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00845}00845\ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}\}"{}};}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00846}00846\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00847}00847\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00848}00848\ }
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00849}00849\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{record_8cpp_source_l00850}00850\ \}}
+
+\end{DoxyCode}

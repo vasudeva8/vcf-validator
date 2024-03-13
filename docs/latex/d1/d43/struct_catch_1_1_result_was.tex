@@ -1,0 +1,79 @@
+\doxysection{Catch\+::Result\+Was Struct Reference}
+\hypertarget{struct_catch_1_1_result_was}{}\label{struct_catch_1_1_result_was}\index{Catch::ResultWas@{Catch::ResultWas}}
+
+
+Collaboration diagram for Catch\+::Result\+Was\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{da/d08/struct_catch_1_1_result_was__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Of\+Type} \{ \newline
+{\bfseries Unknown} = -\/1
+, {\bfseries Ok} = 0
+, {\bfseries Info} = 1
+, {\bfseries Warning} = 2
+, \newline
+{\bfseries Failure\+Bit} = 0x10
+, {\bfseries Expression\+Failed} = Failure\+Bit \texorpdfstring{$\vert$}{|} 1
+, {\bfseries Explicit\+Failure} = Failure\+Bit \texorpdfstring{$\vert$}{|} 2
+, {\bfseries Exception} = 0x100 \texorpdfstring{$\vert$}{|} Failure\+Bit
+, \newline
+{\bfseries Threw\+Exception} = Exception \texorpdfstring{$\vert$}{|} 1
+, {\bfseries Didnt\+Throw\+Exception} = Exception \texorpdfstring{$\vert$}{|} 2
+, {\bfseries Fatal\+Error\+Condition} = 0x200 \texorpdfstring{$\vert$}{|} Failure\+Bit
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l00782}{782}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{struct_catch_1_1_result_was_a624e1ee3661fcf6094ceef1f654601ef}\label{struct_catch_1_1_result_was_a624e1ee3661fcf6094ceef1f654601ef} 
+\index{Catch::ResultWas@{Catch::ResultWas}!OfType@{OfType}}
+\index{OfType@{OfType}!Catch::ResultWas@{Catch::ResultWas}}
+\doxysubsubsection{\texorpdfstring{OfType}{OfType}}
+{\footnotesize\ttfamily enum Catch\+::\+Result\+Was\+::\+Of\+Type}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l00782}{782}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keyword}{enum}\ OfType\ \{}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ Unknown\ =\ -\/1,}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ Ok\ =\ 0,}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ Info\ =\ 1,}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ Warning\ =\ 2,}
+\DoxyCodeLine{00787\ }
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ FailureBit\ =\ 0x10,}
+\DoxyCodeLine{00789\ }
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ ExpressionFailed\ =\ FailureBit\ |\ 1,}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ ExplicitFailure\ =\ FailureBit\ |\ 2,}
+\DoxyCodeLine{00792\ }
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ Exception\ =\ 0x100\ |\ FailureBit,}
+\DoxyCodeLine{00794\ }
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ ThrewException\ =\ Exception\ |\ 1,}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ DidntThrowException\ =\ Exception\ |\ 2,}
+\DoxyCodeLine{00797\ }
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ FatalErrorCondition\ =\ 0x200\ |\ FailureBit}
+\DoxyCodeLine{00799\ }
+\DoxyCodeLine{00800\ \ \ \ \ \};\ \};}
+
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/catch/catch.\+hpp\end{DoxyCompactItemize}

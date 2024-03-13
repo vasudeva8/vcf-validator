@@ -1,0 +1,93 @@
+\doxysection{test\+\_\+utils.\+hpp}
+\hypertarget{test__utils_8hpp_source}{}\label{test__utils_8hpp_source}\index{test/vcf/test\_utils.hpp@{test/vcf/test\_utils.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ EBI\_TEST\_UTILS\_HPP}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ EBI\_TEST\_UTILS\_HPP}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}vcf/file\_structure.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00027}00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00028}00028\ \{}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00029}00029\ \ \ \textcolor{comment}{//\ Note:\ This\ two\ structures\ are\ different\ from\ RecordCore\ used\ by\ the\ normalization.\ This\ is\ only\ for\ test\ purposes}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00030}\mbox{\hyperlink{structebi_1_1_test_multi_record}{00030}}\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structebi_1_1_test_multi_record}{TestMultiRecord}}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00031}00031\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00032}00032\ \ \ \ \ \ \ std::string\ chromosome;}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00033}00033\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ normalized\_pos;}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00034}00034\ \ \ \ \ \ \ std::string\ normalized\_reference;}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00035}00035\ \ \ \ \ \ \ std::vector\ <std::string>\ normalized\_alternate;}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00037}00037\ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1_test_multi_record}{TestMultiRecord}}(\textcolor{keywordtype}{size\_t}\ normalizedPos,\ \textcolor{keyword}{const}\ std::string\ \&normalizedReference,}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::string>\ \&normalizedAlternate)}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ chromosome(\textcolor{stringliteral}{"{}1"{}}),}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ normalized\_pos(normalizedPos),}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ normalized\_reference(normalizedReference),}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ normalized\_alternate(normalizedAlternate)\ \{}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00043}00043\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00045}00045\ \ \ \ \ \ \ \mbox{\hyperlink{structebi_1_1_test_multi_record}{TestMultiRecord}}(\textcolor{keyword}{const}\ std::string\ \&chromosome,\ \textcolor{keywordtype}{size\_t}\ normalizedPos,\ \textcolor{keyword}{const}\ std::string\ \&normalizedReference,}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::string>\ \&normalizedAlternate)}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ chromosome(chromosome),}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ normalized\_pos(normalizedPos),}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ normalized\_reference(normalizedReference),}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ normalized\_alternate(normalizedAlternate)\ \{}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00051}00051\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00052}00052\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00053}\mbox{\hyperlink{structebi_1_1_test_record}{00053}}\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structebi_1_1_test_record}{TestRecord}}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00054}00054\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00055}00055\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ normalized\_pos;}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00056}00056\ \ \ \ \ \ \ std::string\ normalized\_reference;}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00057}00057\ \ \ \ \ \ \ std::string\ normalized\_alternate;}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00058}00058\ \ \ \};}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00060}00060\ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_record}{vcf::Record}}\ build\_mock\_record(\mbox{\hyperlink{structebi_1_1_test_multi_record}{TestMultiRecord}}\ summary)}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00061}00061\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00063}00063\ \textcolor{comment}{//\ \ \ \ \ \ std::shared\_ptr<vcf::Source>\ source\{std::make\_shared<Source>(}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00064}00064\ \ \ \ \ \ \ std::shared\_ptr<vcf::Source>\ source\{\textcolor{keyword}{new}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_source}{vcf::Source}}\{\textcolor{stringliteral}{"{}filename.vcf"{}},}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vcf::VCF\_FILE\_VCF,}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vcf::Version::v41,}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\},}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}NA001"{}},\ \textcolor{stringliteral}{"{}NA002"{}},\ \textcolor{stringliteral}{"{}NA003"{}},\ \textcolor{stringliteral}{"{}NA004"{}}\}\}\};}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00070}00070\ \ \ \ \ \ \ source-\/>\mbox{\hyperlink{structebi_1_1vcf_1_1_source_af743b27eebf8d5c816ffc375cd6bca72}{meta\_entries}}.emplace(vcf::FORMAT,}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vcf::MetaEntry\{}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1,}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vcf::FORMAT,}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ vcf::ID,\ vcf::GT\ \},}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ vcf::NUMBER,\ \textcolor{stringliteral}{"{}1"{}}\ \},}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ vcf::TYPE,\ vcf::STRING\ \},}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ vcf::DESCRIPTION,\ \textcolor{stringliteral}{"{}Genotype"{}}\ \}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ source}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00083}00083\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vcf::Record\{1,\ summary.chromosome,\ summary.normalized\_pos,\ \{vcf::MISSING\_VALUE\},}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ summary.normalized\_reference,\ summary.normalized\_alternate,\ 0,\ \{vcf::MISSING\_VALUE\},}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\{vcf::MISSING\_VALUE,\ \textcolor{stringliteral}{"{}"{}}\}\},\ \{vcf::GT\},\ \{\textcolor{stringliteral}{"{}0/0"{}},\ \textcolor{stringliteral}{"{}0/1"{}},\ \textcolor{stringliteral}{"{}0/1"{}},\ \textcolor{stringliteral}{"{}1/1"{}}\},\ source\};}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00086}00086\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00089}\mbox{\hyperlink{namespaceebi_a9b9d0dcb441bb9f9cafa425af87c193a}{00089}}\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{namespaceebi_a9b9d0dcb441bb9f9cafa425af87c193a}{count\_lines}}(std::istream\ \&input\_stream)}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00090}00090\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00091}00091\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::count(std::istreambuf\_iterator<char>(input\_stream),}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::istreambuf\_iterator<char>(),}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00094}00094\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00096}00096\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{namespaceebi_a9b9d0dcb441bb9f9cafa425af87c193a}{count\_lines}}(std::string\ filename)}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00097}00097\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00098}00098\ \ \ \ \ \ \ std::ifstream\ file\{filename\};}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00099}00099\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceebi_a9b9d0dcb441bb9f9cafa425af87c193a}{count\_lines}}(file);}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00100}00100\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00101}00101\ \}}
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{test__utils_8hpp_source_l00103}00103\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EBI\_TEST\_UTILS\_HPP}}
+
+\end{DoxyCode}

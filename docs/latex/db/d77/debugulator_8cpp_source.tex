@@ -1,0 +1,72 @@
+\doxysection{debugulator.\+cpp}
+\hypertarget{debugulator_8cpp_source}{}\label{debugulator_8cpp_source}\index{src/vcf/debugulator.cpp@{src/vcf/debugulator.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}util/logger.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}vcf/debugulator.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00020}00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00022}00022\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00023}00023\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{namespace\ }debugulator}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00025}00025\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00026}00026\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ fix\_vcf\_file(std::istream\ \&input,}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_report_reader}{ebi::vcf::ReportReader}}\ \&errorDAO,}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ostream\ \&output)}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00029}00029\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ std::vector<char>\ line;}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ line.reserve(default\_line\_buffer\_size);}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ current\_line\ =\ 0;\ \ \textcolor{comment}{//\ the\ first\ line\ is\ the\ number\ 1,\ ParsingState\ takes\ this\ convention\ too}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ errors\ =\ errorDAO.count\_errors();}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ errors\_fixed\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (errors\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}The\ errors\ report\ was\ empty,\ there\ are\ no\ errors\ to\ fix\ the\ input"{}};}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_fixer}{ebi::vcf::Fixer}}\ fixer\{output\};}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ errorDAO.for\_each\_error([\&](std::shared\_ptr<ebi::vcf::Error>\ error)\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ line\_index\ =\ error-\/>line;}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (current\_line\ <\ line\_index)\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ advance\ input}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ebi::util::readline(input,\ line).size()\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}The\ file\ was\ shorter\ than\ expected,\ only\ "{}}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ std::to\_string(errors\_fixed)\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ std::to\_string(errors)}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}\ error\ reports\ were\ processed"{}});}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_line++;}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current\_line\ ==\ line\_index)\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ebi::util::writeline(output,\ line);}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fixer.fix(line\_index,\ line,\ *error);}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++errors\_fixed;}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ advance\ input\ from\ the\ last\ error\ to\ the\ end\ of\ input}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (ebi::util::readline(input,\ line).size()\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ c\ :\ line)\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ <<\ c;}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ignored\_errors\ =\ fixer.get\_ignored\_errors();}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ignored\_errors\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}There\ were\ "{}}\ <<\ ignored\_errors\ <<\ \textcolor{stringliteral}{"{}\ errors\ that\ couldn't\ be\ automatically\ fixed"{}};}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ignored\_errors;}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00077}00077\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00079}00079\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00080}00080\ \}}
+\DoxyCodeLine{\Hypertarget{debugulator_8cpp_source_l00081}00081\ }
+
+\end{DoxyCode}

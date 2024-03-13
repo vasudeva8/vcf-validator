@@ -1,0 +1,123 @@
+\doxysection{ebi\+::vcf\+::Meta\+Entry\+Visitor Class Reference}
+\hypertarget{classebi_1_1vcf_1_1_meta_entry_visitor}{}\label{classebi_1_1vcf_1_1_meta_entry_visitor}\index{ebi::vcf::MetaEntryVisitor@{ebi::vcf::MetaEntryVisitor}}
+
+
+Inheritance diagram for ebi\+::vcf\+::Meta\+Entry\+Visitor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{d2/de0/classebi_1_1vcf_1_1_meta_entry_visitor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ebi\+::vcf\+::Meta\+Entry\+Visitor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{d5/d22/classebi_1_1vcf_1_1_meta_entry_visitor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classebi_1_1vcf_1_1_meta_entry_visitor_a258f42a29825afc45502cf4eb7a24f59}{Meta\+Entry\+Visitor}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{Meta\+Entry}} const \&entry)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_meta_entry_visitor_ae99b9402162d673f702169c69bb99de3}{operator()}} (std\+::string \&value) const
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_meta_entry_visitor_a17178063ab0ab892ae09d3e9b01ce200}{operator()}} (std\+::map$<$ std\+::string, std\+::string $>$ \&value) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{meta__entry__visitor_8hpp_source_l00031}{31}} of file \mbox{\hyperlink{meta__entry__visitor_8hpp_source}{meta\+\_\+entry\+\_\+visitor.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_meta_entry_visitor_a258f42a29825afc45502cf4eb7a24f59}\label{classebi_1_1vcf_1_1_meta_entry_visitor_a258f42a29825afc45502cf4eb7a24f59} 
+\index{ebi::vcf::MetaEntryVisitor@{ebi::vcf::MetaEntryVisitor}!MetaEntryVisitor@{MetaEntryVisitor}}
+\index{MetaEntryVisitor@{MetaEntryVisitor}!ebi::vcf::MetaEntryVisitor@{ebi::vcf::MetaEntryVisitor}}
+\doxysubsubsection{\texorpdfstring{MetaEntryVisitor()}{MetaEntryVisitor()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Meta\+Entry\+Visitor\+::\+Meta\+Entry\+Visitor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_meta_entry}{Meta\+Entry}} const \&}]{entry }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{meta__entry_8cpp_source_l00077}{77}} of file \mbox{\hyperlink{meta__entry_8cpp_source}{meta\+\_\+entry.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00078\ \ \ \ \ :\ entry\{entry\}}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_meta_entry_visitor_a17178063ab0ab892ae09d3e9b01ce200}\label{classebi_1_1vcf_1_1_meta_entry_visitor_a17178063ab0ab892ae09d3e9b01ce200} 
+\index{ebi::vcf::MetaEntryVisitor@{ebi::vcf::MetaEntryVisitor}!operator()@{operator()}}
+\index{operator()@{operator()}!ebi::vcf::MetaEntryVisitor@{ebi::vcf::MetaEntryVisitor}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Meta\+Entry\+Visitor\+::operator() (\begin{DoxyParamCaption}\item[{std\+::map$<$ std\+::string, std\+::string $>$ \&}]{value }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{meta__entry_8cpp_source_l00090}{90}} of file \mbox{\hyperlink{meta__entry_8cpp_source}{meta\+\_\+entry.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&\ \textcolor{keywordtype}{id}\ =\ entry.id;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ ALT)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ check\_alt(value);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ ASSEMBLY)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO\ May\ check\ URL\ correctness\ (regexp?)}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ CONTIG)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ check\_contig(value);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ FILTER)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ check\_filter(value);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ FORMAT)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ check\_format(value);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ INFO)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ check\_info(value);}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ PEDIGREE)\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nothing\ to\ check}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ PEDIGREEDB)\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nothing\ to\ check}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ ==\ SAMPLE)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ check\_sample(value);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_meta_entry_visitor_ae99b9402162d673f702169c69bb99de3}\label{classebi_1_1vcf_1_1_meta_entry_visitor_ae99b9402162d673f702169c69bb99de3} 
+\index{ebi::vcf::MetaEntryVisitor@{ebi::vcf::MetaEntryVisitor}!operator()@{operator()}}
+\index{operator()@{operator()}!ebi::vcf::MetaEntryVisitor@{ebi::vcf::MetaEntryVisitor}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Meta\+Entry\+Visitor\+::operator() (\begin{DoxyParamCaption}\item[{std\+::string \&}]{value }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{meta__entry_8cpp_source_l00083}{83}} of file \mbox{\hyperlink{meta__entry_8cpp_source}{meta\+\_\+entry.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (util::contains\_if(value,\ [](\textcolor{keywordtype}{char}\ c)\ \{\ \textcolor{keywordflow}{return}\ c\ ==\ \textcolor{charliteral}{'\(\backslash\)n'};\ \}))\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ MetaSectionError\{entry.line,\ \textcolor{stringliteral}{"{}Metadata\ value\ contains\ a\ line\ break"{}}\};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/meta\+\_\+entry\+\_\+visitor.\+hpp\item 
+src/vcf/meta\+\_\+entry.\+cpp\end{DoxyCompactItemize}

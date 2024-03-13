@@ -1,0 +1,330 @@
+\doxysection{ebi\+::vcf\+::Odb\+Report\+RW Class Reference}
+\hypertarget{classebi_1_1vcf_1_1_odb_report_r_w}{}\label{classebi_1_1vcf_1_1_odb_report_r_w}\index{ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}}
+
+
+Inheritance diagram for ebi\+::vcf\+::Odb\+Report\+RW\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{db/d40/classebi_1_1vcf_1_1_odb_report_r_w__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ebi\+::vcf\+::Odb\+Report\+RW\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{de/d96/classebi_1_1vcf_1_1_odb_report_r_w__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w_a891259d35c80ee56ff41e9f54dba416b}{Odb\+Report\+RW}} (const std\+::string \&db\+\_\+name)
+\item 
+void \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w_ad02a000ebe6aafb28bce384e91f0438b}{flush}} ()
+\item 
+virtual void \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w_ad03c77ba23a0102311c0aa6a27909705}{write\+\_\+error}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \&error) override
+\item 
+virtual void \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w_abf1739c89a1f4253b4ef13cbeaed7284}{write\+\_\+warning}} (\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \&error) override
+\item 
+virtual void \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w_a013a56c69a23823e525af6be3460ad01}{write\+\_\+message}} (const std\+::string \&report\+\_\+result) override
+\item 
+virtual size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w_ab9e49e40152ce9fc78c09624f42699ab}{count\+\_\+warnings}} () override
+\item 
+virtual void \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w_acc1f2476d4dc0ea242d44733e6df0d90}{for\+\_\+each\+\_\+warning}} (std\+::function$<$ void(std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$)$>$ user\+\_\+function) override
+\item 
+virtual size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w_a500cf82f7a8486990842cecad9bb88b2}{count\+\_\+errors}} () override
+\item 
+virtual void \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w_a1597adafd98b5d70d3a7fb8c197e0246}{for\+\_\+each\+\_\+error}} (std\+::function$<$ void(std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$)$>$ user\+\_\+function) override
+\item 
+virtual std\+::string \mbox{\hyperlink{classebi_1_1vcf_1_1_odb_report_r_w_a92a7acdf56d718317a6d4f14d8e439e7}{get\+\_\+report\+\_\+message}} () override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{odb__report_8hpp_source_l00036}{36}} of file \mbox{\hyperlink{odb__report_8hpp_source}{odb\+\_\+report.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_odb_report_r_w_a891259d35c80ee56ff41e9f54dba416b}\label{classebi_1_1vcf_1_1_odb_report_r_w_a891259d35c80ee56ff41e9f54dba416b} 
+\index{ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}!OdbReportRW@{OdbReportRW}}
+\index{OdbReportRW@{OdbReportRW}!ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}}
+\doxysubsubsection{\texorpdfstring{OdbReportRW()}{OdbReportRW()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Odb\+Report\+RW\+::\+Odb\+Report\+RW (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{db\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{odb__report_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{odb__report_8cpp_source}{odb\+\_\+report.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ db\_name(db\_name),\ current\_transaction\_size\{0\},}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction\_size\{1000000\}}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ boost::filesystem::path\ db\_file\{db\_name\};}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (boost::filesystem::exists(db\_file))\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ db\ =\ std::unique\_ptr<odb::sqlite::database>\ (}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ odb::sqlite::database\{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ db\_name,\ SQLITE\_OPEN\_READWRITE\});}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ the\ file\ doesn't\ exist,\ create\ database\ and\ schema}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ db\ =\ std::unique\_ptr<odb::sqlite::database>(}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ odb::sqlite::database\{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ db\_name,\ SQLITE\_OPEN\_READWRITE\ |\ SQLITE\_OPEN\_CREATE\});}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ database\ schema.\ Due\ to\ bugs\ in\ SQLite\ foreign\ key}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ support\ for\ DDL\ statements,\ we\ need\ to\ temporarily\ disable}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ foreign\ keys.}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ odb::core::connection\_ptr\ c\{db-\/>connection()\};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c-\/>execute(\textcolor{stringliteral}{"{}PRAGMA\ foreign\_keys=OFF"{}});}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ odb::core::transaction\ t\{c-\/>begin()\};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ odb::core::schema\_catalog::create\_schema(*db);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t.commit();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c-\/>execute(\textcolor{stringliteral}{"{}PRAGMA\ foreign\_keys=ON"{}});}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ odb::exception\&\ e)\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error\{\textcolor{stringliteral}{"{}ODB\ report:\ Can't\ initialize\ database\ file\ \(\backslash\)"{}"{}}\ +\ db\_name\ +\ \textcolor{stringliteral}{"{}\(\backslash\)"{}:\ "{}}\ +\ e.what()\};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_odb_report_r_w_adb50b3fe7d327cac9642c94d9c3aa53c}\label{classebi_1_1vcf_1_1_odb_report_r_w_adb50b3fe7d327cac9642c94d9c3aa53c} 
+\index{ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}!````~OdbReportRW@{\texorpdfstring{$\sim$}{\string~}OdbReportRW}}
+\index{````~OdbReportRW@{\texorpdfstring{$\sim$}{\string~}OdbReportRW}!ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}OdbReportRW()}{\string~OdbReportRW()}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Odb\+Report\+RW\+::\texorpdfstring{$\sim$}{\string~}\+Odb\+Report\+RW (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{odb__report_8cpp_source_l00061}{61}} of file \mbox{\hyperlink{odb__report_8cpp_source}{odb\+\_\+report.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ flush();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::exception\ \&e)\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(error)\ <<\ \textcolor{stringliteral}{"{}An\ error\ occurred\ finalizing\ the\ error\ reporting:\ "{}}\ <<\ e.what();}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1_odb_report_r_w_a500cf82f7a8486990842cecad9bb88b2}\label{classebi_1_1vcf_1_1_odb_report_r_w_a500cf82f7a8486990842cecad9bb88b2} 
+\index{ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}!count\_errors@{count\_errors}}
+\index{count\_errors@{count\_errors}!ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}}
+\doxysubsubsection{\texorpdfstring{count\_errors()}{count\_errors()}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Odb\+Report\+RW\+::count\+\_\+errors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1_report_reader}{ebi\+::vcf\+::\+Report\+Reader}}.
+
+
+
+Definition at line \mbox{\hyperlink{odb__report_8cpp_source_l00126}{126}} of file \mbox{\hyperlink{odb__report_8cpp_source}{odb\+\_\+report.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ count(odb::query<ErrorCount>::severity\ ==\ Severity::ERROR\_LEVEL);}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_odb_report_r_w_ab9e49e40152ce9fc78c09624f42699ab}\label{classebi_1_1vcf_1_1_odb_report_r_w_ab9e49e40152ce9fc78c09624f42699ab} 
+\index{ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}!count\_warnings@{count\_warnings}}
+\index{count\_warnings@{count\_warnings}!ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}}
+\doxysubsubsection{\texorpdfstring{count\_warnings()}{count\_warnings()}}
+{\footnotesize\ttfamily size\+\_\+t ebi\+::vcf\+::\+Odb\+Report\+RW\+::count\+\_\+warnings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1_report_reader}{ebi\+::vcf\+::\+Report\+Reader}}.
+
+
+
+Definition at line \mbox{\hyperlink{odb__report_8cpp_source_l00117}{117}} of file \mbox{\hyperlink{odb__report_8cpp_source}{odb\+\_\+report.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ count(odb::query<ErrorCount>::severity\ ==\ Severity::WARNING\_LEVEL);}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_odb_report_r_w_ad02a000ebe6aafb28bce384e91f0438b}\label{classebi_1_1vcf_1_1_odb_report_r_w_ad02a000ebe6aafb28bce384e91f0438b} 
+\index{ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}!flush@{flush}}
+\index{flush@{flush}!ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}}
+\doxysubsubsection{\texorpdfstring{flush()}{flush()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Odb\+Report\+RW\+::flush (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{odb__report_8cpp_source_l00070}{70}} of file \mbox{\hyperlink{odb__report_8cpp_source}{odb\+\_\+report.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00071\ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ possible\ recovery\ can\ be\ done\ here,\ ODB\ rollbacks\ automatically\ on\ error,\ and\ throws.}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (transaction.has\_current())\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ transaction.commit();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ odb::core::connection\_ptr\ c\{db-\/>connection()\};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ c-\/>execute(\textcolor{stringliteral}{"{}PRAGMA\ shrink\_memory"{}});}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_odb_report_r_w_a1597adafd98b5d70d3a7fb8c197e0246}\label{classebi_1_1vcf_1_1_odb_report_r_w_a1597adafd98b5d70d3a7fb8c197e0246} 
+\index{ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}!for\_each\_error@{for\_each\_error}}
+\index{for\_each\_error@{for\_each\_error}!ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}}
+\doxysubsubsection{\texorpdfstring{for\_each\_error()}{for\_each\_error()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Odb\+Report\+RW\+::for\+\_\+each\+\_\+error (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$)$>$}]{user\+\_\+function }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1_report_reader}{ebi\+::vcf\+::\+Report\+Reader}}.
+
+
+
+Definition at line \mbox{\hyperlink{odb__report_8cpp_source_l00130}{130}} of file \mbox{\hyperlink{odb__report_8cpp_source}{odb\+\_\+report.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00131\ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ for\_each(user\_function,\ odb::query<Error>::severity\ ==\ Severity::ERROR\_LEVEL);}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_odb_report_r_w_acc1f2476d4dc0ea242d44733e6df0d90}\label{classebi_1_1vcf_1_1_odb_report_r_w_acc1f2476d4dc0ea242d44733e6df0d90} 
+\index{ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}!for\_each\_warning@{for\_each\_warning}}
+\index{for\_each\_warning@{for\_each\_warning}!ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}}
+\doxysubsubsection{\texorpdfstring{for\_each\_warning()}{for\_each\_warning()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Odb\+Report\+RW\+::for\+\_\+each\+\_\+warning (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} $>$)$>$}]{user\+\_\+function }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1_report_reader}{ebi\+::vcf\+::\+Report\+Reader}}.
+
+
+
+Definition at line \mbox{\hyperlink{odb__report_8cpp_source_l00121}{121}} of file \mbox{\hyperlink{odb__report_8cpp_source}{odb\+\_\+report.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ for\_each(user\_function,\ odb::query<Error>::severity\ ==\ Severity::WARNING\_LEVEL);}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_odb_report_r_w_a92a7acdf56d718317a6d4f14d8e439e7}\label{classebi_1_1vcf_1_1_odb_report_r_w_a92a7acdf56d718317a6d4f14d8e439e7} 
+\index{ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}!get\_report\_message@{get\_report\_message}}
+\index{get\_report\_message@{get\_report\_message}!ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}}
+\doxysubsubsection{\texorpdfstring{get\_report\_message()}{get\_report\_message()}}
+{\footnotesize\ttfamily std\+::string ebi\+::vcf\+::\+Odb\+Report\+RW\+::get\+\_\+report\+\_\+message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1_report_writer}{ebi\+::vcf\+::\+Report\+Writer}}.
+
+
+
+Definition at line \mbox{\hyperlink{odb__report_8cpp_source_l00167}{167}} of file \mbox{\hyperlink{odb__report_8cpp_source}{odb\+\_\+report.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00168\ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Database\ report\ written\ to\ :\ "{}}\ +\ db\_name;}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_odb_report_r_w_ad03c77ba23a0102311c0aa6a27909705}\label{classebi_1_1vcf_1_1_odb_report_r_w_ad03c77ba23a0102311c0aa6a27909705} 
+\index{ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}!write\_error@{write\_error}}
+\index{write\_error@{write\_error}!ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}}
+\doxysubsubsection{\texorpdfstring{write\_error()}{write\_error()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Odb\+Report\+RW\+::write\+\_\+error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1_report_writer}{ebi\+::vcf\+::\+Report\+Writer}}.
+
+
+
+Definition at line \mbox{\hyperlink{odb__report_8cpp_source_l00084}{84}} of file \mbox{\hyperlink{odb__report_8cpp_source}{odb\+\_\+report.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ error.severity\ =\ Severity::ERROR\_LEVEL;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ write(error);}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_odb_report_r_w_a013a56c69a23823e525af6be3460ad01}\label{classebi_1_1vcf_1_1_odb_report_r_w_a013a56c69a23823e525af6be3460ad01} 
+\index{ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}!write\_message@{write\_message}}
+\index{write\_message@{write\_message}!ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}}
+\doxysubsubsection{\texorpdfstring{write\_message()}{write\_message()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Odb\+Report\+RW\+::write\+\_\+message (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{report\+\_\+result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1_report_writer}{ebi\+::vcf\+::\+Report\+Writer}}.
+
+
+
+Definition at line \mbox{\hyperlink{odb__report_8cpp_source_l00094}{94}} of file \mbox{\hyperlink{odb__report_8cpp_source}{odb\+\_\+report.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00095\ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ do\ nothing}}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1vcf_1_1_odb_report_r_w_abf1739c89a1f4253b4ef13cbeaed7284}\label{classebi_1_1vcf_1_1_odb_report_r_w_abf1739c89a1f4253b4ef13cbeaed7284} 
+\index{ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}!write\_warning@{write\_warning}}
+\index{write\_warning@{write\_warning}!ebi::vcf::OdbReportRW@{ebi::vcf::OdbReportRW}}
+\doxysubsubsection{\texorpdfstring{write\_warning()}{write\_warning()}}
+{\footnotesize\ttfamily void ebi\+::vcf\+::\+Odb\+Report\+RW\+::write\+\_\+warning (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structebi_1_1vcf_1_1_error}{Error}} \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classebi_1_1vcf_1_1_report_writer}{ebi\+::vcf\+::\+Report\+Writer}}.
+
+
+
+Definition at line \mbox{\hyperlink{odb__report_8cpp_source_l00089}{89}} of file \mbox{\hyperlink{odb__report_8cpp_source}{odb\+\_\+report.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ error.severity\ =\ Severity::WARNING\_LEVEL;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ write(error);}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/odb\+\_\+report.\+hpp\item 
+src/vcf/odb\+\_\+report.\+cpp\end{DoxyCompactItemize}

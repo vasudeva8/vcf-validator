@@ -1,0 +1,211 @@
+\doxysection{Catch\+::Composite\+Generator\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_catch_1_1_composite_generator}{}\label{class_catch_1_1_composite_generator}\index{Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}}
+
+
+Collaboration diagram for Catch\+::Composite\+Generator\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{df/d76/class_catch_1_1_composite_generator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_catch_1_1_composite_generator_a21a7070a00e4a6fe021294c356692692}{Composite\+Generator}} (\mbox{\hyperlink{class_catch_1_1_composite_generator}{Composite\+Generator}} \&other)
+\item 
+\mbox{\hyperlink{class_catch_1_1_composite_generator}{Composite\+Generator}} \& \mbox{\hyperlink{class_catch_1_1_composite_generator_a7f2cecb35b0e9aedabefdebfa330cf73}{set\+File\+Info}} (const char \texorpdfstring{$\ast$}{*}file\+Info)
+\item 
+\mbox{\hyperlink{class_catch_1_1_composite_generator_a83d6c941e2e735b9528e6e832f7b76e7}{operator T}} () const
+\item 
+void \mbox{\hyperlink{class_catch_1_1_composite_generator_af3774d42ad2d3453d089ca599efe0517}{add}} (const \mbox{\hyperlink{struct_catch_1_1_i_generator}{IGenerator}}$<$ T $>$ \texorpdfstring{$\ast$}{*}generator)
+\item 
+\mbox{\hyperlink{class_catch_1_1_composite_generator}{Composite\+Generator}} \& \mbox{\hyperlink{class_catch_1_1_composite_generator_ac33d859dd087c23698168491d4576465}{then}} (\mbox{\hyperlink{class_catch_1_1_composite_generator}{Composite\+Generator}} \&other)
+\item 
+\mbox{\hyperlink{class_catch_1_1_composite_generator}{Composite\+Generator}} \& \mbox{\hyperlink{class_catch_1_1_composite_generator_a5eb501037b93684d1c9076383f775204}{then}} (T value)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Catch\+::\+Composite\+Generator$<$ T $>$}
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02395}{2395}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_catch_1_1_composite_generator_a923398b140371d1783858766864a1af5}\label{class_catch_1_1_composite_generator_a923398b140371d1783858766864a1af5} 
+\index{Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}!CompositeGenerator@{CompositeGenerator}}
+\index{CompositeGenerator@{CompositeGenerator}!Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{CompositeGenerator()}{CompositeGenerator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_catch_1_1_composite_generator}{Catch\+::\+Composite\+Generator}}$<$ T $>$\+::\+Composite\+Generator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02397}{2397}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02397\ :\ m\_totalSize(\ 0\ )\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_composite_generator_a21a7070a00e4a6fe021294c356692692}\label{class_catch_1_1_composite_generator_a21a7070a00e4a6fe021294c356692692} 
+\index{Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}!CompositeGenerator@{CompositeGenerator}}
+\index{CompositeGenerator@{CompositeGenerator}!Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{CompositeGenerator()}{CompositeGenerator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_catch_1_1_composite_generator}{Catch\+::\+Composite\+Generator}}$<$ T $>$\+::\+Composite\+Generator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_catch_1_1_composite_generator}{Composite\+Generator}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02400}{2400}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02401\ \ \ \ \ :\ \ \ m\_fileInfo(\ other.m\_fileInfo\ ),}
+\DoxyCodeLine{02402\ \ \ \ \ \ \ \ \ m\_totalSize(\ 0\ )}
+\DoxyCodeLine{02403\ \ \ \ \ \{}
+\DoxyCodeLine{02404\ \ \ \ \ \ \ \ \ move(\ other\ );}
+\DoxyCodeLine{02405\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_composite_generator_a5766205abd7004c508c20ddbb5e5555e}\label{class_catch_1_1_composite_generator_a5766205abd7004c508c20ddbb5e5555e} 
+\index{Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}!````~CompositeGenerator@{\texorpdfstring{$\sim$}{\string~}CompositeGenerator}}
+\index{````~CompositeGenerator@{\texorpdfstring{$\sim$}{\string~}CompositeGenerator}!Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CompositeGenerator()}{\string~CompositeGenerator()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_catch_1_1_composite_generator}{Catch\+::\+Composite\+Generator}}$<$ T $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{class_catch_1_1_composite_generator}{Composite\+Generator}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02412}{2412}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02413\ \ \ \ \ \ \ \ \ deleteAll(\ m\_composed\ );}
+\DoxyCodeLine{02414\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_catch_1_1_composite_generator_af3774d42ad2d3453d089ca599efe0517}\label{class_catch_1_1_composite_generator_af3774d42ad2d3453d089ca599efe0517} 
+\index{Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}!add@{add}}
+\index{add@{add}!Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{class_catch_1_1_composite_generator}{Catch\+::\+Composite\+Generator}}$<$ T $>$\+::add (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_catch_1_1_i_generator}{IGenerator}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{generator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02434}{2434}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02435\ \ \ \ \ \ \ \ \ m\_totalSize\ +=\ generator-\/>size();}
+\DoxyCodeLine{02436\ \ \ \ \ \ \ \ \ m\_composed.push\_back(\ generator\ );}
+\DoxyCodeLine{02437\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_composite_generator_a83d6c941e2e735b9528e6e832f7b76e7}\label{class_catch_1_1_composite_generator_a83d6c941e2e735b9528e6e832f7b76e7} 
+\index{Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}!operator T@{operator T}}
+\index{operator T@{operator T}!Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator T()}{operator T()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_catch_1_1_composite_generator}{Catch\+::\+Composite\+Generator}}$<$ T $>$\+::operator T (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02416}{2416}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02417\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ overallIndex\ =\ getCurrentContext().getGeneratorIndex(\ m\_fileInfo,\ m\_totalSize\ );}
+\DoxyCodeLine{02418\ }
+\DoxyCodeLine{02419\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::vector<const\ IGenerator<T>*>::const\_iterator\ it\ =\ m\_composed.begin();}
+\DoxyCodeLine{02420\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::vector<const\ IGenerator<T>*>::const\_iterator\ itEnd\ =\ m\_composed.end();}
+\DoxyCodeLine{02421\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ index\ =\ 0;\ it\ !=\ itEnd;\ ++it\ )}
+\DoxyCodeLine{02422\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02423\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ IGenerator<T>*\ generator\ =\ *it;}
+\DoxyCodeLine{02424\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ overallIndex\ >=\ index\ \&\&\ overallIndex\ <\ index\ +\ generator-\/>size()\ )}
+\DoxyCodeLine{02425\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ generator-\/>getValue(\ overallIndex-\/index\ );}
+\DoxyCodeLine{02427\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02428\ \ \ \ \ \ \ \ \ \ \ \ \ index\ +=\ generator-\/>size();}
+\DoxyCodeLine{02429\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02430\ \ \ \ \ \ \ \ \ CATCH\_INTERNAL\_ERROR(\ \textcolor{stringliteral}{"{}Indexed\ past\ end\ of\ generated\ range"{}}\ );}
+\DoxyCodeLine{02431\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ T();\ \textcolor{comment}{//\ Suppress\ spurious\ "{}not\ all\ control\ paths\ return\ a\ value"{}\ warning\ in\ Visual\ Studio\ -\/\ if\ you\ know\ how\ to\ fix\ this\ please\ do\ so}}
+\DoxyCodeLine{02432\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_composite_generator_a7f2cecb35b0e9aedabefdebfa330cf73}\label{class_catch_1_1_composite_generator_a7f2cecb35b0e9aedabefdebfa330cf73} 
+\index{Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}!setFileInfo@{setFileInfo}}
+\index{setFileInfo@{setFileInfo}!Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setFileInfo()}{setFileInfo()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_catch_1_1_composite_generator}{Composite\+Generator}} \& \mbox{\hyperlink{class_catch_1_1_composite_generator}{Catch\+::\+Composite\+Generator}}$<$ T $>$\+::set\+File\+Info (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{file\+Info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02407}{2407}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02408\ \ \ \ \ \ \ \ \ m\_fileInfo\ =\ fileInfo;}
+\DoxyCodeLine{02409\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{02410\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_composite_generator_ac33d859dd087c23698168491d4576465}\label{class_catch_1_1_composite_generator_ac33d859dd087c23698168491d4576465} 
+\index{Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}!then@{then}}
+\index{then@{then}!Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{then()}{then()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_catch_1_1_composite_generator}{Composite\+Generator}} \& \mbox{\hyperlink{class_catch_1_1_composite_generator}{Catch\+::\+Composite\+Generator}}$<$ T $>$\+::then (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_catch_1_1_composite_generator}{Composite\+Generator}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02439}{2439}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02440\ \ \ \ \ \ \ \ \ move(\ other\ );}
+\DoxyCodeLine{02441\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{02442\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_catch_1_1_composite_generator_a5eb501037b93684d1c9076383f775204}\label{class_catch_1_1_composite_generator_a5eb501037b93684d1c9076383f775204} 
+\index{Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}!then@{then}}
+\index{then@{then}!Catch::CompositeGenerator$<$ T $>$@{Catch::CompositeGenerator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{then()}{then()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_catch_1_1_composite_generator}{Composite\+Generator}} \& \mbox{\hyperlink{class_catch_1_1_composite_generator}{Catch\+::\+Composite\+Generator}}$<$ T $>$\+::then (\begin{DoxyParamCaption}\item[{T}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l02444}{2444}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02445\ \ \ \ \ \ \ \ \ ValuesGenerator<T>*\ valuesGen\ =\ \textcolor{keyword}{new}\ ValuesGenerator<T>();}
+\DoxyCodeLine{02446\ \ \ \ \ \ \ \ \ valuesGen-\/>add(\ value\ );}
+\DoxyCodeLine{02447\ \ \ \ \ \ \ \ \ add(\ valuesGen\ );}
+\DoxyCodeLine{02448\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{02449\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/catch/catch.\+hpp\end{DoxyCompactItemize}

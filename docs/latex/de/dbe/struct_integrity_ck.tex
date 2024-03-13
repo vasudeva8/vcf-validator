@@ -1,0 +1,174 @@
+\doxysection{Integrity\+Ck Struct Reference}
+\hypertarget{struct_integrity_ck}{}\label{struct_integrity_ck}\index{IntegrityCk@{IntegrityCk}}
+
+
+Collaboration diagram for Integrity\+Ck\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/dee/struct_integrity_ck__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_bt_shared}{Bt\+Shared}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_integrity_ck_a65f03f54514f504bd871bb2ccd3da188}{p\+Bt}}
+\item 
+\mbox{\hyperlink{struct_pager}{Pager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_integrity_ck_a87e7f8b012b61b61fae359269cbacce4}{p\+Pager}}
+\item 
+u8 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_integrity_ck_a317f80aef5842ad69df75b55e14118d1}{a\+Pg\+Ref}}
+\item 
+Pgno \mbox{\hyperlink{struct_integrity_ck_a04f496ef7239aea6dccb6a861bb5a798}{n\+Page}}
+\item 
+int \mbox{\hyperlink{struct_integrity_ck_a9daa97cdcb1366c503451ab2af9e7ba6}{mx\+Err}}
+\item 
+int \mbox{\hyperlink{struct_integrity_ck_a52c815a1d19be87d0ab4dc0a4e4d38e2}{n\+Err}}
+\item 
+int \mbox{\hyperlink{struct_integrity_ck_a8e448c1d6483a0326a7ec39291782030}{malloc\+Failed}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_integrity_ck_a126e42d437777815b1c1d74bcacb3b38}{z\+Pfx}}
+\item 
+int \mbox{\hyperlink{struct_integrity_ck_a94edb493175bd0c1862efbaeaff63be3}{v1}}
+\item 
+int \mbox{\hyperlink{struct_integrity_ck_a0dd13b39fb4fd4e42de8ebf05af5c287}{v2}}
+\item 
+\mbox{\hyperlink{struct_str_accum}{Str\+Accum}} \mbox{\hyperlink{struct_integrity_ck_a1e9b79bb1d7b22a840001333200a950e}{err\+Msg}}
+\item 
+u32 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_integrity_ck_aada31529ac9fd90643f22cbb79cd916a}{heap}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57401}{57401}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_integrity_ck_a317f80aef5842ad69df75b55e14118d1}\label{struct_integrity_ck_a317f80aef5842ad69df75b55e14118d1} 
+\index{IntegrityCk@{IntegrityCk}!aPgRef@{aPgRef}}
+\index{aPgRef@{aPgRef}!IntegrityCk@{IntegrityCk}}
+\doxysubsubsection{\texorpdfstring{aPgRef}{aPgRef}}
+{\footnotesize\ttfamily u8\texorpdfstring{$\ast$}{*} Integrity\+Ck\+::a\+Pg\+Ref}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57404}{57404}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_integrity_ck_a1e9b79bb1d7b22a840001333200a950e}\label{struct_integrity_ck_a1e9b79bb1d7b22a840001333200a950e} 
+\index{IntegrityCk@{IntegrityCk}!errMsg@{errMsg}}
+\index{errMsg@{errMsg}!IntegrityCk@{IntegrityCk}}
+\doxysubsubsection{\texorpdfstring{errMsg}{errMsg}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_str_accum}{Str\+Accum}} Integrity\+Ck\+::err\+Msg}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57411}{57411}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_integrity_ck_aada31529ac9fd90643f22cbb79cd916a}\label{struct_integrity_ck_aada31529ac9fd90643f22cbb79cd916a} 
+\index{IntegrityCk@{IntegrityCk}!heap@{heap}}
+\index{heap@{heap}!IntegrityCk@{IntegrityCk}}
+\doxysubsubsection{\texorpdfstring{heap}{heap}}
+{\footnotesize\ttfamily u32\texorpdfstring{$\ast$}{*} Integrity\+Ck\+::heap}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57412}{57412}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_integrity_ck_a8e448c1d6483a0326a7ec39291782030}\label{struct_integrity_ck_a8e448c1d6483a0326a7ec39291782030} 
+\index{IntegrityCk@{IntegrityCk}!mallocFailed@{mallocFailed}}
+\index{mallocFailed@{mallocFailed}!IntegrityCk@{IntegrityCk}}
+\doxysubsubsection{\texorpdfstring{mallocFailed}{mallocFailed}}
+{\footnotesize\ttfamily int Integrity\+Ck\+::malloc\+Failed}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57408}{57408}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_integrity_ck_a9daa97cdcb1366c503451ab2af9e7ba6}\label{struct_integrity_ck_a9daa97cdcb1366c503451ab2af9e7ba6} 
+\index{IntegrityCk@{IntegrityCk}!mxErr@{mxErr}}
+\index{mxErr@{mxErr}!IntegrityCk@{IntegrityCk}}
+\doxysubsubsection{\texorpdfstring{mxErr}{mxErr}}
+{\footnotesize\ttfamily int Integrity\+Ck\+::mx\+Err}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57406}{57406}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_integrity_ck_a52c815a1d19be87d0ab4dc0a4e4d38e2}\label{struct_integrity_ck_a52c815a1d19be87d0ab4dc0a4e4d38e2} 
+\index{IntegrityCk@{IntegrityCk}!nErr@{nErr}}
+\index{nErr@{nErr}!IntegrityCk@{IntegrityCk}}
+\doxysubsubsection{\texorpdfstring{nErr}{nErr}}
+{\footnotesize\ttfamily int Integrity\+Ck\+::n\+Err}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57407}{57407}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_integrity_ck_a04f496ef7239aea6dccb6a861bb5a798}\label{struct_integrity_ck_a04f496ef7239aea6dccb6a861bb5a798} 
+\index{IntegrityCk@{IntegrityCk}!nPage@{nPage}}
+\index{nPage@{nPage}!IntegrityCk@{IntegrityCk}}
+\doxysubsubsection{\texorpdfstring{nPage}{nPage}}
+{\footnotesize\ttfamily Pgno Integrity\+Ck\+::n\+Page}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57405}{57405}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_integrity_ck_a65f03f54514f504bd871bb2ccd3da188}\label{struct_integrity_ck_a65f03f54514f504bd871bb2ccd3da188} 
+\index{IntegrityCk@{IntegrityCk}!pBt@{pBt}}
+\index{pBt@{pBt}!IntegrityCk@{IntegrityCk}}
+\doxysubsubsection{\texorpdfstring{pBt}{pBt}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_bt_shared}{Bt\+Shared}}\texorpdfstring{$\ast$}{*} Integrity\+Ck\+::p\+Bt}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57402}{57402}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_integrity_ck_a87e7f8b012b61b61fae359269cbacce4}\label{struct_integrity_ck_a87e7f8b012b61b61fae359269cbacce4} 
+\index{IntegrityCk@{IntegrityCk}!pPager@{pPager}}
+\index{pPager@{pPager}!IntegrityCk@{IntegrityCk}}
+\doxysubsubsection{\texorpdfstring{pPager}{pPager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_pager}{Pager}}\texorpdfstring{$\ast$}{*} Integrity\+Ck\+::p\+Pager}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57403}{57403}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_integrity_ck_a94edb493175bd0c1862efbaeaff63be3}\label{struct_integrity_ck_a94edb493175bd0c1862efbaeaff63be3} 
+\index{IntegrityCk@{IntegrityCk}!v1@{v1}}
+\index{v1@{v1}!IntegrityCk@{IntegrityCk}}
+\doxysubsubsection{\texorpdfstring{v1}{v1}}
+{\footnotesize\ttfamily int Integrity\+Ck\+::v1}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57410}{57410}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_integrity_ck_a0dd13b39fb4fd4e42de8ebf05af5c287}\label{struct_integrity_ck_a0dd13b39fb4fd4e42de8ebf05af5c287} 
+\index{IntegrityCk@{IntegrityCk}!v2@{v2}}
+\index{v2@{v2}!IntegrityCk@{IntegrityCk}}
+\doxysubsubsection{\texorpdfstring{v2}{v2}}
+{\footnotesize\ttfamily int Integrity\+Ck\+::v2}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57410}{57410}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+\Hypertarget{struct_integrity_ck_a126e42d437777815b1c1d74bcacb3b38}\label{struct_integrity_ck_a126e42d437777815b1c1d74bcacb3b38} 
+\index{IntegrityCk@{IntegrityCk}!zPfx@{zPfx}}
+\index{zPfx@{zPfx}!IntegrityCk@{IntegrityCk}}
+\doxysubsubsection{\texorpdfstring{zPfx}{zPfx}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} Integrity\+Ck\+::z\+Pfx}
+
+
+
+Definition at line \mbox{\hyperlink{sqlite3_8c_source_l57409}{57409}} of file \mbox{\hyperlink{sqlite3_8c_source}{sqlite3.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/sqlite/sqlite3.\+c\end{DoxyCompactItemize}

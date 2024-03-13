@@ -1,0 +1,52 @@
+\doxysection{Catch\+::Detail\+::String\+Maker\+Base\texorpdfstring{$<$}{<} true \texorpdfstring{$>$}{>} Struct Reference}
+\hypertarget{struct_catch_1_1_detail_1_1_string_maker_base_3_01true_01_4}{}\label{struct_catch_1_1_detail_1_1_string_maker_base_3_01true_01_4}\index{Catch::Detail::StringMakerBase$<$ true $>$@{Catch::Detail::StringMakerBase$<$ true $>$}}
+
+
+Collaboration diagram for Catch\+::Detail\+::String\+Maker\+Base\texorpdfstring{$<$}{<} true \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{d5/dc7/struct_catch_1_1_detail_1_1_string_maker_base_3_01true_01_4__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\static std\+::string \mbox{\hyperlink{struct_catch_1_1_detail_1_1_string_maker_base_3_01true_01_4_af9b5fdf7fddd8c5c873caa819e5f00f6}{convert}} (T const \&\+\_\+value)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l01659}{1659}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_catch_1_1_detail_1_1_string_maker_base_3_01true_01_4_af9b5fdf7fddd8c5c873caa819e5f00f6}\label{struct_catch_1_1_detail_1_1_string_maker_base_3_01true_01_4_af9b5fdf7fddd8c5c873caa819e5f00f6} 
+\index{Catch::Detail::StringMakerBase$<$ true $>$@{Catch::Detail::StringMakerBase$<$ true $>$}!convert@{convert}}
+\index{convert@{convert}!Catch::Detail::StringMakerBase$<$ true $>$@{Catch::Detail::StringMakerBase$<$ true $>$}}
+\doxysubsubsection{\texorpdfstring{convert()}{convert()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static std\+::string \mbox{\hyperlink{struct_catch_1_1_detail_1_1_string_maker_base}{Catch\+::\+Detail\+::\+String\+Maker\+Base}}$<$ true $>$\+::convert (\begin{DoxyParamCaption}\item[{T const \&}]{\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{catch_8hpp_source_l01661}{1661}} of file \mbox{\hyperlink{catch_8hpp_source}{catch.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01661\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01662\ \ \ \ \ \ \ \ \ \ \ \ \ std::ostringstream\ oss;}
+\DoxyCodeLine{01663\ \ \ \ \ \ \ \ \ \ \ \ \ oss\ <<\ \_value;}
+\DoxyCodeLine{01664\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ oss.str();}
+\DoxyCodeLine{01665\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/catch/catch.\+hpp\end{DoxyCompactItemize}

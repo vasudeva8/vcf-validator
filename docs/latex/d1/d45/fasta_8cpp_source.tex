@@ -1,0 +1,158 @@
+\doxysection{fasta.\+cpp}
+\hypertarget{fasta_8cpp_source}{}\label{fasta_8cpp_source}\index{src/fasta/fasta.cpp@{src/fasta/fasta.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <boost/algorithm/string/predicate.hpp>}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <boost/filesystem/operations.hpp>}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <boost/iostreams/copy.hpp>}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}bioio/bioio.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}util/file\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}util/logger.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}util/stream\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00028}00028\ \textcolor{preprocessor}{\#include\ "{}util/string\_utils.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00029}00029\ \textcolor{preprocessor}{\#include\ "{}vcf/compression.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00030}00030\ \textcolor{preprocessor}{\#include\ "{}fasta/faidx.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00031}00031\ \textcolor{preprocessor}{\#include\ "{}fasta/fasta.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}vcf/string\_constants.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00034}\mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_a850998d6ecb20f028fe0419ac65cc285}{00034}}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_a850998d6ecb20f028fe0419ac65cc285}{ebi::vcf::fasta::FileBasedFasta::FileBasedFasta}}(\textcolor{keyword}{const}\ std::string\&\ fasta\_path,\ \textcolor{keyword}{const}\ std::string\&\ fasta\_index\_path)}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00035}00035\ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00036}00036\ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Reading\ from\ input\ FASTA\ file..."{}};}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00037}00037\ \ \ \ \ ebi::util::open\_file(fasta\_input,\ fasta\_path,\ std::ifstream::binary);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00039}00039\ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Reading\ from\ input\ FASTA\ index\ file..."{}};}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ std::ifstream\ fs;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ ebi::util::open\_file(fs,\ fasta\_index\_path,\ std::ifstream::binary);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ fasta\_index\ =\ bioio::read\_fasta\_index(fs);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00044}00044\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::runtime\_error\&\ error)\ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fasta\ index\ file\ does\ not\ exist.\ Create\ index\ on-\/the-\/fly.}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Creating\ index\ from\ input\ FASTA\ file..."{}};}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ std::stringstream\ faidx\_index;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ ebi::vcf::faidx::index\_fasta(fasta\_input,\ faidx\_index);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ fasta\_input.clear();}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ fasta\_input.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ fasta\_index\ =\ bioio::read\_fasta\_index(faidx\_index);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00052}00052\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00053}00053\ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00055}00055\ std::string}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00056}\mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_ac45f423fa0388193bd76b9f2da867387}{00056}}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_ac45f423fa0388193bd76b9f2da867387}{ebi::vcf::fasta::FileBasedFasta::sequence}}(\textcolor{keyword}{const}\ std::string\&\ contig,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ pos,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ length)}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00057}00057\ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (fasta\_index.find(contig)\ ==\ fasta\_index.cend())\ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{return}\ bioio::read\_fasta\_contig(fasta\_input,\ fasta\_index.at(contig),\ pos,\ length);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00064}00064\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00065}\mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_ab4809e90f37baab9cebe18a08b99bc5b}{00065}}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_ab4809e90f37baab9cebe18a08b99bc5b}{ebi::vcf::fasta::FileBasedFasta::sequence\_exists}}(\textcolor{keyword}{const}\ std::string\ \&contig)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00066}00066\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00067}00067\ \ \ \ \ \textcolor{keywordflow}{return}\ fasta\_index.count(contig)\ >\ 0;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00068}00068\ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00070}00070\ \textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00071}\mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_a57e7d975ccf4c172d3c081542ca0ab12}{00071}}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_a57e7d975ccf4c172d3c081542ca0ab12}{ebi::vcf::fasta::FileBasedFasta::sequence\_length}}(\textcolor{keyword}{const}\ std::string\ \&contig)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00072}00072\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{keyword}{auto}\ iter\ =\ fasta\_index.find(contig);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00074}00074\ \ \ \ \ \textcolor{keywordflow}{if}\ (iter\ ==\ fasta\_index.cend())\ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00075}00075\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00076}00076\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{return}\ (iter-\/>second).length;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00078}00078\ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00080}\mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a}{00080}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a}{ebi::vcf::fasta::ContigFromENA}}\ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00081}00081\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00082}00082\ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a}{ContigFromENA}}(\textcolor{keyword}{const}\ std::string\&\ contigName)}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00083}00083\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00084}00084\ \ \ \ \ \ \ contig\_length\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00085}00085\ \ \ \ \ \ \ contig\_name\ =\ contigName;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00086}00086\ \ \ \ \ \ \ fasta\_file.open(contig\_name.c\_str(),\ std::fstream::binary\ |\ std::fstream::in\ |\ std::fstream::out\ |\ std::fstream::trunc);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00087}00087\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00089}00089\ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a}{\string~ContigFromENA}}()}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00090}00090\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00091}00091\ \ \ \ \ \ \ fasta\_file.close();}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00092}00092\ \ \ \ \ \ \ boost::filesystem::remove(contig\_name);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00093}00093\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00095}00095\ \ \ \textcolor{keywordtype}{void}\ write(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ buffer,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ length)}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00096}00096\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00097}00097\ \ \ \ \ \ \ fasta\_file.write(buffer,\ length);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00098}00098\ \ \ \ \ \ \ contig\_length\ +=\ length;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00099}00099\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00101}00101\ \ \ std::string\ read(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ pos,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ length)}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00102}00102\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00103}00103\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ >=\ contig\_length)\ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00105}00105\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00107}00107\ \ \ \ \ \ \ std::string\ result;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00108}00108\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ebi::util::read\_n(fasta\_file,\ result,\ length,\ pos);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00109}00109\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00111}00111\ \ \ \textcolor{keywordtype}{size\_t}\ length()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00112}00112\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ contig\_length;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00113}00113\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00115}00115\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00116}00116\ \ \ \textcolor{keywordtype}{size\_t}\ contig\_length;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00117}00117\ \ \ std::string\ contig\_name;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00118}00118\ \ \ std::fstream\ fasta\_file;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00119}00119\ \};}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00121}00121\ std::string}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00122}\mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_remote_contig_ab5a21fce5ceba441bab0a4af0d2e75b8}{00122}}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_remote_contig_ab5a21fce5ceba441bab0a4af0d2e75b8}{ebi::vcf::fasta::RemoteContig::sequence}}(\textcolor{keyword}{const}\ std::string\&\ contig,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ pos,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ length)}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00123}00123\ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00124}00124\ \ \ \ \ \textcolor{keywordflow}{if}\ (contigs.count(contig)\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ contigs[contig].reset(\textcolor{keyword}{new}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_contig_from_e_n_a}{ebi::vcf::fasta::ContigFromENA}}(contig));}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ contig\ is\ not\ downloaded,\ try\ download\ it\ from\ ENA.}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ std::string\ url\ =\ ebi::vcf::ENA\_API\_FASTA\_URL\ +\ contig;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ std::fstream\ response\_stream;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ response\_stream.open(contig+\textcolor{stringliteral}{"{}.tmp"{}},\ std::ios::in\ |\ std::ios::out\ |\ std::ios::app);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ ebi::util::open\_remote(response\_stream,\ url);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ response\_stream.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ line.reserve(1024);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ebi::util::readline(response\_stream,\ line).size()\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (boost::starts\_with(line,\ \textcolor{stringliteral}{"{}>"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (ebi::util::readline(response\_stream,\ line).size()\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ebi::util::remove\_end\_of\_line(line);\ \textcolor{comment}{//\ ignore\ linebreak\ at\ the\ end\ of\ line}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contigs[contig]-\/>write(line.c\_str(),\ line.size());}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ response\_stream.close();}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ boost::filesystem::remove(contig+\textcolor{stringliteral}{"{}.tmp"{}});}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00147}00147\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00149}00149\ \ \ \ \ \textcolor{keywordflow}{return}\ contigs[contig]-\/>read(pos,\ length);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00150}00150\ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00152}00152\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00153}\mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_remote_contig_abd3bfb9708486816a3e06a349c9d7ae4}{00153}}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_remote_contig_abd3bfb9708486816a3e06a349c9d7ae4}{ebi::vcf::fasta::RemoteContig::sequence\_exists}}(\textcolor{keyword}{const}\ std::string\ \&contig)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00154}00154\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00155}00155\ \ \ \textcolor{keywordflow}{return}\ contigs.find(contig)\ !=\ contigs.cend();}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00156}00156\ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00158}00158\ \textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00159}\mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_remote_contig_ac11c532ce898955cb9a5e766300480f7}{00159}}\ \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_remote_contig_ac11c532ce898955cb9a5e766300480f7}{ebi::vcf::fasta::RemoteContig::sequence\_length}}(\textcolor{keyword}{const}\ std::string\ \&contig)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00160}00160\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00161}00161\ \ \ \ \ \textcolor{keyword}{auto}\ iter\ =\ contigs.find(contig);}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00162}00162\ \ \ \ \ \textcolor{keywordflow}{if}\ (iter\ ==\ contigs.cend())\ \{}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00163}00163\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00164}00164\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00166}00166\ \ \ \ \ \textcolor{keywordflow}{return}\ iter-\/>second-\/>length();}
+\DoxyCodeLine{\Hypertarget{fasta_8cpp_source_l00167}00167\ \}}
+
+\end{DoxyCode}

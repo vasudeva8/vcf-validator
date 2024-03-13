@@ -1,0 +1,11 @@
+<map id="ebi::vcf::SamplesFieldBodyError" name="ebi::vcf::SamplesFieldBodyError">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,739,181,879"/>
+<area shape="rect" id="Node000002" href="$d4/d35/structebi_1_1vcf_1_1_body_section_error.html" title=" " alt="" coords="11,505,176,691"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,706,96,739,91,739,91,706"/>
+<area shape="rect" id="Node000003" href="$d6/d99/structebi_1_1vcf_1_1_error.html" title=" " alt="" coords="29,232,157,457"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="96,472,96,506,91,506,91,472"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="36,119,151,184"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="96,199,96,232,91,232,91,199"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="46,5,141,71"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="96,85,96,119,91,119,91,85"/>
+</map>

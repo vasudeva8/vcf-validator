@@ -1,0 +1,225 @@
+\doxysection{ebi\+::vcf\+::Error Struct Reference}
+\hypertarget{structebi_1_1vcf_1_1_error}{}\label{structebi_1_1vcf_1_1_error}\index{ebi::vcf::Error@{ebi::vcf::Error}}
+
+
+Inheritance diagram for ebi\+::vcf\+::Error\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/de1/structebi_1_1vcf_1_1_error__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ebi\+::vcf\+::Error\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{df/dcd/structebi_1_1vcf_1_1_error__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_error_a638ea9058df9fe83d8f2995e6e432fd2}{Error}} (size\+\_\+t line)
+\item 
+\mbox{\hyperlink{structebi_1_1vcf_1_1_error_ae766258a6577289d4c363fba360f228b}{Error}} (size\+\_\+t line, const std\+::string \&message, const std\+::string \&detailed\+\_\+message="{}"{})
+\item 
+virtual void \mbox{\hyperlink{structebi_1_1vcf_1_1_error_ab0bf1fb13a4af98dbdcf4c77b6ec7a68}{apply\+\_\+visitor}} (\mbox{\hyperlink{classebi_1_1vcf_1_1_error_visitor}{Error\+Visitor}} \&visitor)
+\item 
+unsigned long \mbox{\hyperlink{structebi_1_1vcf_1_1_error_a034aff9497965492feaad1cf92adf19e}{get\+\_\+id}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const size\+\_\+t \mbox{\hyperlink{structebi_1_1vcf_1_1_error_ad914f956d533b199cfb98d74432997fe}{line}}
+\item 
+const std\+::string \mbox{\hyperlink{structebi_1_1vcf_1_1_error_ae6f5df8a08570894824499e67d5ec24a}{message}}
+\item 
+const std\+::string \mbox{\hyperlink{structebi_1_1vcf_1_1_error_aa72e6a9ef93f739f2567074949124eff}{detailed\+\_\+message}}
+\item 
+Severity \mbox{\hyperlink{structebi_1_1vcf_1_1_error_ab184ec5f7c791d5630065e8ce8da6b73}{severity}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{structebi_1_1vcf_1_1_error_acb4d953abf85ae525f1d06a0c3a86a55}{odb\+::access}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class for VCF errors.
+
+Child classes may be used for more specific Errors. To add another error type, follow these steps\+:
+\begin{DoxyItemize}
+\item predeclare class before \doxylink{classebi_1_1vcf_1_1_error_visitor}{Error\+Visitor}
+\item add a class at the end of this file
+\item change its name, its parent, its message and its error code
+\item add a new method visit in \doxylink{classebi_1_1vcf_1_1_error_visitor}{Error\+Visitor} 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00107}{107}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_error_a9993db52292381afc94a90ca8ca2127a}\label{structebi_1_1vcf_1_1_error_a9993db52292381afc94a90ca8ca2127a} 
+\index{ebi::vcf::Error@{ebi::vcf::Error}!Error@{Error}}
+\index{Error@{Error}!ebi::vcf::Error@{ebi::vcf::Error}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Error\+::\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00109}{109}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00109\ :\ Error\{0\}\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_error_a638ea9058df9fe83d8f2995e6e432fd2}\label{structebi_1_1vcf_1_1_error_a638ea9058df9fe83d8f2995e6e432fd2} 
+\index{ebi::vcf::Error@{ebi::vcf::Error}!Error@{Error}}
+\index{Error@{Error}!ebi::vcf::Error@{ebi::vcf::Error}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Error\+::\+Error (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{line }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00111}{111}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00111\ :\ Error\{line,\ \textcolor{stringliteral}{"{}Error,\ invalid\ file."{}}\}\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_error_ae766258a6577289d4c363fba360f228b}\label{structebi_1_1vcf_1_1_error_ae766258a6577289d4c363fba360f228b} 
+\index{ebi::vcf::Error@{ebi::vcf::Error}!Error@{Error}}
+\index{Error@{Error}!ebi::vcf::Error@{ebi::vcf::Error}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily ebi\+::vcf\+::\+Error\+::\+Error (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{line,  }\item[{const std\+::string \&}]{message,  }\item[{const std\+::string \&}]{detailed\+\_\+message = {\ttfamily "{}"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00113}{113}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ runtime\_error\{std::string\{\textcolor{stringliteral}{"{}Line\ "{}}\}\ +\ std::to\_string(line)\ +\ \textcolor{stringliteral}{"{}:\ "{}}\ +\ message}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ (detailed\_message\ !=\ \textcolor{stringliteral}{"{}"{}}\ ?\ (\textcolor{stringliteral}{"{}.\ "{}}\ +\ detailed\_message)\ :\ \textcolor{stringliteral}{"{}"{}})\ +\ \textcolor{stringliteral}{"{}."{}}\},}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ line\{line\},}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\{message\},}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detailed\_message\{detailed\_message\}\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_error_ab635c34d6fa6f4b7ab0b4aedec39432a}\label{structebi_1_1vcf_1_1_error_ab635c34d6fa6f4b7ab0b4aedec39432a} 
+\index{ebi::vcf::Error@{ebi::vcf::Error}!````~Error@{\texorpdfstring{$\sim$}{\string~}Error}}
+\index{````~Error@{\texorpdfstring{$\sim$}{\string~}Error}!ebi::vcf::Error@{ebi::vcf::Error}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Error()}{\string~Error()}}
+{\footnotesize\ttfamily virtual ebi\+::vcf\+::\+Error\+::\texorpdfstring{$\sim$}{\string~}\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00120}{120}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00120\ \{\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_error_ab0bf1fb13a4af98dbdcf4c77b6ec7a68}\label{structebi_1_1vcf_1_1_error_ab0bf1fb13a4af98dbdcf4c77b6ec7a68} 
+\index{ebi::vcf::Error@{ebi::vcf::Error}!apply\_visitor@{apply\_visitor}}
+\index{apply\_visitor@{apply\_visitor}!ebi::vcf::Error@{ebi::vcf::Error}}
+\doxysubsubsection{\texorpdfstring{apply\_visitor()}{apply\_visitor()}}
+{\footnotesize\ttfamily virtual void ebi\+::vcf\+::\+Error\+::apply\+\_\+visitor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classebi_1_1vcf_1_1_error_visitor}{Error\+Visitor}} \&}]{visitor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00122}{122}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00122\ \{\ visitor.visit(*\textcolor{keyword}{this});\ \}}
+
+\end{DoxyCode}
+\Hypertarget{structebi_1_1vcf_1_1_error_a034aff9497965492feaad1cf92adf19e}\label{structebi_1_1vcf_1_1_error_a034aff9497965492feaad1cf92adf19e} 
+\index{ebi::vcf::Error@{ebi::vcf::Error}!get\_id@{get\_id}}
+\index{get\_id@{get\_id}!ebi::vcf::Error@{ebi::vcf::Error}}
+\doxysubsubsection{\texorpdfstring{get\_id()}{get\_id()}}
+{\footnotesize\ttfamily unsigned long ebi\+::vcf\+::\+Error\+::get\+\_\+id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00123}{123}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00123\ \{\ \textcolor{keywordflow}{return}\ id\_;\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_error_acb4d953abf85ae525f1d06a0c3a86a55}\label{structebi_1_1vcf_1_1_error_acb4d953abf85ae525f1d06a0c3a86a55} 
+\index{ebi::vcf::Error@{ebi::vcf::Error}!odb::access@{odb::access}}
+\index{odb::access@{odb::access}!ebi::vcf::Error@{ebi::vcf::Error}}
+\doxysubsubsection{\texorpdfstring{odb::access}{odb::access}}
+{\footnotesize\ttfamily friend class odb\+::access\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00131}{131}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structebi_1_1vcf_1_1_error_aa72e6a9ef93f739f2567074949124eff}\label{structebi_1_1vcf_1_1_error_aa72e6a9ef93f739f2567074949124eff} 
+\index{ebi::vcf::Error@{ebi::vcf::Error}!detailed\_message@{detailed\_message}}
+\index{detailed\_message@{detailed\_message}!ebi::vcf::Error@{ebi::vcf::Error}}
+\doxysubsubsection{\texorpdfstring{detailed\_message}{detailed\_message}}
+{\footnotesize\ttfamily const std\+::string ebi\+::vcf\+::\+Error\+::detailed\+\_\+message}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00127}{127}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_error_ad914f956d533b199cfb98d74432997fe}\label{structebi_1_1vcf_1_1_error_ad914f956d533b199cfb98d74432997fe} 
+\index{ebi::vcf::Error@{ebi::vcf::Error}!line@{line}}
+\index{line@{line}!ebi::vcf::Error@{ebi::vcf::Error}}
+\doxysubsubsection{\texorpdfstring{line}{line}}
+{\footnotesize\ttfamily const size\+\_\+t ebi\+::vcf\+::\+Error\+::line}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00125}{125}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_error_ae6f5df8a08570894824499e67d5ec24a}\label{structebi_1_1vcf_1_1_error_ae6f5df8a08570894824499e67d5ec24a} 
+\index{ebi::vcf::Error@{ebi::vcf::Error}!message@{message}}
+\index{message@{message}!ebi::vcf::Error@{ebi::vcf::Error}}
+\doxysubsubsection{\texorpdfstring{message}{message}}
+{\footnotesize\ttfamily const std\+::string ebi\+::vcf\+::\+Error\+::message}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00126}{126}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+\Hypertarget{structebi_1_1vcf_1_1_error_ab184ec5f7c791d5630065e8ce8da6b73}\label{structebi_1_1vcf_1_1_error_ab184ec5f7c791d5630065e8ce8da6b73} 
+\index{ebi::vcf::Error@{ebi::vcf::Error}!severity@{severity}}
+\index{severity@{severity}!ebi::vcf::Error@{ebi::vcf::Error}}
+\doxysubsubsection{\texorpdfstring{severity}{severity}}
+{\footnotesize\ttfamily Severity ebi\+::vcf\+::\+Error\+::severity}
+
+
+
+Definition at line \mbox{\hyperlink{error_8hpp_source_l00128}{128}} of file \mbox{\hyperlink{error_8hpp_source}{error.\+hpp}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+inc/vcf/error.\+hpp\end{DoxyCompactItemize}

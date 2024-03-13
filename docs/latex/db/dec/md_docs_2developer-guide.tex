@@ -1,0 +1,90 @@
+\chapter{Developer guide}
+\hypertarget{md_docs_2developer-guide}{}\label{md_docs_2developer-guide}\index{Developer guide@{Developer guide}}
+\label{md_docs_2developer-guide_autotoc_md4}%
+\Hypertarget{md_docs_2developer-guide_autotoc_md4}%
+ This page explains how the project is structured and hopefully gives a quick tour so that any new developer understands how to make and deploy any maintenance or new features. However, this mostly provides understanding; for a practical guide to get the project compiled see the \doxysectlink{md__r_e_a_d_m_e}{README.md}{0}.
+
+This page tries to start explaining from less-\/technical higher level and go down into the programming technical details.\hypertarget{md_docs_2developer-guide_autotoc_md5}{}\doxysection{\texorpdfstring{Build process overview}{Build process overview}}\label{md_docs_2developer-guide_autotoc_md5}
+This is a C++ project that produces 3 binaries\+: vcf-\/validator, vcf-\/assembly-\/checker and vcf-\/debugulator. The build is done with CMake (file \href{../CMakeLists.txt}{\texttt{ CMake\+Lists.\+txt}}) for Linux, Windows and mac\+OS. There are scripts to help installing the dependencies (\href{../install_dependencies.sh}{\texttt{ install\+\_\+dependencies.\+sh}}) for Linux and mac\+OS, and \href{../install_dependencies.bat}{\texttt{ install\+\_\+dependencies.\+bat}} for Windows).
+
+We also use Travis\+CI (\href{../.travis.yml}{\texttt{ .travis.\+yml}}) and App\+Veyor (\href{../appveyor.yml}{\texttt{ appveyor.\+yml}}) to do builds and run tests on Pull Requests and to generate the binaries from tags in master that we upload to the releases page (\href{https://github.com/EBIvariation/vcf-validator/releases}{\texttt{ https\+://github.\+com/\+EBIvariation/vcf-\/validator/releases}}).\hypertarget{md_docs_2developer-guide_autotoc_md6}{}\doxysubsection{\texorpdfstring{Deploying}{Deploying}}\label{md_docs_2developer-guide_autotoc_md6}
+Once we tag a commit in master and push the tag, travis will generate binaries for Linux and mac\+Os, and App\+Veyor will generate the Windows ones.
+
+The process is semi-\/automatic at the moment of writing. Travis will prepare a new Releases page with no description but will upload the binaries. The manual step is to download the Windows binaries from App\+Veyor and upload to that page, and also fill the release notes.\hypertarget{md_docs_2developer-guide_autotoc_md7}{}\doxysection{\texorpdfstring{Compilation architecture}{Compilation architecture}}\label{md_docs_2developer-guide_autotoc_md7}
+This image is a summary of the compilation process from source code to executable binaries\+:
+
+
+
+In case of dependent libraries being installed in non-\/standard paths, update LIBRARY\+\_\+\+PATH as shown below \textquotesingle{}export LIBRARY\+\_\+\+PATH=\$\+LIBRARY\+\_\+\+PATH\+:\texorpdfstring{$<$}{<}path to required library\textquotesingle{}s libpath\texorpdfstring{$>$}{>}\textquotesingle{}
+
+The role of Ragel and ODB in this project is explained further below.\hypertarget{md_docs_2developer-guide_autotoc_md8}{}\doxysection{\texorpdfstring{Code structure}{Code structure}}\label{md_docs_2developer-guide_autotoc_md8}
+As opposed to java projects where interfaces and implementations are often put in the same packages, it\textquotesingle{}s not uncommon in C and C++ to separate headers (.hpp) and implementation (.cpp) files. In this project the headers are in \href{../inc/}{\texttt{ {\ttfamily inc/}}} and the implementation in \href{../src/}{\texttt{ {\ttfamily src/}}}. Both the tests source code and the test data is in \href{../test/}{\texttt{ {\ttfamily test/}}}.
+
+Java packages are roughly equivalent to C++ namespaces. However, in C++ the namespaces and the folders do not need to match. In this project we use different namespaces (and matching folders) for different topics\+: vcf, fasta, assembly\+\_\+report, util.
+
+The programs\textquotesingle{} entry points (the {\ttfamily main()}s) are \href{../src/validator_main.cpp}{\texttt{ src/validator\+\_\+main.\+cpp}}, \href{../src/assembly_checker_main.cpp}{\texttt{ src/assembly\+\_\+checker\+\_\+main.\+cpp}} and \href{../src/debugulator_main.cpp}{\texttt{ src/debugulator\+\_\+main.\+cpp}}.\hypertarget{md_docs_2developer-guide_autotoc_md9}{}\doxysection{\texorpdfstring{Features\textquotesingle{} location}{Features\textquotesingle{} location}}\label{md_docs_2developer-guide_autotoc_md9}
+If you need to change something in this project you need to understand what features there are, and where are they implemented.\hypertarget{md_docs_2developer-guide_autotoc_md10}{}\doxysubsection{\texorpdfstring{VCF Validator features}{VCF Validator features}}\label{md_docs_2developer-guide_autotoc_md10}
+The VCF Validator is the main program of this project and it performs syntax and semantic checks on a given (possibly compressed) VCF.
+
+After parsing the input VCF, the semantic checks are performed on a C++ model of VCF (including the metadata section), and {\ttfamily Error} classes (related among themselves by hierarchical inheritance) are used to represent different types of possible errors.
+
+Based on those {\ttfamily Error}s, the program can produce human-\/readable reports and a machine-\/readable report that the VCF Debugulator can read to fix some basic errors.
+
+The level of checks can be configured, from doing just a quick syntax check, to raise warnings of suspicious details.\hypertarget{md_docs_2developer-guide_autotoc_md11}{}\doxysubsubsection{\texorpdfstring{Compression}{Compression}}\label{md_docs_2developer-guide_autotoc_md11}
+A tricky but not complex step is to decompress on the fly the VCF if needed. See \href{../inc/vcf/compression.hpp}{\texttt{ inc/vcf/compression.\+hpp}}.\hypertarget{md_docs_2developer-guide_autotoc_md12}{}\doxysubsubsection{\texorpdfstring{Syntax checks -\/ Ragel}{Syntax checks -\/ Ragel}}\label{md_docs_2developer-guide_autotoc_md12}
+\href{http://www.colm.net/open-source/ragel/}{\texttt{ Ragel}} is a library to create regex-\/powered parsers. In a language similar to \href{https://en.wikipedia.org/wiki/Backus\%E2\%80\%93Naur_form}{\texttt{ BNF}}, we have defined the grammar of VCF.
+
+The common and basic definitions are in \href{../src/vcf/vcf.ragel}{\texttt{ src/vcf/vcf.\+ragel}}, and then the parts that differ between versions are defined in \href{../src/vcf/vcf_v41.ragel}{\texttt{ src/vcf/vcf\+\_\+v41.\+ragel}}, \href{../src/vcf/vcf_v41.ragel}{\texttt{ src/vcf/vcf\+\_\+v41.\+ragel}} and \href{../src/vcf/vcf_v41.ragel}{\texttt{ src/vcf/vcf\+\_\+v41.\+ragel}}.
+
+Those files not only describe the regex that define the syntax, they also define the points of the grammar where the semantic checks are injected.
+
+Those files are transpiled with Ragel into C code with the next commands\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ragel\ -\/G2\ src/vcf/vcf\_v41.ragel\ -\/o\ inc/vcf/validator\_detail\_v41.hpp}
+\DoxyCodeLine{ragel\ -\/G2\ src/vcf/vcf\_v42.ragel\ -\/o\ inc/vcf/validator\_detail\_v42.hpp}
+\DoxyCodeLine{ragel\ -\/G2\ src/vcf/vcf\_v43.ragel\ -\/o\ inc/vcf/validator\_detail\_v43.hpp}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2developer-guide_autotoc_md13}{}\doxysubsubsection{\texorpdfstring{VCF parsing, policies and file structure}{VCF parsing, policies and file structure}}\label{md_docs_2developer-guide_autotoc_md13}
+Now, we have the generated code by ragel that parses the VCF, but how is that code called if we start at {\ttfamily main()}?
+
+At the end of the src/vcf/vcf\+\_\+v\texorpdfstring{$\ast$}{*}.ragel files we tell Ragel to put the parser as implementation of the Parser\+Impl class, which is defined in \href{../inc/vcf/validator.hpp}{\texttt{ inc/vcf/validator.\+hpp}}. In that file we declare the parsing classes, some functions to kickstart the parsing, and the plugging of the policies into the parsers.
+
+After Ragel has parsed each VCF line, the policies are the way to configure the Parser classes for the level of semantic checks\+:
+
+
+\begin{DoxyItemize}
+\item \href{../inc/vcf/parse_policy.hpp}{\texttt{ inc/vcf/parse\+\_\+policy.\+hpp}} declares the policy of either storing the result of parsing into the VCF C++ model, or just forget the data if the user only wants to check syntax. The model for each VCF line is a Meta\+Entry or a Record (defined in \href{../inc/vcf/file_structure.hpp}{\texttt{ inc/vcf/file\+\_\+structure.\+hpp}}).
+\item \href{../inc/vcf/optional_policy.hpp}{\texttt{ inc/vcf/optional\+\_\+policy.\+hpp}} declares the policy of whether to check also for warnings, or just errors. Warnings usually flag weird things that are compliant with the spec but that you wouldn\textquotesingle{}t expect from a reasonable VCF.
+\item \href{../inc/vcf/error_policy.hpp}{\texttt{ inc/vcf/error\+\_\+policy.\+hpp}} declares the policy to stop on the first error, or read the whole VCF and produce a report.
+\end{DoxyItemize}\hypertarget{md_docs_2developer-guide_autotoc_md14}{}\doxysubsubsection{\texorpdfstring{Semantic checks}{Semantic checks}}\label{md_docs_2developer-guide_autotoc_md14}
+Once we have a Record containing the information of a line (chromosome, position, alleles, INFO and GT columns, etc.), some more functions are called to check the consistency of the data, also in relation to the definitions in the metadata section of the VCF.
+
+Some of these functions are part of the policies. For instance, the check that each sample only appears once and the check that the contigs and positions are sorted are both implemented in \href{../src/vcf/store_parse_policy.cpp}{\texttt{ src/vcf/store\+\_\+parse\+\_\+policy.\+cpp}}. The semantic checks that are warnings are implemented in \href{../src/vcf/validate_optional_policy.cpp}{\texttt{ src/vcf/validate\+\_\+optional\+\_\+policy.\+cpp}}.
+
+A notable exception is the check for duplicate variants, which, for pragmatic reasons, was done in vcf.\+ragel (search {\ttfamily action record\+\_\+end \{}). The check for duplicate variants uses a \href{../inc/vcf/record_cache.hpp}{\texttt{ Record\+Cache}} to compare nearby variants, and this in turn uses a naive \href{../inc/vcf/normalizer.hpp}{\texttt{ normalizer}} that removes redundant context bases from the alleles and tweaks the position accordingly, but doesn\textquotesingle{}t do full realignment using the reference sequence.\hypertarget{md_docs_2developer-guide_autotoc_md15}{}\doxysubsubsection{\texorpdfstring{Reporting}{Reporting}}\label{md_docs_2developer-guide_autotoc_md15}
+Once an error or a warning is detected, an exception is thrown from the appropiate class in \href{../inc/vcf/Error.hpp}{\texttt{ inc/vcf/\+Error.\+hpp}}. We take advantage of polymorphism when we catch those exceptions in vcf.\+ragel (again, search for {\ttfamily action record\+\_\+end}).
+
+If the policy to report the errors is in use, the parser has the list of report writers the user requested. These can be any combination of \href{../inc/vcf/record.hpp}{\texttt{ simple report}}, \href{../inc/vcf/summary_report_writer.hpp}{\texttt{ summary report}}, and \href{../inc/vcf/odb_report.hpp}{\texttt{ ODB report}}.
+
+ODB is a library for Object Relational Mapping. In other words, we use it to serialize the class data of errors, so that the debugulator can deserialize the error details directly into variables and classes without parsing.
+
+We use ODB mostly in \href{../inc/vcf/error.hpp}{\texttt{ inc/vcf/\+Error.\+hpp}}, through some pragmas. The way ODB works is parsing the C++ classes that have ODB pragmas and outputs C++ code that serializes the class instance information into a SQL database. We chose Sqlite as database backend, which means that the DB reports can actually be opened with a Sqlite client.\hypertarget{md_docs_2developer-guide_autotoc_md16}{}\doxysubsection{\texorpdfstring{VCF assembly checker}{VCF assembly checker}}\label{md_docs_2developer-guide_autotoc_md16}
+This program is much simpler than the validator. It\textquotesingle{}s mostly about getting the reference sequence from a FASTA file and comparing it to the REF allele of each line in a VCF.
+
+This is done in \href{../inc/vcf/assembly_checker.hpp}{\texttt{ inc/vcf/assembly\+\_\+checker.\+hpp}} and its implementation file \href{../src/vcf/assembly_checker.cpp}{\texttt{ src/vcf/assembly\+\_\+checker.\+cpp}}, with the help of some FASTA utilities in \href{../inc/fasta}{\texttt{ inc/fasta/}}.
+
+There are 3 ways to retrieve FASTA files\+:
+
+
+\begin{DoxyItemize}
+\item The user provides a file.
+\item The VCF contains a {\ttfamily \#\#reference} which we use to download a FASTA from ENA.
+\item The VCF contains {\ttfamily \#\#contig} entries and we use those contig accessions to download individual sequences.
+\end{DoxyItemize}
+
+There\textquotesingle{}s also limited support to use assembly reports (\href{../inc/assembly_report/assembly_report.hpp}{\texttt{ inc/assembly\+\_\+report/assembly\+\_\+report.\+hpp}}) and translate between synonym contig names/accessions in case the nomenclature in the VCF and in the FASTA don\textquotesingle{}t match.\hypertarget{md_docs_2developer-guide_autotoc_md17}{}\doxysubsection{\texorpdfstring{VCF Debugulator}{VCF Debugulator}}\label{md_docs_2developer-guide_autotoc_md17}
+At the beginning of the project we expected there would be interesting situations were we could use the ODB report to fix automatically wrong VCFs. Sadly, it turned out that there\textquotesingle{}s not much an automated program can do, really.
+
+The fixes are implemented in \href{../inc/vcf/fixer.hpp}{\texttt{ inc/vcf/fixer.\+hpp}} and \href{../src/vcf/fixer.cpp}{\texttt{ src/vcf/fixer.\+cpp}}, and basically consist on removing duplicate variants and dropping entire fields that are non-\/conforming with the spec.\hypertarget{md_docs_2developer-guide_autotoc_md18}{}\doxysection{\texorpdfstring{Testing}{Testing}}\label{md_docs_2developer-guide_autotoc_md18}
+Testing is performed with \href{https://github.com/catchorg/Catch2}{\texttt{ Catch}} in the \href{../test/}{\texttt{ {\ttfamily test/}}} folder. The folders test/vcf/, test/fasta/ and test/assembly\+\_\+report/ contain test source code, and test/input\+\_\+files contain a medium-\/sized set of correct and wrong VCFs that are used in the tests. 

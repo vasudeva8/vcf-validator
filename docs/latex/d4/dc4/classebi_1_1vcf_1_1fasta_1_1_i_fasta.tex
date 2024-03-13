@@ -1,0 +1,122 @@
+\doxysection{ebi\+::vcf\+::fasta\+::IFasta Class Reference}
+\hypertarget{classebi_1_1vcf_1_1fasta_1_1_i_fasta}{}\label{classebi_1_1vcf_1_1fasta_1_1_i_fasta}\index{ebi::vcf::fasta::IFasta@{ebi::vcf::fasta::IFasta}}
+
+
+Inheritance diagram for ebi\+::vcf\+::fasta\+::IFasta\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/dda/classebi_1_1vcf_1_1fasta_1_1_i_fasta__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ebi\+::vcf\+::fasta\+::IFasta\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{d0/d20/classebi_1_1vcf_1_1fasta_1_1_i_fasta__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::string \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_i_fasta_aa6377ac082f7b9f3d956cef7a4ea3d99}{sequence}} (const std\+::string \&contig, const size\+\_\+t pos, const size\+\_\+t length)=0
+\item 
+virtual bool \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_i_fasta_a9af306075c243560085a718896c74c6d}{sequence\+\_\+exists}} (const std\+::string \&contig) const =0
+\item 
+virtual size\+\_\+t \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_i_fasta_aa4e10949593f7264c8aae236f99e5df3}{sequence\+\_\+length}} (const std\+::string \&contig) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{fasta_8hpp_source_l00033}{33}} of file \mbox{\hyperlink{fasta_8hpp_source}{fasta.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classebi_1_1vcf_1_1fasta_1_1_i_fasta_a0a2134ac341ead7d1a318e21269c685e}\label{classebi_1_1vcf_1_1fasta_1_1_i_fasta_a0a2134ac341ead7d1a318e21269c685e} 
+\index{ebi::vcf::fasta::IFasta@{ebi::vcf::fasta::IFasta}!````~IFasta@{\texorpdfstring{$\sim$}{\string~}IFasta}}
+\index{````~IFasta@{\texorpdfstring{$\sim$}{\string~}IFasta}!ebi::vcf::fasta::IFasta@{ebi::vcf::fasta::IFasta}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}IFasta()}{\string~IFasta()}}
+{\footnotesize\ttfamily virtual ebi\+::vcf\+::fasta\+::\+IFasta\+::\texorpdfstring{$\sim$}{\string~}\+IFasta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{fasta_8hpp_source_l00059}{59}} of file \mbox{\hyperlink{fasta_8hpp_source}{fasta.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00059\ \{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1vcf_1_1fasta_1_1_i_fasta_aa6377ac082f7b9f3d956cef7a4ea3d99}\label{classebi_1_1vcf_1_1fasta_1_1_i_fasta_aa6377ac082f7b9f3d956cef7a4ea3d99} 
+\index{ebi::vcf::fasta::IFasta@{ebi::vcf::fasta::IFasta}!sequence@{sequence}}
+\index{sequence@{sequence}!ebi::vcf::fasta::IFasta@{ebi::vcf::fasta::IFasta}}
+\doxysubsubsection{\texorpdfstring{sequence()}{sequence()}}
+{\footnotesize\ttfamily virtual std\+::string ebi\+::vcf\+::fasta\+::\+IFasta\+::sequence (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{contig,  }\item[{const size\+\_\+t}]{pos,  }\item[{const size\+\_\+t}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Extract n base pairs from the contig starting from an offset 
+\begin{DoxyParams}{Parameters}
+{\em contig} & -\/ the name of the contig to extract the sequence from \\
+\hline
+{\em pos} & -\/ the starting offset position \\
+\hline
+{\em length} & -\/ the number of base pairs to be extracted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the sequence string, empty if nothing can be extracted. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_ac45f423fa0388193bd76b9f2da867387}{ebi\+::vcf\+::fasta\+::\+File\+Based\+Fasta}}, and \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_remote_contig_ab5a21fce5ceba441bab0a4af0d2e75b8}{ebi\+::vcf\+::fasta\+::\+Remote\+Contig}}.
+
+\Hypertarget{classebi_1_1vcf_1_1fasta_1_1_i_fasta_a9af306075c243560085a718896c74c6d}\label{classebi_1_1vcf_1_1fasta_1_1_i_fasta_a9af306075c243560085a718896c74c6d} 
+\index{ebi::vcf::fasta::IFasta@{ebi::vcf::fasta::IFasta}!sequence\_exists@{sequence\_exists}}
+\index{sequence\_exists@{sequence\_exists}!ebi::vcf::fasta::IFasta@{ebi::vcf::fasta::IFasta}}
+\doxysubsubsection{\texorpdfstring{sequence\_exists()}{sequence\_exists()}}
+{\footnotesize\ttfamily virtual bool ebi\+::vcf\+::fasta\+::\+IFasta\+::sequence\+\_\+exists (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{contig }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Check if a contig exists in a FASTA. 
+\begin{DoxyParams}{Parameters}
+{\em contig} & -\/ the name of the contig \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the contig exists in the FASTA, false if the contig is not found. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_ab4809e90f37baab9cebe18a08b99bc5b}{ebi\+::vcf\+::fasta\+::\+File\+Based\+Fasta}}, and \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_remote_contig_abd3bfb9708486816a3e06a349c9d7ae4}{ebi\+::vcf\+::fasta\+::\+Remote\+Contig}}.
+
+\Hypertarget{classebi_1_1vcf_1_1fasta_1_1_i_fasta_aa4e10949593f7264c8aae236f99e5df3}\label{classebi_1_1vcf_1_1fasta_1_1_i_fasta_aa4e10949593f7264c8aae236f99e5df3} 
+\index{ebi::vcf::fasta::IFasta@{ebi::vcf::fasta::IFasta}!sequence\_length@{sequence\_length}}
+\index{sequence\_length@{sequence\_length}!ebi::vcf::fasta::IFasta@{ebi::vcf::fasta::IFasta}}
+\doxysubsubsection{\texorpdfstring{sequence\_length()}{sequence\_length()}}
+{\footnotesize\ttfamily virtual size\+\_\+t ebi\+::vcf\+::fasta\+::\+IFasta\+::sequence\+\_\+length (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{contig }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Get the length of the sequence for a contig 
+\begin{DoxyParams}{Parameters}
+{\em contig} & -\/ the name of the contig \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the length of the sequence for the contig. 0 if the contig is not found. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_file_based_fasta_a57e7d975ccf4c172d3c081542ca0ab12}{ebi\+::vcf\+::fasta\+::\+File\+Based\+Fasta}}, and \mbox{\hyperlink{classebi_1_1vcf_1_1fasta_1_1_remote_contig_ac11c532ce898955cb9a5e766300480f7}{ebi\+::vcf\+::fasta\+::\+Remote\+Contig}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+inc/fasta/fasta.\+hpp\end{DoxyCompactItemize}

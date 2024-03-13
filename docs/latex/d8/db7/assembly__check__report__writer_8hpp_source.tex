@@ -1,0 +1,182 @@
+\doxysection{assembly\+\_\+check\+\_\+report\+\_\+writer.\+hpp}
+\hypertarget{assembly__check__report__writer_8hpp_source}{}\label{assembly__check__report__writer_8hpp_source}\index{inc/vcf/assembly\_check\_report\_writer.hpp@{inc/vcf/assembly\_check\_report\_writer.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#ifndef\ ASSEMBLY\_CHECK\_REPORT\_WRITER\_HPP}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#define\ ASSEMBLY\_CHECK\_REPORT\_WRITER\_HPP}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <boost/filesystem/operations.hpp>}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <odb/database.hxx>}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <odb/sqlite/query.hxx>}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ <odb/schema-\/catalog.hxx>}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ <odb/sqlite/database.hxx>}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00030}00030\ \textcolor{preprocessor}{\#include\ "{}vcf/error.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00031}00031\ \textcolor{preprocessor}{\#include\ "{}vcf/error-\/odb.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}vcf/normalizer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00033}00033\ \textcolor{preprocessor}{\#include\ "{}vcf/string\_constants.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00034}00034\ \textcolor{preprocessor}{\#include\ "{}util/logger.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00036}00036\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00037}00037\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00038}00038\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00039}00039\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00041}\mbox{\hyperlink{classebi_1_1vcf_1_1_assembly_check_report_writer}{00041}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_assembly_check_report_writer}{AssemblyCheckReportWriter}}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00042}00042\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00043}00043\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_assembly_check_report_writer}{\string~AssemblyCheckReportWriter}}()}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ match(std::string\ \&vcf\_line)}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ mismatch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{vcf::RecordCore}}\ \&record\_core,}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \&vcf\_line,}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ line\_num,}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \&fasta\_sequence)}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ write\_meta\_info(std::string\ \&meta\_info\_line)}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ write\_warning(std::string\ \&warning)}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00072}00072\ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00074}00074\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ creating\ protected\ constructor\ to\ make\ class\ abstract\ instead\ of\ using\ pure\ virtual\ functions}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00075}00075\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_assembly_check_report_writer}{AssemblyCheckReportWriter}}()}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00080}00080\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00082}\mbox{\hyperlink{classebi_1_1vcf_1_1_summary_assembly_check_report_writer}{00082}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_summary_assembly_check_report_writer}{SummaryAssemblyCheckReportWriter}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_assembly_check_report_writer}{AssemblyCheckReportWriter}}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00083}00083\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00084}00084\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_summary_assembly_check_report_writer}{SummaryAssemblyCheckReportWriter}}()}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_summary_assembly_check_report_writer}{\string~SummaryAssemblyCheckReportWriter}}()}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Number\ of\ matches:\ "{}}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ match\_stats.get\_num\_matches()\ <<\ \textcolor{stringliteral}{"{}/"{}}\ <<\ match\_stats.get\_num\_variants();}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Percentage\ of\ matches:\ "{}}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(match\_stats.get\_num\_matches())\ /\ match\_stats.get\_num\_variants())\ *\ 100\ <<\ \textcolor{stringliteral}{"{}\%"{}};}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ match(std::string\ \&vcf\_line)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00099}00099\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ match\_stats.add\_match\_result(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ mismatch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{vcf::RecordCore}}\ \&record\_core,}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \&vcf\_line,}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ line\_num,}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \&fasta\_sequence)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00107}00107\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ match\_stats.add\_match\_result(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00111}00111\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_match_stats}{MatchStats}}\ match\_stats;}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00113}00113\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00115}\mbox{\hyperlink{classebi_1_1vcf_1_1_valid_assembly_check_report_writer}{00115}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_valid_assembly_check_report_writer}{ValidAssemblyCheckReportWriter}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_assembly_check_report_writer}{AssemblyCheckReportWriter}}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00116}00116\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00117}00117\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_valid_assembly_check_report_writer}{ValidAssemblyCheckReportWriter}}(std::string\ filename)\ :\ file\_name(filename)}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ file.open(filename,\ std::ios::out);}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!file)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error\{\textcolor{stringliteral}{"{}Unable\ to\ write\ output\ file\ "{}}\ +\ file\_name\};}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_valid_assembly_check_report_writer}{\string~ValidAssemblyCheckReportWriter}}()}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Valid\ report\ written\ to\ :\ "{}}\ +\ file\_name;}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ match(std::string\ \&vcf\_line)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00133}00133\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ vcf\_line;}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ write\_meta\_info(std::string\ \&meta\_info\_line)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00138}00138\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ meta\_info\_line;}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00142}00142\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00143}00143\ \ \ \ \ \ \ \ \ std::ofstream\ file;}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00144}00144\ \ \ \ \ \ \ \ \ std::string\ file\_name;}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00145}00145\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00147}\mbox{\hyperlink{classebi_1_1vcf_1_1_text_assembly_check_report_writer}{00147}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classebi_1_1vcf_1_1_text_assembly_check_report_writer}{TextAssemblyCheckReportWriter}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classebi_1_1vcf_1_1_assembly_check_report_writer}{AssemblyCheckReportWriter}}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00148}00148\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00149}00149\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_text_assembly_check_report_writer}{TextAssemblyCheckReportWriter}}(std::string\ filename)\ :\ file\_name(filename)}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ file.open(filename,\ std::ios::out);}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!file)\ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error\{\textcolor{stringliteral}{"{}Unable\ to\ write\ output\ file\ "{}}\ +\ file\_name\};}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classebi_1_1vcf_1_1_text_assembly_check_report_writer}{\string~TextAssemblyCheckReportWriter}}()}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ BOOST\_LOG\_TRIVIAL(info)\ <<\ \textcolor{stringliteral}{"{}Text\ report\ written\ to\ :\ "{}}\ +\ file\_name;}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ mismatch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structebi_1_1vcf_1_1_record_core}{vcf::RecordCore}}\ \&record\_core,}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \&vcf\_line,}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ line\_num,}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \&fasta\_sequence)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00168}00168\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ mismatch\_result\ =\ \textcolor{stringliteral}{"{}Line\ "{}}\ +\ std::to\_string(line\_num)}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}:\ Chromosome\ "{}}\ +\ record\_core.chromosome}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{},\ position\ "{}}\ +\ std::to\_string(record\_core.position)}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{},\ reference\ allele\ \(\backslash\)'"{}}\ +\ record\_core.reference\_allele}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}\(\backslash\)'\ does\ not\ match\ the\ reference\ sequence,\ expected\ \(\backslash\)'"{}}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ fasta\_sequence\ +\ \textcolor{stringliteral}{"{}\(\backslash\)'"{}};}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ mismatch\_result\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ write\_warning(std::string\ \&warning)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00179}00179\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ warning\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00183}00183\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00184}00184\ \ \ \ \ \ \ \ \ std::ofstream\ file;}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00185}00185\ \ \ \ \ \ \ \ \ std::string\ file\_name;}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00186}00186\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00187}00187\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00188}00188\ \}}
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{assembly__check__report__writer_8hpp_source_l00191}00191\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ASSEMBLY\_CHECK\_REPORT\_WRITER\_HPP}}
+
+\end{DoxyCode}

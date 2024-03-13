@@ -1,0 +1,27 @@
+\doxysection{report\+\_\+error\+\_\+policy.\+cpp}
+\hypertarget{report__error__policy_8cpp_source}{}\label{report__error__policy_8cpp_source}\index{src/vcf/report\_error\_policy.cpp@{src/vcf/report\_error\_policy.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}vcf/error\_policy.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00019}00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceebi}{ebi}}}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00020}00020\ \{}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00021}00021\ \ \ \textcolor{keyword}{namespace\ }vcf}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00022}00022\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordtype}{void}\ ReportErrorPolicy::handle\_error(ParsingState\ \&state,\ Error\ *error)}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00024}00024\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ state.m\_is\_valid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ state.add\_error(std::unique\_ptr<Error>(error));}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{keywordtype}{void}\ ReportErrorPolicy::handle\_warning(ParsingState\ \&state,\ Error\ *error)}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00030}00030\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ state.add\_warning(std::unique\_ptr<Error>(error));}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00032}00032\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00033}00033\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00034}00034\ \}}
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{report__error__policy_8cpp_source_l00036}00036\ }
+
+\end{DoxyCode}

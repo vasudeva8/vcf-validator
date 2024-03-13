@@ -1,0 +1,136 @@
+\doxysection{ebi\+::util\+::curl\+::Easy Class Reference}
+\hypertarget{classebi_1_1util_1_1curl_1_1_easy}{}\label{classebi_1_1util_1_1curl_1_1_easy}\index{ebi::util::curl::Easy@{ebi::util::curl::Easy}}
+
+
+Collaboration diagram for ebi\+::util\+::curl\+::Easy\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=171pt]{d0/d0c/classebi_1_1util_1_1curl_1_1_easy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classebi_1_1util_1_1curl_1_1_easy_a6dc833e5bd3f326bb702944fb2957253}\label{classebi_1_1util_1_1curl_1_1_easy_a6dc833e5bd3f326bb702944fb2957253} 
+{\bfseries Easy} (const \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_easy}{Easy}} \&)=delete
+\item 
+\Hypertarget{classebi_1_1util_1_1curl_1_1_easy_a9a1631c9064e38518b03ca44f6e95118}\label{classebi_1_1util_1_1curl_1_1_easy_a9a1631c9064e38518b03ca44f6e95118} 
+\mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_easy}{Easy}} \& {\bfseries operator=} (const \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_easy}{Easy}} \&)=delete
+\item 
+std\+::string \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_easy_a552bea20d4ab831e99a78a1f7f703992}{request}} (const std\+::string \&url, long \&http\+Return\+Code)
+\item 
+std\+::ostream \& \mbox{\hyperlink{classebi_1_1util_1_1curl_1_1_easy_ad998fb6014ed10631c7b03093bb46bbe}{request}} (std\+::ostream \&stream, const std\+::string \&url, long \&http\+Return\+Code)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{curl__easy_8hpp_source_l00031}{31}} of file \mbox{\hyperlink{curl__easy_8hpp_source}{curl\+\_\+easy.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classebi_1_1util_1_1curl_1_1_easy_ae4b064fa40b500c6d9aad0dd37a726ee}\label{classebi_1_1util_1_1curl_1_1_easy_ae4b064fa40b500c6d9aad0dd37a726ee} 
+\index{ebi::util::curl::Easy@{ebi::util::curl::Easy}!Easy@{Easy}}
+\index{Easy@{Easy}!ebi::util::curl::Easy@{ebi::util::curl::Easy}}
+\doxysubsubsection{\texorpdfstring{Easy()}{Easy()}}
+{\footnotesize\ttfamily ebi\+::util\+::curl\+::\+Easy\+::\+Easy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{curl__easy_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{curl__easy_8cpp_source}{curl\+\_\+easy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ curl\_global\_init(CURL\_GLOBAL\_DEFAULT);}
+\DoxyCodeLine{00036\ \ \ \ \ curlHandle\ =\ curl\_easy\_init();}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{if}\ (curlHandle)\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_SSL\_VERIFYPEER,\ 0L);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_SSL\_VERIFYHOST,\ 0L);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_USERAGENT,\ \textcolor{stringliteral}{"{}libcurl-\/agent/1.0"{}});}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1util_1_1curl_1_1_easy_acec4f5544d7ed45c8e14589347eaf111}\label{classebi_1_1util_1_1curl_1_1_easy_acec4f5544d7ed45c8e14589347eaf111} 
+\index{ebi::util::curl::Easy@{ebi::util::curl::Easy}!````~Easy@{\texorpdfstring{$\sim$}{\string~}Easy}}
+\index{````~Easy@{\texorpdfstring{$\sim$}{\string~}Easy}!ebi::util::curl::Easy@{ebi::util::curl::Easy}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Easy()}{\string~Easy()}}
+{\footnotesize\ttfamily ebi\+::util\+::curl\+::\+Easy\+::\texorpdfstring{$\sim$}{\string~}\+Easy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{curl__easy_8cpp_source_l00044}{44}} of file \mbox{\hyperlink{curl__easy_8cpp_source}{curl\+\_\+easy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (curlHandle)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ curl\_easy\_cleanup(curlHandle);}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ curl\_global\_cleanup();}
+\DoxyCodeLine{00050\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classebi_1_1util_1_1curl_1_1_easy_a552bea20d4ab831e99a78a1f7f703992}\label{classebi_1_1util_1_1curl_1_1_easy_a552bea20d4ab831e99a78a1f7f703992} 
+\index{ebi::util::curl::Easy@{ebi::util::curl::Easy}!request@{request}}
+\index{request@{request}!ebi::util::curl::Easy@{ebi::util::curl::Easy}}
+\doxysubsubsection{\texorpdfstring{request()}{request()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string ebi\+::util\+::curl\+::\+Easy\+::request (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{url,  }\item[{long \&}]{http\+Return\+Code }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{curl__easy_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{curl__easy_8cpp_source}{curl\+\_\+easy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ std::string\ buffer;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{if}\ (curlHandle)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_URL,\ url.c\_str());}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_WRITEFUNCTION,\ stringWriterCallback);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_WRITEDATA,\ \&buffer);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_FAILONERROR,\ 1);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ processCurlRequest(url,\ httpReturnCode);}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ buffer;}
+\DoxyCodeLine{00064\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classebi_1_1util_1_1curl_1_1_easy_ad998fb6014ed10631c7b03093bb46bbe}\label{classebi_1_1util_1_1curl_1_1_easy_ad998fb6014ed10631c7b03093bb46bbe} 
+\index{ebi::util::curl::Easy@{ebi::util::curl::Easy}!request@{request}}
+\index{request@{request}!ebi::util::curl::Easy@{ebi::util::curl::Easy}}
+\doxysubsubsection{\texorpdfstring{request()}{request()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::ostream \& ebi\+::util\+::curl\+::\+Easy\+::request (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const std\+::string \&}]{url,  }\item[{long \&}]{http\+Return\+Code }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{curl__easy_8cpp_source_l00067}{67}} of file \mbox{\hyperlink{curl__easy_8cpp_source}{curl\+\_\+easy.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (curlHandle)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_URL,\ url.c\_str());}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_WRITEFUNCTION,\ streamWriterCallback);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_WRITEDATA,\ \&stream);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ curl\_easy\_setopt(curlHandle,\ CURLOPT\_FAILONERROR,\ 1);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ processCurlRequest(url,\ httpReturnCode);}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ stream;}
+\DoxyCodeLine{00077\ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/util/curl\+\_\+easy.\+hpp\item 
+src/util/curl\+\_\+easy.\+cpp\end{DoxyCompactItemize}

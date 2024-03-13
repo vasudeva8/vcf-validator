@@ -1,0 +1,10 @@
+<map id="Catch::MessageInfo" name="Catch::MessageInfo">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,491,136,617"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="35,135,106,200"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,200,65,263,63,346,65,428,67,474,62,475,60,428,58,346,60,263,65,199"/>
+<area shape="rect" id="Node000004" href="$df/dc5/struct_catch_1_1_source_line_info.html" title=" " alt="" coords="157,263,299,428"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="100,198,148,251,144,254,96,201"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="12,5,129,85"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="73,100,73,135,68,135,68,100"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="168,430,130,480,125,477,164,427"/>
+</map>
