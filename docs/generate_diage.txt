@@ -1,0 +1,1 @@
+Run ragel with -V to generate dot file and dot -Tsvg <file> to generate the svg file
