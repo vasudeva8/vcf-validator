@@ -430,6 +430,52 @@ namespace ebi
                                 { "0|1:1" },
                                 source})),
                             vcf::InfoBodyError*);
+
+            CHECK_THROWS_AS( (optional_policy.optional_check_body_entry(parsing_state, vcf::Record{  //warning as RUS RUL together is redundant
+                            1,
+                            "chr1",
+                            123456,
+                            { "id123" },
+                            "A",
+                            { "<CNV:TR>" },
+                            1.0,
+                            { vcf::PASS },
+                            { {vcf::SVLEN, "1"}, {vcf::RUS, "AT"}, {vcf::RUC, "2.0"}, {vcf::RB, "4"}, {vcf::RUL, "2"}},
+                            { vcf::GT },
+                            { "0|1" },
+                            source})),
+                        vcf::InfoBodyError*);
+
+            CHECK_THROWS_AS( (optional_policy.optional_check_body_entry(parsing_state, vcf::Record{  //invalid CIRB
+                            1,
+                            "chr1",
+                            123456,
+                            { "id123" },
+                            "A",
+                            { "<CNV:TR>" },
+                            1.0,
+                            { vcf::PASS },
+                            { {vcf::SVLEN, "1"}, {vcf::RUC, "2.0"}, {vcf::RB, "4"}, {vcf::RUL, "2"}, {vcf::CIRB, "1,0"}},
+                            { vcf::GT },
+                            { "0|1" },
+                            source})),
+                        vcf::InfoBodyError*);
+
+            CHECK_THROWS_AS( (optional_policy.optional_check_body_entry(parsing_state, vcf::Record{  //invalid CIRUC
+                            1,
+                            "chr1",
+                            123456,
+                            { "id123" },
+                            "A",
+                            { "<CNV:TR>" },
+                            1.0,
+                            { vcf::PASS },
+                            { {vcf::SVLEN, "1"}, {vcf::RUC, "2.0"}, {vcf::RUL, "2"}, {vcf::CIRUC, "-1,-1"}},
+                            { vcf::GT },
+                            { "0|1" },
+                            source})),
+                        vcf::InfoBodyError*);
+
         }
     }
 
