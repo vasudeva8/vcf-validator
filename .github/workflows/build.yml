@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - master
+      - boostasdyld
     tags:
       - '*'
 
@@ -157,7 +158,7 @@ jobs:
   ### Release job (tags only)
   create_release:
     if: startsWith(github.ref, 'refs/tags/')
-    needs: [ linux_build, macos_build_intel, macos_build_arm ]
+    needs: [ macos_build_intel, macos_build_arm ]
     runs-on: ubuntu-latest
     steps:
       - name: Download artifacts

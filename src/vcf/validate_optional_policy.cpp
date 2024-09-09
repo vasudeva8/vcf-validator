@@ -62,8 +62,15 @@ namespace ebi
         check_body_entry_info_rul_rus(state, record);
 
         // Confidence interval tags should have first value <=0 and second value >= 0
-        check_body_entry_info_confidence_interval(state, record);
-        check_body_entry_sample_confidence_interval(state, record);
+        try {check_body_entry_info_confidence_interval(state, record); }
+        catch(std::runtime_error & err) {
+            std::cout<<"Exception info" << std::endl;
+            throw err;
+        }
+        try { check_body_entry_sample_confidence_interval(state, record); }
+        catch (std::runtime_error &err) {
+            std::cout<<"Exception sample" <<std::endl;
+        }
 
         /*
          * Once some meta-data is marked as in/correct there is no need again, so all the following have been 
@@ -266,6 +273,7 @@ namespace ebi
                 std::vector<std::string> values;
                 util::string_split(it->second, ",", values);
                 if (values.size() % 2 != 0) {           //CI should have even count
+                std::cout<<"INFO " << confidence_interval_tag << " shld hv even no entries" << std::endl;
                     throw new InfoBodyError{state.n_lines,
                             "INFO " + confidence_interval_tag +
                             " is a confidence interval tag, which should have even number entries"};
@@ -277,6 +285,7 @@ namespace ebi
                     int second_numeric_value = std::stoi(values[i + 1] != MISSING_VALUE ? values[i + 1] : "0", &scanned_second_value_length);
                      if (first_numeric_value > 0 || second_numeric_value < 0
                         || (!isfloat && (values[i].size() != scanned_first_value_length || values[i + 1].size() != scanned_second_value_length))) {
+                            std::cout<<"INFO " << confidence_interval_tag << " shld hv <= 0 && >= 0" << std::endl;
                         throw new InfoBodyError{state.n_lines,
                                 "INFO " + confidence_interval_tag +
                                 " is a confidence interval tag, which should have first value <= 0 and second value >= 0"};
@@ -496,6 +505,7 @@ namespace ebi
                 }
                 util::string_split(fields[offset], ",", values);
                 if (values.size() % 2 != 0) {           //CI should have even count
+                std::cout<<"sample " << confidence_interval_tag << " shld hv even no entries" << std::endl;
                     std::string message = "Sample #" + std::to_string(offset + 1) + ", field " + confidence_interval_tag +
                         " does not have even count";
                     throw new SamplesFieldBodyError{state.n_lines, message, "", confidence_interval_tag};
@@ -507,6 +517,7 @@ namespace ebi
                     int second_numeric_value = std::stoi(values[i + 1] != MISSING_VALUE ? values[i + 1] : "0", &scanned_second_value_length);
                     if (first_numeric_value > 0 || second_numeric_value < 0
                     || (!isfloat && (values[i].size() != scanned_first_value_length || values[i + 1].size() != scanned_second_value_length))) {
+                        std::cout<<"sample " << confidence_interval_tag << " shld hv <0 >0" << std::endl;
                         std::string message = "SAMPLE " + confidence_interval_tag +
                             " is a confidence interval tag, which should have first value <= 0 and second value >= 0";
                         throw new SamplesFieldBodyError{state.n_lines, message, "", confidence_interval_tag};
