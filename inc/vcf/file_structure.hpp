@@ -738,7 +738,7 @@ namespace ebi
         /**
          * Checks field cardinality, used in addition to check_info_field_cardinality for explicit checks
          */
-        int check_info_field_cardinality_explicit(std::vector<std::string> const & values, size_t expected,
+        void check_info_field_cardinality_explicit(std::vector<std::string> const & values, size_t expected,
                 const std::string field) const;
 
         /**

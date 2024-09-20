@@ -1145,7 +1145,7 @@ namespace ebi
         return rnCnt;
     }
 
-    int Record::check_info_field_cardinality_explicit(std::vector<std::string> const & values, size_t expected,
+    void Record::check_info_field_cardinality_explicit(std::vector<std::string> const & values, size_t expected,
                 const std::string field) const {
         if (values.size() != expected) {
             std::stringstream message;
@@ -1219,7 +1219,6 @@ namespace ebi
     {
         std::string delims("|/");
         bool anyphased = false;
-        bool first = true;
         std::vector<std::string> values;
 
         if (!GT.size()) {
