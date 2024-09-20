@@ -529,18 +529,18 @@ namespace ebi
             if (source->version < Version::v44) {   //not applicable for anything < v4.4
                 return;
             }
-            unsigned int rnCount = getRNvalue();             //get repeat no, it must match to RUS count
+            unsigned int rnCount = getRNvalue();                        //get repeat no, it must match to RUS count
             if (rnCount != values.size()) {
                 std::stringstream message;
                 message << "INFO " << RUS << " for record at " << line << " must have " << rnCount << " value(s)";
                 throw new InfoBodyError{line, message.str(), "Found " + std::to_string(values.size()) + " value(s)"};
             }
             //RUL - RUS matching check made below with RUL
-        } else if (field_key == RUL) {    //repeat unit length
+        } else if (field_key == RUL) {              //repeat unit length
             if (source->version < Version::v44) {                       //not applicable for anything < v4.4
                 return;
             }
-            unsigned int rnCount = getRNvalue();                                 //get repeat no, it must match to RUL count
+            unsigned int rnCount = getRNvalue();                        //get repeat no, it must match to RUL count
             if (rnCount != values.size()) {
                 std::stringstream message;
                 message << "INFO " << RUL << " for record at " << line << " must have " << rnCount << " value(s)";
@@ -557,18 +557,18 @@ namespace ebi
                      std::to_string(RUSval.size()) + " value(s)"};
                 }
                 for (size_t i = 0; i < values.size(); ++i) {
-                    if (std::stoul(values[i]) != RUSval[i].length()) {       //must match to RUS length
+                    if (std::stoul(values[i]) != RUSval[i].length()) {      //must match to RUS length
                         std::stringstream message;
                         message << "INFO " << RUL << " not matching to " << RUS << " for record at " << line;
-                    throw new InfoBodyError{line, message.str(), "Found length " + values[i] + " for " + RUSval[i]};
+                        throw new InfoBodyError{line, message.str(), "Found length " + values[i] + " for " + RUSval[i]};
                     }
                 }
             }
-        } else if (field_key == RUC) {    //repeat unit count
+        } else if (field_key == RUC) {  //repeat unit count
             if (source->version < Version::v44) {   //not applicable for anything < v4.4
                 return;
             }
-            unsigned int rnCount = getRNvalue();                                 //get repeat no, it must match to RUC count
+            unsigned int rnCount = getRNvalue();                            //get repeat no, it must match to RUC count
             if (rnCount != values.size()) {
                 std::stringstream message;
                 message << "INFO " << RUC << " for record at " << line << " must have " << rnCount << " value(s)";
@@ -578,7 +578,7 @@ namespace ebi
             if (source->version < Version::v44) {   //not applicable for anything < v4.4
                 return;
             }
-            unsigned int rnCount = getRNvalue();                                 //get repeat no, it must match to RB count
+            unsigned int rnCount = getRNvalue();                            //get repeat no, it must match to RB count
             if (rnCount != values.size()) {
                 std::stringstream message;
                 message << "INFO " << RB << " for record at " << line << " must have " << rnCount << " value(s)";
@@ -644,7 +644,7 @@ namespace ebi
                 std::vector<std::string> RUCval;
                 util::string_split(it->second, ",", RUCval);
                 int cnt = 0;
-                for (size_t i = 0; i < RUCval.size(); ++i) {   //RUC must be integer with RUB
+                for (size_t i = 0; i < RUCval.size(); ++i) {    //RUC must be integer with RUB
                     if (RUCval[i] == MISSING_VALUE) {
                         continue;
                     }
@@ -1136,7 +1136,7 @@ namespace ebi
 
         for (size_t i = 0; i < alternate_alleles.size(); ++i) {
             if (values.size()) {                   //RN present
-                rnCnt += (values[i] == MISSING_VALUE) ? 0 : std::stoi(values[i]);
+                rnCnt += (values[i] == MISSING_VALUE) ? 0 : std::stoul(values[i]);
             } else if (types[i] == RecordType::STRUCTURAL && boost::regex_match(alternate_alleles[i], cnvtr_regex)) {
                 //CNV:TR with no RN, consider as 1
                 rnCnt++;
